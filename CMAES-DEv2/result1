@@ -1,23 +1,47 @@
                TIME-MIN     BEST 
 Function  1 
   CMADE:       0.8688985       -1399.997 
-  CMADE:       1.270282       -1400 
+  CMAES:       1.270282       -1400 
 Function  2 
   CMADE:       51.64431       455937.8 
-  CMADE:       2.672122       -1300 
+  CMAES:       2.672122       -1300 
 Function  3 
   CMADE:       1.115864       25263.37 
-  CMADE:       2.324589       -1200 
+  CMAES:       2.324589       -1200 
 Function  4 
   CMADE:       0.5824289       41630.06 
-  CMADE:       1.431637       -1100 
+  CMAES:       1.431637       -1100 
 Function  5 
   CMADE:       2.074066       -962.3955 
-  CMADE:       0.2542524       -1000 
+  CMAES:       0.2542524       -1000 
 Function  6 
   CMADE:       323.083       -887.134 
-  CMADE:       2.670992       -900 
+  CMAES:       2.670992       -900 
 Function  7 
   CMADE:       1.139201       -799.8829 
-  CMADE:       0.2096486       -798.4989 
+  CMAES:       0.2096486       -798.4989 
+Function  8 
+  CMADE:       36.2065       -678.3736 
+  CMAES:       1.367035       -679.6088  
+Function  9 
+  CMADE:       30.71474       -587.4971 
+  CMAES:       1.996104       -586.8775 
+Function  10 
+  CMADE:       1.378547       -499.4228 
+  CMAES:       1.248262       -499.9926 
+Function  11 
+  CMADE:       1.212096       -398.0096 
+  CMAES:       1.283897       -171.1651 
+Function  12 
+  CMADE:       1.189412       -294.9996 
+  CMAES:       2.359174       -125.8862 
+Function  13 
+  CMADE:       1.379364       -196.9793 
+  CMAES:       0.5348554       17.49932 
+Function  14 
+  CMADE:       1.548549       -73.22519 
+  CMAES:       2.370517       1601.39 
+Function  15 
+  CMADE:       0.8433992       2538.538 
+  CMAES:       0.1866372       1700.117 
 
