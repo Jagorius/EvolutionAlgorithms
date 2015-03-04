@@ -1,4 +1,4 @@
-CMADE3 <- function(par, fn, ..., lower, upper, control=list()) {
+CMADE4 <- function(par, fn, ..., lower, upper, control=list()) {
   
   library("ringbuffer")
   
@@ -55,8 +55,11 @@ CMADE3 <- function(par, fn, ..., lower, upper, control=list()) {
   pathRatio   <- controlParam("pathRatio", 2.35)
   checkMiddle <- controlParam("checkMiddle", TRUE)
   histSize    <- controlParam("history", 0.5*N^2)
+  histSize    <- round(histSize)
   tol         <- controlParam("tol", 10^-20)
+  budget      <- controlParam("budget", 10000*N )
   
+  print(pathLength)
   ## Distribution parameter for history sampling
   p           <- controlParam("p", 0.001)
   
@@ -84,7 +87,7 @@ CMADE3 <- function(par, fn, ..., lower, upper, control=list()) {
   
   cumMean=par
   
-  while( counteval < 10000*N && best.fit > stopfitness)
+  while( counteval < budget && best.fit > stopfitness)
   {
     ## Allocate buffers
     steps <- ringbuffer(size = pathLength*N)
