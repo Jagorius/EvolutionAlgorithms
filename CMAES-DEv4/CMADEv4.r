@@ -3,10 +3,10 @@ CMADE4 <- function(par, fn, ..., lower, upper, control=list()) {
   library("ringbuffer")
   
   ## Function to check the presence of options in the arguments specified by the user
-   # @name - argument name
-   # @default - default value of the argument
-   # RETURN: value specified by user if the given argument name found, default value otherwise
-   ##
+  # @name - argument name
+  # @default - default value of the argument
+  # RETURN: value specified by user if the given argument name found, default value otherwise
+  ##
   controlParam <- function(name, default) {
     v <- control[[name]]
     if (is.null(v))
@@ -89,20 +89,21 @@ CMADE4 <- function(par, fn, ..., lower, upper, control=list()) {
   ## Allocate buffers:
   steps       <- ringbuffer(size = pathLength*N)                      ## Cyclical buffer containing last 'pathLength' steps of algorithm
   FtHistory   <- array(0, histSize)                                   ## Array buffer containing 'histSize' last values of 'Ft'
-  history     <- array(0, c(N, lambda, histSize))                     ## Array stores whole population fraction for 'hsize' recent iterations
   
   ## Initialize internal strategy parameters
   counteval   <- 0                                                    ## Number of function evaluations
   msg         <- NULL                                                 ## Reason for terminating
   
-  cumMean=par
-
+  cumMean     <- par
+  lambda      <- initlambda
+  
   while( counteval < budget && best.fit > stopfitness)
   {
-    histHead  <- 0      ## Pointer to the history buffer head
-    iter      <- 0L     ## Number of iterations
+    histHead  <- 0                                                    ## Pointer to the history buffer head
+    iter      <- 0L                                                   ## Number of iterations
+    history   <- array(0, c(N, mu, histSize))                     ## Array stores whole population fraction for 'hsize' recent iterations   
     Ft        <- initFt
-  
+    
     # Generate seed point
     if(counteval>0)
       par=runif(N,0.8*lower,0.8*upper)
@@ -116,7 +117,7 @@ CMADE4 <- function(par, fn, ..., lower, upper, control=list()) {
                                 bounceBackBoundary(lower,upper,isLowerViolation=FALSE,population)),   ## upper bonduary violation
                          bounceBackBoundary(lower,upper,isLowerViolation=TRUE,population)             ## lower bonduary violation
     )   
-  
+    
     selection       <- rep(0, mu)
     selectedPoints  <- matrix(0, nrow=N, ncol=mu)
     fitness         <- apply(population, 2, fn)
@@ -130,10 +131,10 @@ CMADE4 <- function(par, fn, ..., lower, upper, control=list()) {
     diffs     <- matrix(0, N, lambda)
     x1sample  <- numeric(lambda)
     x2sample  <- numeric(lambda)
-   
+    
     chiN      <- (sqrt(2)*gamma((N+1)/2)/gamma(N/2))  
     histNorm  <- sqrt(mu/(mu+1))/sqrt(2)  
-  
+    
     stoptol=F
     while (counteval < budget && !stoptol) {
       iter      <- iter + 1L
@@ -181,19 +182,19 @@ CMADE4 <- function(par, fn, ..., lower, upper, control=list()) {
       ## Sample from history with geometric or uniform distribution
       limit <- ifelse(iter < histSize, histHead, histSize)
       historySample <- (rgeom(lambda, p) %% limit) + 1
-    
+      
       x1sample <- sample(1:mu, lambda, replace=TRUE)
       x2sample <- sample(1:mu, lambda, replace=TRUE)
-        
+      
       ## Make diffs    
       for (i in 1:lambda) {
         x1 <- history[, x1sample[i], historySample[i]]
         x2 <- history[, x2sample[i], historySample[i]]
-          
+        
         diffs[,i] <- (x1 - x2) +
           sqrt(1-c_cov) * rnorm(1) * step* chiN + 
           sqrt(c_cov) * rnorm(N)/chiN  
-          
+        
       }
       
       ## New population
@@ -206,7 +207,7 @@ CMADE4 <- function(par, fn, ..., lower, upper, control=list()) {
                                   bounceBackBoundary(lower,upper,isLowerViolation=FALSE,population)),   ## upper bonduary violation
                            bounceBackBoundary(lower,upper,isLowerViolation=TRUE,population)             ## lower bonduary violation
       )   
-  
+      
       ## Evaluation
       fitness <- apply(population, 2, fn)
       
@@ -241,7 +242,10 @@ CMADE4 <- function(par, fn, ..., lower, upper, control=list()) {
     }
     counteval <- counteval + 1
     
-    lambda <- lambda+initlambda * 0.5
+    lambda  <- round(lambda+initlambda * 0.5)
+    mu      <- floor(lambda/2)
+    weights <- log(mu+1) - log(1:mu)
+    weights <- weights/sum(weights)                                 
   }
   
   cnt <- c(`function`=as.integer(counteval), gradient=NA)
@@ -268,13 +272,13 @@ CMADE4 <- function(par, fn, ..., lower, upper, control=list()) {
 }
 
 ## Function that repair individuals beyond the search range, using the modified idea 
- # of back bouncing.
- # @lowerBoundary - search space lower bonduary
- # @upperBoundary - search space upper bonduary
- # @isLowerViolation - logical value saying whether violation was lower or upper (lower=TRUE, upper=FALSE)
- # @individual - individual to repair
- # RETURN: fixed individual
- ##
+# of back bouncing.
+# @lowerBoundary - search space lower bonduary
+# @upperBoundary - search space upper bonduary
+# @isLowerViolation - logical value saying whether violation was lower or upper (lower=TRUE, upper=FALSE)
+# @individual - individual to repair
+# RETURN: fixed individual
+##
 bounceBackBoundary <- function(lowerBoundary, upperBoundary, isLowerViolation, individual) {
   if(isLowerViolation == TRUE)
     individual <- lowerBoundary + abs(lowerBoundary - individual)%% (upperBoundary- lowerBoundary)
@@ -288,26 +292,26 @@ bounceBackBoundary <- function(lowerBoundary, upperBoundary, isLowerViolation, i
 }
 
 ## Norm: function that assigns a strictly positive length to each vector in a vector space.
- # @vectorX - vector to norm
- # RETURN: euclidean norm of the given vector
- ##
+# @vectorX - vector to norm
+# RETURN: euclidean norm of the given vector
+##
 norm <- function(vectorX)
   drop(sqrt(crossprod(vectorX)))
 
 ## Function calculate what proportion of the population has a better fitness
- # than its center.
- # @benchmarkFitness - fitness value of mean individual of population
- # @popFitness - actual population fitness array
- # RETURN: proportion of better fitted individuals to the whole population 
- ##
+# than its center.
+# @benchmarkFitness - fitness value of mean individual of population
+# @popFitness - actual population fitness array
+# RETURN: proportion of better fitted individuals to the whole population 
+##
 p_succ<-function(benchmarkFitness, popFitness) {
   return (sum(popFitness < benchmarkFitness) / length(popFitness))
 }
 
 ## Function to calculate new scaling factor F(step size).
- # @arguments - according to their names
- # RETURN: new Ft value
- ##
+# @arguments - according to their names
+# RETURN: new Ft value
+##
 calculateFt <- function(stepsBuffer, N, lambda, pathLength, currentFt, c_Ft, pathRatio) {
   
   steps <- split(stepsBuffer$peek(), ceiling(seq_along(stepsBuffer$peek())/N))
@@ -326,11 +330,11 @@ calculateFt <- function(stepsBuffer, N, lambda, pathLength, currentFt, c_Ft, pat
 }
 
 ## Function to calculate path length control reference value based on problem
- # dimensions and history buffer size
- # @N - number of problem dimensions
- # @pathLength - size of evolution path
- # RETURN: new path ratio value
- ##
+# dimensions and history buffer size
+# @N - number of problem dimensions
+# @pathLength - size of evolution path
+# RETURN: new path ratio value
+##
 calculatePathRatio <- function(N, pathLength) {
   
   randomWalk <- function(N) {
