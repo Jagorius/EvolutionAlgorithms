@@ -101,7 +101,7 @@ CMADE4 <- function(par, fn, ..., lower, upper, control=list()) {
   {
     histHead  <- 0                                                    ## Pointer to the history buffer head
     iter      <- 0L                                                   ## Number of iterations
-    history   <- array(0, c(N, mu, histSize))                     ## Array stores whole population fraction for 'hsize' recent iterations   
+    history   <- array(0, c(N, mu, histSize))                         ## Array stores best 'mu' individuals for 'hsize' recent iterations   
     Ft        <- initFt
     
     # Generate seed point
