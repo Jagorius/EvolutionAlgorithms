@@ -3,10 +3,10 @@ CMADE4 <- function(par, fn, ..., lower, upper, control=list()) {
   library("ringbuffer")
   
   ## Function to check the presence of options in the arguments specified by the user
-  # @name - argument name
-  # @default - default value of the argument
-  # RETURN: value specified by user if the given argument name found, default value otherwise
-  ##
+   # @name - argument name
+   # @default - default value of the argument
+   # RETURN: value specified by user if the given argument name found, default value otherwise
+   ##
   controlParam <- function(name, default) {
     v <- control[[name]]
     if (is.null(v))
@@ -272,13 +272,13 @@ CMADE4 <- function(par, fn, ..., lower, upper, control=list()) {
 }
 
 ## Function that repair individuals beyond the search range, using the modified idea 
-# of back bouncing.
-# @lowerBoundary - search space lower bonduary
-# @upperBoundary - search space upper bonduary
-# @isLowerViolation - logical value saying whether violation was lower or upper (lower=TRUE, upper=FALSE)
-# @individual - individual to repair
-# RETURN: fixed individual
-##
+ # of back bouncing.
+ # @lowerBoundary - search space lower bonduary
+ # @upperBoundary - search space upper bonduary
+ # @isLowerViolation - logical value saying whether violation was lower or upper (lower=TRUE, upper=FALSE)
+ # @individual - individual to repair
+ # RETURN: fixed individual
+ ##
 bounceBackBoundary <- function(lowerBoundary, upperBoundary, isLowerViolation, individual) {
   if(isLowerViolation == TRUE)
     individual <- lowerBoundary + abs(lowerBoundary - individual)%% (upperBoundary- lowerBoundary)
@@ -292,26 +292,26 @@ bounceBackBoundary <- function(lowerBoundary, upperBoundary, isLowerViolation, i
 }
 
 ## Norm: function that assigns a strictly positive length to each vector in a vector space.
-# @vectorX - vector to norm
-# RETURN: euclidean norm of the given vector
-##
+ # @vectorX - vector to norm
+ # RETURN: euclidean norm of the given vector
+ ##
 norm <- function(vectorX)
   drop(sqrt(crossprod(vectorX)))
 
 ## Function calculate what proportion of the population has a better fitness
-# than its center.
-# @benchmarkFitness - fitness value of mean individual of population
-# @popFitness - actual population fitness array
-# RETURN: proportion of better fitted individuals to the whole population 
-##
+ # than its center.
+ # @benchmarkFitness - fitness value of mean individual of population
+ # @popFitness - actual population fitness array
+ # RETURN: proportion of better fitted individuals to the whole population 
+ ##
 p_succ<-function(benchmarkFitness, popFitness) {
   return (sum(popFitness < benchmarkFitness) / length(popFitness))
 }
 
 ## Function to calculate new scaling factor F(step size).
-# @arguments - according to their names
-# RETURN: new Ft value
-##
+ # @arguments - according to their names
+ # RETURN: new Ft value
+ ##
 calculateFt <- function(stepsBuffer, N, lambda, pathLength, currentFt, c_Ft, pathRatio) {
   
   steps <- split(stepsBuffer$peek(), ceiling(seq_along(stepsBuffer$peek())/N))
@@ -329,12 +329,12 @@ calculateFt <- function(stepsBuffer, N, lambda, pathLength, currentFt, c_Ft, pat
   return (currentFt * exp(c_Ft * (pathRatio / (totalPath / directPath)-1)))  
 }
 
-## Function to calculate path length control reference value based on problem
-# dimensions and history buffer size
-# @N - number of problem dimensions
-# @pathLength - size of evolution path
-# RETURN: new path ratio value
-##
+## Function to calculate path length control reference value based on a problem
+ # dimensions and history buffer size
+ # @N - number of problem dimensions
+ # @pathLength - size of evolution path
+ # RETURN: new path ratio value
+ ##
 calculatePathRatio <- function(N, pathLength) {
   
   randomWalk <- function(N) {
