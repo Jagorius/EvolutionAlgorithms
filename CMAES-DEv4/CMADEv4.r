@@ -50,7 +50,7 @@ CMADE4 <- function(par, fn, ..., lower, upper, control=list()) {
   c_cov       <- controlParam("c_cov", 1/2)                           ## Mutation vectors weight constant
   pathLength  <- controlParam("pathLength", 5)                        ## Size of evolution path
   c_Ft        <- controlParam("c_Ft", 0.2)                            ## Vatiance scaling constant
-  pathRatio   <- controlParam("pathRatio", 1/2.27)                    ## Path Length Control reference value
+  pathRatio   <- controlParam("pathRatio",calculatePathRatio(N,pathLength)) ## Path Length Control reference value
   checkMiddle <- controlParam("checkMiddle", TRUE)                    ## Vatiable telling if algorithm should save best individual
   histSize    <- controlParam("history", 0.5*N^2)                     ## Size of the window of history - the step length history
   histSize    <- ceiling(histSize)                                    ##    \-> size should be integer
@@ -323,4 +323,53 @@ calculateFt <- function(stepsBuffer, N, lambda, pathLength, currentFt, c_Ft, pat
     totalPath <- totalPath + norm(steps[[i]])
   }
   return (currentFt * exp(c_Ft * (pathRatio / (totalPath / directPath)-1)))  
+}
+
+## Function to calculate path length control reference value based on problem
+ # dimensions and history buffer size
+ # @N - number of problem dimensions
+ # @pathLength - size of evolution path
+ # RETURN: new path ratio value
+ ##
+calculatePathRatio <- function(N, pathLength) {
+  
+  randomWalk <- function(N) {
+    m <-matrix(0, 10000, N)
+    for (i in 2:10000) {
+      m[i,] = m[i-1,] + rnorm(N)
+    }
+    return (m)
+  }
+  
+  m <- randomWalk(N)
+  steps <- matrix(0, 10000, N)
+  for (i in 1:9999) {
+    steps[i,] = m[i+1,] - m[i,]
+  }
+  
+  a <- 0
+  FtWeights <- (1-a)^(0:(pathLength-1))
+  wSteps <- list()
+  
+  ratio <- rep(NA, 10000-pathLength)
+  for (i in (pathLength+1):10000) {
+    for (j in 1:pathLength) {
+      wSteps[[j]] = steps[i+j-pathLength-1,] * FtWeights[j]
+    }
+    
+    directPath <- rep(0,N)
+    for (j in 1:pathLength) {
+      directPath <- directPath + wSteps[[j]]
+    }
+    directPath <- norm(directPath)
+    
+    totalPath <- 0
+    for (j in 1:pathLength) {
+      totalPath <- totalPath + norm(wSteps[[j]])
+    }
+    
+    ratio[i-pathLength] <- directPath / totalPath
+  }
+  return (mean(ratio))
+  
 }
