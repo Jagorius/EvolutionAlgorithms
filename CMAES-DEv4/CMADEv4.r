@@ -40,15 +40,16 @@ CMADE4 <- function(par, fn, ..., lower, upper, control=list()) {
   lambda      <- controlParam("lambda", 3*N)                          ## Population size
   initlambda  <- controlParam("lambda", 3*N)
   mu          <- controlParam("mu", floor(lambda/2))                  ## Selection size
-  maxiter     <- controlParam("maxit", floor((10000*N)/(lambda+1)))   ## Maximum number of iterations after which algorithm stops
-  weights     <- controlParam("weights", log(mu+1) - log(1:mu))       ## Weights to calculate mean from selected individuals
-  #weights     <- controlParam("weights", (1:mu)*0+1)
+  #weights     <- controlParam("weights", log(mu+1) - log(1:mu))       ## Weights to calculate mean from selected individuals
+  weights     <- controlParam("weights", (1:mu)*0+1)
   weights     <- weights/sum(weights)                                 ##    \-> weights are normalized by the sum
   mueff       <- controlParam("mueff", sum(weights)^2/sum(weights^2)) ## Variance effectiveness factor
   cc          <- controlParam("ccum", 4/(N+4))                        ## Evolution Path decay factor
   cc_mueff    <- sqrt(cc*(2 - cc) * mueff)                            ## 'cc' and 'mueff' are constant so as this equation
   c_cov       <- controlParam("c_cov", 1/2)                           ## Mutation vectors weight constant
   pathLength  <- controlParam("pathLength", 5)                        ## Size of evolution path
+  budget      <- controlParam("budget", 10000*N )                     ## The maximum number of fitness function calls
+  maxiter     <- controlParam("maxit", floor(budget/(lambda+1)))      ## Maximum number of iterations after which algorithm stops
   c_Ft        <- controlParam("c_Ft", 0.2)                            ## Vatiance scaling constant
   pathRatio   <- controlParam("pathRatio",calculatePathRatio(N,pathLength)) ## Path Length Control reference value
   checkMiddle <- controlParam("checkMiddle", TRUE)                    ## Vatiable telling if algorithm should save best individual
@@ -57,7 +58,6 @@ CMADE4 <- function(par, fn, ..., lower, upper, control=list()) {
   p           <- controlParam("p", 0.001)                             ## Distribution parameter for history sampling (success prob)
   Ft_scale    <- controlParam("Ft_scale", ((mueff+2)/(N+mueff+3))/(1 + 2*max(0, sqrt((mueff-1)/(N+1))-1) + (mueff+2)/(N+mueff+3)))
   tol         <- controlParam("tol", 10^-20)
-  budget      <- controlParam("budget", 10000*N )
   
   ## Logging options:
   log.all     <- controlParam("diag", FALSE)                 
@@ -106,7 +106,7 @@ CMADE4 <- function(par, fn, ..., lower, upper, control=list()) {
     
     # Generate seed point
     if(counteval>0)
-      par=runif(N,0.8*lower,0.8*upper)
+      par=runif(N,lower,upper)
     
     population <- par + Ft * replicate(lambda, rnorm(N))
     
@@ -149,7 +149,7 @@ CMADE4 <- function(par, fn, ..., lower, upper, control=list()) {
       selection       <- order(fitness)[1:mu]
       selectedPoints  <- population[,selection]
       
-      # Save sekected population in the history buffer
+      # Save selected population in the history buffer
       history[,,histHead] <- selectedPoints * histNorm/Ft
       
       ## Calculate weighted mean of selected points
@@ -244,7 +244,8 @@ CMADE4 <- function(par, fn, ..., lower, upper, control=list()) {
     
     lambda  <- round(lambda+initlambda * 0.5)
     mu      <- floor(lambda/2)
-    weights <- log(mu+1) - log(1:mu)
+    #weights <- log(mu+1) - log(1:mu)
+    weights <- (1:mu)*0+1
     weights <- weights/sum(weights)                                 
   }
   
