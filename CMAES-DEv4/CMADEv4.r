@@ -40,8 +40,8 @@ CMADE4 <- function(par, fn, ..., lower, upper, control=list()) {
   lambda      <- controlParam("lambda", 3*N)                          ## Population size
   initlambda  <- controlParam("lambda", 3*N)
   mu          <- controlParam("mu", floor(lambda/2))                  ## Selection size
-  #weights     <- controlParam("weights", log(mu+1) - log(1:mu))       ## Weights to calculate mean from selected individuals
-  weights     <- controlParam("weights", (1:mu)*0+1)
+  weights     <- controlParam("weights", log(mu+1) - log(1:mu))       ## Weights to calculate mean from selected individuals
+  #weights     <- controlParam("weights", (1:mu)*0+1)
   weights     <- weights/sum(weights)                                 ##    \-> weights are normalized by the sum
   mueff       <- controlParam("mueff", sum(weights)^2/sum(weights^2)) ## Variance effectiveness factor
   cc          <- controlParam("ccum", 4/(N+4))                        ## Evolution Path decay factor
@@ -244,8 +244,8 @@ CMADE4 <- function(par, fn, ..., lower, upper, control=list()) {
     
     lambda  <- round(lambda+initlambda * 0.5)
     mu      <- floor(lambda/2)
-    #weights <- log(mu+1) - log(1:mu)
-    weights <- (1:mu)*0+1
+    weights <- log(mu+1) - log(1:mu)
+    #weights <- (1:mu)*0+1
     weights <- weights/sum(weights)                                 
   }
   
@@ -373,7 +373,7 @@ calculatePathRatio <- function(N, pathLength) {
       totalPath <- totalPath + norm(wSteps[[j]])
     }
     
-    ratio[i-pathLength] <- directPath / totalPath
+    ratio[i-pathLength] <- totalPath / directPath
   }
   return (mean(ratio))
   
