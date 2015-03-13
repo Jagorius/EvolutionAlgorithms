@@ -17,7 +17,7 @@ CMADE4 <- function(par, fn, ..., lower, upper, control=list()) {
   
   N <- length(par)                                                    ## Number of dimensions 
   
-  ## Check if user specified box constraints values. 
+  ## Check if user specified box constraints values.  
   ## If not accept the default values.
   if (missing(lower))
     lower <- rep(-100, N)
