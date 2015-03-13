@@ -33,7 +33,7 @@ CMADE4 <- function(par, fn, ..., lower, upper, control=list()) {
   ##  Algorithm parameters:  ##
   #############################
   Ft          <- controlParam("Ft", 0.5)                              ## Scaling factor of difference vectors (a variable!)
-  initFt      <- controlParam("initFt", 5)
+  initFt      <- controlParam("initFt", 5*(upper[1]-lower[1])/200)
   stopfitness <- controlParam("stopfitness", -Inf)                    ## Fitness value after which the convergence is reached 
   stopvariance<- controlParam("stopvariance", 1e-12*Ft)               ## Genetic diversity minimum value(stop fitness variance)
   ## Strategy parameter setting:
@@ -93,12 +93,14 @@ CMADE4 <- function(par, fn, ..., lower, upper, control=list()) {
   ## Initialize internal strategy parameters
   counteval   <- 0                                                    ## Number of function evaluations
   msg         <- NULL                                                 ## Reason for terminating
+  countreset  <- -1
   
   cumMean     <- par
   lambda      <- initlambda
   
   while( counteval < budget && best.fit > stopfitness)
   {
+    countreset<- countreset + 1
     histHead  <- 0                                                    ## Pointer to the history buffer head
     iter      <- 0L                                                   ## Number of iterations
     history   <- array(0, c(N, mu, histSize))                         ## Array stores best 'mu' individuals for 'hsize' recent iterations   
@@ -106,7 +108,7 @@ CMADE4 <- function(par, fn, ..., lower, upper, control=list()) {
     
     # Generate seed point
     if(counteval>0)
-      par=runif(N,lower,upper)
+      par=runif(N,lower+(upper-lower)*0.2,upper-(upper-lower)*0.2)
     
     population <- par + Ft * replicate(lambda, rnorm(N))
     
@@ -248,8 +250,7 @@ CMADE4 <- function(par, fn, ..., lower, upper, control=list()) {
     #weights <- (1:mu)*0+1
     weights <- weights/sum(weights)                                 
   }
-  
-  cnt <- c(`function`=as.integer(counteval), gradient=NA)
+  cnt <- c(`function`=as.integer(counteval))
   
   log <- list()
   ## Subset lognostic data to only include those iterations which
@@ -264,6 +265,7 @@ CMADE4 <- function(par, fn, ..., lower, upper, control=list()) {
   res <- list(par=best.par,
               value=best.fit,
               counts=cnt,
+              countreset=countreset,
               convergence=ifelse(iter >= maxiter, 1L, 0L),
               message=msg,
               diagnostic=log
