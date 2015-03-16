@@ -33,7 +33,7 @@ CMADE4 <- function(par, fn, ..., lower, upper, control=list()) {
   ##  Algorithm parameters:  ##
   #############################
   Ft          <- controlParam("Ft", 0.5)                              ## Scaling factor of difference vectors (a variable!)
-  initFt      <- controlParam("initFt", 5*(upper[1]-lower[1])/200)
+  initFt      <- controlParam("initFt", 5)
   stopfitness <- controlParam("stopfitness", -Inf)                    ## Fitness value after which the convergence is reached 
   stopvariance<- controlParam("stopvariance", 1e-12*Ft)               ## Genetic diversity minimum value(stop fitness variance)
   ## Strategy parameter setting:
@@ -107,11 +107,13 @@ CMADE4 <- function(par, fn, ..., lower, upper, control=list()) {
     Ft        <- initFt
     
     # Generate seed point
-    if(counteval>0)
-      par=runif(N,lower+(upper-lower)*0.2,upper-(upper-lower)*0.2)
+    #if(counteval>0)
+    #  par=runif(N,lower+(upper-lower)*0.2,upper-(upper-lower)*0.2)
     
-    population <- par + Ft * replicate(lambda, rnorm(N))
+    #population <- par + Ft * replicate(lambda, rnorm(N))
     
+    population <- replicate(lambda, runif(N,lower,upper))
+  
     # Check constraints violations
     # Repair the individual if necessary
     population <- ifelse(population > lower, 
