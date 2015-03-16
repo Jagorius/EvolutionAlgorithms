@@ -108,11 +108,9 @@ CMADE4 <- function(par, fn, ..., lower, upper, control=list()) {
     
     # Generate seed point
     #if(counteval>0)
-    #  par=runif(N,lower+(upper-lower)*0.2,upper-(upper-lower)*0.2)
-    
-    #population <- par + Ft * replicate(lambda, rnorm(N))
-    
-    population <- replicate(lambda, runif(N,lower,upper))
+     # population <- replicate(lambda, runif(N,lower,upper))
+      #par=runif(N,lower+(upper-lower)*0.2,upper-(upper-lower)*0.2)
+    population <- par + Ft * replicate(lambda, rnorm(N))   
   
     # Check constraints violations
     # Repair the individual if necessary
