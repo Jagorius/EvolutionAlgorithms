@@ -43,9 +43,9 @@ calculatePathRatio <- function(N, pathLength) {
     
     ratio[i-pathLength] <- totalPath / directPath
   }
-  return(mean(ratio))
+  #return(mean(ratio))
   #return (sd(ratio))
-  #return(sd(ratio)/mean(ratio))
+  return(sd(ratio)/mean(ratio))
 }
 
 pathRatioPlot <- function(N) {
@@ -58,9 +58,9 @@ pathRatioPlot <- function(N) {
   }
   plot(results[,1],results[,2], col="blue", ann=FALSE)
   title(xlab="History size", col.lab=rgb(0,0.5,0))
-  title(ylab="Mean", col.lab=rgb(0,0.5,0))
+  #title(ylab="Mean", col.lab=rgb(0,0.5,0))
   #title(ylab="Standard Deviation", col.lab=rgb(0,0.5,0))
-  #title(ylab="Deviation/Mean", col.lab=rgb(0,0.5,0))
+  title(ylab="Deviation/Mean", col.lab=rgb(0,0.5,0))
   title(main="N=30", col.main="red", font.main=4)
   
 }
