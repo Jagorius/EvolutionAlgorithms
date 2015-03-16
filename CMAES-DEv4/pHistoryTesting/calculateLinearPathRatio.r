@@ -47,7 +47,8 @@ calculateLinearPathRatio <- function(N, pathLength) {
     
     ratio[i-pathLength] <- totalPath / directPath
   }
-  return (sd(ratio))
+  return(mean(ratio))
+  #return (sd(ratio))
   #return(sd(ratio)/mean(ratio))
 }
 
@@ -61,7 +62,8 @@ pathRatioLinearPlot <- function(N) {
   }
   plot(results[,1],results[,2], col="blue", ann=FALSE)
   title(xlab="History size", col.lab=rgb(0,0.5,0))
-  title(ylab="Standard Deviation", col.lab=rgb(0,0.5,0))
+  title(ylab="Mean", col.lab=rgb(0,0.5,0))
+  #title(ylab="Standard Deviation", col.lab=rgb(0,0.5,0))
   #title(ylab="Deviation/Mean", col.lab=rgb(0,0.5,0))
   title(main="Linear fitness function\nN=30", col.main="red", font.main=4)
   
