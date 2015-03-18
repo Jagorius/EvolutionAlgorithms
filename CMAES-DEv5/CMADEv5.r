@@ -1,4 +1,4 @@
-CMADE4 <- function(par, fn, ..., lower, upper, control=list()) {
+CMADE5 <- function(par, fn, ..., lower, upper, control=list()) {
   
   library("ringbuffer")
   
