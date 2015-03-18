@@ -51,7 +51,7 @@ CMADE5 <- function(par, fn, ..., lower, upper, control=list()) {
   budget      <- controlParam("budget", 10000*N )                     ## The maximum number of fitness function calls
   maxiter     <- controlParam("maxit", floor(budget/(lambda+1)))      ## Maximum number of iterations after which algorithm stops
   c_Ft        <- controlParam("c_Ft", 1/sqrt(N))                      ## Vatiance scaling constant
-  pathRatio   <- controlParam("pathRatio",0.6*calculatePathRatio(N,pathLength)) ## Path Length Control reference value
+  pathRatio   <- controlParam("pathRatio",calculatePathRatio(N,pathLength)) ## Path Length Control reference value
   checkMiddle <- controlParam("checkMiddle", TRUE)                    ## Vatiable telling if algorithm should save best individual
   histSize    <- controlParam("history", 0.5*N^2)                     ## Size of the window of history - the step length history
   histSize    <- ceiling(histSize)                                    ##    \-> size should be integer
