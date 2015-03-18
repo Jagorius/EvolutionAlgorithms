@@ -1,5 +1,6 @@
 results <- function(){
   
+  cmade495<- read.table("C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/CMAES-DEv4/Cresult495.txt")  
   cmade49<- read.table("C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/CMAES-DEv4/Cresult49.txt")  
   cmade48<- read.table("C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/CMAES-DEv4/Cresult48.txt")  
   cmade47<- read.table("C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/CMAES-DEv4/Cresult47.txt")  
@@ -38,7 +39,12 @@ results <- function(){
   cmade49vs3[1001]  <- sum(cmade49vs3)
   cmade49vs3[1002]  <- median(cmade49vs3)
   
-  resmatrix <- matrix(0, nrow=1002, ncol=6)
+  cmade495vs3       <- array(0,1000)
+  cmade495vs3       <- cmade3[,4] - cmade495[,4]
+  cmade495vs3[1001] <- sum(cmade495vs3)
+  cmade495vs3[1002] <- median(cmade495vs3)
+  
+  resmatrix <- matrix(0, nrow=1002, ncol=7)
   #resmatrix[,1] <- cmade3[,4]
   #resmatrix[,2] <- cmade4[,4]
   #resmatrix[,3] <- cmade4vs3
@@ -48,9 +54,10 @@ results <- function(){
   resmatrix[,4] <- cmade47vs3
   resmatrix[,5] <- cmade48vs3
   resmatrix[,6] <- cmade49vs3
+  resmatrix[,7] <- cmade495vs3
   
   
-  colnames(resmatrix) <- c("CMADEv3-CMADEv4  ","CMADEv3-CMADEv4,5   ","CMADEv3-CMADEv4,6","CMADEv3-CMADEv4,7","CMADEv3-CMADEv4,8","CMADEv3-CMADEv4,9")
+  colnames(resmatrix) <- c("CMADEv3-CMADEv4  ","CMADEv3-CMADEv4,5   ","CMADEv3-CMADEv4,6","CMADEv3-CMADEv4,7","CMADEv3-CMADEv4,8","CMADEv3-CMADEv4,9","CMADEv3-CMADEv4,95")
   rownames(resmatrix) <- c(0:999,"SUM", "MEDIAN")
   resmatrix <- as.table(resmatrix)
   
@@ -61,7 +68,8 @@ results <- function(){
       \tCMADE4,6:Wagi jednakowe, par<0.8lower,0.8upper>,odwrotne pathRatio\t
       \tCMADE4,7:Wagi niejednakowe, poprawne pathRatio\t
       \tCMADE4,8:Wagi niejednakowe,par<0.8lower,0.8upper>,nowa wartoœæ FtInit, poprawne pathRatio
-      \tCMADE4,9:Wagi niejednakowe,populaton<-replicate(rnorm),FtInit=5, poprawne pathRatio")
+      \tCMADE4,9:Wagi niejednakowe,populaton<-replicate(rnorm),FtInit=5, poprawne pathRatio
+      \tCMADE4,95:Wagi niejednakowe,populaton<-replicate(rnorm),FtInit=5, 0.6*pathRatio"")
   sink()
   #capture.output(print(resmatrix, print.gap=8), file="C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/CMAES-DEv4/Cv3vsCv4vsCv45.txt")
   
