@@ -1,5 +1,6 @@
 results <- function(){
   
+  cmade53 <- read.table("C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/CMAES-DEv5/Cresult53.txt")  
   cmade52 <- read.table("C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/CMAES-DEv5/Cresult52.txt")  
   cmade51 <- read.table("C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/CMAES-DEv5/Cresult51.txt")  
   cmade5  <- read.table("C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/CMAES-DEv5/Cresult5.txt")  
@@ -20,16 +21,22 @@ results <- function(){
   cmade52vs4[1001]   <- sum(cmade52vs4)
   cmade52vs4[1002]   <- median(cmade52vs4)
   
-  resmatrix <- matrix(0, nrow=1002, ncol=3)
+  cmade53vs4         <- array(0,1000)
+  cmade53vs4         <- cmade4[,4] - cmade53[,4]
+  cmade53vs4[1001]   <- sum(cmade53vs4)
+  cmade53vs4[1002]   <- median(cmade53vs4)
+  
+  resmatrix <- matrix(0, nrow=1002, ncol=4)
   #resmatrix[,1] <- cmade3[,4]
   #resmatrix[,2] <- cmade4[,4]
   #resmatrix[,3] <- cmade4vs3
   resmatrix[,1] <- cmade5vs4
   resmatrix[,2] <- cmade51vs4
   resmatrix[,3] <- cmade52vs4
+  resmatrix[,4] <- cmade53vs4
   
   
-  colnames(resmatrix) <- c("CMADEv4-CMADEv5", "CMADEv4-CMADEv51", "CMADEv4-CMADEv52")
+  colnames(resmatrix) <- c("CMADEv4-CMADEv5", "CMADEv4-CMADEv51", "CMADEv4-CMADEv52", "CMADEv4-CMADEv53")
   rownames(resmatrix) <- c(0:999,"SUM", "MEDIAN")
   resmatrix <- as.table(resmatrix)
   
