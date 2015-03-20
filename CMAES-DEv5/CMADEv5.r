@@ -47,7 +47,7 @@ CMADE5 <- function(par, fn, ..., lower, upper, control=list()) {
   cc          <- controlParam("ccum", 4/(N+4))                        ## Evolution Path decay factor
   cc_mueff    <- sqrt(cc*(2 - cc) * mueff)                            ## 'cc' and 'mueff' are constant so as this equation
   c_cov       <- controlParam("c_cov", 1/2)                           ## Mutation vectors weight constant
-  pathLength  <- controlParam("pathLength", 10)                        ## Size of evolution path
+  pathLength  <- controlParam("pathLength", if(N<10) 10 else 5)       ## Size of evolution path
   budget      <- controlParam("budget", 10000*N )                     ## The maximum number of fitness function calls
   maxiter     <- controlParam("maxit", floor(budget/(lambda+1)))      ## Maximum number of iterations after which algorithm stops
   c_Ft        <- controlParam("c_Ft", 1/((sqrt(2)*gamma((N+1)/2)/gamma(N/2)) )) ## Vatiance scaling constant
