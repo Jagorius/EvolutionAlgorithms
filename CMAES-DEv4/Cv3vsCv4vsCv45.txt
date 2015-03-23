@@ -1001,12 +1001,3 @@
 999       6.964713e+00     9.949591e+00     4.974795e+00    -1.989918e+00     6.964713e+00    -9.949591e-01
 SUM       1.265993e+03    -9.205150e+01     1.698017e+03     1.496683e+03     1.593423e+03     1.807954e+03
 MEDIAN    9.949591e-01     0.000000e+00     1.163623e+00     9.953061e-01     1.116997e+00     1.908352e+00
-
-
-LEGENDA:
-	CMADE5 :	 c_Ft=1/sqrt(N)
-      	CMADE51:	 c_Ft=2/sqrt(N)
-      	CMADE52:	 pathRatio<- stale, nowe c_Ft (wektor chi)
-      	CMADE53:	 pathLength=10
-      	CMADE54:	 pathLength=if(N<10) 10 else 5
-      	CMADE55:	 Monitorowanie Ft

@@ -1,5 +1,6 @@
 results <- function(){
   
+  cmade55 <- read.table("C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/CMAES-DEv5/Cresult55.txt")  
   cmade54 <- read.table("C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/CMAES-DEv5/Cresult54.txt")  
   cmade53 <- read.table("C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/CMAES-DEv5/Cresult53.txt")  
   cmade52 <- read.table("C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/CMAES-DEv5/Cresult52.txt")  
@@ -32,7 +33,12 @@ results <- function(){
   cmade54vs4[1001]   <- sum(cmade54vs4)
   cmade54vs4[1002]   <- median(cmade54vs4)
   
-  resmatrix <- matrix(0, nrow=1002, ncol=5)
+  cmade55vs4         <- array(0,1000)
+  cmade55vs4         <- cmade4[,4] - cmade55[,4]
+  cmade55vs4[1001]   <- sum(cmade55vs4)
+  cmade55vs4[1002]   <- median(cmade55vs4)
+  
+  resmatrix <- matrix(0, nrow=1002, ncol=6)
   #resmatrix[,1] <- cmade3[,4]
   #resmatrix[,2] <- cmade4[,4]
   #resmatrix[,3] <- cmade4vs3
@@ -41,9 +47,10 @@ results <- function(){
   resmatrix[,3] <- cmade52vs4
   resmatrix[,4] <- cmade53vs4
   resmatrix[,5] <- cmade54vs4
+  resmatrix[,6] <- cmade55vs4
   
   
-  colnames(resmatrix) <- c("CMADEv4-CMADEv5", "CMADEv4-CMADEv51", "CMADEv4-CMADEv52", "CMADEv4-CMADEv53", "CMADEv4-CMADEv54")
+  colnames(resmatrix) <- c("CMADEv4-CMADEv5", "CMADEv4-CMADEv51", "CMADEv4-CMADEv52", "CMADEv4-CMADEv53", "CMADEv4-CMADEv54", "CMADEv4-CMADEv55")
   rownames(resmatrix) <- c(0:999,"SUM", "MEDIAN")
   resmatrix <- as.table(resmatrix)
   
@@ -53,7 +60,8 @@ results <- function(){
       \tCMADE51:\t c_Ft=2/sqrt(N)
       \tCMADE52:\t pathRatio<- stale, nowe c_Ft (wektor chi)
       \tCMADE53:\t pathLength=10
-      \tCMADE54:\t pathLength=if(N<10) 10 else 5")
+      \tCMADE54:\t pathLength=if(N<10) 10 else 5
+      \tCMADE55:\t Monitorowanie Ft")
   sink()
   #capture.output(print(resmatrix, print.gap=8), file="C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/CMAES-DEv4/Cv3vsCv4vsCv45.txt")
   
