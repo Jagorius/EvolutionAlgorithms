@@ -53,7 +53,7 @@ results <- function(){
       \tCMADE51:\t c_Ft=2/sqrt(N)
       \tCMADE52:\t pathRatio<- stale, nowe c_Ft (wektor chi)
       \tCMADE53:\t pathLength=10
-      \tCMADE51:\t pathLength=if(N<10) 10 else 5")
+      \tCMADE54:\t pathLength=if(N<10) 10 else 5")
   sink()
   #capture.output(print(resmatrix, print.gap=8), file="C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/CMAES-DEv4/Cv3vsCv4vsCv45.txt")
   
@@ -62,4 +62,22 @@ results <- function(){
   #fileConn<-file("C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/CMAES-DEv4/Cv3vsCv4vsCv45.txt")
   #writeLines(c("Hello","World"), fileConn)
   #close(fileConn)
+}
+
+results2 <- function(){
+  cmade54 <- read.table("C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/CMAES-DEv5/Cresult54.txt")  
+  cmade52 <- read.table("C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/CMAES-DEv5/Cresult52.txt")  
+  
+  c54         <- array(0,50)
+  c54         <- cmade54[1:50,4]
+  
+  c52         <- array(0,50)
+  c52         <- cmade52[1:50,4]
+  
+  cmade54vs52        <- array(0,50)
+  cmade54vs52        <- c52 - c54
+  cmade54vs52[51]   <- sum(cmade54vs52)
+  cmade54vs52[52]   <- median(cmade54vs52)
+  
+  print(cmade54vs52)
 }

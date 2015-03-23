@@ -235,6 +235,9 @@ CMADE5 <- function(par, fn, ..., lower, upper, control=list()) {
         break
       }
       
+      if(sd(FtHistory)<0.00000000001)
+        Ft = (upper[1]-lower[1])/4
+      
     }
     
     fn_cum  <- fn(cumMean)
