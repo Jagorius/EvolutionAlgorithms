@@ -47,7 +47,7 @@ CMADE5 <- function(par, fn, ..., lower, upper, control=list()) {
   cc          <- controlParam("ccum", 4/(N+4))                        ## Evolution Path decay factor
   cc_mueff    <- sqrt(cc*(2 - cc) * mueff)                            ## 'cc' and 'mueff' are constant so as this equation
   c_cov       <- controlParam("c_cov", 1/2)                           ## Mutation vectors weight constant
-  pathLength  <- controlParam("pathLength", if(N<10) 10 else 5)       ## Size of evolution path
+  pathLength  <- controlParam("pathLength",  5)                       ## Size of evolution path
   budget      <- controlParam("budget", 10000*N )                     ## The maximum number of fitness function calls
   maxiter     <- controlParam("maxit", floor(budget/(lambda+1)))      ## Maximum number of iterations after which algorithm stops
   c_Ft        <- controlParam("c_Ft", 1/((sqrt(2)*gamma((N+1)/2)/gamma(N/2)) )) ## Vatiance scaling constant
@@ -142,7 +142,7 @@ CMADE5 <- function(par, fn, ..., lower, upper, control=list()) {
       iter      <- iter + 1L
       histHead  <- (histHead %% histSize) + 1
       
-      if (log.Ft) Ft.log[iter] <- Ft
+      if (log.Ft) Ft.log[iter] <- Ft*norm(pc)
       if (log.value) value.log[iter,] <- fitness
       if (log.mean) mean.log[iter] <- fn(newMean)
       if (log.pop) pop.log[,,iter] <- population
@@ -235,8 +235,8 @@ CMADE5 <- function(par, fn, ..., lower, upper, control=list()) {
         break
       }
       
-      if(sd(FtHistory)<0.00000000001)
-        Ft = (upper[1]-lower[1])/4
+      if(Ft*norm(pc)<10^-4)
+        stoptol=T
       
     }
     
