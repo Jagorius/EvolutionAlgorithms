@@ -1,0 +1,15 @@
+     CMADEv51 CMADEv52 CMADEv53 CMADEv54 CMADEv55 CMADEv56 CMADEv57 CMADEv58 CMADEv59
+[1,]   5.5455    4.415   4.5285   4.5245   4.3005     2.75    3.716    3.667    2.553
+
+
+LEGENDA:
+	CMADE5 :	 c_Ft=1/sqrt(N)
+      	CMADE51:	 c_Ft=2/sqrt(N)
+      	CMADE52:	 pathRatio<- stale, nowe c_Ft (wektor chi)
+      	CMADE53:	 pathLength=10
+      	CMADE54:	 pathLength=if(N<10) 10 else 5
+      	CMADE55:	 Monitorowanie Ft
+      	CMADE56:	 Ft*pc<10^-4
+      	CMADE57:	 Ft*pc<10^-4, Pathlength=6, rowMeans()
+      	CMADE58:	 Ft*pc<10^-4, rowMeans()
+      	CMADE59:	 Ft*pc<10^-4 Pathlength=6
