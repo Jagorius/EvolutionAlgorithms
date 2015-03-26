@@ -43,7 +43,7 @@ CMADE5 <- function(par, fn, ..., lower, upper, control=list()) {
   weights     <- controlParam("weights", log(mu+1) - log(1:mu))       ## Weights to calculate mean from selected individuals
   #weights     <- controlParam("weights", (1:mu)*0+1)
   weights     <- weights/sum(weights)                                 ##    \-> weights are normalized by the sum
-  mueff       <- controlParam("mueff", sum(weights)^2/sum(weights^2)) ## Variance effectiveness factor
+  mueff       <- controlParam("mueff", mu)                            ## Variance effectiveness factor
   cc          <- controlParam("ccum", 4/(N+4))                        ## Evolution Path decay factor
   cc_mueff    <- sqrt(cc*(2 - cc) * mueff)                            ## 'cc' and 'mueff' are constant so as this equation
   c_cov       <- controlParam("c_cov", 1/2)                           ## Mutation vectors weight constant
