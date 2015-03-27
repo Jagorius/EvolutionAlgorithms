@@ -1,5 +1,5 @@
-     CMADEv51 CMADEv52 CMADEv53 CMADEv54 CMADEv55 CMADEv56 CMADEv57 CMADEv58 CMADEv59 CMADEv595
-[1,]   6.3385    5.094   5.2295   5.2285   4.9845    3.303    4.391    4.343    3.073     3.015
+     CMADEv51 CMADEv52 CMADEv53 CMADEv54 CMADEv55 CMADEv56 CMADEv57 CMADEv58 CMADEv59 CMADEv595 CMADEv596
+[1,]   7.1435     5.79   5.9235   5.9275   5.6695    3.776     5.01    4.961    3.524     3.464     3.811
 
 
 LEGENDA:
@@ -14,3 +14,4 @@ LEGENDA:
       	CMADE58:	 Ft*pc<10^-4, rowMeans()
       	CMADE59:	 Ft*pc<10^-4 Pathlength=6
       	CMADE595:	 Ft*pc<10^-4 Pathlength=6, mueff=mu
+      	CMADE596:	 Ft*pc<10^-3 Pathlength=6, mueff=mu
