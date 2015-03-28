@@ -1,5 +1,6 @@
 results <- function(){
   
+  cmade598<- read.table("C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/CMAES-DEv5/Cresult598.txt")  
   cmade597<- read.table("C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/CMAES-DEv5/Cresult597.txt")  
   cmade596<- read.table("C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/CMAES-DEv5/Cresult596.txt")  
   cmade595<- read.table("C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/CMAES-DEv5/Cresult595.txt")  
@@ -75,7 +76,12 @@ results <- function(){
   cmade597vs4[1001]   <- sum(cmade597vs4)
   cmade597vs4[1002]   <- median(cmade597vs4)
   
-  resmatrix <- matrix(0, nrow=1002, ncol=12)
+  cmade598vs4         <- array(0,1000)
+  cmade598vs4         <- cmade4[,4] - cmade598[,4]
+  cmade598vs4[1001]   <- sum(cmade598vs4)
+  cmade598vs4[1002]   <- median(cmade598vs4)
+  
+  resmatrix <- matrix(0, nrow=1002, ncol=13)
   #resmatrix[,1] <- cmade3[,4]
   #resmatrix[,2] <- cmade4[,4]
   #resmatrix[,3] <- cmade4vs3
@@ -91,16 +97,17 @@ results <- function(){
   resmatrix[,10] <- cmade595vs4
   resmatrix[,11] <- cmade596vs4
   resmatrix[,12] <- cmade597vs4
+  resmatrix[,13] <- cmade598vs4
   
   
   rankMatrix <- resmatrix[1:1000,]
-  resRank <- rep(0,12)
+  resRank <- rep(0,13)
   for (n in 1:1000) {
     resRank <- resRank + rank(rankMatrix[n,])
   }
-  resRank <- 12-(resRank/1000)
+  resRank <- 13-(resRank/1000)
   resRank <- t(resRank)
-  colnames(resRank) <- c("CMADEv51", "CMADEv52", "CMADEv53", "CMADEv54", "CMADEv55", "CMADEv56", "CMADEv57", "CMADEv58", "CMADEv59", "CMADEv595", "CMADEv596", "CMADEv597")
+  colnames(resRank) <- c("CMADEv51", "CMADEv52", "CMADEv53", "CMADEv54", "CMADEv55", "CMADEv56", "CMADEv57", "CMADEv58", "CMADEv59", "CMADEv595", "CMADEv596", "CMADEv597", "CMADEv598")
   print(resRank)
   
   sink("C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/CMAES-DEv5/SummaryRanks.txt")
@@ -117,7 +124,8 @@ results <- function(){
       \tCMADE59:\t Ft*pc<10^-4 Pathlength=6
       \tCMADE595:\t Ft*pc<10^-4 Pathlength=6, mueff=mu
       \tCMADE596:\t Ft*pc<10^-3 Pathlength=6, mueff=mu
-      \tCMADE597:\t Ft*pc<10^-2 Pathlength=6, mueff=mu")
+      \tCMADE597:\t Ft*pc<10^-2 Pathlength=6, mueff=mu
+      \tCMADE597:\t Ft*pc<10^-5 Pathlength=6, mueff=mu")
   sink()
   #capture.output(print(resmatrix, print.gap=8), file="C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/CMAES-DEv4/Cv3vsCv4vsCv45.txt")
   
