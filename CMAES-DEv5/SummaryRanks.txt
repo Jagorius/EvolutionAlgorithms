@@ -1,7 +1,7 @@
      CMADEv51 CMADEv52 CMADEv53 CMADEv54 CMADEv55 CMADEv56 CMADEv57 CMADEv58 CMADEv59 CMADEv595 CMADEv596 CMADEv597
-[1,]   8.4695    6.891   7.0195   7.0415   6.7495    4.506    5.984    5.944    4.202     4.179     4.483     7.936
-     CMADEv598
-[1,]     4.595
+[1,]  10.0935    8.331   8.4835   8.5155   8.1935    5.754    7.432    7.397    5.437     5.338     5.709     9.623
+     CMADEv598 CMADE595L4 CMADE595L5
+[1,]     5.755      4.706      4.232
 
 
 LEGENDA:
@@ -19,3 +19,5 @@ LEGENDA:
       	CMADE596:	 Ft*pc<10^-3 Pathlength=6, mueff=mu
       	CMADE597:	 Ft*pc<10^-2 Pathlength=6, mueff=mu
       	CMADE597:	 Ft*pc<10^-5 Pathlength=6, mueff=mu
+      	CMADE595L4:	 Ft*pc<10^-4 Pathlength=6, mueff=mu, Lambda=4N
+      	CMADE595L5:	 Ft*pc<10^-4 Pathlength=6, mueff=mu, Lambda=5N
