@@ -1,5 +1,6 @@
 results <- function(){
   
+  cmade595l5ur<- read.table("C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/CMAES-DEv5/Cresult595l5ur.txt",sep = ",",header = TRUE)  
   cmade595l5<- read.table("C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/CMAES-DEv5/Cresult595l5.txt",sep = ",",header = TRUE)  
   cmade595l4<- read.table("C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/CMAES-DEv5/Cresult595l4.txt",sep = ",",header = TRUE)  
   cmade598<- read.table("C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/CMAES-DEv5/Cresult598.txt")  
@@ -93,7 +94,12 @@ results <- function(){
   cmade595l5vs4[1001] <- sum(cmade595l5vs4)
   cmade595l5vs4[1002] <- median(cmade595l5vs4)
   
-  resmatrix <- matrix(0, nrow=1002, ncol=15)
+  cmade595l5urvs4       <- array(0,1000)
+  cmade595l5urvs4       <- cmade4[,4] - cmade595l5ur[,3]
+  cmade595l5urvs4[1001] <- sum(cmade595l5urvs4)
+  cmade595l5urvs4[1002] <- median(cmade595l5urvs4)
+  
+  resmatrix <- matrix(0, nrow=1002, ncol=16)
   #resmatrix[,1] <- cmade3[,4]
   #resmatrix[,2] <- cmade4[,4]
   #resmatrix[,3] <- cmade4vs3
@@ -112,16 +118,17 @@ results <- function(){
   resmatrix[,13] <- cmade598vs4
   resmatrix[,14] <- cmade595l4vs4
   resmatrix[,15] <- cmade595l5vs4
+  resmatrix[,16] <- cmade595l5urvs4
   
   
   rankMatrix <- resmatrix[1:1000,]
-  resRank <- rep(0,15)
+  resRank <- rep(0,16)
   for (n in 1:1000) {
     resRank <- resRank + rank(rankMatrix[n,])
   }
-  resRank <- 15-(resRank/1000)
+  resRank <- 16-(resRank/1000)
   resRank <- t(resRank)
-  colnames(resRank) <- c("CMADEv51", "CMADEv52", "CMADEv53", "CMADEv54", "CMADEv55", "CMADEv56", "CMADEv57", "CMADEv58", "CMADEv59", "CMADEv595", "CMADEv596", "CMADEv597", "CMADEv598","CMADE595L4","CMADE595L5")
+  colnames(resRank) <- c("CMADEv51", "CMADEv52", "CMADEv53", "CMADEv54", "CMADEv55", "CMADEv56", "CMADEv57", "CMADEv58", "CMADEv59", "CMADEv595", "CMADEv596", "CMADEv597", "CMADEv598","CMADE595L4","CMADE595L5","CMADE595L5UR")
   print(resRank)
   
   sink("C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/CMAES-DEv5/SummaryRanks.txt")
@@ -141,7 +148,8 @@ results <- function(){
       \tCMADE597:\t Ft*pc<10^-2 Pathlength=6, mueff=mu
       \tCMADE597:\t Ft*pc<10^-5 Pathlength=6, mueff=mu
       \tCMADE595L4:\t Ft*pc<10^-4 Pathlength=6, mueff=mu, Lambda=4N
-      \tCMADE595L5:\t Ft*pc<10^-4 Pathlength=6, mueff=mu, Lambda=5N")
+      \tCMADE595L5:\t Ft*pc<10^-4 Pathlength=6, mueff=mu, Lambda=5N
+      \tCMADE595L5ur:\t tCMADE595L5 + history=5N, rozkl.jednostajny, sterowanie restart")
   sink()
   #capture.output(print(resmatrix, print.gap=8), file="C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/CMAES-DEv4/Cv3vsCv4vsCv45.txt")
   
