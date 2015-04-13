@@ -1,8 +1,11 @@
 results <- function(){
+  cmade72     <-read.table("C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/CMAES-DEv7/Cresults72.txt",sep = ",",header = TRUE)  
+  cmade71     <-read.table("C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/CMAES-DEv7/Cresults71.txt",sep = ",",header = TRUE)  
+  cmade7      <-read.table("C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/CMAES-DEv7/Cresults7.txt")  
   
-  cmade595l5ur<- read.table("C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/CMAES-DEv5/Cresult595l5ur.txt",sep = ",",header = TRUE)  
-  cmade595l5<- read.table("C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/CMAES-DEv5/Cresult595l5.txt",sep = ",",header = TRUE)  
-  cmade595l4<- read.table("C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/CMAES-DEv5/Cresult595l4.txt",sep = ",",header = TRUE)  
+  cmade595l5ur<-read.table("C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/CMAES-DEv5/Cresult595l5ur.txt",sep = ",",header = TRUE)  
+  cmade595l5<-  read.table("C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/CMAES-DEv5/Cresult595l5.txt",sep = ",",header = TRUE)  
+  cmade595l4<-  read.table("C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/CMAES-DEv5/Cresult595l4.txt",sep = ",",header = TRUE)  
   cmade598<- read.table("C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/CMAES-DEv5/Cresult598.txt")  
   cmade597<- read.table("C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/CMAES-DEv5/Cresult597.txt")  
   cmade596<- read.table("C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/CMAES-DEv5/Cresult596.txt")  
@@ -99,7 +102,22 @@ results <- function(){
   cmade595l5urvs4[1001] <- sum(cmade595l5urvs4)
   cmade595l5urvs4[1002] <- median(cmade595l5urvs4)
   
-  resmatrix <- matrix(0, nrow=1002, ncol=16)
+  cmade7vs4             <- array(0,1000)
+  cmade7vs4             <- cmade4[,4] - cmade7[,4]
+  cmade7vs4[1001]       <- sum(cmade7vs4)
+  cmade7vs4[1002]       <- median(cmade7vs4)
+    
+  cmade71vs4            <- array(0,1000)
+  cmade71vs4            <- cmade4[,4] - cmade71[,3]
+  cmade71vs4[1001]      <- sum(cmade71vs4)
+  cmade71vs4[1002]      <- median(cmade71vs4)
+ 
+  cmade72vs4            <- array(0,1000)
+  cmade72vs4            <- cmade4[,4] - cmade72[,3]
+  cmade72vs4[1001]      <- sum(cmade72vs4)
+  cmade72vs4[1002]      <- median(cmade72vs4)
+  
+  resmatrix <- matrix(0, nrow=1002, ncol=19)
   #resmatrix[,1] <- cmade3[,4]
   #resmatrix[,2] <- cmade4[,4]
   #resmatrix[,3] <- cmade4vs3
@@ -119,19 +137,22 @@ results <- function(){
   resmatrix[,14] <- cmade595l4vs4
   resmatrix[,15] <- cmade595l5vs4
   resmatrix[,16] <- cmade595l5urvs4
+  resmatrix[,17] <- cmade7vs4
+  resmatrix[,18] <- cmade71vs4
+  resmatrix[,19] <- cmade72vs4
   
   
   rankMatrix <- resmatrix[1:1000,]
-  resRank <- rep(0,16)
+  resRank <- rep(0,19)
   for (n in 1:1000) {
     resRank <- resRank + rank(rankMatrix[n,])
   }
-  resRank <- 16-(resRank/1000)
+  resRank <- 19-(resRank/1000)
   resRank <- t(resRank)
-  colnames(resRank) <- c("CMADEv51", "CMADEv52", "CMADEv53", "CMADEv54", "CMADEv55", "CMADEv56", "CMADEv57", "CMADEv58", "CMADEv59", "CMADEv595", "CMADEv596", "CMADEv597", "CMADEv598","CMADE595L4","CMADE595L5","CMADE595L5UR")
+  colnames(resRank) <- c("CMADEv51", "CMADEv52", "CMADEv53", "CMADEv54", "CMADEv55", "CMADEv56", "CMADEv57", "CMADEv58", "CMADEv59", "CMADEv595", "CMADEv596", "CMADEv597", "CMADEv598","CMADE595L4","CMADE595L5","CMADE595L5UR","CMADEv7","CMADEv71","CMADEv72")
   print(resRank)
   
-  sink("C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/CMAES-DEv5/SummaryRanks.txt")
+  sink("C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/CMAES-DEv7/SummaryRanks.txt")
   print(resRank)
   cat("\n\nLEGENDA:\n\tCMADE5 :\t c_Ft=1/sqrt(N)
       \tCMADE51:\t c_Ft=2/sqrt(N)
@@ -149,7 +170,10 @@ results <- function(){
       \tCMADE597:\t Ft*pc<10^-5 Pathlength=6, mueff=mu
       \tCMADE595L4:\t Ft*pc<10^-4 Pathlength=6, mueff=mu, Lambda=4N
       \tCMADE595L5:\t Ft*pc<10^-4 Pathlength=6, mueff=mu, Lambda=5N
-      \tCMADE595L5ur:\t CMADE595L5 + history=5N, rozkl.jednostajny, sterowanie restart")
+      \tCMADE595L5ur:\t CMADE595L5 + history=5N, rozkl.jednostajny, sterowanie restart
+      \tCMADE7:\t\t CMADE595L5ur + restart.length calculation (restart if bud_left>0.8restart)
+      \tCMADE71:\t CMADE7 + sqrt-log
+      \tCMADE72:\t CMADE7 + initLambda with tanh")
   sink()
   #capture.output(print(resmatrix, print.gap=8), file="C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/CMAES-DEv4/Cv3vsCv4vsCv45.txt")
   
@@ -158,22 +182,4 @@ results <- function(){
   #fileConn<-file("C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/CMAES-DEv4/Cv3vsCv4vsCv45.txt")
   #writeLines(c("Hello","World"), fileConn)
   #close(fileConn)
-}
-
-results2 <- function(){
-  cmade54 <- read.table("C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/CMAES-DEv5/Cresult54.txt")  
-  cmade52 <- read.table("C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/CMAES-DEv5/Cresult52.txt")  
-  
-  c54         <- array(0,50)
-  c54         <- cmade54[1:50,4]
-  
-  c52         <- array(0,50)
-  c52         <- cmade52[1:50,4]
-  
-  cmade54vs52        <- array(0,50)
-  cmade54vs52        <- c52 - c54
-  cmade54vs52[51]   <- sum(cmade54vs52)
-  cmade54vs52[52]   <- median(cmade54vs52)
-  
-  print(cmade54vs52)
 }

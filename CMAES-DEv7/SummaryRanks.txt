@@ -1,0 +1,27 @@
+     CMADEv51 CMADEv52 CMADEv53 CMADEv54 CMADEv55 CMADEv56 CMADEv57 CMADEv58 CMADEv59 CMADEv595 CMADEv596 CMADEv597
+[1,]   13.591  11.5095   11.689   11.789  11.3705    8.743   10.654   10.614    8.406     8.243     8.839    13.335
+     CMADEv598 CMADE595L4 CMADE595L5 CMADE595L5UR CMADEv7 CMADEv71 CMADEv72
+[1,]     8.745      7.482      6.855        6.597   4.672    4.339    3.527
+
+
+LEGENDA:
+	CMADE5 :	 c_Ft=1/sqrt(N)
+      	CMADE51:	 c_Ft=2/sqrt(N)
+      	CMADE52:	 pathRatio<- stale, nowe c_Ft (wektor chi)
+      	CMADE53:	 pathLength=10
+      	CMADE54:	 pathLength=if(N<10) 10 else 5
+      	CMADE55:	 Monitorowanie Ft
+      	CMADE56:	 Ft*pc<10^-4
+      	CMADE57:	 Ft*pc<10^-4, Pathlength=6, rowMeans()
+      	CMADE58:	 Ft*pc<10^-4, rowMeans()
+      	CMADE59:	 Ft*pc<10^-4 Pathlength=6
+      	CMADE595:	 Ft*pc<10^-4 Pathlength=6, mueff=mu
+      	CMADE596:	 Ft*pc<10^-3 Pathlength=6, mueff=mu
+      	CMADE597:	 Ft*pc<10^-2 Pathlength=6, mueff=mu
+      	CMADE597:	 Ft*pc<10^-5 Pathlength=6, mueff=mu
+      	CMADE595L4:	 Ft*pc<10^-4 Pathlength=6, mueff=mu, Lambda=4N
+      	CMADE595L5:	 Ft*pc<10^-4 Pathlength=6, mueff=mu, Lambda=5N
+      	CMADE595L5ur:	 CMADE595L5 + history=5N, rozkl.jednostajny, sterowanie restart
+      	CMADE7:		 CMADE595L5ur + restart.length calculation (restart if bud_left>0.8restart)
+      	CMADE71:	 CMADE7 + sqrt-log
+      	CMADE72:	 CMADE7 + initLambda with tanh
