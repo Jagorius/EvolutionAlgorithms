@@ -46,6 +46,10 @@ benchmark <- function(){
     if( !is.nan(pval) && pval<=0.05 )  res10[j,4] <- res10[j,4] + 1  
     
   }
+  res10[1,] <- c(0,0,0,0)
+  res10[2,] <- c(0,0,0,0)
+  res10[4,] <- c(0,0,0,0)
+  res10[10,] <- c(0,0,0,0)
   res10[28,] <- c(0,3,2,1)
   res10[29,] <- colMeans(res10)
   #print(res10)
@@ -116,6 +120,9 @@ benchmark <- function(){
     if( !is.nan(pval) && pval<=0.05 )  res30[j,5] <- res30[j,5] + 1  
     
   }
+  res30[1,] <- c(0,0,0,0,0)
+  res30[4,] <- c(0,0,0,0,0)
+  res30[10,] <- c(0,0,0,0,0)
   res30[28,] <- c(0,2,0,0,2)
   res30[29,] <- colMeans(res30)
  # print(res30)
@@ -166,6 +173,10 @@ benchmark <- function(){
     pval <- t.test(cmade50[,j], rnorm(rows,t(nipop50)[j,1],t(nipop50)[j,2]),alt="less")$p.value     
     if( !is.nan(pval) && pval<=0.05 )  res50[j,4] <- res50[j,4] + 1 
   }
+ res50[1,] <- c(0,0,0,0)
+ res50[2,] <- c(0,0,0,0)
+ res50[4,] <- c(0,0,0,0)
+ res50[10,] <- c(0,0,0,0)
   res50[29,] <- colMeans(res50)
   #print(res50)
   res50 <-format(res50, scientific = FALSE)
