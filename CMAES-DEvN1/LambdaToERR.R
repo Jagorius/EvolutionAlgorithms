@@ -1,0 +1,15 @@
+par(mfrow=c(1,2))
+
+cec10 <- read.table("C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/CMAES-DEvN1/res10.csv",header = TRUE,sep = ",")
+plot(cec10$V1, cec10$V2, main='Benchmarking on CEC2013\n N=10', xlab="Population size (lambda)", ylab="Averaged error")
+points(cec10$V1[46], cec10$V2[46], col="red", pch=19)
+abline(v = 55, col = "red")
+text( 55, 2e+07, "(4+sqrt(N)/2)*N", col = "red" )
+text( cec10$V1[13]+2, cec10$V2[13], "22", col = "blue")
+
+cec30 <- read.table("C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/CMAES-DEvN1/res30.csv",header = TRUE,sep = ",")
+plot(cec30$V1, cec30$V2, main='Benchmarking on CEC2013\n N=30', xlab="Population size (lambda)", ylab="Averaged error", xlim=c(30,210 ))
+points(202, 3.6e+09, col="red", pch=19)
+abline(v = 202, col = "red")
+text( 202, 4.2e+08, "(4+sqrt(N)/2)*N", col = "red" )
+text( cec30$V1[8]+4, cec30$V2[8], "37", col = "blue")
