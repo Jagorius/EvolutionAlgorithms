@@ -1,4 +1,8 @@
 results <- function(){
+  cmadevN13  <-read.table("C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/CMAES-DEvN1/CResultsvN1-3.txt")
+  cmadevN12  <-read.table("C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/CMAES-DEvN1/CResultsvN1-2.txt")
+  cmadevN1    <-read.table("C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/CMAES-DEvN1/CResultsvN1.txt")
+  
   cmade72     <-read.table("C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/CMAES-DEv7/Cresults72.txt",sep = ",",header = TRUE)  
   cmade71     <-read.table("C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/CMAES-DEv7/Cresults71.txt",sep = ",",header = TRUE)  
   cmade7      <-read.table("C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/CMAES-DEv7/Cresults7.txt")  
@@ -117,7 +121,22 @@ results <- function(){
   cmade72vs4[1001]      <- sum(cmade72vs4)
   cmade72vs4[1002]      <- median(cmade72vs4)
   
-  resmatrix <- matrix(0, nrow=1002, ncol=19)
+  cmadevN1vs4           <- array(0,1000)
+  cmadevN1vs4           <- cmade4[,4] - cmadevN1[,4]
+  cmadevN1vs4[1001]     <- sum(cmadevN1vs4)
+  cmadevN1vs4[1002]     <- median(cmadevN1vs4)
+  
+  cmadevN12vs4           <- array(0,1000)
+  cmadevN12vs4           <- cmade4[,4] - cmadevN12[,4]
+  cmadevN12vs4[1001]     <- sum(cmadevN12vs4)
+  cmadevN12vs4[1002]     <- median(cmadevN12vs4)
+  
+  cmadevN13vs4           <- array(0,1000)
+  cmadevN13vs4           <- cmade4[,4] - cmadevN13[,4]
+  cmadevN13vs4[1001]     <- sum(cmadevN13vs4)
+  cmadevN13vs4[1002]     <- median(cmadevN13vs4)
+  
+  resmatrix <- matrix(0, nrow=1002, ncol=22)
   #resmatrix[,1] <- cmade3[,4]
   #resmatrix[,2] <- cmade4[,4]
   #resmatrix[,3] <- cmade4vs3
@@ -140,16 +159,19 @@ results <- function(){
   resmatrix[,17] <- cmade7vs4
   resmatrix[,18] <- cmade71vs4
   resmatrix[,19] <- cmade72vs4
+  resmatrix[,20] <- cmadevN1vs4
+  resmatrix[,21] <- cmadevN12vs4
+  resmatrix[,22] <- cmadevN13vs4
   
   
   rankMatrix <- resmatrix[1:1000,]
-  resRank <- rep(0,19)
+  resRank <- rep(0,22)
   for (n in 1:1000) {
     resRank <- resRank + rank(rankMatrix[n,])
   }
-  resRank <- 19-(resRank/1000)
+  resRank <- 22-(resRank/1000)
   resRank <- t(resRank)
-  colnames(resRank) <- c("CMADEv51", "CMADEv52", "CMADEv53", "CMADEv54", "CMADEv55", "CMADEv56", "CMADEv57", "CMADEv58", "CMADEv59", "CMADEv595", "CMADEv596", "CMADEv597", "CMADEv598","CMADE595L4","CMADE595L5","CMADE595L5UR","CMADEv7","CMADEv71","CMADEv72")
+  colnames(resRank) <- c("CMADEv51", "CMADEv52", "CMADEv53", "CMADEv54", "CMADEv55", "CMADEv56", "CMADEv57", "CMADEv58", "CMADEv59", "CMADEv595", "CMADEv596", "CMADEv597", "CMADEv598","CMADE595L4","CMADE595L5","CMADE595L5UR","CMADEv7","CMADEv71","CMADEv72","CMADEvN1","CMADEvN1-2","CMADEvN1-3")
   print(resRank)
   
   sink("C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/CMAES-DEv7/SummaryRanks.txt")

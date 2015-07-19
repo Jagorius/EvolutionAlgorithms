@@ -37,17 +37,16 @@ CMADEN1 <- function(par, fn, ..., lower, upper, control=list()) {
   stopfitness <- controlParam("stopfitness", -Inf)                    ## Fitness value after which the convergence is reached 
   stopvariance<- controlParam("stopvariance", 1e-12*Ft)               ## Genetic diversity minimum value(stop fitness variance)
   ## Strategy parameter setting:
-  budget      <- controlParam("budget", 10000*N )                     ## The maximum number of fitness function calls
-  initlambda  <- controlParam("lambda", floor((4+sqrt(N)/2)*N))       ## Population starting size
+  budget      <- controlParam("budget", 100*N^2 )                     ## The maximum number of fitness function calls
+  initlambda  <- controlParam("lambda", floor(4+sqrt(budget)/max(1,2-N/85)) )  ## Population starting size
   lambda      <- initlambda                                           ## Population size
   
   mu          <- controlParam("mu", floor(lambda/2))                  ## Selection size
   weights     <- controlParam("weights", log(mu+1) - log(1:mu))       ## Weights to calculate mean from selected individuals
   #weights     <- controlParam("weights", (1:mu)*0+1)
   weights     <- weights/sum(weights)                                 ##    \-> weights are normalized by the sum
-  mueff       <- controlParam("mueff", mu)   		                      ## Variance effectiveness factor
+  mueff       <- controlParam("mueff", mu)     	                      ## Variance effectiveness factor
   cc          <- controlParam("ccum", 4/(N+4))                        ## Evolution Path decay factor
-  cc          <- controlParam("ccum", 0.8)                            ## Evolution Path decay factor
   cc_mueff    <- sqrt(cc*(2 - cc) )#*sqrt( mueff)                     ## 'cc' and 'mueff' are constant so as this equation
   c_cov       <- controlParam("c_cov", 1/2)                           ## Mutation vectors weight constant
   pathLength  <- controlParam("pathLength",  6)                       ## Size of evolution path

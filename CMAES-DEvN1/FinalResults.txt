@@ -1,0 +1,8 @@
+Problem DIM(N)	Budget	:	LAMDBA BEST
+
+10		10N		18
+30		10N		13
+50		10N		21
+10		100N		23
+30		100N		28
+50		100N		29
