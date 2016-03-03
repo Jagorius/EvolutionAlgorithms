@@ -214,9 +214,9 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
       cumMean <- 0.9*cumMean+0.1*newMean
       
       ## Escape from flat-land:
-      #if (min(fitness) == sort(fitness,partial=min(1+floor(lambda/2), 2+ceiling(lambda/4)))[min(1+floor(lambda/2), 2+ceiling(lambda/4))]) { 
-      #  Ft <- Ft * exp(0.2*Ft_scale);
-      #}
+      if (min(fitness) == sort(fitness,partial=min(1+floor(lambda/2), 2+ceiling(lambda/4)))[min(1+floor(lambda/2), 2+ceiling(lambda/4))]) { 
+        Ft <- Ft * exp(0.2*Ft_scale);
+      }
       
       if (fitness[1] <= stopfitness) {
         msg <- "Stop fitness reached."
