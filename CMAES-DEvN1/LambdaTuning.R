@@ -32,7 +32,7 @@ for(l in 4:103){
     errtmp <- errtmp + mainCEC(N,l)
   }
   err = errtmp/10
-  mat10[l-3,] <- c(l,err)
+  mat10[l,] <- c(l,err)
 }
 write.csv(mat10, file = "/home/djagodzi/BBcomp/CMADE-vN1/res10-2.csv")
 
@@ -44,7 +44,7 @@ for(l in 4:103){
     errtmp <- errtmp + mainCEC(N,l)
   }
   err = errtmp/10
-  mat30[l-3,] <- c(l,err)
+  mat30[l,] <- c(l,err)
 }
 write.csv(mat30, file = "/home/djagodzi/BBcomp/CMADE-vN1/res30-2.csv")
 
@@ -56,6 +56,6 @@ for(l in 4:153){
     errtmp <- errtmp + mainCEC(N,l)
   }
   err = errtmp/10
-  mat50[l-3,] <- c(l,err)
+  mat50[l,] <- c(l,err)
 }
 write.csv(mat50, file = "/home/djagodzi/BBcomp/CMADE-vN1/res50-2.csv")
