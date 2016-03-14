@@ -67,6 +67,9 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
   log.mean    <- controlParam("diag.mean", log.all)
   log.pop     <- controlParam("diag.pop", log.all)  
   
+  ##
+  Lamarckism     <- controlParam("Lamarckism", TRUE)                 
+  
   ## Asserts - safety checks:
   stopifnot(length(upper) == N)  
   stopifnot(length(lower) == N)
@@ -105,21 +108,22 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
   history   <- array(0, c(N, mu, histSize))                           ## Array stores best 'mu' individuals for 'hsize' recent iterations   
   Ft        <- initFt
     
-  # Generate seed point
+  # Create fisrt population
   population <- replicate(lambda, runif(N,lower,upper))
   cumMean=rowMeans(population)
-    
   # Check constraints violations
   # Repair the individual if necessary
-  population <- ifelse(population > lower, 
+  populationRepaired <- ifelse(population > lower, 
                        ifelse(population < upper, population, 
                               bounceBackBoundary(lower,upper,isLowerViolation=FALSE,population)),   ## upper bonduary violation
                        bounceBackBoundary(lower,upper,isLowerViolation=TRUE,population)             ## lower bonduary violation
   )   
-    
+  if(Lamarckism==FALSE){
+    population <- populationRepaired
+  }
   selection       <- rep(0, mu)
   selectedPoints  <- matrix(0, nrow=N, ncol=mu)
-  fitness         <- apply(population, 2, fn)
+  fitness         <- apply(populationRepaired, 2, fn)
   counteval       <- counteval + lambda
   oldMean         <- numeric(N)
   newMean         <- par
@@ -140,7 +144,12 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
       
       if (log.Ft) Ft.log[iter] <- Ft*norm(pc)
       if (log.value) value.log[iter,] <- fitness
-      if (log.mean) mean.log[iter] <- fn(newMean)
+      if (log.mean) mean.log[iter] <- fn( ifelse(newMean > lower, 
+                                                    ifelse(newMean < upper, newMean, 
+                                                    bounceBackBoundary(lower,upper,isLowerViolation=FALSE,newMean)),   ## upper bonduary violation
+                                                    bounceBackBoundary(lower,upper,isLowerViolation=TRUE,newMean)     ## lower bonduary violation
+                                                ) 
+                                        )
       if (log.pop) pop.log[,,iter] <- population
       
       ## Select best 'mu' individuals of population
@@ -179,9 +188,9 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
         x1 <- history[, x1sample[i], historySample[i]]
         x2 <- history[, x2sample[i], historySample[i]]
         
-        diffs[,i] <- (x1 - x2) +
-          sqrt(1-c_cov) * rnorm(1) * pc*chiN + 
-          sqrt(c_cov) * rnorm(N)/chiN*tol  
+        diffs[,i] <- (x1 - x2)/sqrt(2) +
+          rnorm(1) * pc + 
+          (1-sum(weights^2))*rnorm(N) 
         
       }
       
@@ -190,16 +199,17 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
       
       # Check constraints violations
       # Repair the individual if necessary
-      population <- ifelse(population > lower, 
+      populationRepaired <- ifelse(population > lower, 
                            ifelse(population < upper, population, 
                                   bounceBackBoundary(lower,upper,isLowerViolation=FALSE,population)),   ## upper bonduary violation
                            bounceBackBoundary(lower,upper,isLowerViolation=TRUE,population)             ## lower bonduary violation
       )   
-      
+      if(Lamarckism==FALSE){
+        population <- populationRepaired
+      }
       ## Evaluation
-      fitness <- apply(population, 2, fn)
-      
-      
+      fitness <- apply(populationRepaired, 2, fn)
+  
       
       ## Break if fit:    
       wb <- which.min(fitness)
@@ -212,11 +222,22 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
       
       ## Check if the middle point is the best found so far
       cumMean <- 0.9*cumMean+0.1*newMean
+      cumMeanRepaired <- ifelse(cumMean > lower, 
+                                     ifelse(cumMean < upper, cumMean, 
+                                            bounceBackBoundary(lower,upper,isLowerViolation=FALSE,cumMean)),   ## upper bonduary violation
+                                     bounceBackBoundary(lower,upper,isLowerViolation=TRUE,cumMean)             ## lower bonduary violation
+      ) 
+      fn_cum  <- fn(cumMeanRepaired)
+      if (fn_cum < best.fit) {
+        best.fit <- drop(fn_cum)
+        best.par <- cumMean
+      }
+      counteval <- counteval + 1
       
       ## Escape from flat-land:
-      #if (min(fitness) == sort(fitness,partial=min(1+floor(lambda/2), 2+ceiling(lambda/4)))[min(1+floor(lambda/2), 2+ceiling(lambda/4))]) { 
-      #  Ft <- Ft * exp(0.2*Ft_scale);
-      #}
+      if (min(fitness) == sort(fitness,partial=min(1+floor(lambda/2), 2+ceiling(lambda/4)))[min(1+floor(lambda/2), 2+ceiling(lambda/4))]) { 
+        Ft <- Ft * exp(0.2*Ft_scale);
+      }
       
       if (fitness[1] <= stopfitness) {
         msg <- "Stop fitness reached."
@@ -226,14 +247,7 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
       #print(c(counteval,restart.length,best.fit, norm(step), norm(pc)*Ft, Ft),4) 
       
   }
-    
-  fn_cum  <- fn(cumMean)
-  if (fn_cum < best.fit) {
-      best.fit <- drop(fn_cum)
-      best.par <- cumMean
-  }
-  counteval <- counteval + 1
-    
+  # Restart paramaters adaptation
   lambda  <- round(lambda+initlambda * 0.2)
   mu      <- floor(lambda/2)
   weights <- log(mu+1) - log(1:mu)
