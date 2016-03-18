@@ -45,8 +45,10 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
   weights     <- controlParam("weights", log(mu+1) - log(1:mu))       ## Weights to calculate mean from selected individuals
   #weights     <- controlParam("weights", (1:mu)*0+1)
   weights     <- weights/sum(weights)                                 ##    \-> weights are normalized by the sum
+  weightsSumS <- sum(weights^2)                                       ## weights sum square
   mueff       <- controlParam("mueff", mu)     	                      ## Variance effectiveness factor
   cc          <- controlParam("ccum", 4/(N+4))                        ## Evolution Path decay factor
+  c_pc        <- controlParam("cpc", 0)                               ## Covariance deformation factor
   cc_mueff    <- sqrt(cc*(2 - cc) )#*sqrt( mueff)                     ## 'cc' and 'mueff' are constant so as this equation
   c_cov       <- controlParam("c_cov", 1/2)                           ## Mutation vectors weight constant
   pathLength  <- controlParam("pathLength",  6)                       ## Size of evolution path
@@ -67,8 +69,30 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
   log.mean    <- controlParam("diag.mean", log.all)
   log.pop     <- controlParam("diag.pop", log.all)  
   
-  ##
-  Lamarckism     <- controlParam("Lamarckism", TRUE)                 
+  ## Lamarckian approach allows individuals to violate boundaries. 
+  ## Fitness value is estimeted by fitness of repaired individual.
+  Lamarckism     <- controlParam("Lamarckism", FALSE)
+  
+  fn_p <- function(P, P_repaired) {
+    if(all(P == P_repaired)){
+      if(is.matrix(P) && is.matrix(P_repaired)){
+          return ( apply(P, 2, fn) )
+      }else{
+          return ( fn(P) )
+      }
+    }
+    else{
+      if(is.matrix(P) && is.matrix(P_repaired)){
+          compareResult <- apply(P==P_repaired,2,all)
+          P_fit <-  apply(P_repaired, 2, fn)
+          P_fit[compareResult] <- P_fit[compareResult] + 10000
+          return(P_fit)
+      }else{
+          P_fit <- fn(P_repaired) + 10000
+          return ( P_fit )
+      }
+    }
+  }
   
   ## Asserts - safety checks:
   stopifnot(length(upper) == N)  
@@ -123,7 +147,7 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
   }
   selection       <- rep(0, mu)
   selectedPoints  <- matrix(0, nrow=N, ncol=mu)
-  fitness         <- apply(populationRepaired, 2, fn)
+  fitness         <- fn_p(population, populationRepaired)
   counteval       <- counteval + lambda
   oldMean         <- numeric(N)
   newMean         <- par
@@ -144,7 +168,7 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
       
       if (log.Ft) Ft.log[iter] <- Ft*norm(pc)
       if (log.value) value.log[iter,] <- fitness
-      if (log.mean) mean.log[iter] <- fn( ifelse(newMean > lower, 
+      if (log.mean) mean.log[iter] <- fn_p( newMean ,ifelse(newMean > lower, 
                                                     ifelse(newMean < upper, newMean, 
                                                     bounceBackBoundary(lower,upper,isLowerViolation=FALSE,newMean)),   ## upper bonduary violation
                                                     bounceBackBoundary(lower,upper,isLowerViolation=TRUE,newMean)     ## lower bonduary violation
@@ -188,9 +212,9 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
         x1 <- history[, x1sample[i], historySample[i]]
         x2 <- history[, x2sample[i], historySample[i]]
         
-        diffs[,i] <- (x1 - x2)/sqrt(2) +
-          rnorm(1) * pc + 
-          (1-sum(weights^2))*rnorm(N) 
+        diffs[,i] <- sqrt(1-c_pc)*((x1 - x2)*(1/sqrt(2)) + rnorm(1)*(newMean-oldMean)) +
+          sqrt(c_pc) * rnorm(1) * pc + 
+          weightsSumS * rnorm(N)  
         
       }
       
@@ -208,7 +232,7 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
         population <- populationRepaired
       }
       ## Evaluation
-      fitness <- apply(populationRepaired, 2, fn)
+      fitness <- fn_p(population, populationRepaired)
   
       
       ## Break if fit:    
@@ -227,7 +251,7 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
                                             bounceBackBoundary(lower,upper,isLowerViolation=FALSE,cumMean)),   ## upper bonduary violation
                                      bounceBackBoundary(lower,upper,isLowerViolation=TRUE,cumMean)             ## lower bonduary violation
       ) 
-      fn_cum  <- fn(cumMeanRepaired)
+      fn_cum  <- fn_p(cumMean, cumMeanRepaired)
       if (fn_cum < best.fit) {
         best.fit <- drop(fn_cum)
         best.par <- cumMean

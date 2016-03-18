@@ -10,7 +10,7 @@ benchmarkCMADE <- function(fnumber) {
   # 28 minimalization problems
   for(n in 1:28){
     # each problem is considered in three dimensions
-    for(d in c(10,30,50)){
+    for(d in c(10)){
       # 51 runs per problem
       resultVector <- c()
       for(i in 1:51){
@@ -23,6 +23,7 @@ benchmarkCMADE <- function(fnumber) {
         
         resultVector <- c(resultVector, result$value)
       }
+      write.table(resultVector, file = paste("./CEC2013/N",n,"-D",d,sep=""), sep = ",")
       print(paste("CEC2013 N=",n," D=",d, " --> Best: ", min(resultVector)," Worst: ",max(resultVector)," Mean: ", mean(resultVector)," Sd: ",sd(resultVector),sep=""))
       
       
