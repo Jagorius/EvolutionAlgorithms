@@ -30,9 +30,6 @@ benchmarkBoxPlot <- function() {
     
   }
   
-  print(resultMatrix)
-  
-
   p <- ggplot(data = resultMatrix, aes(x=Function, y=error)) + 
     geom_boxplot(aes(fill=Version))
   p + facet_wrap( ~ Function, scales="free")
