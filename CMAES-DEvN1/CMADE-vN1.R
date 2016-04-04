@@ -103,6 +103,8 @@ CMADEN1 <- function(par, fn, ..., lower, upper, control=list()) {
   lambda      <- initlambda
   pc              <- rep(0.0, N)/sqrt(N)
   
+  ###### SET SEED
+  set.seed(42)
   while( counteval < budget && best.fit > stopfitness)
   {
     if (restart.number>0)
@@ -117,6 +119,7 @@ CMADEN1 <- function(par, fn, ..., lower, upper, control=list()) {
     
     # Generate seed point
     population <- replicate(lambda, runif(N,lower,upper))
+
     cumMean=rowMeans(population)
     
     # Check constraints violations
@@ -126,6 +129,10 @@ CMADEN1 <- function(par, fn, ..., lower, upper, control=list()) {
                                 bounceBackBoundary(lower,upper,isLowerViolation=FALSE,population)),   ## upper bonduary violation
                          bounceBackBoundary(lower,upper,isLowerViolation=TRUE,population)             ## lower bonduary violation
     )   
+    
+    ###### SAVE ALL POPULATIONS
+    all_populations <- population
+    
     
     selection       <- rep(0, mu)
     selectedPoints  <- matrix(0, nrow=N, ncol=mu)
@@ -216,11 +223,13 @@ CMADEN1 <- function(par, fn, ..., lower, upper, control=list()) {
                                   bounceBackBoundary(lower,upper,isLowerViolation=FALSE,population)),   ## upper bonduary violation
                            bounceBackBoundary(lower,upper,isLowerViolation=TRUE,population)             ## lower bonduary violation
       )   
+      # SAVE ALL POPULATIONS
+      all_populations <- rbind(all_populations,population)
       
       ## Evaluation
       fitness <- apply(population, 2, fn)
       
-      
+    
       
       ## Break if fit:    
       wb <- which.min(fitness)
@@ -289,6 +298,9 @@ CMADEN1 <- function(par, fn, ..., lower, upper, control=list()) {
               diagnostic=log
   )
   class(res) <- "cmade.result"
+  
+  
+  all_populations <<- all_populations
   return(res)
 }
 

@@ -61,6 +61,8 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
   histSize    <- ceiling(histSize)                                    ##    \-> size should be integer
   Ft_scale    <- controlParam("Ft_scale", ((mueff+2)/(N+mueff+3))/(1 + 2*max(0, sqrt((mueff-1)/(N+1))-1) + (mueff+2)/(N+mueff+3)))
   tol         <- controlParam("tol", 10^-6)
+  #rand_seed   <- controlParam("tol", get(".Random.seed", mode="numeric", envir=globalenv()))
+  #set.seed(rand_seed)
   
   ## Logging options:
   log.all     <- controlParam("diag", FALSE)                 
@@ -85,7 +87,7 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
       if(is.matrix(P) && is.matrix(P_repaired)){
           compareResult <- apply(P==P_repaired,2,all)
           P_fit <-  apply(P_repaired, 2, fn)
-          P_fit[compareResult] <- P_fit[compareResult] + 10000
+          P_fit[compareResult] <- P_fit[compareResult] + exp(dist(cbind(P_repaired[compareResult],upper-(abs(lower)) )) )
           return(P_fit)
       }else{
           P_fit <- fn(P_repaired) + 10000
@@ -212,9 +214,14 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
         x1 <- history[, x1sample[i], historySample[i]]
         x2 <- history[, x2sample[i], historySample[i]]
         
-        diffs[,i] <- sqrt(1-c_pc)*((x1 - x2)*(1/sqrt(2)) + rnorm(1)*(newMean-oldMean)) +
-          sqrt(c_pc) * rnorm(1) * pc * chiN + 
-          weightsSumS * rnorm(N)  
+        diffs[,i] <- sqrt(1-c_pc) *((x1 - x2)/sqrt(2) + rnorm(1)*step*chiN) +
+          sqrt(c_pc) * rnorm(1) * pc * chiN 
+          weightsSumS * rnorm(N)
+        
+      #  diffs[,i] <- sqrt(1-c_pc)*((x1 - x2)*(1/sqrt(2)) + rnorm(1)*step*chiN +
+          #  diffs[,i] <- sqrt(1-c_pc)*((x1 - x2)*(1/sqrt(2)) + rnorm(1)*(newMean-oldMean)) +
+          #   sqrt(c_pc) * rnorm(1) * pc * chiN +
+        #  weightsSumS * rnorm(N)  
         
       }
       
@@ -299,6 +306,7 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
               diagnostic=log
   )
   class(res) <- "cmade.result"
+  
   return(res)
 }
 
