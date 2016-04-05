@@ -40,7 +40,7 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
   budget      <- controlParam("budget", 100*N^2 )                     ## The maximum number of fitness function calls
   initlambda  <- controlParam("lambda", floor(4+sqrt(budget)/max(1,2-N/85)) )  ## Population starting size
   lambda      <- initlambda                                           ## Population size
-  
+
   mu          <- controlParam("mu", floor(lambda/2))                  ## Selection size
   weights     <- controlParam("weights", log(mu+1) - log(1:mu))       ## Weights to calculate mean from selected individuals
   #weights     <- controlParam("weights", (1:mu)*0+1)
@@ -147,6 +147,10 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
   if(Lamarckism==FALSE){
     population <- populationRepaired
   }
+  
+  ###### SAVE ALL POPULATIONS
+  all_populations <- population
+  
   selection       <- rep(0, mu)
   selectedPoints  <- matrix(0, nrow=N, ncol=mu)
   fitness         <- fn_p(population, populationRepaired)
@@ -238,6 +242,10 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
       if(Lamarckism==FALSE){
         population <- populationRepaired
       }
+      
+      # SAVE ALL POPULATIONS
+      all_populations <- rbind(all_populations,population)
+      
       ## Evaluation
       fitness <- fn_p(population, populationRepaired)
   
@@ -307,6 +315,7 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
   )
   class(res) <- "cmade.result"
   
+  all_populations <<- all_populations
   return(res)
 }
 
