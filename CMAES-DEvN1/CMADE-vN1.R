@@ -103,8 +103,6 @@ CMADEN1 <- function(par, fn, ..., lower, upper, control=list()) {
   lambda      <- initlambda
   pc              <- rep(0.0, N)/sqrt(N)
   
-  ###### SET SEED
-  set.seed(42)
   while( counteval < budget && best.fit > stopfitness)
   {
     if (restart.number>0)

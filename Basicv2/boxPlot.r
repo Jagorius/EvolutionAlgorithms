@@ -40,11 +40,43 @@ benchmarkBoxPlot <- function() {
 }
 
 CmadeDistribuition <- function() {
-  set.seed(42)
-  population <- replicate(100, runif(2,-100,100))
-  plot(population[1,],population[2,], col="red")
+  library(devtools)
+  library(animation)
+  library(cec2013)
+  
+  source('C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/CMAES-DEvN1/CMADE-vN1.R')
+  source('C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/Basicv2/CMADE.R')
+  
+  setwd("C:/Users/JS/Documents/frames")
 
-  iter      <- iter + 1L
-  histHead  <- (histHead %% histSize) + 1
+  for(p in 1:28){
+    set.seed(42)
+    #CMADEN1(rep(0,2),fn=function(x){cec2013(p,x)})
+    CMADE(rep(0,2),fn=function(x){cec2013(p,x)})
+    frames = floor(nrow(all_populations)/2)
+    
+    for(i in 1:frames){
+      
+      if (i < 10) {name = paste('000',i,'plot.png',sep='')}
+      if (i < 100 && i >= 10) {name = paste('00',i,'plot.png', sep='')}
+      if (i >= 100) {name = paste('0', i,'plot.png', sep='')}
+      png(name)
+      
+     # plot(all_populations[i,],all_populations[i+1,],   xlab="x", ylab="y", xlim=c(-100, 100), ylim=c(-100, 100),
+      #     main = paste("CMADE OLD\nCE2013 P=",p,"\nPopulation number ", i,sep=""), col="red", pch=19)
+       plot(all_populations[i,],all_populations[i+1,],   xlab="x", ylab="y", xlim=c(-100, 100), ylim=c(-100, 100),
+           main = paste("CMADE NEW c_pc=1\2\nCE2013 P=",p,"\nPopulation number ", i,sep=""), col="red", pch=19)
+      
+      dev.off()
+        
+    } 
+    system(paste('"C:\\Program Files\\ImageMagick-6.9.3-Q16\\convert.exe" -delay 80 *.png ',p,".gif",sep=""))
+    
+    # remove frames
+    file.remove(list.files(pattern=".png"))
+    
+    print(paste("DONE",p))
+  }
+  
   
 }
