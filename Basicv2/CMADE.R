@@ -31,7 +31,11 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
   
   ###### LOG REPAIRED NUMBER
   all_REP <- matrix(0, nrow = 0, ncol = 1)
-  
+  ###### LOG newMEAN
+  all_NEWMEAN <- matrix(0, nrow = 0, ncol = N)
+  ###### LOG_PC
+  all_PC <- matrix(0, nrow = 0, ncol = N)
+
   bounceBackBoundary2 <- function(x){
     
     if(all(x >= cbind(lower)) && all(x <= cbind(upper)))
@@ -154,6 +158,7 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
   ####### SAVE ALL FT
   all_FT    <- Ft
   all_MEAN  <- 0
+  all_PC    <- pc
   
   # Create fisrt population
   population <- replicate(lambda, runif(N,lower,upper))
@@ -168,7 +173,7 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
  #
   ###### SAVE REPARIRED IND. NUMBER
   all_REP <- rbind(all_REP,sum(apply(population, 2, function(x) any(x > cbind(upper) || x < cbind(lower))),na.rm=TRUE))
-  
+
   populationRepaired <- apply(population,2,bounceBackBoundary2)
 
   if(Lamarckism==FALSE){
@@ -187,6 +192,8 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
   pc              <- rep(0.0, N)/sqrt(N)
   limit           <- 0
     
+  all_NEWMEAN <- rbind(all_NEWMEAN, newMean)
+  
   ## Matrices for creating diffs
   diffs     <- matrix(0, N, lambda)
   x1sample  <- numeric(lambda)
@@ -215,6 +222,7 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
       oldMean <- newMean
       newMean <- drop(selectedPoints %*% weights)
       
+      all_NEWMEAN <- rbind(all_NEWMEAN, newMean)
       ## Write to buffers
       step <- (newMean - oldMean) / Ft
       steps$write(step)
@@ -231,6 +239,7 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
       
       ## Update parameters
       pc = (1 - cc)* pc + cc* step
+      all_PC <- rbind(all_PC,pc)
       
       ## Sample from history with uniform distribution
       limit <- ifelse(iter < histSize, histHead, histSize)
@@ -265,9 +274,16 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
       #                     bounceBackBoundary(lower,upper,isLowerViolation=TRUE,population)             ## lower bonduary violation
       #)   
       ###### SAVE REPARIRED IND. NUMBER
-      all_REP <- rbind(all_REP,sum(apply(population, 2, function(x) any(x > cbind(upper) || x < cbind(lower))),na.rm=TRUE))
-      
+      #all_REP <- rbind(all_REP,sum(apply(population, 2, function(x) any(x > cbind(upper) || x < cbind(lower))),na.rm=TRUE))
+      populationTemp <- population
       populationRepaired <- apply(population,2,bounceBackBoundary2)
+      
+      counter=0
+      for(tt in 1:ncol(populationTemp)){
+        if(any(populationTemp[,tt] != populationRepaired[,tt]))
+          counter = counter + 1
+      }
+      all_REP <- rbind(all_REP,counter)
       
       if(Lamarckism==FALSE){
         population <- populationRepaired
@@ -350,6 +366,8 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
   all_populations <<- all_populations
   all_FT <<- all_FT
   all_REP <<- all_REP
+  all_NEWMEAN <<- all_NEWMEAN
+  all_PC <<- all_PC
   return(res)
 }
 

@@ -52,7 +52,7 @@ CmadeDistribuition <- function() {
   for(p in 1:28){
     set.seed(42)
     #CMADEN1(rep(0,2),fn=function(x){cec2013(p,x)}, control=list("lambda"=100,"budget"=2900))
-    CMADE(rep(0,2),fn=function(x){cec2013(p,x)}, control=list("lambda"=100,"budget"=2900))
+    CMADE(rep(0,2),fn=function(x){cec2013(p,x)}, control=list("lambda"=500,"budget"=15000))
     frames = floor(nrow(all_populations)/2)
     
     for(i in 1:frames){
@@ -68,7 +68,8 @@ CmadeDistribuition <- function() {
            main = paste("CMADE NEW c_pc=0.5\nCE2013 P=",p,"\nPopulation number ", i,sep=""), col="red", pch=19)
       text(80, 90, paste("FT=",round(all_FT[i], digits = 6)), col='blue')
       text(80, 80, paste("REP_NUM=",all_REP[i]), col='blue')
-      
+      points(all_NEWMEAN[i,1], all_NEWMEAN[i,2],pch = 21,col="green")
+      arrows(all_NEWMEAN[i,1],all_NEWMEAN[i,2],all_PC[i,1],all_PC[i,2],length=0.15,angle=40,lwd=2, col="dodgerblue4")
       dev.off()
         
     } 
