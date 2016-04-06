@@ -51,8 +51,8 @@ CmadeDistribuition <- function() {
 
   for(p in 1:28){
     set.seed(42)
-    #CMADEN1(rep(0,2),fn=function(x){cec2013(p,x)}, control=list("lambda"=100,"budget"=2900))
-    CMADE(rep(0,2),fn=function(x){cec2013(p,x)}, control=list("lambda"=500,"budget"=15000))
+    CMADEN1(rep(0,2),fn=function(x){cec2013(p,x)}, control=list("lambda"=500,"budget"=14500))
+    #CMADE(rep(0,2),fn=function(x){cec2013(p,x)}, control=list("lambda"=500,"budget"=14500))
     frames = floor(nrow(all_populations)/2)
     
     for(i in 1:frames){
@@ -62,10 +62,10 @@ CmadeDistribuition <- function() {
       if (i >= 100) {name = paste('0', i,'plot.png', sep='')}
       
       png(name)
-      #plot(all_populations[i,],all_populations[i+1,],   xlab="x", ylab="y", xlim=c(-100, 100), ylim=c(-100, 100),
-       #    main = paste("CMADE OLD\nCE2013 P=",p,"\nPopulation number ", i,sep=""), col="red", pch=19)
       plot(all_populations[i,],all_populations[i+1,],   xlab="x", ylab="y", xlim=c(-100, 100), ylim=c(-100, 100),
-           main = paste("CMADE NEW c_pc=0.5\nCE2013 P=",p,"\nPopulation number ", i,sep=""), col="red", pch=19)
+           main = paste("CMADE OLD\nCE2013 P=",p,"\nPopulation number ", i,sep=""), col="red", pch=19)
+     # plot(all_populations[2*i-1,],all_populations[2*i,],   xlab="x", ylab="y", xlim=c(-100, 100), ylim=c(-100, 100),
+      #     main = paste("CMADE NEW c_pc=0.5\nCE2013 P=",p,"\nPopulation number ", i,sep=""), col="red", pch=19)
       text(80, 90, paste("FT=",round(all_FT[i], digits = 6)), col='blue')
       text(80, 80, paste("REP_NUM=",all_REP[i]), col='blue')
       points(all_NEWMEAN[i,1], all_NEWMEAN[i,2],pch = 21,col="green")
