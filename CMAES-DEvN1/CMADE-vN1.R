@@ -29,6 +29,30 @@ CMADEN1 <- function(par, fn, ..., lower, upper, control=list()) {
   else if (length(upper) == 1)  
     upper <- rep(upper, N)
   
+  ###### LOG REPAIRED NUMBER
+  all_REP <- matrix(0, nrow = 0, ncol = 1)
+  ###### LOG newMEAN
+  all_NEWMEAN <- matrix(0, nrow = 0, ncol = N)
+  ###### LOG_PC
+  all_PC <- matrix(0, nrow = 0, ncol = N)
+  
+  all_FT <- matrix(0, nrow = 0, ncol = 1)
+  
+  
+  bounceBackBoundary2 <- function(x){
+    
+    if(all(x >= cbind(lower)) && all(x <= cbind(upper)))
+      return (x)
+    else if(any(x < cbind(lower)))
+      for(i in which(x < cbind(lower)) )
+        x[i] <- lower[i] + abs(lower[i] - x[i])%% (upper[i]- lower[i])
+      else if(any(x > cbind(upper)))
+        for(i in which(x > cbind(upper)) )
+          x[i] <- upper[i] - abs(upper[i] - x[i])%% (upper[i]- lower[i])
+    return (bounceBackBoundary2(x))
+        
+  }
+  
   #############################
   ##  Algorithm parameters:  ##
   #############################
@@ -122,11 +146,15 @@ CMADEN1 <- function(par, fn, ..., lower, upper, control=list()) {
     
     # Check constraints violations
     # Repair the individual if necessary
-    population <- ifelse(population > lower, 
-                         ifelse(population < upper, population, 
-                                bounceBackBoundary(lower,upper,isLowerViolation=FALSE,population)),   ## upper bonduary violation
-                         bounceBackBoundary(lower,upper,isLowerViolation=TRUE,population)             ## lower bonduary violation
-    )   
+    populationTemp <- population
+    population <-  apply(population,2,bounceBackBoundary2)
+    
+    counter=0
+    for(tt in 1:ncol(populationTemp)){
+      if(any(populationTemp[,tt] != population[,tt]))
+        counter = counter + 1
+    }
+    all_REP <- rbind(all_REP,counter)
     
     ###### SAVE ALL POPULATIONS
     all_populations <- population
@@ -140,6 +168,11 @@ CMADEN1 <- function(par, fn, ..., lower, upper, control=list()) {
     newMean         <- par
     pc              <- rep(0.0, N)/sqrt(N)
     limit           <- 0
+    
+    ####### SAVE ALL FT
+    all_FT    <- rbind(all_FT,Ft)
+    all_NEWMEAN  <- rbind(all_NEWMEAN,newMean)
+    all_PC    <- rbind(all_PC,pc)
     
     ## Matrices for creating diffs
     diffs     <- matrix(0, N, lambda)
@@ -170,6 +203,8 @@ CMADEN1 <- function(par, fn, ..., lower, upper, control=list()) {
       oldMean <- newMean
       newMean <- drop(selectedPoints %*% weights)
       
+      all_NEWMEAN  <- rbind(all_NEWMEAN,newMean)
+      
       ## Write to buffers
       step <- (newMean - oldMean) / Ft
       steps$write(step)
@@ -188,12 +223,17 @@ CMADEN1 <- function(par, fn, ..., lower, upper, control=list()) {
       ## Update parameters
       pc = (1 - cc)* pc + cc* step
       
+      all_PC    <- rbind(all_PC,pc)
+      all_FT    <- rbind(all_FT,Ft)
+      
+      
       ## Check if cumulated step is greater than the tolerance
       if (norm(pc)*Ft<tol)
         if (counteval < 0.8*budget)
           if (budget - counteval > 0.8*restart.length)
             stoptol=T
       
+     
       ## Sample from history with uniform distribution
       limit <- ifelse(iter < histSize, histHead, histSize)
       historySample <- sample(1:limit,lambda, T)
@@ -216,11 +256,16 @@ CMADEN1 <- function(par, fn, ..., lower, upper, control=list()) {
       
       # Check constraints violations
       # Repair the individual if necessary
-      population <- ifelse(population > lower, 
-                           ifelse(population < upper, population, 
-                                  bounceBackBoundary(lower,upper,isLowerViolation=FALSE,population)),   ## upper bonduary violation
-                           bounceBackBoundary(lower,upper,isLowerViolation=TRUE,population)             ## lower bonduary violation
-      )   
+      populationTemp <- population
+      population <-  apply(population,2,bounceBackBoundary2)
+      
+      counter=0
+      for(tt in 1:ncol(populationTemp)){
+        if(any(populationTemp[,tt] != population[,tt]))
+          counter = counter + 1
+      }
+      all_REP <- rbind(all_REP,counter)
+      
       # SAVE ALL POPULATIONS
       all_populations <- rbind(all_populations,population)
       
@@ -299,6 +344,10 @@ CMADEN1 <- function(par, fn, ..., lower, upper, control=list()) {
   
   
   all_populations <<- all_populations
+  all_FT <<- all_FT
+  all_REP <<- all_REP
+  all_NEWMEAN <<- all_NEWMEAN
+  all_PC <<- all_PC
   return(res)
 }
 

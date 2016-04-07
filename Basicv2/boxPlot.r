@@ -62,9 +62,9 @@ CmadeDistribuition <- function() {
       if (i >= 100) {name = paste('0', i,'plot.png', sep='')}
       
       png(name)
-      plot(all_populations[i,],all_populations[i+1,],   xlab="x", ylab="y", xlim=c(-100, 100), ylim=c(-100, 100),
+      plot(all_populations[2*i-1,],all_populations[2*i,],   xlab="x", ylab="y", xlim=c(-100, 100), ylim=c(-100, 100),
            main = paste("CMADE OLD\nCE2013 P=",p,"\nPopulation number ", i,sep=""), col="red", pch=19)
-     # plot(all_populations[2*i-1,],all_populations[2*i,],   xlab="x", ylab="y", xlim=c(-100, 100), ylim=c(-100, 100),
+      #plot(all_populations[2*i-1,],all_populations[2*i,],   xlab="x", ylab="y", xlim=c(-100, 100), ylim=c(-100, 100),
       #     main = paste("CMADE NEW c_pc=0.5\nCE2013 P=",p,"\nPopulation number ", i,sep=""), col="red", pch=19)
       text(80, 90, paste("FT=",round(all_FT[i], digits = 6)), col='blue')
       text(80, 80, paste("REP_NUM=",all_REP[i]), col='blue')

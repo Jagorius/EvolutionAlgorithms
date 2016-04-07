@@ -157,7 +157,7 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
   
   ####### SAVE ALL FT
   all_FT    <- Ft
-  all_MEAN  <- 0
+  all_NEWMEAN  <- 0
   all_PC    <- pc
   
   # Create fisrt population
