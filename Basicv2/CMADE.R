@@ -69,13 +69,14 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
   weightsSumS <- sum(weights^2)                                       ## weights sum square
   mueff       <- controlParam("mueff", mu)     	                      ## Variance effectiveness factor
   cc          <- controlParam("ccum", 4/(N+4))                        ## Evolution Path decay factor
-  c_pc        <- controlParam("cpc", 1/2)                             ## Covariance deformation factor
+  c_pc        <- controlParam("cpc", 0.5)                            ## Covariance deformation factor
   cc_mueff    <- sqrt(cc*(2 - cc) )#*sqrt( mueff)                     ## 'cc' and 'mueff' are constant so as this equation
   c_cov       <- controlParam("c_cov", 1/2)                           ## Mutation vectors weight constant
   pathLength  <- controlParam("pathLength",  6)                       ## Size of evolution path
   maxiter     <- controlParam("maxit", floor(budget/(lambda+1)))      ## Maximum number of iterations after which algorithm stops
-  c_Ft        <- controlParam("c_Ft", 0.1/((sqrt(2)*gamma((N+1)/2)/gamma(N/2)) )) ## Vatiance scaling constant
-  pathRatio   <- controlParam("pathRatio",sqrt(pathLength))           ## Path Length Control reference value
+  c_Ft        <- controlParam("c_Ft", 0.2/((sqrt(2)*gamma((N+1)/2)/gamma(N/2)) )) ## Vatiance scaling constant
+  pathRatio   <- controlParam("pathRatio",calculatePathRatio(N,pathLength) )       ## Path Length Control reference value
+                                        #   \->  sqrt(pathLength)
   checkMiddle <- controlParam("checkMiddle", TRUE)                    ## Vatiable telling if algorithm should save check middle point in every iteration
   histSize    <- controlParam("history", 6+ceiling(3*sqrt(N)))        ## Size of the window of history - the step length history
   #histSize    <- controlParam("history", 0.5*N^2)                    ## Size of the window of history - the step length history
@@ -239,6 +240,7 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
       
       ## Update parameters
       pc = (1 - cc)* pc + cc* step
+      
       all_PC <- rbind(all_PC,pc)
       
       ## Sample from history with uniform distribution
@@ -253,8 +255,8 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
         x2 <- history[, x2sample[i], historySample[i]]
         
         diffs[,i] <- sqrt(1-c_pc) *((x1 - x2)/sqrt(2) + rnorm(1)*step*chiN) +
-          sqrt(c_pc) * rnorm(1) * pc * chiN 
-          weightsSumS * rnorm(N)
+          sqrt(c_pc) * (rnorm(1) * pc * chiN +
+                            weightsSumS * rnorm(N) )
         
       #  diffs[,i] <- sqrt(1-c_pc)*((x1 - x2)*(1/sqrt(2)) + rnorm(1)*step*chiN +
           #  diffs[,i] <- sqrt(1-c_pc)*((x1 - x2)*(1/sqrt(2)) + rnorm(1)*(newMean-oldMean)) +
