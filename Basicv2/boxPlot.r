@@ -52,7 +52,7 @@ CmadeDistribuition <- function() {
   for(p in 1:28){
     set.seed(42)
     #CMADEN1(rep(0,2),fn=function(x){cec2013(p,x)}, control=list("lambda"=500,"budget"=14500))
-    CMADE(rep(0,2),fn=function(x){cec2013(p,x)}, control=list("lambda"=500,"budget"=14500))
+    CMADE(rep(0,2),fn=function(x){cec2013(p,x)}, control=list("lambda"=500,"budget"=14500, "Lamarckism"=FALSE))
     frames = floor(nrow(all_populations)/2)
     
     for(i in 1:frames){

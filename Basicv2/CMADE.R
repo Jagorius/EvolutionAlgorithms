@@ -36,8 +36,10 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
   ###### LOG_PC
   all_PC <- matrix(0, nrow = 0, ncol = N)
 
+  ## Function that repair individuals beyond the search range, using the modified idea 
+  #  of back bouncing.
+  ##
   bounceBackBoundary2 <- function(x){
-    
     if(all(x >= cbind(lower)) && all(x <= cbind(upper)))
       return (x)
     else if(any(x < cbind(lower)))
@@ -93,26 +95,29 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
   log.mean    <- controlParam("diag.mean", log.all)
   log.pop     <- controlParam("diag.pop", log.all)  
   
-  ## Lamarckian approach allows individuals to violate boundaries. 
+  ## nonLamarckian approach allows individuals to violate boundaries. 
   ## Fitness value is estimeted by fitness of repaired individual.
-  Lamarckism     <- controlParam("Lamarckism", FALSE)
+  Lamarckism     <- controlParam("Lamarckism", TRUE)
   
   fn_p <- function(P, P_repaired) {
-    if(all(P == P_repaired)){
-      if(is.matrix(P) && is.matrix(P_repaired)){
+    # Lamarcian approach
+    if(Lamarckism==TRUE){
+      if(is.matrix(P)){
           return ( apply(P, 2, fn) )
       }else{
           return ( fn(P) )
       }
     }
+    # nonLamarcian approach
     else{
       if(is.matrix(P) && is.matrix(P_repaired)){
-          compareResult <- apply(P==P_repaired,2,all)
+          repairedInd <- apply(P!=P_repaired,2,all)
           P_fit <-  apply(P_repaired, 2, fn)
-          P_fit[compareResult] <- P_fit[compareResult] + exp(dist(cbind(P_repaired[compareResult],upper-(abs(lower)) )) )
+          hammingDist <- colSums((P - P_repaired)^2)
+          P_fit[which(repairedInd)] <- P_fit[which(repairedInd)] + exp(hammingDist[which(repairedInd)])
           return(P_fit)
       }else{
-          P_fit <- fn(P_repaired) + 10000
+          P_fit <- fn(P_repaired) + exp(sum(P-P_repaired)^2)
           return ( P_fit )
       }
     }
@@ -164,20 +169,13 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
   # Create fisrt population
   population <- replicate(lambda, runif(N,lower,upper))
   cumMean=rowMeans(population)
-  # Check constraints violations
-  # Repair the individual if necessary
-  #populationRepaired <- ifelse(population > lower, 
-  #                     ifelse(population < upper, population, 
-   #                           bounceBackBoundary(lower,upper,isLowerViolation=FALSE,population)),   ## upper bonduary violation
-  #                     bounceBackBoundary(lower,upper,isLowerViolation=TRUE,population)             ## lower bonduary violation
-  #)   
- #
   ###### SAVE REPARIRED IND. NUMBER
   all_REP <- rbind(all_REP,sum(apply(population, 2, function(x) any(x > cbind(upper) || x < cbind(lower))),na.rm=TRUE))
 
+  # Check constraints violations
   populationRepaired <- apply(population,2,bounceBackBoundary2)
 
-  if(Lamarckism==FALSE){
+  if(Lamarckism==TRUE){
     population <- populationRepaired
   }
   
@@ -241,6 +239,7 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
       ## Update parameters
       pc = (1 - cc)* pc + cc* step
       
+      ####### SAVE ALL_PC
       all_PC <- rbind(all_PC,pc)
       
       ## Sample from history with uniform distribution
@@ -257,29 +256,19 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
         diffs[,i] <- sqrt(1-c_pc) *((x1 - x2)/sqrt(2) + rnorm(1)*step*chiN) +
           sqrt(c_pc) * (rnorm(1) * pc * chiN +
                             weightsSumS * rnorm(N) )
-        
-      #  diffs[,i] <- sqrt(1-c_pc)*((x1 - x2)*(1/sqrt(2)) + rnorm(1)*step*chiN +
-          #  diffs[,i] <- sqrt(1-c_pc)*((x1 - x2)*(1/sqrt(2)) + rnorm(1)*(newMean-oldMean)) +
-          #   sqrt(c_pc) * rnorm(1) * pc * chiN +
-        #  weightsSumS * rnorm(N)  
-        
+    
       }
       
       ## New population
       population <- newMean + Ft * diffs
       
-      # Check constraints violations
-      # Repair the individual if necessary
-     # populationRepaired <- ifelse(population > lower, 
-      #                     ifelse(population < upper, population, 
-      #                            bounceBackBoundary(lower,upper,isLowerViolation=FALSE,population)),   ## upper bonduary violation
-      #                     bounceBackBoundary(lower,upper,isLowerViolation=TRUE,population)             ## lower bonduary violation
-      #)   
       ###### SAVE REPARIRED IND. NUMBER
-      #all_REP <- rbind(all_REP,sum(apply(population, 2, function(x) any(x > cbind(upper) || x < cbind(lower))),na.rm=TRUE))
       populationTemp <- population
+      
+      # Check constraints violations
       populationRepaired <- apply(population,2,bounceBackBoundary2)
       
+      ##### CALCULATE VILOATION NUMBER
       counter=0
       for(tt in 1:ncol(populationTemp)){
         if(any(populationTemp[,tt] != populationRepaired[,tt]))
@@ -287,11 +276,11 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
       }
       all_REP <- rbind(all_REP,counter)
       
-      if(Lamarckism==FALSE){
+      if(Lamarckism==TRUE){
         population <- populationRepaired
       }
       
-      # SAVE ALL POPULATIONS
+      ###### SAVE ALL POPULATIONS
       all_populations <- rbind(all_populations,population)
       
       ## Evaluation
@@ -309,11 +298,6 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
       
       ## Check if the middle point is the best found so far
       cumMean <- 0.9*cumMean+0.1*newMean
-      #cumMeanRepaired <- ifelse(cumMean > lower, 
-       #                              ifelse(cumMean < upper, cumMean, 
-        #                                    bounceBackBoundary(lower,upper,isLowerViolation=FALSE,cumMean)),   ## upper bonduary violation
-        #                             bounceBackBoundary(lower,upper,isLowerViolation=TRUE,cumMean)             ## lower bonduary violation
-      #) 
       cumMeanRepaired <-bounceBackBoundary2(cumMean)
       
       fn_cum  <- fn_p(cumMean, cumMeanRepaired)
@@ -333,14 +317,11 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
         break
       }
       
-      #print(c(counteval,restart.length,best.fit, norm(step), norm(pc)*Ft, Ft),4) 
-      
   }
   # Restart paramaters adaptation
   lambda  <- round(lambda+initlambda * 0.2)
   mu      <- floor(lambda/2)
   weights <- log(mu+1) - log(1:mu)
-  #weights <- (1:mu)*0+1
   weights <- weights/sum(weights)                                 
 
     
@@ -372,27 +353,6 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
   all_PC <<- all_PC
   return(res)
 }
-
-## Function that repair individuals beyond the search range, using the modified idea 
-# of back bouncing.
-# @lowerBoundary - search space lower bonduary
-# @upperBoundary - search space upper bonduary
-# @isLowerViolation - logical value saying whether violation was lower or upper (lower=TRUE, upper=FALSE)
-# @individual - individual to repair
-# RETURN: fixed individual
-##
-#bounceBackBoundary <- function(lowerBoundary, upperBoundary, isLowerViolation, individual) {
-#  if(isLowerViolation == TRUE)
-#    individual <- lowerBoundary + abs(lowerBoundary - individual)%% (upperBoundary- lowerBoundary)
-#  else
-#    individual <- upperBoundary - abs(upperBoundary - individual)%% (upperBoundary- lowerBoundary)
-  
-#  return(ifelse((individual >= lowerBoundary) && (individual <= upperBoundary), 
-#                individual, 
-#                bounceBackBoundary(lowerBoundary, upperBoundary, !isLowerViolation, individual)
-#  ))
-#}
-
 
 ## Norm: function that assigns a strictly positive length to each vector in a vector space.
 # @vectorX - vector to norm
