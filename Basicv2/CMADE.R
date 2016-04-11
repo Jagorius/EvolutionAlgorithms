@@ -114,10 +114,10 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
           repairedInd <- apply(P!=P_repaired,2,all)
           P_fit <-  apply(P_repaired, 2, fn)
           hammingDist <- colSums((P - P_repaired)^2)
-          P_fit[which(repairedInd)] <- P_fit[which(repairedInd)] + exp(hammingDist[which(repairedInd)])
+          P_fit[which(repairedInd)] <- P_fit[which(repairedInd)] + hammingDist[which(repairedInd)]
           return(P_fit)
       }else{
-          P_fit <- fn(P_repaired) + exp(sum(P-P_repaired)^2)
+          P_fit <- fn(P_repaired) + sum(P-P_repaired)^2
           return ( P_fit )
       }
     }
