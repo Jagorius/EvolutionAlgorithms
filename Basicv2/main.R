@@ -1,3 +1,9 @@
+cec2013my <- function(n,x){
+  if(any(x>100) || any(x<(-100)))
+    print(paste("ERROR ON N=",n))
+  return (cec2013(n,x))
+}
+
 benchmarkCMADE <- function(fnumber) {
 	source("CMADE.R")
   
@@ -18,7 +24,7 @@ benchmarkCMADE <- function(fnumber) {
         result <- CMADE(
                       rep(0,d),
                       fn=function(x){
-                              cec2013(n,x)
+                          cec2013my(n,x)
                                     }
                       )  
         

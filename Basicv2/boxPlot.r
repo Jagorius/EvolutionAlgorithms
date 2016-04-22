@@ -7,7 +7,7 @@ benchmarkBoxPlot <- function() {
   library(ggplot2)
   
   v1resultsFolder <- "C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/Basic/CEC2013"
-  v2resultsFolder <- "C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/Basicv2/CEC2013_cpc=0.375"
+  v2resultsFolder <- "C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/Basicv2/CEC2013_lamark_bBack1_cpc=0.25"
    
   # for dimmension=10
   resultMatrix <- matrix(0, nrow=0, ncol = 3)
@@ -21,7 +21,7 @@ benchmarkBoxPlot <- function() {
     for(v in c(1,2)){
       vresults <- read.table(file = paste(ifelse(v==1,v1resultsFolder,v2resultsFolder),"/N",n,"-D",d,sep=""),sep=",")
       names(vresults) <- 'error'
-      vresults[["Version"]] <- ifelse(v==1,"CMADE v1","CMADE v2(c_pc=0.375)")
+      vresults[["Version"]] <- ifelse(v==1,"CMADE v1","CMADE v2(c_pc=0.5, Lamarckism)")
       vresults[["Function"]] <- paste("F",n,sep="")
       allVresults <- rbind(allVresults, vresults)
       
@@ -51,8 +51,8 @@ CmadeDistribuition <- function() {
 
   for(p in 1:28){
     set.seed(42)
-    #CMADEN1(rep(0,2),fn=function(x){cec2013(p,x)}, control=list("lambda"=500,"budget"=14500))
-    CMADE(rep(0,2),fn=function(x){cec2013(p,x)}, control=list("lambda"=500,"budget"=14500, "Lamarckism"=FALSE))
+    CMADEN1(rep(0,2),fn=function(x){cec2013my(p,x)}, control=list("lambda"=500,"budget"=14500))
+    #CMADE(rep(0,2),fn=function(x){cec2013(p,x)}, control=list("lambda"=500,"budget"=14500, "Lamarckism"=FALSE))
     frames = floor(nrow(all_populations)/2)
     
     for(i in 1:frames){
@@ -62,10 +62,10 @@ CmadeDistribuition <- function() {
       if (i >= 100) {name = paste('0', i,'plot.png', sep='')}
       
       png(name)
-     # plot(all_populations[2*i-1,],all_populations[2*i,],   xlab="x", ylab="y", xlim=c(-100, 100), ylim=c(-100, 100),
-      #     main = paste("CMADE OLD\nCE2013 P=",p,"\nPopulation number ", i,sep=""), col="red", pch=19)
       plot(all_populations[2*i-1,],all_populations[2*i,],   xlab="x", ylab="y", xlim=c(-100, 100), ylim=c(-100, 100),
-           main = paste("CMADE NEW c_pc=0.5\nCE2013 P=",p,"\nPopulation number ", i,sep=""), col="red", pch=19)
+           main = paste("CMADE OLD\nCE2013 P=",p,"\nPopulation number ", i,sep=""), col="red", pch=19)
+      #plot(all_populations[2*i-1,],all_populations[2*i,],   xlab="x", ylab="y", xlim=c(-100, 100), ylim=c(-100, 100),
+       #    main = paste("CMADE NEW c_pc=0.5, Lamarckism, Ft(REP_num)\nCE2013 P=",p,"\nPopulation number ", i,sep=""), col="red", pch=19)
       text(80, 90, paste("FT=",round(all_FT[i], digits = 6)), col='blue')
       text(80, 80, paste("REP_NUM=",all_REP[i]), col='blue')
       text(80, 70, paste("pc=(",round(all_PC[i,1], digits = 3),",",round(all_PC[i,2], digits = 3),")",sep=''), col='blue')

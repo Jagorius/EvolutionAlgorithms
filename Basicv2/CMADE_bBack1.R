@@ -30,11 +30,11 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
     upper <- rep(upper, N)
   
   ###### LOG REPAIRED NUMBER
-  all_REP <- matrix(0, nrow = 0, ncol = 1)
+ # all_REP <- matrix(0, nrow = 0, ncol = 1)
   ###### LOG newMEAN
-  all_NEWMEAN <- matrix(0, nrow = 0, ncol = N)
+#  all_NEWMEAN <- matrix(0, nrow = 0, ncol = N)
   ###### LOG_PC
-  all_PC <- matrix(0, nrow = 0, ncol = N)
+ # all_PC <- matrix(0, nrow = 0, ncol = N)
 
   ## Function that repair individuals beyond the search range, using the modified idea 
   #  of back bouncing.
@@ -45,13 +45,12 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
     else if(any(x < cbind(lower)))
       for(i in which(x < cbind(lower)) )
         x[i] <- lower[i] + abs(lower[i] - x[i])%% (upper[i]- lower[i])
-    else if(any(x > cbind(upper)))
-      for(i in which(x > cbind(upper)) )
-        x[i] <- upper[i] - abs(upper[i] - x[i])%% (upper[i]- lower[i])
-    return (bounceBackBoundary2(x))
-    
+      else if(any(x > cbind(upper)))
+        for(i in which(x > cbind(upper)) )
+          x[i] <- upper[i] - abs(upper[i] - x[i])%% (upper[i]- lower[i])
+        return (bounceBackBoundary2(x))
+        
   }
-  
   #############################
   ##  Algorithm parameters:  ##
   #############################
@@ -162,26 +161,31 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
   Ft        <- initFt
   
   ####### SAVE ALL FT
-  all_FT    <- Ft
-  all_NEWMEAN  <- 0
-  all_PC    <- pc
+ # all_FT    <- Ft
+  #all_NEWMEAN  <- 0
+  #all_PC    <- pc
   
   # Create fisrt population
   population <- replicate(lambda, runif(N,lower,upper))
   cumMean=rowMeans(population)
   ###### SAVE REPARIRED IND. NUMBER
-  all_REP <- rbind(all_REP,sum(apply(population, 2, function(x) any(x > cbind(upper) || x < cbind(lower))),na.rm=TRUE))
+ # all_REP <- rbind(all_REP,sum(apply(population, 2, function(x) any(x > cbind(upper) || x < cbind(lower))),na.rm=TRUE))
   counter=0
   
   # Check constraints violations
-  populationRepaired <- apply(population,2,bounceBackBoundary2)
-
+  #populationRepaired <- apply(population,2,bounceBackBoundary2)
+  populationRepaired <- ifelse(population > lower, 
+            ifelse(population < upper, population, 
+                   bounceBackBoundary(lower,upper,isLowerViolation=FALSE,population)),   ## upper bonduary violation
+            bounceBackBoundary(lower,upper,isLowerViolation=TRUE,population)             ## lower bonduary violation
+  )
+  
   if(Lamarckism==TRUE){
     population <- populationRepaired
   }
   
   ###### SAVE ALL POPULATIONS
-  all_populations <- population
+ # all_populations <- population
   
   selection       <- rep(0, mu)
   selectedPoints  <- matrix(0, nrow=N, ncol=mu)
@@ -192,7 +196,7 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
   pc              <- rep(0.0, N)/sqrt(N)
   limit           <- 0
     
-  all_NEWMEAN <- rbind(all_NEWMEAN, newMean)
+ # all_NEWMEAN <- rbind(all_NEWMEAN, newMean)
   
   ## Matrices for creating diffs
   diffs     <- matrix(0, N, lambda)
@@ -222,7 +226,7 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
       oldMean <- newMean
       newMean <- drop(selectedPoints %*% weights)
       
-      all_NEWMEAN <- rbind(all_NEWMEAN, newMean)
+     # all_NEWMEAN <- rbind(all_NEWMEAN, newMean)
       ## Write to buffers
       step <- (newMean - oldMean) / Ft
       steps$write(step)
@@ -238,7 +242,7 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
       pc = (1 - cc)* pc + cc* step
       
       ####### SAVE ALL_PC
-      all_PC <- rbind(all_PC,pc)
+     # all_PC <- rbind(all_PC,pc)
       
       ## Sample from history with uniform distribution
       limit <- ifelse(iter < histSize, histHead, histSize)
@@ -261,7 +265,7 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
         Ft <- FtHistory[histHead] + abs(Ft-FtHistory[histHead])*((lambda-counter)/lambda)*c_Ft
       
       ####### SAVE ALL FT
-      all_FT    <- rbind(all_FT,Ft)
+     # all_FT    <- rbind(all_FT,Ft)
       
       ## New population
       population <- newMean + Ft * diffs
@@ -270,7 +274,12 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
       populationTemp <- population
       
       # Check constraints violations
-      populationRepaired <- apply(population,2,bounceBackBoundary2)
+      #populationRepaired <- apply(population,2,bounceBackBoundary2)
+      populationRepaired <- ifelse(population > lower, 
+                                   ifelse(population < upper, population, 
+                                          bounceBackBoundary(lower,upper,isLowerViolation=FALSE,population)),   ## upper bonduary violation
+                                   bounceBackBoundary(lower,upper,isLowerViolation=TRUE,population)             ## lower bonduary violation
+      )
       
       ##### CALCULATE VILOATION NUMBER
       counter=0
@@ -278,14 +287,14 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
         if(any(populationTemp[,tt] != populationRepaired[,tt]))
           counter = counter + 1
       }
-      all_REP <- rbind(all_REP,counter)
+   #   all_REP <- rbind(all_REP,counter)
         
       if(Lamarckism==TRUE){
         population <- populationRepaired
       }
       
       ###### SAVE ALL POPULATIONS
-      all_populations <- rbind(all_populations,population)
+   #   all_populations <- rbind(all_populations,population)
       
       ## Evaluation
       fitness <- fn_p(population, populationRepaired)
@@ -350,11 +359,11 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
   )
   class(res) <- "cmade.result"
   
-  all_populations <<- all_populations
-  all_FT <<- all_FT
-  all_REP <<- all_REP
-  all_NEWMEAN <<- all_NEWMEAN
-  all_PC <<- all_PC
+ # all_populations <<- all_populations
+#  all_FT <<- all_FT
+#  all_REP <<- all_REP
+ # all_NEWMEAN <<- all_NEWMEAN
+ # all_PC <<- all_PC
   return(res)
 }
 ## Function that repair individuals beyond the search range, using the modified idea 

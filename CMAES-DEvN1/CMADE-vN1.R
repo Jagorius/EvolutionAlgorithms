@@ -147,7 +147,12 @@ CMADEN1 <- function(par, fn, ..., lower, upper, control=list()) {
     # Check constraints violations
     # Repair the individual if necessary
     populationTemp <- population
-    population <-  apply(population,2,bounceBackBoundary2)
+    population <- ifelse(population > lower, 
+                         ifelse(population < upper, population, 
+                                bounceBackBoundary(lower,upper,isLowerViolation=FALSE,population)),   ## upper bonduary violation
+                         bounceBackBoundary(lower,upper,isLowerViolation=TRUE,population)             ## lower bonduary violation
+    )   
+    #population <-  apply(population,2,bounceBackBoundary2)
     
     counter=0
     for(tt in 1:ncol(populationTemp)){
@@ -257,7 +262,12 @@ CMADEN1 <- function(par, fn, ..., lower, upper, control=list()) {
       # Check constraints violations
       # Repair the individual if necessary
       populationTemp <- population
-      population <-  apply(population,2,bounceBackBoundary2)
+      #population <-  apply(population,2,bounceBackBoundary2)
+      population <- ifelse(population > lower, 
+                           ifelse(population < upper, population, 
+                                  bounceBackBoundary(lower,upper,isLowerViolation=FALSE,population)),   ## upper bonduary violation
+                           bounceBackBoundary(lower,upper,isLowerViolation=TRUE,population)             ## lower bonduary violation
+      )   
       
       counter=0
       for(tt in 1:ncol(populationTemp)){
