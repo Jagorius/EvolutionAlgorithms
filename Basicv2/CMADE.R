@@ -35,6 +35,8 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
   all_NEWMEAN <- matrix(0, nrow = 0, ncol = N)
   ###### LOG_PC
   all_PC <- matrix(0, nrow = 0, ncol = N)
+  ###### LOG_EIGEN
+  all_EIGEN <- matrix(0, nrow = 0 , ncol = N)
 
   ## Function that repair individuals beyond the search range, using the modified idea 
   #  of back bouncing.
@@ -60,7 +62,7 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
   stopfitness <- controlParam("stopfitness", -Inf)                    ## Fitness value after which the convergence is reached 
   stopvariance<- controlParam("stopvariance", 1e-12*Ft)               ## Genetic diversity minimum value(stop fitness variance)
   ## Strategy parameter setting:
-  budget      <- controlParam("budget", 100*N^2 )                     ## The maximum number of fitness function calls
+  budget      <- controlParam("budget", 100*N^2 )                     ## The- maximum number of fitness function calls
   initlambda  <- controlParam("lambda", floor(4+sqrt(budget)/max(1,2-N/85)) )  ## Population starting size
   lambda      <- initlambda                                           ## Population size
 
@@ -71,7 +73,7 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
   weightsSumS <- sum(weights^2)                                       ## weights sum square
   mueff       <- controlParam("mueff", mu)     	                      ## Variance effectiveness factor
   cc          <- controlParam("ccum", 4/(N+4))                        ## Evolution Path decay factor
-  c_pc        <- controlParam("cpc", 0.5)                            ## Covariance deformation factor
+  c_pc        <- controlParam("cpc", 1)                               ## Covariance deformation factor
   cc_mueff    <- sqrt(cc*(2 - cc) )#*sqrt( mueff)                     ## 'cc' and 'mueff' are constant so as this equation
   c_cov       <- controlParam("c_cov", 1/2)                           ## Mutation vectors weight constant
   pathLength  <- controlParam("pathLength",  6)                       ## Size of evolution path
@@ -172,13 +174,16 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
   ###### SAVE REPARIRED IND. NUMBER
   all_REP <- rbind(all_REP,sum(apply(population, 2, function(x) any(x > cbind(upper) || x < cbind(lower))),na.rm=TRUE))
   counter=0
-  
+
   # Check constraints violations
   populationRepaired <- apply(population,2,bounceBackBoundary2)
 
   if(Lamarckism==TRUE){
     population <- populationRepaired
   }
+  
+  ###### SAVE ALL EIGEN
+  all_EIGEN <- eigen(cov(t(population)))$values
   
   ###### SAVE ALL POPULATIONS
   all_populations <- population
@@ -284,6 +289,9 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
         population <- populationRepaired
       }
       
+      ###### SAVE ALL EIGEN
+      all_EIGEN <- rbind(all_EIGEN,eigen(cov(t(population)))$values)
+      
       ###### SAVE ALL POPULATIONS
       all_populations <- rbind(all_populations,population)
       
@@ -355,6 +363,7 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
   all_REP <<- all_REP
   all_NEWMEAN <<- all_NEWMEAN
   all_PC <<- all_PC
+  all_EIGEN <<- all_EIGEN
   return(res)
 }
 ## Function that repair individuals beyond the search range, using the modified idea 

@@ -84,6 +84,36 @@ CmadeDistribuition <- function() {
   }
   
   setwd("C:/Users/JS/Documents/R")
+}
+
+EigenPlot <- function() {
+  source('C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/Basicv2/CMADE.R')
   
+  CMADE(rep(0,10),fn=function(x){ 
+                                  res <- 0
+                                  for(i in 1:length(x))
+                                    res <- res + 10^(6*(i-1)/(length(x)-1))*x[i]^2
+                                  return(res)
+                                }, 
+                                lower=-10^100, upper=10^100 )
+  
+  # Square root of each value in vector
+  eigen <- sqrt(all_EIGEN)
+  
+  # Divide each column by corresponding fitness function weight
+  for(i in 1:ncol(eigen))
+    eigen[,i] <- eigen[,i] / 10^(6*( (i-1)/(ncol(eigen)-1) ))
+  
+  
+  # Plot eigen values changes for each dimmension
+  plot(1:nrow(eigen),eigen[,10],log="y",ylim=c(min(eigen),max(eigen)), xlab="Population number", ylab="Eigenvalues")
+  lines(1:nrow(eigen),eigen[,10])
+  
+  colours <- c("red","darkgreen","orchid","yellow","tomato4","yellow4","snow3","plum","seashell4")
+  for(c in (ncol(eigen)-1):1){
+    points(1:nrow(eigen),eigen[,c],col=colours[c])
+    lines(1:nrow(eigen),eigen[,c],col=colours[c])
+  }
+
   
 }
