@@ -165,11 +165,11 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
   
   ####### SAVE ALL FT
   all_FT    <- Ft
-  all_NEWMEAN  <- 0
   all_PC    <- pc
   
   # Create fisrt population
-  population <- replicate(lambda, runif(N,lower,upper))
+  #population <- replicate(lambda, runif(N,lower,upper))
+  population <- replicate(lambda, rnorm(N))
   cumMean=rowMeans(population)
   ###### SAVE REPARIRED IND. NUMBER
   all_REP <- rbind(all_REP,sum(apply(population, 2, function(x) any(x > cbind(upper) || x < cbind(lower))),na.rm=TRUE))
@@ -184,7 +184,6 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
   
   ###### SAVE ALL EIGEN
   all_EIGEN <- eigen(cov(t(population)))$values
-  
   ###### SAVE ALL POPULATIONS
   all_populations <- population
   
@@ -197,6 +196,11 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
   pc              <- rep(0.0, N)/sqrt(N)
   limit           <- 0
     
+  ###### LOG_FITESS
+  all_FITNES <- fitness
+  ###### LOG MEAN POINT FITNESS
+  ALL_FITMEAN <- 0
+  ###### LOG_MEAN
   all_NEWMEAN <- rbind(all_NEWMEAN, newMean)
   
   ## Matrices for creating diffs
@@ -226,6 +230,7 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
       ## Calculate weighted mean of selected points
       oldMean <- newMean
       newMean <- drop(selectedPoints %*% weights)
+      #newMean <- rowMeans(selectedPoints)
       
       all_NEWMEAN <- rbind(all_NEWMEAN, newMean)
       ## Write to buffers
@@ -298,6 +303,8 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
       ## Evaluation
       fitness <- fn_p(population, populationRepaired)
   
+      ## LOG FITNESS
+      all_FITNES <- rbind(all_FITNES,fitness)
       
       ## Break if fit:    
       wb <- which.min(fitness)
@@ -309,10 +316,14 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
       counteval <- counteval + lambda
       
       ## Check if the middle point is the best found so far
-      cumMean <- 0.9*cumMean+0.1*newMean
+     # cumMean <- 0.9*cumMean+0.1*newMean
+      cumMean <- newMean
       cumMeanRepaired <-bounceBackBoundary2(cumMean)
       
       fn_cum  <- fn_p(cumMean, cumMeanRepaired)
+      ######## LOG MEAN POINT FITNESS
+      ALL_FITMEAN <- rbind(ALL_FITMEAN,fn_cum)
+      
       if (fn_cum < best.fit) {
         best.fit <- drop(fn_cum)
         best.par <- cumMeanRepaired
@@ -364,6 +375,8 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
   all_NEWMEAN <<- all_NEWMEAN
   all_PC <<- all_PC
   all_EIGEN <<- all_EIGEN
+  all_FITNES <<- all_FITNES
+  ALL_FITMEAN <<- ALL_FITMEAN
   return(res)
 }
 ## Function that repair individuals beyond the search range, using the modified idea 
