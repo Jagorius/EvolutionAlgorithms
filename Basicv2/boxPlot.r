@@ -51,8 +51,8 @@ CmadeDistribuition <- function() {
 
   for(p in 1:28){
     set.seed(42)
-    CMADEN1(rep(0,2),fn=function(x){cec2013my(p,x)}, control=list("lambda"=500,"budget"=14500))
-    #CMADE(rep(0,2),fn=function(x){cec2013(p,x)}, control=list("lambda"=500,"budget"=14500, "Lamarckism"=FALSE))
+    #CMADEN1(rep(0,2),fn=function(x){cec2013my(p,x)}, control=list("lambda"=500,"budget"=14500))
+    CMADE(rep(0,2),fn=function(x){cec2013(p,x)}, control=list("lambda"=500,"budget"=14500, "Lamarckism"=TRUE))
     frames = floor(nrow(all_populations)/2)
     
     for(i in 1:frames){
@@ -88,7 +88,7 @@ CmadeDistribuition <- function() {
 
 EigenPlot <- function() {
   source('C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/Basicv2/CMADE.R')
-  N <- 9 
+  N <- 10
   
   CMADE(rep(0,N),fn=function(x){ 
                                   res <- 0
@@ -101,7 +101,7 @@ EigenPlot <- function() {
         )
   
   # Square root of each value in vector
-  eigen <- sqrt(all_EIGEN)
+  eigen <- sqrt(abs(all_EIGEN))
 
   # Divide each column by corresponding fitness function weight
   #for(i in 1:ncol(eigen))
@@ -112,7 +112,7 @@ EigenPlot <- function() {
   plot(functionEvalVec,eigen[,N],log="y",ylim=c(min(eigen),max(eigen)), xlab="function evaluations", ylab="Eigenvalues",cex=0)
   lines(functionEvalVec,eigen[,N], lwd=2)
   
-  colours <- c("red","darkgreen","orchid","blue","tomato4","yellow4","snow3","plum","seashell4")
+  colours <- c("red","darkgreen","orchid","blue","tomato4","yellow4","snow3","plum","seashell4","black","black","black","black")
   for(c in (ncol(eigen)-1):1){
     points(functionEvalVec,eigen[,c],col=colours[c],cex=0)
     lines(functionEvalVec,eigen[,c],col=colours[c], lwd=2)
@@ -200,7 +200,7 @@ ObjectPlot <- function(){
 
 AbsSigmaPlot <- function(){
   source('C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/Basicv2/CMADE.R')
-  N <- 10 
+  N <- 10
   
   CMADE(rep(0,N),fn=function(x){ 
     res <- 0
@@ -214,7 +214,7 @@ AbsSigmaPlot <- function(){
   
   functionEvalVec <- (1:nrow(all_FT))*(ncol(all_populations)+1)
   # Plot Ft
-  plot(functionEvalVec,all_FT,log="y",ylim=c(min(all_FITNES),max(all_FITNES)), xlab="function evaluations", ylab="green:Ft, blue:best",cex=0)
+  plot(functionEvalVec,all_FT,log="y",ylim=c(min(min(all_FT),min(all_FITNES)),max(all_FITNES)), xlab="function evaluations", ylab="green:Ft, blue:best, black:mean",cex=0)
   lines(functionEvalVec,all_FT, lwd=2, col="green")
   
   # Plot f(best)
@@ -224,4 +224,5 @@ AbsSigmaPlot <- function(){
   lines(functionEvalVec,ALL_FITMEAN, lwd=3, col="black")
   
   
+
 }

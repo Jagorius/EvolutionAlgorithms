@@ -5,8 +5,8 @@ cec2013my <- function(n,x){
 }
 
 benchmarkCMADE <- function(fnumber) {
-	source("CMADE.R")
-  
+  source('C:/Users/JS/Desktop/CMADE-v12.R')
+
   library(cec2013)
   library(cec2005benchmark)
   
@@ -28,15 +28,14 @@ benchmarkCMADE <- function(fnumber) {
                                     }
                       )  
         
-        resultVector <- c(resultVector, result$value-scores[n])
+        resultVector <- c(resultVector, abs(result$value-scores[n]))
+        print(paste("PROBLEM=",n," ,DIM=",d," ,ITER=",i))
       }
-      write.table(resultVector, file = paste("./CEC2013/N",n,"-D",d,sep=""), sep = ",")
+      #write.table(resultVector, file = paste("C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/Basicv2/CEC2013/N",n,"-D",d,sep=""), sep = ",")
       print(paste("CEC2013 N=",n," D=",d, " --> Best: ", min(resultVector)," Worst: ",max(resultVector)," Mean: ", mean(resultVector)," Sd: ",sd(resultVector),sep=""))
-      
-      
+      #cat(paste("CEC2013 N=",n," D=",d, " --> Best: ", min(resultVector)," Worst: ",max(resultVector)," Mean: ", mean(resultVector)," Sd: ",sd(resultVector),sep="","\n"),file="C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/Basicv2/CEC2013/output.txt",append=TRUE)
     }
   }
-    
   time.taken  <- Sys.time() - start.time
   print(paste("Calculation time[hours]: ",as.numeric(time.taken, units = "hours")))
   
