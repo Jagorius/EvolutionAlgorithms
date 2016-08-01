@@ -65,18 +65,17 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
   stopfitness <- controlParam("stopfitness", -Inf)                    ## Fitness value after which the convergence is reached 
   stopvariance<- controlParam("stopvariance", 1e-12*Ft)               ## Genetic diversity minimum value(stop fitness variance)
   ## Strategy parameter setting:
-  budget      <- controlParam("budget", 100*N^2 )                     ## The- maximum number of fitness function calls
+  budget      <- controlParam("budget", 10000*N )                     ## The- maximum number of fitness function calls
   initlambda  <- controlParam("lambda", floor(4+(sqrt(budget)/max(1,2-N/85))) )  ## Population starting size
-  #initlambda  <- controlParam("lambda",   2*(4+floor(3*log(N))) )  ## Population starting size (CMAES)
   lambda      <- initlambda                                           ## Population size
   mu          <- controlParam("mu", floor(lambda/2))                  ## Selection size
   weights     <- controlParam("weights", log(mu+1) - log(1:mu))       ## Weights to calculate mean from selected individuals
   #weights     <- controlParam("weights", (1:mu)*0+1)
   weights     <- weights/sum(weights)                                 ##    \-> weights are normalized by the sum
   weightsSumS <- sum(weights^2)                                       ## weights sum square
-  mueff       <- controlParam("mueff", mu)     	                      ## Variance effectiveness factor
+  mueff       <- controlParam("mueff", sum(weights)^2/sum(weights^2)) ## Variance effectiveness factor
   cc          <- controlParam("ccum", 4/(N+4))                        ## Evolution Path decay factor
-  c_pc        <- controlParam("cpc", 2/3)                             ## Covariance deformation factor
+  c_pc        <- controlParam("cpc", 1)                             ## Covariance deformation factor
   cc_mueff    <- sqrt(cc*(2 - cc) )#*sqrt( mueff)                     ## 'cc' and 'mueff' are constant so as this equation
   c_cov       <- controlParam("c_cov", 1/2)                           ## Mutation vectors weight constant
   pathLength  <- controlParam("pathLength",  6)                       ## Size of evolution path
@@ -265,8 +264,8 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
         x2 <- history[, x2sample[i], historySample[i]]
         
         diffs[,i] <- (x1 - x2) + sqrt(1-c_pc)*rnorm(1)*pc*chiN +
-          sqrt(c_pc) * (rnorm(1) * pc * chiN +
-                          rnorm(N)/chiN*tol )
+          sqrt(c_pc) * (sqrt(1-c_cov) * rnorm(1) * pc * chiN +
+                          sqrt(c_cov) * rnorm(N)/chiN*tol )
     
       }
       
@@ -437,9 +436,9 @@ calculateFt <- function(stepsBuffer, N, lambda, pathLength, currentFt, c_Ft, pat
   for (i in 1:pathLength) {
     totalPath <- totalPath + norm(steps[[i]])
   }
-  return (currentFt * exp(1/(sqrt(N)+1) *(c_Ft * (chiN / (totalPath / directPath)-1))) ) 
+  #return (currentFt * exp(1/(sqrt(N)+1) *(c_Ft * (chiN / (totalPath / directPath)-1))) ) 
   #return(currentFt * exp(c_Ft * (totalPath/chiN - 1)))
-  #return(currentFt * exp( 1/(sqrt(N)+1) * (((mueff+2)/(2*sqrt((mueff-1)/(N+1))+2*mueff+N+5 ))* (totalPath/chiN - 1)) ))
+  return(currentFt * exp( 1/(sqrt(N)+1) * (((mueff+2)/(2*sqrt((mueff-1)/(N+1))+2*mueff+N+5 ))* (totalPath/chiN - 1)) ))
   
 }
 

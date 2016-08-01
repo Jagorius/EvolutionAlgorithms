@@ -226,3 +226,29 @@ AbsSigmaPlot <- function(){
   
 
 }
+
+Parall <- function(){
+  library(foreach)
+  library(doParallel)
+  
+  a <- 1
+  b<- 2
+  # Calculate the number of cores
+  no_cores <- detectCores() - 1
+  
+  # Initiate cluster
+  registerDoParallel(no_cores)
+  
+  results = foreach(exponent = 2:4, 
+          .combine = c,
+          .export = c("a","b")
+                    )  %dopar%  {
+            e <- 2^exponent
+            return(a+b)
+          }
+
+  
+  stopImplicitCluster()
+  print(results)
+  
+}
