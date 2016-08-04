@@ -30,8 +30,6 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
     upper <- rep(upper, N)
 
   bounceBackBoundary2 <- function(x){
-    x[is.na(x)] <- .Machine$double.xmax
-    x[is.infinite(x)] <- .Machine$double.xmax
     
     if(all(x >= cbind(lower)) && all(x <= cbind(upper)))
       return (x)
@@ -64,13 +62,12 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
   weightsSumS <- sum(weights^2)                                       ## weights sum square
   mueff       <- controlParam("mueff", sum(weights)^2/sum(weights^2)) ## Variance effectiveness factor
   cc          <- controlParam("cc", 4/(N+4))                          ## Evolution Path decay factor
-  c_pc        <- controlParam("cpc", 0.44)                            ## Covariance deformation factor
+  c_pc        <- controlParam("cpc", 0.2)                             ## Covariance deformation factor
   cc_mueff    <- sqrt(cc*(2 - cc) )#*sqrt( mueff)                     ## 'cc' and 'mueff' are constant so as this equation
   c_cov       <- controlParam("c_cov", 1/2)                           ## Mutation vectors weight constant
   pathLength  <- controlParam("pathLength",  6)                       ## Size of evolution path
   maxiter     <- controlParam("maxit", floor(budget/(lambda+1)))      ## Maximum number of iterations after which algorithm stops
-  #c_Ft        <- controlParam("c_Ft", 1/((sqrt(2)*gamma((N+1)/2)/gamma(N/2)) )) ## Variance scaling constant
-  c_Ft        <- controlParam("c_Ft",  0.62) 
+  c_Ft        <- controlParam("c_Ft", 1/((sqrt(2)*gamma((N+1)/2)/gamma(N/2)) )) ## Variance scaling constant
   pathRatio   <- controlParam("pathRatio",sqrt(pathLength))           ## Path Length Control reference value
   checkMiddle <- controlParam("checkMiddle", TRUE)                    ## Vatiable telling if algorithm should save check middle point in every iteration
   histSize    <- controlParam("history", 6+ceiling(3*sqrt(N)))        ## Size of the window of history - the step length history
@@ -86,7 +83,7 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
   log.mean    <- controlParam("diag.mean", log.all)
   log.pop     <- controlParam("diag.pop", log.all)  
   
-  ## nonLamarckian approach allows individuals to violate boundaries. 
+  ## Lamarckian approach allows individuals to violate boundaries. 
   ## Fitness value is estimeted by fitness of repaired individual.
   Lamarckism     <- controlParam("Lamarckism", TRUE)
   
@@ -154,7 +151,9 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
   
   # Create fisrt population
   population <- replicate(lambda, runif(N,lower,upper))
-  cumMean=(upper+lower)/2
+  cumMean=rowMeans(population)
+
+  # Check constraints violations
   populationRepaired <- apply(population,2,bounceBackBoundary2)
 
   if(Lamarckism==TRUE){
@@ -206,7 +205,7 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
       ## Update Ft
       FtHistory[histHead] = Ft
       oldFt <- Ft
-      if (iter > pathLength-1 && (sum(step == 0) == 0)&&counterRepaired<0.1*lambda) {
+      if (iter > pathLength-1 && (sum(step == 0) == 0) && counterRepaired<0.1*lambda) {
         Ft <- calculateFt(steps, N, lambda, pathLength, Ft, c_Ft, pathRatio, chiN, mueff)
       }
    
@@ -229,6 +228,9 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
                           rnorm(N)/chiN*tol )
         
       }
+      
+     if(counterRepaired>0)
+        Ft <- FtHistory[histHead] + abs(Ft-FtHistory[histHead])*((lambda-counterRepaired)/lambda)*c_Ft
       
       ## New population
       population <- newMean + Ft * diffs
@@ -261,7 +263,8 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
       counteval <- counteval + lambda
       
       ## Check if the middle point is the best found so far
-      cumMean <- 0.8*cumMean+0.2*newMean
+      ##cumMean <- 0.8*cumMean+0.2*newMean
+      cumMean <- newMean
       cumMeanRepaired <-bounceBackBoundary2(cumMean)
       
       fn_cum  <- fn_p(cumMean, cumMeanRepaired)

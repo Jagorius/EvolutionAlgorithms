@@ -252,3 +252,37 @@ Parall <- function(){
   print(results)
   
 }
+
+bounceBackBoundary2 <- function(x){
+  x[is.na(x)] <- .Machine$double.xmax
+  x[is.infinite(x)] <- .Machine$double.xmax
+  
+  if(all(x >= cbind(lower)) && all(x <= cbind(upper)))
+    return (x)
+  else if(any(x < cbind(lower)))
+    for(i in which(x < cbind(lower)) )
+      x[i] <- lower[i] + abs(lower[i] - x[i])%% (upper[i]- lower[i])
+  else if(any(x > cbind(upper)))
+    for(i in which(x > cbind(upper)) )
+      x[i] <- upper[i] - abs(upper[i] - x[i])%% (upper[i]- lower[i])
+  return (bounceBackBoundary2(x))
+  
+}
+
+CEC2013tableCreate <- function(x){
+  
+  path <- "C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/CEC2013/CMADE-New4"
+  
+  csvResults <-  matrix(0, nrow = 51, ncol = 1)
+  for(i in 1:28){
+    resColumn <- read.table(paste(path,"/N/N",i,"-D10",sep=""), sep=",",header = TRUE)
+    colnames(resColumn) <- paste("P",i,sep = "")
+    csvResults <- cbind(csvResults,resColumn)
+  }
+  csvResults <- csvResults[,-1]
+  print(csvResults)
+  
+  write.csv(csvResults, file = paste(path,"/resTable.csv",sep=""), row.names = TRUE)
+  
+}
+
