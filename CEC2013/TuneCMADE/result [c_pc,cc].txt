@@ -1,0 +1,24 @@
+Loading required package: iterators
+Loading required package: parallel
+$par
+[1] 0.1373160 0.1974153
+
+$value
+[1] 441.5025
+
+$counts
+function 
+     369 
+
+$convergence
+[1] 1
+
+$message
+NULL
+
+$diagnostic
+list()
+
+attr(,"class")
+[1] "cmade.result"
+[1] "Calculation time[hours]:  44.1049719357491"

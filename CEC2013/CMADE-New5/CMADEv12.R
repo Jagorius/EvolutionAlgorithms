@@ -253,7 +253,13 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
       fitnessPrev <- fitness
       fitness <- fn_p(population, populationRepaired)
       
-
+      ## Sucession
+      for(pp in 1:ncol(population)){
+        if(fitness[pp] > fitnessPrev[pp])
+          population[,pp] = populationPrev[,pp]
+      }
+      
+      
       ## Break if fit:    
       wb <- which.min(fitness)
       if (fitness[wb] < best.fit) {
