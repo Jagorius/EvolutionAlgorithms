@@ -2,6 +2,7 @@ AbsSigmaPlotCEC2013 <- function(){
   source('C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/CEC2013/CMADE-New6-FT/CMADEv12.R')
   setwd("C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/CEC2013/CMADE-New6-FT/Plots/")
   
+  scores <- c(seq(from = -1400, to = -100, by=100),seq(from = 100, to = 1400, by=100))
   N <- 10
   for(i in 1:28){
     print(paste("PROBLEM:",i))
@@ -11,10 +12,10 @@ AbsSigmaPlotCEC2013 <- function(){
                 control=list("diag"=TRUE)
     )
     
-    best <- abs(-1400 - apply(res$diagnostic$value,1,min))
+    best <- abs(scores[i] - apply(res$diagnostic$value,1,min))
     best[best<1e-08] <- 1e-08
     
-    mean <- abs(-1400 - res$diagnostic$mean)
+    mean <- abs(scores[i]- res$diagnostic$mean)
     mean[mean<1e-08] <- 1e-08
     
     res$diagnostic$Ft[1] <- max(res$diagnostic$Ft)
