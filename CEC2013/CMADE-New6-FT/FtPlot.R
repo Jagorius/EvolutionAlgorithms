@@ -1,4 +1,5 @@
 AbsSigmaPlotCEC2013 <- function(){
+  library(cec2013)
   source('C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/CEC2013/CMADE-New6-FT/CMADEv12.R')
   setwd("C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/CEC2013/CMADE-New6-FT/Plots/")
   
@@ -18,7 +19,7 @@ AbsSigmaPlotCEC2013 <- function(){
     mean <- abs(scores[i]- res$diagnostic$mean)
     mean[mean<1e-08] <- 1e-08
     
-    res$diagnostic$Ft[1] <- max(res$diagnostic$Ft)
+    #res$diagnostic$Ft[1] <- max(res$diagnostic$Ft)
     
     functionEvalVec <- (1:length(res$diagnostic$Ft))*(dim(res$diagnostic$pop)[2]+1)
     

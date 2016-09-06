@@ -182,7 +182,7 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
       iter      <- iter + 1L
       histHead  <- (histHead %% histSize) + 1
       
-      if (log.Ft) Ft.log[iter] <- Ft*norm(pc)
+      if (log.Ft) Ft.log[iter] <- Ft
       if (log.value) value.log[iter,] <- fitness
       if (log.mean) mean.log[iter] <- fn_p(bounceBackBoundary2(newMean))
       if (log.pop) pop.log[,,iter] <- population
