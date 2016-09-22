@@ -25,7 +25,8 @@ AbsSigmaPlotCEC2013 <- function(){
     
     png(paste(i,".png"), width = 1024, height = 768)
     # Plot Ft
-    plot(functionEvalVec,res$diagnostic$Ft, log="y", ylim=c(min(best,res$diagnostic$Ft),max(res$diagnostic$Ft,best)), xlab="function evaluations", ylab="green:Ft, blue:best, black:mean",cex=0)
+    plot(functionEvalVec,res$diagnostic$Ft, log="y", ylim=c(min(best,res$diagnostic$Ft),max(res$diagnostic$Ft,best)), xlab="function evaluations", ylab=expression(bold(red):total/direct~~bold(green):Ft~~bold(blue):best~~bold(black):mean),cex=0)
+    xlab=expression()
     lines(functionEvalVec,res$diagnostic$Ft, lwd=2, col="green")
   
     # Plot f(best)
@@ -33,6 +34,9 @@ AbsSigmaPlotCEC2013 <- function(){
     
     # Plot f(mean)
     lines(functionEvalVec,mean, lwd=3, col="black")
+    
+    # Plot path ratio
+    lines(functionEvalVec,res$diagnostic$pathRatio, lwd=3, col="red")
     
     title(paste("CEC2013 Problem ",i))
     

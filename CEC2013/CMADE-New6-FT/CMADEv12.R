@@ -81,7 +81,8 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
   log.Ft      <- controlParam("diag.Ft", log.all)
   log.value   <- controlParam("diag.value", log.all)
   log.mean    <- controlParam("diag.mean", log.all)
-  log.pop     <- controlParam("diag.pop", log.all)  
+  log.pop     <- controlParam("diag.pop", log.all) 
+  log.pathRat <- controlParam("diag.pathRatio", log.all)
   
   ## Lamarckian approach allows individuals to violate boundaries. 
   ## Fitness value is estimeted by fitness of repaired individual.
@@ -134,6 +135,8 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
     mean.log <- numeric(maxiter)
   if (log.pop)
     pop.log <- array(0, c(N, lambda, maxiter))
+  if (log.pathRat)
+    pathRatio.log <- numeric(maxiter)
   
   ## Allocate buffers:
   steps       <- ringbuffer(size = pathLength*N)                      ## Cyclical buffer containing last 'pathLength' steps of algorithm
@@ -186,7 +189,7 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
       if (log.value) value.log[iter,] <- fitness
       if (log.mean) mean.log[iter] <- fn_p(bounceBackBoundary2(newMean))
       if (log.pop) pop.log[,,iter] <- population
-      
+
       ## Select best 'mu' individuals of population
       selection       <- order(fitness)[1:mu]
       selectedPoints  <- population[,selection]
@@ -207,8 +210,12 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
       oldFt <- Ft
       if (iter > pathLength-1 && (sum(step == 0) == 0) && counterRepaired<0.1*lambda) {
         Ft <- calculateFt(steps, N, lambda, pathLength, Ft, c_Ft, pathRatio, chiN, mueff)
+        if (log.pathRat) pathRatio.log[iter] <- totalToDirectRatio(steps, N, pathLength)
+      }else {
+        if (log.pathRat && iter==1L) pathRatio.log[iter] <- 0 
+        if (log.pathRat && iter!=1L) pathRatio.log[iter] <- pathRatio.log[iter-1] 
       }
-   
+
       ## Update parameters
       pc = (1 - cc)* pc + cc* step
 
@@ -302,6 +309,7 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
   if (log.value) log$value <- value.log[1:iter,]
   if (log.mean) log$mean <- mean.log[1:iter]
   if (log.pop)   log$pop   <- pop.log[,,1:iter]
+  if (log.pathRat) log$pathRatio <- pathRatio.log[1:iter]
   
   ## Drop names from value object
   names(best.fit) <- NULL
@@ -335,6 +343,26 @@ p_succ<-function(benchmarkFitness, popFitness) {
   return (sum(popFitness < benchmarkFitness) / length(popFitness))
 }
 
+## Function to calculate total to direct path ratio.
+# @arguments - according to their names
+# RETURN: total/direct path
+##
+totalToDirectRatio <- function (stepsBuffer, N, pathLength) {
+  steps <- split(stepsBuffer$peek(), ceiling(seq_along(stepsBuffer$peek())/N))
+  
+  directPath <- rep(0,N)
+  for (i in 1:pathLength) {
+    directPath <- directPath + steps[[i]]
+  }
+  directPath <- norm(directPath)
+  
+  totalPath <- 0
+  for (i in 1:pathLength) {
+    totalPath <- totalPath + norm(steps[[i]])
+  }
+  
+  return (totalPath / directPath)
+}
 ## Function to calculate new scaling factor F(step size).
 # @arguments - according to their names
 # RETURN: new Ft value
@@ -352,7 +380,9 @@ calculateFt <- function(stepsBuffer, N, lambda, pathLength, currentFt, c_Ft, pat
   totalPath <- 0
   for (i in 1:pathLength) {
     totalPath <- totalPath + norm(steps[[i]])
+    
   }
+  
   return (currentFt * exp(1/(sqrt(N)+1) *(c_Ft * (chiN / (totalPath / directPath)-1))) ) 
   #return (currentFt * exp(c_Ft * (pathRatio / (totalPath / directPath)-1)))  
   #return (currentFt * exp(1/(sqrt(N)+1) * ((chiN / (totalPath / directPath) - 1)*((mueff+2)/(N+mueff+3))/( 1 + 2*max(0, sqrt((mueff-1)/(N+1))-1) + ((mueff+2)/(N+mueff+3))))))
