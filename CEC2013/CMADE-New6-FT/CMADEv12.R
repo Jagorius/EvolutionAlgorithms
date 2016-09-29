@@ -208,7 +208,8 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
       ## Update Ft
       FtHistory[histHead] = Ft
       oldFt <- Ft
-      if (iter > pathLength-1 && (sum(step == 0) == 0) && counterRepaired<0.1*lambda) {
+      #if (iter > pathLength-1 && (sum(step == 0) == 0) && counterRepaired<0.1*lambda) {
+      if (iter > pathLength-1 ) {
         Ft <- calculateFt(steps, N, lambda, pathLength, Ft, c_Ft, pathRatio, chiN, mueff)
         if (log.pathRat) pathRatio.log[iter] <- totalToDirectRatio(steps, N, pathLength)
       }else {
@@ -236,8 +237,8 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
         
       }
       
-     if(counterRepaired>0)
-        Ft <- FtHistory[histHead] + abs(Ft-FtHistory[histHead])*((lambda-counterRepaired)/lambda)*c_Ft
+     #if(counterRepaired>0)
+      #  Ft <- FtHistory[histHead] + abs(Ft-FtHistory[histHead])*((lambda-counterRepaired)/lambda)*c_Ft
       
       ## New population
       population <- newMean + Ft * diffs

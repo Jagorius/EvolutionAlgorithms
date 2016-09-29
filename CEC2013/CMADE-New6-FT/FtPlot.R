@@ -1,7 +1,7 @@
 AbsSigmaPlotCEC2013 <- function(){
   library(cec2013)
   source('C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/CEC2013/CMADE-New6-FT/CMADEv12.R')
-  setwd("C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/CEC2013/CMADE-New6-FT/Plots/")
+  setwd("C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/CEC2013/CMADE-New6-FT/Plots-ConstantFtCALC/")
   
   scores <- c(seq(from = -1400, to = -100, by=100),seq(from = 100, to = 1400, by=100))
   N <- 10
