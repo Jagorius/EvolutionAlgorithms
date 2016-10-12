@@ -74,7 +74,7 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
   #histSize    <- controlParam("history", 0.5*N^2)                    ## Size of the window of history - the step length history
   histSize    <- ceiling(histSize)                                    ##    \-> size should be integer
   Ft_scale    <- controlParam("Ft_scale", ((mueff+2)/(N+mueff+3))/(1 + 2*max(0, sqrt((mueff-1)/(N+1))-1) + (mueff+2)/(N+mueff+3)))
-  tol         <- controlParam("tol", 10^-21)
+  tol         <- controlParam("tol", 10^-18)
 
   ## Logging options:
   log.all     <- controlParam("diag", FALSE)                 

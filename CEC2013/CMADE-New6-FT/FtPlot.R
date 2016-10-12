@@ -5,7 +5,7 @@ AbsSigmaPlotCEC2013 <- function(){
   
   scores <- c(seq(from = -1400, to = -100, by=100),seq(from = 100, to = 1400, by=100))
   N <- 10
-  for(i in c(2)){
+  for(i in c(16:20)){
     print(paste("PROBLEM:",i))
     res <- CMADE(rep(0,N),fn=function(x){ 
                                   cec2013(i,x)
@@ -38,7 +38,7 @@ AbsSigmaPlotCEC2013 <- function(){
     # Plot path ratio
     lines(functionEvalVec,res$diagnostic$pathRatio, lwd=3, col="red")
     
-    title(paste("CEC2013 Problem ",i))
+    title(paste("CEC2013 Problem ",i," tol=10^-18"))
     
     dev.off()
   }
