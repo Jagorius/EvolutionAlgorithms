@@ -30,6 +30,8 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
     upper <- rep(upper, N)
 
   bounceBackBoundary2 <- function(x){
+    x[is.na(x)] <- .Machine$double.xmax
+    x[is.infinite(x)] <- .Machine$double.xmax
     
     if(all(x >= cbind(lower)) && all(x <= cbind(upper)))
       return (x)
@@ -84,7 +86,7 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
   log.pop     <- controlParam("diag.pop", log.all) 
   log.pathRat <- controlParam("diag.pathRatio", log.all)
   
-  ## Lamarckian approach allows individuals to violate boundaries. 
+  ## nonLamarckian approach allows individuals to violate boundaries. 
   ## Fitness value is estimeted by fitness of repaired individual.
   Lamarckism     <- controlParam("Lamarckism", TRUE)
   
@@ -99,6 +101,9 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
     }
     # nonLamarckian approach
     else{
+      P[is.na(P)] <- .Machine$double.xmax
+      P[is.infinite(P)] <- .Machine$double.xmax
+      
       if(is.matrix(P) && is.matrix(P_repaired)){
           repairedInd <- apply(P!=P_repaired,2,all)
           P_fit <-  apply(P_repaired, 2, fn)
@@ -152,8 +157,8 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
   history   <- array(0, c(N, mu, histSize))                           ## Array stores best 'mu' individuals for 'hsize' recent iterations   
   Ft        <- initFt
   
-  # Create fisrt population
-  population <- replicate(lambda, runif(N,lower,upper))
+  # Create first population
+  population <- replicate(lambda, runif(N,0.8*lower,0.8*upper))
   cumMean=rowMeans(population)
 
   # Check constraints violations
@@ -233,7 +238,7 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
         
         diffs[,i] <- (x1 - x2) + sqrt(1-c_pc)*rnorm(1)*pc*chiN +
           sqrt(c_pc) * (rnorm(1) * pc * chiN +
-                          rnorm(N)/chiN*tol )
+                          0*rnorm(N)/chiN*tol )
         
       }
       
