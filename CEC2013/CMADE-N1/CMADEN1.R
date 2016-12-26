@@ -67,7 +67,7 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
   stopfitness <- controlParam("stopfitness", -Inf)                    ## Fitness value after which the convergence is reached 
   stopvariance<- controlParam("stopvariance", 1e-12*Ft)               ## Genetic diversity minimum value(stop fitness variance)
   ## Strategy parameter setting:
-  budget      <- controlParam("budget", 100*N^2 )                     ## The maximum number of fitness function calls
+  budget      <- controlParam("budget", 10000*N )                     ## The maximum number of fitness function calls
   initlambda  <- controlParam("lambda", floor((4+sqrt(N)/2)*N))       ## Population starting size
   lambda      <- initlambda                                           ## Population size
 

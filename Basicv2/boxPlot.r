@@ -274,15 +274,21 @@ CEC2013tableCreate <- function(x){
   path <- "C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/CEC2013/CMADE-New5"
   
   csvResults <-  matrix(0, nrow = 51, ncol = 1)
-  for(i in 1:28){
-    resColumn <- read.table(paste(path,"/N/N",i,"-D10",sep=""), sep=",",header = TRUE)
-    colnames(resColumn) <- paste("P",i,sep = "")
-    csvResults <- cbind(csvResults,resColumn)
-  }
-  csvResults <- csvResults[,-1]
-  print(csvResults)
   
-  write.csv(csvResults, file = paste(path,"/resTable.csv",sep=""), row.names = TRUE)
+  for(n in c(10,30,50,100)){
+    if(!file.exists(paste(path,"/N/N1-D",n,sep="")) ){
+      for(i in 1:30){
+        resColumn <- read.table(paste(path,"/N/N",i,"-D",n,sep=""), sep=",",header = TRUE)
+        colnames(resColumn) <- paste("P",i,sep = "")
+        csvResults <- cbind(csvResults,resColumn)
+      }
+      csvResults <- csvResults[,-1]
+      print(csvResults)
+      
+      write.csv(csvResults, file = paste(path,"/resTable.csv",sep=""), row.names = TRUE)
+    }
+  }
+  
   
 }
 

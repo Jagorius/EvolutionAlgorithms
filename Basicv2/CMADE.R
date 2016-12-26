@@ -60,8 +60,8 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
   #############################
   ##  Algorithm parameters:  ##
   #############################
-  Ft          <- controlParam("Ft", sqrt(1/2))                        ## Scaling factor of difference vectors (a variable!)
-  initFt      <- controlParam("initFt", sqrt(1/2))
+  Ft          <- controlParam("Ft", 1/3)                        ## Scaling factor of difference vectors (a variable!)
+  initFt      <- controlParam("initFt", 1/3)
   stopfitness <- controlParam("stopfitness", -Inf)                    ## Fitness value after which the convergence is reached 
   stopvariance<- controlParam("stopvariance", 1e-12*Ft)               ## Genetic diversity minimum value(stop fitness variance)
   ## Strategy parameter setting:
@@ -75,7 +75,7 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
   weightsSumS <- sum(weights^2)                                       ## weights sum square
   mueff       <- controlParam("mueff", sum(weights)^2/sum(weights^2)) ## Variance effectiveness factor
   cc          <- controlParam("ccum", 4/(N+4))                        ## Evolution Path decay factor
-  c_pc        <- controlParam("cpc", 1)                             ## Covariance deformation factor
+  c_pc        <- controlParam("cpc", 0)                             ## Covariance deformation factor
   cc_mueff    <- sqrt(cc*(2 - cc) )#*sqrt( mueff)                     ## 'cc' and 'mueff' are constant so as this equation
   c_cov       <- controlParam("c_cov", 1/2)                           ## Mutation vectors weight constant
   pathLength  <- controlParam("pathLength",  6)                       ## Size of evolution path
@@ -170,7 +170,8 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
   all_PC    <- pc
   
   # Create fisrt population
-  population <- replicate(lambda, runif(N,lower,upper))
+  #population <- replicate(lambda, runif(N,lower,upper))
+  population <- replicate(lambda, runif(N,0,3))
   #population <- replicate(lambda, rnorm(N))
   cumMean=rowMeans(population)
   ###### SAVE REPARIRED IND. NUMBER
@@ -263,7 +264,7 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
         x1 <- history[, x1sample[i], historySample[i]]
         x2 <- history[, x2sample[i], historySample[i]]
         
-        diffs[,i] <- (x1 - x2) + sqrt(1-c_pc)*rnorm(1)*pc*chiN +
+        diffs[,i] <- (x1 - x2)/sqrt(2) + sqrt(1-c_pc)*rnorm(1)*pc*chiN +
           sqrt(c_pc) * (sqrt(1-c_cov) * rnorm(1) * pc * chiN +
                           sqrt(c_cov) * rnorm(N)/chiN*tol )
     
@@ -436,9 +437,11 @@ calculateFt <- function(stepsBuffer, N, lambda, pathLength, currentFt, c_Ft, pat
   for (i in 1:pathLength) {
     totalPath <- totalPath + norm(steps[[i]])
   }
+  g_sd <- currentFt * exp(1/(sqrt(N)+1) *(c_Ft * (chiN / (totalPath / directPath)-1)))
+  return (abs(rnorm(1,g_sd)))
   #return (currentFt * exp(1/(sqrt(N)+1) *(c_Ft * (chiN / (totalPath / directPath)-1))) ) 
   #return(currentFt * exp(c_Ft * (totalPath/chiN - 1)))
-  return(currentFt * exp( 1/(sqrt(N)+1) * (((mueff+2)/(2*sqrt((mueff-1)/(N+1))+2*mueff+N+5 ))* (totalPath/chiN - 1)) ))
+  #return(currentFt * exp( 1/(sqrt(N)+1) * (((mueff+2)/(2*sqrt((mueff-1)/(N+1))+2*mueff+N+5 ))* (totalPath/chiN - 1)) ))
   
 }
 
