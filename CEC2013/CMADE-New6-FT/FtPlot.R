@@ -70,6 +70,6 @@ FtTotalToDirectPlot <- function(){
   # Plot path ratio
   lines(functionEvalVec,res$diagnostic$pathRatio, lwd=3, col="red")
   
-  title("Fitness Function = N(0,1)")
+  title("Fitness Function = N(0,1)\n Ft=1")
   
 }

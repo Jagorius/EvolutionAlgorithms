@@ -389,10 +389,10 @@ calculateFt <- function(stepsBuffer, N, lambda, pathLength, currentFt, c_Ft, pat
     totalPath <- totalPath + norm(steps[[i]])
     
   }
-  
+  return(1)
   #g_sd <- currentFt * exp(1/(sqrt(N)+1) *(c_Ft * (chiN / (totalPath / directPath)-1)))
   #return (rnorm(1,g_sd)) 
-  return (currentFt * exp(c_Ft * (pathRatio / (totalPath / directPath)-1)))  
+  #return (currentFt * exp(c_Ft * (pathRatio / (totalPath / directPath)-1)))  
   #return (currentFt * exp(1/(sqrt(N)+1) * ((chiN / (totalPath / directPath) - 1)*((mueff+2)/(N+mueff+3))/( 1 + 2*max(0, sqrt((mueff-1)/(N+1))-1) + ((mueff+2)/(N+mueff+3))))))
 }
 ## Function to calculate path length control reference value based on a problem
