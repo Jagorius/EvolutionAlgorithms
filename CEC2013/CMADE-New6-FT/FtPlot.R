@@ -47,7 +47,7 @@ AbsSigmaPlotCEC2013 <- function(){
 FtTotalToDirectPlot <- function(){
   source('C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/CEC2013/CMADE-New6-FT/CMADEv12.R')
   
-  N <- 100
+  N <- 10
   res <- CMADE(rep(0,N),fn=function(x){ 
                                 rnorm(1)
                                       },
