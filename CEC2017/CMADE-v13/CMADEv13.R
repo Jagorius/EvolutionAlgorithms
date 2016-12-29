@@ -64,7 +64,7 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
   weightsSumS <- sum(weights^2)                                       ## weights sum square
   mueff       <- controlParam("mueff", sum(weights)^2/sum(weights^2)) ## Variance effectiveness factor
   cc          <- controlParam("cc", 4/(N+4))                          ## Evolution Path decay factor
-  c_pc        <- controlParam("cpc", 0.2)                               ## Covariance deformation factor
+  c_pc        <- controlParam("cpc", 1)                               ## Covariance deformation factor
   cc_mueff    <- sqrt(cc*(2 - cc) )#*sqrt( mueff)                     ## 'cc' and 'mueff' are constant so as this equation
   c_cov       <- controlParam("c_cov", 1/2)                           ## Mutation vectors weight constant
   pathLength  <- controlParam("pathLength",  6)                       ## Size of evolution path
@@ -238,7 +238,7 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
         
         diffs[,i] <- (x1 - x2)/sqrt(2) + sqrt(1-c_pc)*rnorm(1)*pc*chiN +
           sqrt(c_pc) * (rnorm(1) * pc * chiN +
-                          0*rnorm(N)/chiN*tol )
+                          rnorm(N)/chiN*tol )
         
       }
       

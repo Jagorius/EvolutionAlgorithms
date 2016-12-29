@@ -69,8 +69,7 @@ CEC2017tableCreate <- function(x){
         csvResults <- cbind(csvResults,resColumn)
       }
       csvResults <- csvResults[,-1]
-      print(csvResults)
-      
+          
       write.csv(csvResults, file = paste(path,paste("/resTable-",n,".csv",sep=""),sep=""), row.names = TRUE)
     }
   }
