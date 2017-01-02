@@ -45,9 +45,9 @@ AbsSigmaPlotCEC2013 <- function(){
 }
 
 FtTotalToDirectPlot <- function(){
-  source('C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/CEC2013/CMADE-New6-FT/CMADEv12.R')
+  source('C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/CEC2017/CMADE2016-v2/CMADEv2016-v2.R')
   
-  N <- 10
+  N <- 30
   res <- CMADE(rep(0,N),fn=function(x){ 
                                 rnorm(1)
                                       },
@@ -57,14 +57,15 @@ FtTotalToDirectPlot <- function(){
   
   functionEvalVec <- (1:length(res$diagnostic$Ft))*(dim(res$diagnostic$pop)[2]+1)
   
+  print(res$diagnostic$pathRatio)
   # Plot Ft
-  plot(functionEvalVec,res$diagnostic$Ft, log="y", ylim=c(0.00001,100), xlab="function evaluations", ylab=expression(bold(red):total/direct~~bold(green):Ft),cex=0)
+  plot(functionEvalVec,res$diagnostic$Ft, log="y", ylim=c(0.1,100), xlab="function evaluations", ylab=expression(bold(red):total/direct~~bold(green):Ft),cex=0)
   xlab=expression()
   lines(functionEvalVec,res$diagnostic$Ft, lwd=2, col="green")
   
   # Plot path ratio
   lines(functionEvalVec,res$diagnostic$pathRatio, lwd=3, col="red")
   
-  title(paste("Fitness Function = N(0,1)\nN=",N,"\nMean Total\ direct=",mean(res$diagnostic$pathRatio)))
+  title(paste("CMADEv2016-v1\nFitness Function = N(0,1), N=",N,"\nMean Total|direct=",mean(res$diagnostic$pathRatio)))
   
 }
