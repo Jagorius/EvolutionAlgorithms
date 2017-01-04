@@ -30,9 +30,6 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
     upper <- rep(upper, N)
 
   bounceBackBoundary2 <- function(x){
-    x[is.na(x)] <- .Machine$double.xmax
-    x[is.infinite(x)] <- .Machine$double.xmax
-    
     if(all(x >= cbind(lower)) && all(x <= cbind(upper)))
       return (x)
     else if(any(x < cbind(lower)))
@@ -41,6 +38,7 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
     else if(any(x > cbind(upper)))
       for(i in which(x > cbind(upper)) )
         x[i] <- upper[i] - abs(upper[i] - x[i])%% (upper[i]- lower[i])
+    x <-deleteInfsNaNs(x)
     return (bounceBackBoundary2(x))
     
   }
@@ -101,18 +99,19 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
   
   ## Fitness function wrapper for nonLamarckian approach
   fn_p <- function(P, P_repaired, fitness) {
-    
-    P[is.na(P)] <- .Machine$double.xmax
-    P[is.infinite(P)] <- .Machine$double.xmax
+    P <- deleteInfsNaNs(P)
+    P_repaired <- deleteInfsNaNs(P_repaired)
     
     if(is.matrix(P) && is.matrix(P_repaired)){
         repairedInd <- apply(P!=P_repaired,2,all)
         P_fit <- fitness
         vecDist <- colSums((P - P_repaired)^2)
-        P_fit[which(repairedInd)] <- P_fit[which(repairedInd)] + worst.fit + vecDist[which(repairedInd)]*N 
+        P_fit[which(repairedInd)] <- worst.fit + vecDist[which(repairedInd)]*N 
+        P_fit <- deleteInfsNaNs(P_fit)
         return(P_fit)
     }else{
-        P_fit <- fitness + worst.fit + (sum(P-P_repaired)^2)*N
+        P_fit <- worst.fit + (sum(P-P_repaired)^2)*N
+        P_fit <- deleteInfsNaNs(P_fit)
         return (P_fit)
     }
     
@@ -251,6 +250,7 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
       
       ## New population
       population <- newMean + Ft * diffs
+      population <- deleteInfsNaNs(population)
       
       # Check constraints violations
       # Repair the individual if necessary
@@ -351,6 +351,11 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
   return(res)
 }
 
+deleteInfsNaNs <- function(x){
+  x[is.na(x)] <- .Machine$double.xmax
+  x[is.infinite(x)] <- .Machine$double.xmax
+  return(x)
+}
 
 ## Norm: function that assigns a strictly positive length to each vector in a vector space.
 # @vectorX - vector to norm
