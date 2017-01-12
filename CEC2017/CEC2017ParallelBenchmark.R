@@ -23,7 +23,9 @@ benchmarkParallelCMADE <- function() {
                         source('CMADEv12.R')
                         library(cec2017)
                         resultVector <- c()
-                        # 51 runs per problem
+			print("Problem(N=Dim,D=Problem),Median, Best, Worst, Mean, Sd")
+
+			# 51 runs per problem
                         for(i in 1:51){
 			  result <- tryCatch(
 				{
@@ -33,7 +35,8 @@ benchmarkParallelCMADE <- function() {
 							cec2017(n,x)
 						},
 						lower=-100,
-						upper=100
+						upper=100,
+						control=list("Lamarckism"=FALSE)
 					)
 				},
 				error=function(cond) {
@@ -46,7 +49,7 @@ benchmarkParallelCMADE <- function() {
                         }
                         write.table(resultVector, file = paste("N/N",n,"-D",d,sep=""), sep = ",")
                         
-                        return( paste("CEC2017 N=",n," D=",d, " --> Best: ", min(resultVector)," Worst: ",max(resultVector)," Mean: ", mean(resultVector)," Sd: ",sd(resultVector),sep="") )
+                        return( paste(paste("CEC2017 N=",n," D=",d,sep=""),median(resultVector), min(resultVector), max(resultVector), mean(resultVector),sd(resultVector),sep=",") )
                       }
     print(results)
     
