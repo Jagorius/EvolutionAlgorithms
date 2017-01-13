@@ -13,8 +13,10 @@ benchmarkParallelCMADE <- function() {
   # Initiate cluster
   registerDoParallel(no_cores)
   
+  cat("Problem(N=Dim,D=Problem),Median, Best, Worst, Mean, Sd\n")
+
   # For each of problem dimmension
-  for(d in c(10,30)){
+  for(d in c(50,100)){
     # Make parallel computing for each of 30 problems
     results = foreach(n = 1:30, 
                       .combine = c,
@@ -23,7 +25,6 @@ benchmarkParallelCMADE <- function() {
                         source('CMADEv12.R')
                         library(cec2017)
                         resultVector <- c()
-			print("Problem(N=Dim,D=Problem),Median, Best, Worst, Mean, Sd")
 
 			# 51 runs per problem
                         for(i in 1:51){
@@ -51,12 +52,13 @@ benchmarkParallelCMADE <- function() {
                         
                         return( paste(paste("CEC2017 N=",n," D=",d,sep=""),median(resultVector), min(resultVector), max(resultVector), mean(resultVector),sd(resultVector),sep=",") )
                       }
-    print(results)
+    # print results on the output
+    noquote(results)
     
   }
   stopImplicitCluster()
   time.taken  <- Sys.time() - start.time
-  print(paste("Calculation time[hours]: ",as.numeric(time.taken, units = "hours")))
+  noquote(paste("Calculation time[hours]: ",as.numeric(time.taken, units = "hours")))
 }
 
 CEC2017tableCreate <- function(x){
