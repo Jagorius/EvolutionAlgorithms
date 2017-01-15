@@ -1,4 +1,4 @@
-Problem(N=Dim,D=Problem),Median, Best, Worst, Mean, Sd
+Problem(N=Dim D=Problem),Median, Best, Worst, Mean, Sd
  [1] CEC2017 N=1 D=10,5.25216137248208e-09,2.35196750963951e-09,729.733625754749,27.8188902245609,126.960623494672
  [2] CEC2017 N=2 D=10,0,0,0,0,0                                                                                   
  [3] CEC2017 N=3 D=10,0,0,0,0,0                                                                                   
