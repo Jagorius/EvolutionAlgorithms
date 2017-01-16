@@ -151,165 +151,179 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
   ## Initialize internal strategy parameters
   counteval   <- 0                                                    ## Number of function evaluations
   msg         <- NULL                                                 ## Reason for terminating
-  lambda      <- initlambda
-  pc          <- rep(0.0, N)/sqrt(N)
-  histHead  <- 0                                                      ## Pointer to the history buffer head
-  iter      <- 0L                                                     ## Number of iterations
-  history   <- array(0, c(N, mu, histSize))                           ## Array stores best 'mu' individuals for 'hsize' recent iterations   
-  Ft        <- initFt
+  restart.number <- -1
   
-  # Create fisrt population
-  population <- replicate(lambda, runif(N,lower,upper))
-  cumMean=(upper+lower)/2
-  populationRepaired <- apply(population,2,bounceBackBoundary2)
-
-  if(Lamarckism==TRUE){
-    population <- populationRepaired
-  }
+  while( counteval < budget){
+    restart.number <- restart.number+1
+    lambda      <- initlambda
+    pc          <- rep(0.0, N)/sqrt(N)
+    histHead  <- 0                                                      ## Pointer to the history buffer head
+    iter      <- 0L                                                     ## Number of iterations
+    history   <- array(0, c(N, mu, histSize))                           ## Array stores best 'mu' individuals for 'hsize' recent iterations   
+    Ft        <- initFt
+    
+    # Create fisrt population
+    population <- replicate(lambda, runif(N,lower,upper))
+    cumMean=(upper+lower)/2
+    populationRepaired <- apply(population,2,bounceBackBoundary2)
   
-  selection       <- rep(0, mu)
-  selectedPoints  <- matrix(0, nrow=N, ncol=mu)
-  fitness         <- fn_(populationRepaired)
-  counteval       <- counteval + lambda
-  oldMean         <- numeric(N)
-  newMean         <- par
-  pc              <- rep(0.0, N)/sqrt(N)
-  limit           <- 0
-  worst.fit       <- max(fitness)
+    if(Lamarckism==TRUE){
+      population <- populationRepaired
+    }
     
-  ## Matrices for creating diffs
-  diffs     <- matrix(0, N, lambda)
-  x1sample  <- numeric(lambda)
-  x2sample  <- numeric(lambda)
+    selection       <- rep(0, mu)
+    selectedPoints  <- matrix(0, nrow=N, ncol=mu)
+    fitness         <- fn_(populationRepaired)
+    counteval       <- counteval + lambda
+    oldMean         <- numeric(N)
+    newMean         <- par
+    pc              <- rep(0.0, N)/sqrt(N)
+    limit           <- 0
+    worst.fit       <- max(fitness)
+      
+    ## Matrices for creating diffs
+    diffs     <- matrix(0, N, lambda)
+    x1sample  <- numeric(lambda)
+    x2sample  <- numeric(lambda)
+      
+    chiN      <- (sqrt(2)*gamma((N+1)/2)/gamma(N/2))  
+    histNorm  <- sqrt(mu/(mu+1))/sqrt(2)  
+    counterRepaired <- 0
     
-  chiN      <- (sqrt(2)*gamma((N+1)/2)/gamma(N/2))  
-  histNorm  <- sqrt(mu/(mu+1))/sqrt(2)  
-  counterRepaired <- 0
-
-  while (counteval < budget) {
-      iter      <- iter + 1L
-      histHead  <- (histHead %% histSize) + 1
-      
-      if (log.Ft) Ft.log[iter] <- Ft*norm(pc)
-      if (log.value) value.log[iter,] <- fitness
-      if (log.mean) mean.log[iter] <- fn_(bounceBackBoundary2(newMean))
-      if (log.pop) pop.log[,,iter] <- population
-      
-      ## Select best 'mu' individuals of population
-      selection       <- order(fitness)[1:mu]
-      selectedPoints  <- population[,selection]
-      
-      # Save selected population in the history buffer
-      history[,,histHead] <- selectedPoints * histNorm/Ft
-      
-      ## Calculate weighted mean of selected points
-      oldMean <- newMean
-      newMean <- drop(selectedPoints %*% weights)
-      
-      ## Write to buffers
-      step <- (newMean - oldMean) / Ft
-      steps$write(step)
-      
-      ## Update Ft
-      FtHistory[histHead] = Ft
-      oldFt <- Ft
-      if (iter > pathLength-1 && (sum(step == 0) == 0)&&counterRepaired<0.1*lambda) {
-        Ft <- calculateFt(steps, N, lambda, pathLength, Ft, c_Ft, pathRatio, chiN, mueff)
-      }
-   
-      ## Update parameters
-      pc = (1 - cc)* pc + cc* step
-
-      ## Sample from history with uniform distribution
-      limit <- ifelse(iter < histSize, histHead, histSize)
-      historySample <- sample(1:limit,lambda, T)
-      
-      x1sample <- sample(1:mu, lambda, replace=TRUE)#, weights)
-      x2sample <- sample(1:mu, lambda, replace=TRUE)#, weights)
-      ## Make diffs    
-      for (i in 1:lambda) {
-        x1 <- history[, x1sample[i], historySample[i]]
-        x2 <- history[, x2sample[i], historySample[i]]
+    stoptol=F
+    while (counteval < budget && !stoptol) {
+        iter      <- iter + 1L
+        histHead  <- (histHead %% histSize) + 1
         
-        diffs[,i] <- (x1 - x2) + rnorm(1)*pc*chiN        
-      }
+        if (log.Ft) Ft.log[iter] <- Ft*norm(pc)
+        if (log.value) value.log[iter,] <- fitness
+        if (log.mean) mean.log[iter] <- fn_(bounceBackBoundary2(newMean))
+        if (log.pop) pop.log[,,iter] <- population
+        
+        ## Select best 'mu' individuals of popu-lation
+        selection       <- order(fitness)[1:mu]
+        selectedPoints  <- population[,selection]
+        
+        # Save selected population in the history buffer
+        history[,,histHead] <- selectedPoints * histNorm/Ft
+        
+        ## Calculate weighted mean of selected points
+        oldMean <- newMean
+        newMean <- drop(selectedPoints %*% weights)
+        
+        ## Write to buffers
+        step <- (newMean - oldMean) / Ft
+        steps$write(step)
+        
+        ## Update Ft
+        FtHistory[histHead] = Ft
+        oldFt <- Ft
+        if (iter > pathLength-1 && (sum(step == 0) == 0)&&counterRepaired<0.1*lambda) {
+          Ft <- calculateFt(steps, N, lambda, pathLength, Ft, c_Ft, pathRatio, chiN, mueff)
+        }
+     
+        ## Update parameters
+        pc = (1 - cc)* pc + cc* step
+  
+        ## Sample from history with uniform distribution
+        limit <- ifelse(iter < histSize, histHead, histSize)
+        historySample <- sample(1:limit,lambda, T)
+        
+        x1sample <- sample(1:mu, lambda, replace=TRUE)#, weights)
+        x2sample <- sample(1:mu, lambda, replace=TRUE)#, weights)
+        ## Make diffs    
+        for (i in 1:lambda) {
+          x1 <- history[, x1sample[i], historySample[i]]
+          x2 <- history[, x2sample[i], historySample[i]]
+          
+          diffs[,i] <- (x1 - x2) + rnorm(1)*pc*chiN        
+        }
+        
+        ## New population
+        population <- newMean + Ft * diffs + tol*rnorm(diffs)/chiN
+        population <- deleteInfsNaNs(population)
+        
+        # Check constraints violations
+        # Repair the individual if necessary
+        populationTemp <- population
+        populationRepaired <- apply(population,2,bounceBackBoundary2)
+        
+        counterRepaired=0
+        for(tt in 1:ncol(populationTemp)){
+          if(any(populationTemp[,tt] != populationRepaired[,tt]))
+            counterRepaired = counterRepaired + 1
+        }
+        
+        if(Lamarckism==TRUE){
+          population <- populationRepaired
+        }
       
-      ## New population
-      population <- newMean + Ft * diffs + tol*rnorm(diffs)/chiN
-      population <- deleteInfsNaNs(population)
-      
-      # Check constraints violations
-      # Repair the individual if necessary
-      populationTemp <- population
-      populationRepaired <- apply(population,2,bounceBackBoundary2)
-      
-      counterRepaired=0
-      for(tt in 1:ncol(populationTemp)){
-        if(any(populationTemp[,tt] != populationRepaired[,tt]))
-          counterRepaired = counterRepaired + 1
-      }
-      
-      if(Lamarckism==TRUE){
-        population <- populationRepaired
-      }
-    
-      ## Evaluation
-      fitness <- fn_(populationRepaired)
-      if(Lamarckism==FALSE){
-        fitnessNonLamarcian <- fn_p(population, populationRepaired, fitness)
-      }  
-      
-      ## Break if fit:    
-      wb <- which.min(fitness)
-      if (fitness[wb] < best.fit) {
-        best.fit <- fitness[wb]
-        if(Lamarckism==TRUE)
-          best.par <- population[,wb]
-        else
-          best.par <- populationRepaired[,wb]
-      }
-      
-      ## Check worst fit:    
-      ww <- which.max(fitness)
-      if (fitness[ww] > worst.fit){
-        worst.fit <- fitness[ww]
-      }
-      
-      ## Fitness with penalty for nonLamarcian approach    
-      if(Lamarckism==FALSE){
-        fitness <- fitnessNonLamarcian
-      }
-      
-      counteval <- counteval + lambda
-      
-      ## Check if the middle point is the best found so far
-      cumMean <- 0.8*cumMean+0.2*newMean
-      cumMeanRepaired <-bounceBackBoundary2(cumMean)
-      
-      fn_cum  <- fn_(cumMeanRepaired)
-      if (fn_cum < best.fit) {
-        best.fit <- drop(fn_cum)
-        best.par <- cumMean
-      }
-      counteval <- counteval + 1
-      
-      ## Escape from flat-land:
-      if (min(fitness) == sort(fitness,partial=min(1+floor(lambda/2), 2+ceiling(lambda/4)))[min(1+floor(lambda/2), 2+ceiling(lambda/4))]) { 
-        Ft <- Ft * exp(0.2*Ft_scale);
-      }
-      
-      if (fitness[1] <= stopfitness) {
-        msg <- "Stop fitness reached."
-        break
-      }
-      
+        ## Evaluation
+        fitness <- fn_(populationRepaired)
+        if(Lamarckism==FALSE){
+          fitnessNonLamarcian <- fn_p(population, populationRepaired, fitness)
+        }  
+        
+        ## Break if fit:    
+        wb <- which.min(fitness)
+        if (fitness[wb] < best.fit) {
+          best.fit <- fitness[wb]
+          if(Lamarckism==TRUE)
+            best.par <- population[,wb]
+          else
+            best.par <- populationRepaired[,wb]
+        }
+        
+        ## Check worst fit:    
+        ww <- which.max(fitness)
+        if (fitness[ww] > worst.fit){
+          worst.fit <- fitness[ww]
+        }
+        
+        ## Fitness with penalty for nonLamarcian approach    
+        if(Lamarckism==FALSE){
+          fitness <- fitnessNonLamarcian
+        }
+        
+        counteval <- counteval + lambda
+        
+        ## Check if the middle point is the best found so far
+        cumMean <- 0.8*cumMean+0.2*newMean
+        cumMeanRepaired <-bounceBackBoundary2(cumMean)
+        
+        fn_cum  <- fn_(cumMeanRepaired)
+        if (fn_cum < best.fit) {
+          best.fit <- drop(fn_cum)
+          best.par <- cumMean
+        }
+        counteval <- counteval + 1
+        
+        ## Escape from flat-land:
+        if (min(fitness) == sort(fitness,partial=min(1+floor(lambda/2), 2+ceiling(lambda/4)))[min(1+floor(lambda/2), 2+ceiling(lambda/4))]) { 
+          Ft <- Ft * exp(0.2*Ft_scale);
+        }
+        
+        if (fitness[1] <= stopfitness) {
+          msg <- "Stop fitness reached."
+          break
+        }
+        
+        if(mean(apply(population,1,sd)) < tol)
+        {
+          if (counteval < 0.8*budget)
+              stoptol=T
+        }
+        
+    }
   }
+  
+ 
   # Restart paramaters adaptation
-  lambda  <- round(lambda+initlambda * 0.2)
-  mu      <- floor(lambda/2)
-  weights <- log(mu+1) - log(1:mu)
+  #lambda  <- round(lambda+initlambda * 0.2)
+  #mu      <- floor(lambda/2)
+  #weights <- log(mu+1) - log(1:mu)
   #weights <- (1:mu)*0+1
-  weights <- weights/sum(weights)                                 
+  #weights <- weights/sum(weights)                                 
 
     
   cnt <- c(`function`=as.integer(counteval))
@@ -327,6 +341,7 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
   res <- list(par=best.par,
               value=best.fit,
               counts=cnt,
+              resets=restart.number,
               convergence=ifelse(iter >= maxiter, 1L, 0L),
               message=msg,
               diagnostic=log

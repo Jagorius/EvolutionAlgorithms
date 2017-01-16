@@ -13,7 +13,7 @@ benchmarkParallelCMADE <- function() {
   # Initiate cluster
   registerDoParallel(no_cores)
   
-  cat("Problem(N=Dim,D=Problem),Median, Best, Worst, Mean, Sd\n")
+  cat("Problem(N=Dim D=Problem),Median, Best, Worst, Mean, Sd\n")
 
   # For each of problem dimmension
   for(d in c(50,100)){
@@ -26,27 +26,27 @@ benchmarkParallelCMADE <- function() {
                         library(cec2017)
                         resultVector <- c()
 
-			# 51 runs per problem
+			                  # 51 runs per problem
                         for(i in 1:51){
-			  result <- tryCatch(
-				{
-					CMADE(
-						rep(0,d),
-						fn=function(x){
-							cec2017(n,x)
-						},
-						lower=-100,
-						upper=100,
-						control=list("Lamarckism"=FALSE)
-					)
-				},
-				error=function(cond) {
-					print(paste("Problem:", d," ",cond))
-				}
+			                          result <- tryCatch(
+			                        	{
+				    	                    CMADE(
+						                          rep(0,d),
+						                          fn=function(x){
+							                              cec2017(n,x)
+						                          },
+						                          lower=-100,
+						                          upper=100,
+						                          control=list("Lamarckism"=FALSE)
+					                        )
+				                        },
+				                        error=function(cond) {
+					                            print(paste("Problem:", d," ",cond))
+				                        }
 
-			  )   
-                          
-                          resultVector <- c(resultVector, abs(result$value-scores[n]))
+			                          )
+			                          
+                                resultVector <- c(resultVector, abs(result$value-scores[n]))
                         }
                         write.table(resultVector, file = paste("N/N",n,"-D",d,sep=""), sep = ",")
                         
@@ -58,7 +58,7 @@ benchmarkParallelCMADE <- function() {
   }
   stopImplicitCluster()
   time.taken  <- Sys.time() - start.time
-  noquote(paste("Calculation time[hours]: ",as.numeric(time.taken, units = "hours")))
+  noquote(paste("Calculation time[hours]: ",as.numeric(time.taken, units = "hours"),",,,,,"))
 }
 
 CEC2017tableCreate <- function(x){
