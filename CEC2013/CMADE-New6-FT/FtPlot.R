@@ -69,3 +69,33 @@ FtTotalToDirectPlot <- function(){
   title(paste("CMADEv2016-v1\nFitness Function = N(0,1), N=",N,"\nMean Total|direct=",mean(res$diagnostic$pathRatio)))
   
 }
+
+NMead <- function(){
+  fn_ <- function(x=NULL,index=NULL,fmsfundata=NULL){
+    library(cec2013)
+    val_ = cec2013(1,transpose(x))
+    return(list(f=val_,
+                g=c(),
+                c=c(), 
+                gc=c(),
+                index=index,
+                this=list(costfargument=fmsfundata)))
+  }
+  
+  x0 <- transpose( rep(0,10) )
+  nm <- neldermead()
+  nm <- neldermead.set(nm,'numberofvariables',10)
+  nm <- neldermead.set(nm,'maxfunevals',10000)
+  nm <- neldermead.set(nm,'maxiter',100)
+  nm <- neldermead.set(nm,'function',fn_)
+  nm <- neldermead.set(nm,'method','box')
+  nm <- neldermead.set(nm,'x0',x0)
+  nm <- neldermead.set(nm,'boundsmin',rep(-100,10))
+  nm <- neldermead.set(nm,'boundsmax',rep(100,10))
+  nm <- neldermead.search(nm)
+  
+  
+  fopt <- neldermead.get(nm,'fopt')
+  print(fopt)
+  
+}

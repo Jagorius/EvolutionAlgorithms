@@ -267,7 +267,7 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
       fn_cum  <- fn_p(cumMean, cumMeanRepaired)
       if (fn_cum < best.fit) {
         best.fit <- drop(fn_cum)
-        best.par <- cumMean
+        best.par <- cumMeanRepaired
       }
       counteval <- counteval + 1
       
