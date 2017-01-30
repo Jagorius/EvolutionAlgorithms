@@ -19,7 +19,7 @@ T2 <- function(d){
 }
 
 TableResCEC2017 <- function(d){
-  path  <- "C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/CEC2017/CMADE-BBcomp4 cFT=0 Pop=4N/N/"
+  path  <- "C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/CEC2017/CMADE-BBcomp4 cFT=0 Pop=4N RecordedTest/N/"
   
   for(i in 1:30){
     options("scipen"=100, "digits"=4)
