@@ -173,7 +173,7 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
   ## Initialize internal strategy parameters
   msg         <- NULL                                                 ## Reason for terminating
   restart.number <- -1
-  minlambda  <- 10
+  minlambda  <- N
     
   while( counteval < budget){
     restart.number <- restart.number+1
