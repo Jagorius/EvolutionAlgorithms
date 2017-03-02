@@ -309,7 +309,7 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
           fitnessNonLamarcian <- fn_d(population, populationRepaired, fitness)
         }  
         
-        ## Break if fit:    
+        ## Break if fit :    
         wb <- which.min(fitness)
         if(is.null(fitness[wb]))
           print(paste("FitNul",wb))
