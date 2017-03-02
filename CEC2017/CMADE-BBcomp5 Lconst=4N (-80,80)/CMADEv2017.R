@@ -296,9 +296,7 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
           if(any(populationTemp[,tt] != populationRepaired[,tt]))
             counterRepaired = counterRepaired + 1
         }
-        
-        #print(paste(counteval," : ", counterRepaired))
-        
+                
         if(Lamarckism==TRUE){
           population <- populationRepaired
         }
@@ -311,10 +309,6 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
         
         ## Break if fit:    
         wb <- which.min(fitness)
-        if(is.null(fitness[wb]))
-          print(paste("FitNul",wb))
-        if(is.null(best.fit))
-          print("Null best fit")
         if (fitness[wb] < best.fit) {
           best.fit <- fitness[wb]
           if(Lamarckism==TRUE)
