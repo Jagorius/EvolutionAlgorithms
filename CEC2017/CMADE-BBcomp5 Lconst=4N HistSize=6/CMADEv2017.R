@@ -40,7 +40,6 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
         x[i] <- upper[i] - abs(upper[i] - x[i])%% (upper[i]- lower[i])
     x <-deleteInfsNaNs(x)
     return (bounceBackBoundary2(x))
-    
   }
   
   #############################
@@ -64,8 +63,8 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
   maxiter     <- controlParam("maxit", floor(budget/(lambda+1)))      ## Maximum number of iterations after which algorithm stops
   c_Ft        <- controlParam("c_Ft",  0) 
   pathRatio   <- controlParam("pathRatio",sqrt(pathLength))           ## Path Length Control reference value
-  histSize    <- controlParam("history",ceiling(6+ceiling(3*sqrt(N))))## Size of the window of history - the step length history
-  #histSize    <- controlParam("history", 0.5*N^2)                    ## Size of the window of history - the step length history
+  #histSize    <- controlParam("history",ceiling(6+ceiling(3*sqrt(N))))## Size of the window of history - the step length history
+  histSize    <- controlParam("history", 6)                           ## Size of the window of history - the step length history
   Ft_scale    <- controlParam("Ft_scale", ((mueff+2)/(N+mueff+3))/(1 + 2*max(0, sqrt((mueff-1)/(N+1))-1) + (mueff+2)/(N+mueff+3)))
   tol         <- controlParam("tol", 10^-6)
   counteval   <- 0                                                    ## Number of function evaluations
