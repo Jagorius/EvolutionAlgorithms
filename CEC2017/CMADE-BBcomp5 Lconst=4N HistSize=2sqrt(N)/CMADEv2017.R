@@ -210,6 +210,8 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
     
     stoptol=F
     while (counteval < budget && !stoptol) {
+      
+      print(counteval)
         iter      <- iter + 1L
         histHead  <- (histHead %% histSize) + 1
         
