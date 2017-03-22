@@ -50,7 +50,7 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
   stopfitness <- controlParam("stopfitness", -Inf)                    ## Fitness value after which the convergence is reached 
   ## Strategy parameter setting:
   budget      <- controlParam("budget", 10000*N )                     ## The maximum number of fitness function calls
-  initlambda  <- controlParam("lambda", 4*N)       		                ## Population starting size
+  initlambda  <- controlParam("lambda", 4*N)       		      ## Population starting size
   minlambda   <- controlParam("minlambda", 4*N)                       ## Population ending size 
   lambda      <- initlambda                                           ## Population size
   mu          <- controlParam("mu", floor(lambda/2))                  ## Selection size
@@ -63,7 +63,7 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
   maxiter     <- controlParam("maxit", floor(budget/(lambda+1)))      ## Maximum number of iterations after which algorithm stops
   c_Ft        <- controlParam("c_Ft",  0) 
   pathRatio   <- controlParam("pathRatio",sqrt(pathLength))           ## Path Length Control reference value
-  histSize    <- controlParam("history",ceiling(6+ceiling(2*sqrt(N))))## Size of the window of history - the step length history
+  histSize    <- controlParam("history",ceiling(6+ceiling(3*sqrt(N))))## Size of the window of history - the step length history
   Ft_scale    <- controlParam("Ft_scale", ((mueff+2)/(N+mueff+3))/(1 + 2*max(0, sqrt((mueff-1)/(N+1))-1) + (mueff+2)/(N+mueff+3)))
   tol         <- controlParam("tol", 10^-6)
   counteval   <- 0                                                    ## Number of function evaluations
@@ -182,7 +182,7 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
     Ft          <- initFt
     
     # Create fisrt population
-    population <- replicate(lambda, runif(N,lower,upper))
+    population <- replicate(lambda, runif(N,0.8*lower,0.8*upper))
     cumMean=(upper+lower)/2
     populationRepaired <- apply(population,2,bounceBackBoundary2)
   
@@ -209,8 +209,7 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
     counterRepaired <- 0
     
     stoptol=F
-    while (counteval < budget && !stoptol) { 
-        print()
+    while (counteval < budget && !stoptol) {
         iter      <- iter + 1L
         histHead  <- (histHead %% histSize) + 1
         
