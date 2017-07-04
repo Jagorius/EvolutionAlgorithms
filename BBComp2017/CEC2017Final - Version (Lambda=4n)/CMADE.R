@@ -35,11 +35,11 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
     else if(any(x < cbind(lower)))
       for(i in which(x < cbind(lower)) )
         x[i] <- lower[i] + abs(lower[i] - x[i])%% (upper[i]- lower[i])
-      else if(any(x > cbind(upper)))
-        for(i in which(x > cbind(upper)) )
-          x[i] <- upper[i] - abs(upper[i] - x[i])%% (upper[i]- lower[i])
-        x <-deleteInfsNaNs(x)
-        return (bounceBackBoundary2(x))
+    else if(any(x > cbind(upper)))
+      for(i in which(x > cbind(upper)) )
+        x[i] <- upper[i] - abs(upper[i] - x[i])%% (upper[i]- lower[i])
+    x <-deleteInfsNaNs(x)
+    return (bounceBackBoundary2(x))
   }
 
   #############################
@@ -93,21 +93,21 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
   ## Fitness function wrapper for Lamarcian approach
   fn_l <- function(P){
     if(is.matrix(P)){
-      if(counteval + ncol(P) <= budget)
-        return ( apply(P, 2, fn_) )
-      else{
-        ret <- c()
-        budLeft <- budget-counteval
-        for (i in 1:budLeft ) {
-          ret <- c(ret,fn_(P[,i]))
+        if(counteval + ncol(P) <= budget)
+          return ( apply(P, 2, fn_) )
+        else{
+          ret <- c()
+          budLeft <- budget-counteval
+          for (i in 1:budLeft ) {
+            ret <- c(ret,fn_(P[,i]))
+          }
+          return(c(ret,rep(.Machine$double.xmax,ncol(P)-budLeft)))
         }
-        return(c(ret,rep(.Machine$double.xmax,ncol(P)-budLeft)))
-      }
     }else{
-      if(counteval < budget)
-        return ( fn_(P) )
-      else
-        return(.Machine$double.xmax)
+        if(counteval < budget)
+          return ( fn_(P) )
+        else
+          return(.Machine$double.xmax)
     }
   }
 
@@ -210,133 +210,133 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
 
     stoptol=F
     while (counteval < budget && !stoptol) {
-      iter      <- iter + 1L
-      histHead  <- (histHead %% histSize) + 1
+        iter      <- iter + 1L
+        histHead  <- (histHead %% histSize) + 1
 
-      lambda      <- round(((minlambda-initlambda)/budget)*counteval+initlambda)
-      mu          <- floor(lambda/2)
-      weights <- log(mu+1) - log(1:mu)
-      weights <- weights/sum(weights)
+        lambda      <- round(((minlambda-initlambda)/budget)*counteval+initlambda)
+        mu          <- floor(lambda/2)
+        weights <- log(mu+1) - log(1:mu)
+        weights <- weights/sum(weights)
 
-      if (log.Ft) Ft.log[iter] <- Ft*norm(pc)
-      if (log.value) value.log <- rbind(value.log,fitness)
-      if (log.mean) mean.log[iter] <- fn_l(bounceBackBoundary2(newMean))
-      if (log.pop) pop.log[,,iter] <- population
-      if (log.bestVal) bestVal.log <- rbind(bestVal.log,min(suppressWarnings(min(bestVal.log)), min(fitness)))
+        if (log.Ft) Ft.log[iter] <- Ft*norm(pc)
+        if (log.value) value.log <- rbind(value.log,fitness)
+        if (log.mean) mean.log[iter] <- fn_l(bounceBackBoundary2(newMean))
+        if (log.pop) pop.log[,,iter] <- population
+        if (log.bestVal) bestVal.log <- rbind(bestVal.log,min(suppressWarnings(min(bestVal.log)), min(fitness)))
 
-      ## Select best 'mu' individuals of popu-lation
-      selection       <- order(fitness)[1:mu]
-      selectedPoints  <- population[,selection]
+        ## Select best 'mu' individuals of popu-lation
+        selection       <- order(fitness)[1:mu]
+        selectedPoints  <- population[,selection]
 
-      # Save selected population in the history buffer
-      history[[histHead]] <- array(0,dim=c(N,mu))
-      history[[histHead]] <- selectedPoints * histNorm/Ft
+        # Save selected population in the history buffer
+        history[[histHead]] <- array(0,dim=c(N,mu))
+        history[[histHead]] <- selectedPoints * histNorm/Ft
 
-      ## Calculate weighted mean of selected points
-      oldMean <- newMean
-      newMean <- drop(selectedPoints %*% weights)
+        ## Calculate weighted mean of selected points
+        oldMean <- newMean
+        newMean <- drop(selectedPoints %*% weights)
 
-      ## Write to buffers
-      step <- (newMean - oldMean) / Ft
-      steps$write(step)
+        ## Write to buffers
+        step <- (newMean - oldMean) / Ft
+        steps$write(step)
 
-      ## Update Ft
-      FtHistory[histHead] = Ft
-      oldFt <- Ft
-      #if (iter > pathLength-1 && (sum(step == 0) == 0)&&counterRepaired<0.1*lambda) {
-      #  Ft <- calculateFt(steps, N, lambda, pathLength, Ft, c_Ft, pathRatio, chiN, mueff)
-      #}
+        ## Update Ft
+        FtHistory[histHead] = Ft
+        oldFt <- Ft
+        #if (iter > pathLength-1 && (sum(step == 0) == 0)&&counterRepaired<0.1*lambda) {
+        #  Ft <- calculateFt(steps, N, lambda, pathLength, Ft, c_Ft, pathRatio, chiN, mueff)
+        #}
 
-      ## Update parameters
-      pc = (1 - cc)* pc + cc* step
+        ## Update parameters
+        pc = (1 - cc)* pc + cc* step
 
-      ## Sample from history with uniform distribution
-      limit <- ifelse(iter < histSize, histHead, histSize)
-      historySample <- sample(1:limit,lambda, T)
+        ## Sample from history with uniform distribution
+        limit <- ifelse(iter < histSize, histHead, histSize)
+        historySample <- sample(1:limit,lambda, T)
 
-      x1sample <- sampleFromHistory(history,historySample,lambda)
-      x2sample <- sampleFromHistory(history,historySample,lambda)
+        x1sample <- sampleFromHistory(history,historySample,lambda)
+        x2sample <- sampleFromHistory(history,historySample,lambda)
 
-      ## Make diffs
-      for (i in 1:lambda) {
-        x1 <- history[[historySample[i]]][,x1sample[i]]
-        x2 <- history[[historySample[i]]][,x2sample[i]]
+        ## Make diffs
+        for (i in 1:lambda) {
+          x1 <- history[[historySample[i]]][,x1sample[i]]
+          x2 <- history[[historySample[i]]][,x2sample[i]]
 
-        diffs[,i] <- (x1 - x2) + rnorm(1)*pc*chiN
-      }
+          diffs[,i] <- (x1 - x2) + rnorm(1)*pc*chiN
+        }
 
-      ## New population
-      population <- newMean + Ft * diffs + tol*rnorm(diffs)/chiN
-      population <- deleteInfsNaNs(population)
+        ## New population
+        population <- newMean + Ft * diag(Ft_vec) + tol*rnorm(diffs)/chiN
+        population <- deleteInfsNaNs(population)
 
-      # Check constraints violations
-      # Repair the individual if necessary
-      populationTemp <- population
-      populationRepaired <- apply(population,2,bounceBackBoundary2)
+        # Check constraints violations
+        # Repair the individual if necessary
+        populationTemp <- population
+        populationRepaired <- apply(population,2,bounceBackBoundary2)
 
-      counterRepaired=0
-      for(tt in 1:ncol(populationTemp)){
-        if(any(populationTemp[,tt] != populationRepaired[,tt]))
-          counterRepaired = counterRepaired + 1
-      }
+        counterRepaired=0
+        for(tt in 1:ncol(populationTemp)){
+          if(any(populationTemp[,tt] != populationRepaired[,tt]))
+            counterRepaired = counterRepaired + 1
+        }
 
-      if(Lamarckism==TRUE){
-        population <- populationRepaired
-      }
+        if(Lamarckism==TRUE){
+          population <- populationRepaired
+        }
 
-      ## Evaluation
-      fitness <- fn_l(population)
-      if(Lamarckism==FALSE){
-        fitnessNonLamarcian <- fn_d(population, populationRepaired, fitness)
-      }
+        ## Evaluation
+        fitness <- fn_l(population)
+        if(Lamarckism==FALSE){
+          fitnessNonLamarcian <- fn_d(population, populationRepaired, fitness)
+        }
 
-      ## Break if fit :
-      wb <- which.min(fitness)
-      if (fitness[wb] < best.fit) {
-        best.fit <- fitness[wb]
-        if(Lamarckism==TRUE)
-          best.par <- population[,wb]
-        else
-          best.par <- populationRepaired[,wb]
-      }
+        ## Break if fit :
+        wb <- which.min(fitness)
+        if (fitness[wb] < best.fit) {
+          best.fit <- fitness[wb]
+          if(Lamarckism==TRUE)
+            best.par <- population[,wb]
+          else
+            best.par <- populationRepaired[,wb]
+        }
 
-      ## Check worst fit:
-      ww <- which.max(fitness)
-      if (fitness[ww] > worst.fit){
-        worst.fit <- fitness[ww]
-      }
+        ## Check worst fit:
+        ww <- which.max(fitness)
+        if (fitness[ww] > worst.fit){
+          worst.fit <- fitness[ww]
+        }
 
-      ## Fitness with penalty for nonLamarcian approach
-      if(Lamarckism==FALSE){
-        fitness <- fitnessNonLamarcian
-      }
+        ## Fitness with penalty for nonLamarcian approach
+        if(Lamarckism==FALSE){
+          fitness <- fitnessNonLamarcian
+        }
 
 
-      ## Check if the middle point is the best found so far
-      cumMean <- 0.8*cumMean+0.2*newMean
-      cumMeanRepaired <-bounceBackBoundary2(cumMean)
+        ## Check if the middle point is the best found so far
+        cumMean <- 0.8*cumMean+0.2*newMean
+        cumMeanRepaired <-bounceBackBoundary2(cumMean)
 
-      fn_cum  <- fn_l(cumMeanRepaired)
-      if (fn_cum < best.fit) {
-        best.fit <- drop(fn_cum)
-        best.par <- cumMeanRepaired
-      }
+        fn_cum  <- fn_l(cumMeanRepaired)
+        if (fn_cum < best.fit) {
+          best.fit <- drop(fn_cum)
+          best.par <- cumMeanRepaired
+        }
 
-      ## Escape from flat-land:
-      #if (min(fitness) == sort(fitness,partial=min(1+floor(lambda/2), 2+ceiling(lambda/4)))[min(1+floor(lambda/2), 2+ceiling(lambda/4))]) {
-      #  Ft <- Ft * exp(0.2*Ft_scale);
-      #}
+        ## Escape from flat-land:
+        #if (min(fitness) == sort(fitness,partial=min(1+floor(lambda/2), 2+ceiling(lambda/4)))[min(1+floor(lambda/2), 2+ceiling(lambda/4))]) {
+        #  Ft <- Ft * exp(0.2*Ft_scale);
+        #}
 
-      if (fitness[1] <= stopfitness) {
-        msg <- "Stop fitness reached."
-        break
-      }
+        if (fitness[1] <= stopfitness) {
+          msg <- "Stop fitness reached."
+          break
+        }
 
-      if(abs(range(fitness)[2] - range(fitness)[1]) < tol)
-      {
-        if (counteval < 0.8*budget)
-          stoptol=T
-      }
+        if(abs(range(fitness)[2] - range(fitness)[1]) < tol)
+        {
+          if (counteval < 0.8*budget)
+              stoptol=T
+        }
 
 
     }
