@@ -66,7 +66,7 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
   histSize    <- controlParam("history",ceiling(6+ceiling(3*sqrt(N))))## Size of the window of history - the step length history
   Ft_scale    <- controlParam("Ft_scale", ((mueff+2)/(N+mueff+3))/(1 + 2*max(0, sqrt((mueff-1)/(N+1))-1) + (mueff+2)/(N+mueff+3)))
   tol         <- controlParam("tol", 10^-6)
-  p           <- controlParam("probability", floor(0.3*lambda/N^2))
+  p           <- controlParam("probability", 0.3*lambda/N^2)
   counteval   <- 0                                                    ## Number of function evaluations
 
   ## Logging options:
