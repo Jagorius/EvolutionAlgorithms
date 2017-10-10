@@ -75,6 +75,7 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
   log.mean    <- controlParam("diag.mean", log.all)
   log.pop     <- controlParam("diag.pop", log.all)
   log.bestVal <- controlParam("diag.bestVal", log.all)
+  log.worstVal<- controlParam("diag.worstVal", log.all)
   log.eigen   <- controlParam("diag.eigen", log.all)
   
 
@@ -156,11 +157,13 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
   if (log.value)
     value.log <- matrix(0, nrow=0, ncol=lambda)
   if (log.mean)
-    mean.log <- numeric(maxiter)
+    mean.log <- matrix(0, nrow=0, ncol=1)
   if (log.pop)
     pop.log <- array(0, c(N, lambda, maxiter))
   if (log.bestVal)
     bestVal.log <-  matrix(0, nrow=0, ncol=1)
+  if (log.worstVal)
+    worstVal.log <-  matrix(0, nrow=0, ncol=1)
   if (log.eigen)
     eigen.log <- matrix(0,nrow=0,ncol=N)
 
@@ -225,9 +228,10 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
 
       if (log.Ft) Ft.log <- rbind(Ft.log,Ft)
       if (log.value) value.log <- rbind(value.log,fitness)
-      if (log.mean) mean.log[iter] <- fn_l(bounceBackBoundary2(newMean))
+      if (log.mean) mean.log <- rbind(mean.log,fn_l(bounceBackBoundary2(newMean)))
       if (log.pop) pop.log[,,iter] <- population
       if (log.bestVal) bestVal.log <- rbind(bestVal.log,min(suppressWarnings(min(bestVal.log)), min(fitness)))
+      if (log.worstVal) worstVal.log <- rbind(worstVal.log,max(suppressWarnings(max(worstVal.log)), max(fitness)))
       if (log.eigen) eigen.log <- rbind(eigen.log, eigen(cov(t(population)))$values)
         
       ## Select best 'mu' individuals of popu-lation
@@ -358,6 +362,7 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
   if (log.mean) log$mean <- mean.log[1:iter]
   if (log.pop)   log$pop   <- pop.log[,,1:iter]
   if (log.bestVal) log$bestVal <- bestVal.log
+  if (log.worstVal) log$worstVal <- worstVal.log
   if (log.eigen) log$eigen <- eigen.log
 
   ## Drop names from value object

@@ -85,7 +85,7 @@ ObjectPlot <- function(){
   control=list("budget"=1000, "lambda"=10, "diag.pop"=TRUE)
   )
   
-  # Prepare points to draw plot
+  # Prepare points to draw a plot
   PopulationChanges <- matrix(0, nrow=0, ncol=(dim(resDES$diagnostic$pop)[3]))
   # For each individual
   for(n in 1:(dim(resDES$diagnostic$pop)[2])){
@@ -95,10 +95,10 @@ ObjectPlot <- function(){
       # Store mean 
       individualChangesVector <- c(individualChangesVector, mean(resDES$diagnostic$pop[,n,i]) )
     }
-    PopulationChanges <<- rbind(PopulationChanges,individualChangesVector)
+    PopulationChanges <- rbind(PopulationChanges,individualChangesVector)
   }
   
-  functionEvalVec <- (1:ncol(PopulationChanges))*(ncol((dim(resDES$diagnostic$pop)[2]))+1)
+  functionEvalVec <- (1:ncol(PopulationChanges))*(ncol(resDES$diagnostic$pop[,,1])+1)
   plot(functionEvalVec,PopulationChanges[nrow(PopulationChanges),],ylim=c(min(PopulationChanges),max(PopulationChanges)), xlab="function evaluations", ylab="Object Variables (mean, lambda=10)",cex=0)
   lines(functionEvalVec,PopulationChanges[nrow(PopulationChanges),], lwd=2)
   
@@ -110,29 +110,29 @@ ObjectPlot <- function(){
 }
 
 AbsSigmaPlot <- function(){
-  source('C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/Basicv2/CMADE.R')
+  source('C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/DESv2/Experimentum Crucis/CMADEv2017.R')
   N <- 10
   
-  CMADE(rep(0,N),fn=function(x){ 
+  resDES <- CMADE(rep(0,N),fn=function(x){ 
     res <- 0
     for(i in 1:length(x))
       res <- res + 10^(6*(i-1)/(length(x)-1))*x[i]^2
     return(res)
   }, 
   lower=-10^100, upper=10^100,
-  control=list("budget"=6000)
+  control=list("budget"=6000,"diag.pop"=TRUE,"diag.Ft"=TRUE,diag.mean=TRUE,"diag.bestVal"=TRUE,"diag.worstVal"=TRUE)
   )
   
-  functionEvalVec <- (1:nrow(all_FT))*(ncol(all_populations)+1)
+  functionEvalVec <- (1:nrow(resDES$diagnostic$Ft))*(ncol(resDES$diagnostic$pop[,,1])+1)
   # Plot Ft
-  plot(functionEvalVec,all_FT,log="y",ylim=c(min(min(all_FT),min(all_FITNES)),max(all_FITNES)), xlab="function evaluations", ylab="green:Ft, blue:best, black:mean",cex=0)
-  lines(functionEvalVec,all_FT, lwd=2, col="green")
+  plot(functionEvalVec,resDES$diagnostic$Ft,log="y",ylim=c(min(min(resDES$diagnostic$Ft),min(resDES$diagnostic$bestVal)),max(resDES$diagnostic$worstVal)), xlab="function evaluations", ylab="green:Ft, blue:best, black:mean",cex=0)
+  lines(functionEvalVec,resDES$diagnostic$Ft, lwd=2, col="green")
   
   # Plot f(best)
-  lines(functionEvalVec,apply(all_FITNES,1,min), lwd=3, col="blue")
+  lines(functionEvalVec,resDES$diagnostic$bestVal, lwd=3, col="blue")
   
   # Plot f(mean)
-  lines(functionEvalVec,ALL_FITMEAN, lwd=3, col="black")
+  lines(functionEvalVec,resDES$diagnostic$mean, lwd=3, col="black")
   
   
   
