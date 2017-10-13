@@ -284,8 +284,7 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
         x1 <- history[[historySample[i]]][,x1sample[i]]
         x2 <- history[[historySample[i]]][,x2sample[i]]
 
-        pc = (1 - cc)* pc + cc* dMean[,historySample2[i]]
-        diffs[,i] <- (x1 - x2) + rnorm(1)*pc*sqrt_N
+        diffs[,i] <- (x1 - x2) + rnorm(1)*dMean[,historySample2[i]]*sqrt_N
       }
 
       ## New population
