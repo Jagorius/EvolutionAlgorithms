@@ -67,8 +67,7 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
   Ft_scale    <- controlParam("Ft_scale", ((mueff+2)/(N+mueff+3))/(1 + 2*max(0, sqrt((mueff-1)/(N+1))-1) + (mueff+2)/(N+mueff+3)))
   tol         <- controlParam("tol", 10^-6)
   counteval   <- 0                                                    ## Number of function evaluations
-  sqrt_N      <- sqrt(N)
-  
+
   ## Logging options:
   log.all     <- controlParam("diag", FALSE)
   log.Ft      <- controlParam("diag.Ft", log.all)
@@ -76,9 +75,6 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
   log.mean    <- controlParam("diag.mean", log.all)
   log.pop     <- controlParam("diag.pop", log.all)
   log.bestVal <- controlParam("diag.bestVal", log.all)
-  log.worstVal<- controlParam("diag.worstVal", log.all)
-  log.eigen   <- controlParam("diag.eigen", log.all)
-  
 
   ## nonLamarckian approach allows individuals to violate boundaries.
   ## Fitness value is estimeted by fitness of repaired individual.
@@ -154,23 +150,18 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
 
   ## According to user specification, preallocate logging structures:
   if (log.Ft)
-    Ft.log <-  matrix(0, nrow=0, ncol=1)
+    Ft.log <- numeric(maxiter)
   if (log.value)
     value.log <- matrix(0, nrow=0, ncol=lambda)
   if (log.mean)
-    mean.log <- matrix(0, nrow=0, ncol=1)
+    mean.log <- numeric(maxiter)
   if (log.pop)
     pop.log <- array(0, c(N, lambda, maxiter))
   if (log.bestVal)
     bestVal.log <-  matrix(0, nrow=0, ncol=1)
-  if (log.worstVal)
-    worstVal.log <-  matrix(0, nrow=0, ncol=1)
-  if (log.eigen)
-    eigen.log <- matrix(0,nrow=0,ncol=N)
 
   ## Allocate buffers:
   steps       <- ringbuffer(size = pathLength*N)                      ## Cyclical buffer containing last 'pathLength' steps of algorithm
-  dMean       <- array(0, dim=c(N,histSize))
   FtHistory   <- array(0, histSize)                                   ## Array buffer containing 'histSize' last values of 'Ft'
 
   ## Initialize internal strategy parameters
@@ -183,9 +174,7 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
     mu              <- floor(lambda/2)
     weights         <- log(mu+1) - log(1:mu)
     weights         <- weights/sum(weights)
-    weightsPop      <- log(lambda+1) - log(1:lambda)
-    weightsPop      <- weightsPop/sum(weightsPop)
-    
+
     pc          <- rep(0.0, N)/sqrt(N)
     histHead    <- 0                                                      ## Pointer to the history buffer head
     iter        <- 0L                                                     ## Number of iterations
@@ -193,7 +182,8 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
     Ft          <- initFt
 
     # Create fisrt population
-    population <- replicate(lambda, runif(N,0.5*lower,0.5*upper))
+    population <- replicate(lambda, runif(N,0.8*lower,0.8*upper))
+    #population <- sign(replicate(lambda, runif(N,0.8*lower,0.8*upper)))*100
     cumMean=(upper+lower)/2
     populationRepaired <- apply(population,2,bounceBackBoundary2)
 
@@ -210,10 +200,6 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
     limit           <- 0
     worst.fit       <- max(fitness)
 
-    # Store population and selection means
-    popMean         <- drop(population %*% weightsPop)
-    muMean          <- newMean
-    
     ## Matrices for creating diffs
     diffs     <- matrix(0, N, lambda)
     x1sample  <- numeric(lambda)
@@ -228,20 +214,17 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
       iter      <- iter + 1L
       histHead  <- (histHead %% histSize) + 1
 
-      lambda <- lambda
-      #lambda      <- round(((minlambda-initlambda)/budget)*counteval+initlambda)
+      lambda      <- round(((minlambda-initlambda)/budget)*counteval+initlambda)
       mu          <- floor(lambda/2)
       weights <- log(mu+1) - log(1:mu)
       weights <- weights/sum(weights)
 
-      if (log.Ft) Ft.log <- rbind(Ft.log,Ft)
+      if (log.Ft) Ft.log[iter] <- Ft*norm(pc)
       if (log.value) value.log <- rbind(value.log,fitness)
-      if (log.mean) mean.log <- rbind(mean.log,fn_l(bounceBackBoundary2(newMean)))
+      if (log.mean) mean.log[iter] <- fn_l(bounceBackBoundary2(newMean))
       if (log.pop) pop.log[,,iter] <- population
       if (log.bestVal) bestVal.log <- rbind(bestVal.log,min(suppressWarnings(min(bestVal.log)), min(fitness)))
-      if (log.worstVal) worstVal.log <- rbind(worstVal.log,max(suppressWarnings(max(worstVal.log)), max(fitness)))
-      if (log.eigen) eigen.log <- rbind(eigen.log, eigen(cov(t(population)))$values)
-        
+
       ## Select best 'mu' individuals of popu-lation
       selection       <- order(fitness)[1:mu]
       selectedPoints  <- population[,selection]
@@ -253,14 +236,13 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
       ## Calculate weighted mean of selected points
       oldMean <- newMean
       newMean <- drop(selectedPoints %*% weights)
+      print(paste("DIST=",dist(rbind(newMean, rep(0,N)))) )
+      print(paste("FN=",fn_l(newMean)))
 
       ## Write to buffers
-      muMean <- newMean
-      dMean[,histHead] <- (muMean - popMean) / Ft
-      
-      #step <- (newMean - oldMean) / Ft
-      #steps$write(step)
-    
+      step <- (newMean - oldMean) / Ft
+      steps$write(step)
+
       ## Update Ft
       FtHistory[histHead] = Ft
       oldFt <- Ft
@@ -269,13 +251,12 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
       #}
 
       ## Update parameters
-      #pc = (1 - cc)* pc + cc* step
+      pc = (1 - cc)* pc + cc* step
 
       ## Sample from history with uniform distribution
       limit <- ifelse(iter < histSize, histHead, histSize)
       historySample <- sample(1:limit,lambda, T)
-      historySample2 <- sample(1:limit,lambda, T)
-      
+
       x1sample <- sampleFromHistory(history,historySample,lambda)
       x2sample <- sampleFromHistory(history,historySample,lambda)
 
@@ -284,7 +265,7 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
         x1 <- history[[historySample[i]]][,x1sample[i]]
         x2 <- history[[historySample[i]]][,x2sample[i]]
 
-	diffs[,i] <- (x1 - x2) + rnorm(1)*dMean[,historySample2[i]]
+        diffs[,i] <- (x1 - x2) + rnorm(1)*pc*chiN
       }
 
       ## New population
@@ -302,12 +283,11 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
           counterRepaired = counterRepaired + 1
       }
 
+      print(counterRepaired/lambda)
       if(Lamarckism==TRUE){
         population <- populationRepaired
       }
 
-      popMean <- drop(population %*% weightsPop)
-      
       ## Evaluation
       fitness <- fn_l(population)
       if(Lamarckism==FALSE){
@@ -339,7 +319,7 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
       ## Check if the middle point is the best found so far
       cumMean <- 0.8*cumMean+0.2*newMean
       cumMeanRepaired <-bounceBackBoundary2(cumMean)
-  
+
       fn_cum  <- fn_l(cumMeanRepaired)
       if (fn_cum < best.fit) {
         best.fit <- drop(fn_cum)
@@ -371,13 +351,11 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
   log <- list()
   ## Subset lognostic data to only include those iterations which
   ## where actually performed.
-  if (log.Ft) log$Ft <- Ft.log
+  if (log.Ft) log$Ft <- Ft.log[1:iter]
   if (log.value) log$value <- value.log[1:iter,]
   if (log.mean) log$mean <- mean.log[1:iter]
   if (log.pop)   log$pop   <- pop.log[,,1:iter]
   if (log.bestVal) log$bestVal <- bestVal.log
-  if (log.worstVal) log$worstVal <- worstVal.log
-  if (log.eigen) log$eigen <- eigen.log
 
   ## Drop names from value object
   names(best.fit) <- NULL
