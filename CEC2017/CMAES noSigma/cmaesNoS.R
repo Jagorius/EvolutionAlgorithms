@@ -203,7 +203,7 @@ cma_es <- function(par, fn, ..., lower, upper, control=list()) {
   ## Preallocate work arrays:
   arx <- matrix(0.0, nrow=N, ncol=lambda)
   arfitness <- numeric(lambda)
-  while (iter < maxiter) {
+  while (iter < maxiter/lambda) {
     iter <- iter + 1L
 
     if (!keep.best) {
