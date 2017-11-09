@@ -106,7 +106,7 @@
 ##'
 ##' @keywords optimize
 ##' @export
-cma_esNos <- function(par, fn, ..., lower, upper, control=list()) {
+cma_es <- function(par, fn, ..., lower, upper, control=list()) {
   norm <- function(x)
     drop(sqrt(crossprod(x)))
   
@@ -117,7 +117,7 @@ cma_esNos <- function(par, fn, ..., lower, upper, control=list()) {
     else
       return (v)
   }
-
+  
   ## Inital solution:
   xmean <- par
   N <- length(xmean)
@@ -126,12 +126,12 @@ cma_esNos <- function(par, fn, ..., lower, upper, control=list()) {
     lower <- rep(-Inf, N)
   else if (length(lower) == 1)  
     lower <- rep(lower, N)
-
+  
   if (missing(upper))
     upper <- rep(Inf, N)
   else if (length(upper) == 1)  
     upper <- rep(upper, N)
-
+  
   ## Parameters:
   trace       <- controlParam("trace", FALSE)
   fnscale     <- controlParam("fnscale", 1)
@@ -141,7 +141,7 @@ cma_esNos <- function(par, fn, ..., lower, upper, control=list()) {
   sc_tolx     <- controlParam("stop.tolx", 1e-12 * sigma) ## Undocumented stop criterion
   keep.best   <- controlParam("keep.best", TRUE)
   vectorized  <- controlParam("vectorized", FALSE)
-
+  
   ## Logging options:
   log.all    <- controlParam("diag", FALSE)
   log.sigma  <- controlParam("diag.sigma", log.all)
@@ -165,17 +165,17 @@ cma_esNos <- function(par, fn, ..., lower, upper, control=list()) {
                               + (1-1/mucov) * ((2*mucov-1)/((N+2)^2+2*mucov)))
   damps       <- controlParam("damps",
                               1 + 2*max(0, sqrt((mueff-1)/(N+1))-1) + cs)
-
+  
   ## Safety checks:
   stopifnot(length(upper) == N)  
   stopifnot(length(lower) == N)
   stopifnot(all(lower < upper))
   stopifnot(length(sigma) == 1)
-
+  
   ## Bookkeeping variables for the best solution found so far:
   best.fit <- Inf
   best.par <- NULL
-
+  
   ## Preallocate logging structures:
   if (log.sigma)
     sigma.log <- numeric(maxiter)
@@ -195,7 +195,7 @@ cma_esNos <- function(par, fn, ..., lower, upper, control=list()) {
   D <- diag(N)
   BD <- B %*% D
   C <- BD %*% t(BD)
-
+  
   chiN <- sqrt(N) * (1-1/(4*N)+1/(21*N^2))
   
   iter <- 0L      ## Number of iterations
@@ -203,13 +203,15 @@ cma_esNos <- function(par, fn, ..., lower, upper, control=list()) {
   cviol <- 0L     ## Number of constraint violations
   msg <- NULL     ## Reason for terminating
   nm <- names(par) ## Names of parameters
-
+  
   ## Preallocate work arrays:
-  arx <- matrix(0.0, nrow=N, ncol=lambda)
-  arfitness <- numeric(lambda)
-  while (iter < maxiter/lambda) {
+  # arx <- matrix(0.0, nrow=N, ncol=lambda)
+  arx <-  replicate(lambda, runif(N,0,3))
+  arfitness <- apply(arx, 2, function(x) fn(x, ...) * fnscale)
+  counteval <- counteval + lambda
+  while (counteval < budget) {
     iter <- iter + 1L
-
+    
     if (!keep.best) {
       best.fit <- Inf
       best.par <- NULL
@@ -217,9 +219,10 @@ cma_esNos <- function(par, fn, ..., lower, upper, control=list()) {
     if (log.sigma)
       sigma.log[iter] <- sigma
     
-    if (log.bestVal) bestVal.log <- rbind(bestVal.log,min(suppressWarnings(min(bestVal.log)), min(arfitness)))
+    if (log.bestVal) 
+      bestVal.log <- rbind(bestVal.log,min(suppressWarnings(min(bestVal.log)), min(arfitness)))
     
-
+    
     ## Generate new population:
     arz <- matrix(rnorm(N*lambda), ncol=lambda)
     arx <- xmean + sigma * (BD %*% arz)
@@ -229,14 +232,14 @@ cma_esNos <- function(par, fn, ..., lower, upper, control=list()) {
     pen <- 1 + colSums((arx - vx)^2)
     pen[!is.finite(pen)] <- .Machine$double.xmax / 2
     cviol <- cviol + sum(pen > 1)
-
+    
     if (vectorized) {
       y <- fn(vx, ...) * fnscale
     } else {
       y <- apply(vx, 2, function(x) fn(x, ...) * fnscale)
     }
     counteval <- counteval + lambda
-
+    
     arfitness <- y * pen
     valid <- pen <= 1
     if (any(valid)) {
@@ -250,52 +253,52 @@ cma_esNos <- function(par, fn, ..., lower, upper, control=list()) {
     ## Order fitness:
     arindex <- order(arfitness)
     arfitness <- arfitness[arindex]
-
+    
     aripop <- arindex[1:mu]
     selx <- arx[,aripop]
     xmean <- drop(selx %*% weights)
     selz <- arz[,aripop]
     zmean <- drop(selz %*% weights)
-
+    
     ## Save selected x value:
     if (log.pop) pop.log[,,iter] <- selx
     if (log.value) value.log[iter,] <- arfitness[aripop]
-
+    
     ## Cumulation: Update evolutionary paths
     ps <- (1-cs)*ps + sqrt(cs*(2-cs)*mueff) * (B %*% zmean)
     hsig <- drop((norm(ps)/sqrt(1-(1-cs)^(2*counteval/lambda))/chiN) < (1.4 + 2/(N+1)))
     pc <- (1-cc)*pc + hsig * sqrt(cc*(2-cc)*mueff) * drop(BD %*% zmean)
-
+    
     ## Adapt Covariance Matrix:
     BDz <- BD %*% selz
     C <- (1-ccov) * C + ccov * (1/mucov) *
       (pc %o% pc + (1-hsig) * cc*(2-cc) * C) +
-        ccov * (1-1/mucov) * BDz %*% diag(weights) %*% t(BDz)
+      ccov * (1-1/mucov) * BDz %*% diag(weights) %*% t(BDz)
     
     ## Adapt step size sigma:
-    ## sigma <- sigma * exp((norm(ps)/chiN - 1)*cs/damps)
+    sigma <- sigma * exp((norm(ps)/chiN - 1)*cs/damps)
     
     e <- eigen(C, symmetric=TRUE)
     if (log.eigen)
       eigen.log[iter,] <- rev(sort(e$values))
-
+    
     if (!all(e$values >= sqrt(.Machine$double.eps) * abs(e$values[1]))) {      
       msg <- "Covariance matrix 'C' is numerically not positive definite."
       break
     }
-
+    
     B <- e$vectors
     D <- diag(sqrt(e$values), length(e$values))
     BD <- B %*% D
-
+    
     ## break if fit:
     if (arfitness[1] <= stopfitness * fnscale) {
       msg <- "Stop fitness reached."
       break
     }
-
+    
     ## Check stop conditions:
-
+    
     ## Condition 1 (sd < tolx in all directions):
     if (all(D < sc_tolx) && all(sigma * pc < sc_tolx)) {
       msg <- "All standard deviations smaller than tolerance."
@@ -303,17 +306,17 @@ cma_esNos <- function(par, fn, ..., lower, upper, control=list()) {
     }
     
     ## Escape from flat-land:
-    #if (arfitness[1] == arfitness[min(1+floor(lambda/2), 2+ceiling(lambda/4))]) { 
-      #sigma <- sigma * exp(0.2+cs/damps);
-      #if (trace)
-      #  message("Flat fitness function. Increasing sigma.")
-    #}
+    if (arfitness[1] == arfitness[min(1+floor(lambda/2), 2+ceiling(lambda/4))]) { 
+      sigma <- sigma * exp(0.2+cs/damps);
+    if (trace)
+      message("Flat fitness function. Increasing sigma.")
+    }
     if (trace)
       message(sprintf("Iteration %i of %i: current fitness %f",
                       iter, maxiter, arfitness[1] * fnscale))
   }
   cnt <- c(`function`=as.integer(counteval), gradient=NA)
-
+  
   log <- list()
   ## Subset lognostic data to only include those iterations which
   ## where actually performed.
@@ -322,7 +325,7 @@ cma_esNos <- function(par, fn, ..., lower, upper, control=list()) {
   if (log.eigen) log$eigen <- eigen.log[1:iter,]
   if (log.pop)   log$pop   <- pop.log[,,1:iter]
   if (log.bestVal) log$bestVal <- bestVal.log
-
+  
   ## Drop names from value object
   names(best.fit) <- NULL
   res <- list(par=best.par,
@@ -332,7 +335,7 @@ cma_esNos <- function(par, fn, ..., lower, upper, control=list()) {
               message=msg,
               constr.violations=cviol,
               diagnostic=log
-              )
+  )
   class(res) <- "cma_es.result"
   return(res)
 }
@@ -367,7 +370,7 @@ extract_population <- function(res, iter) {
          call.=FALSE)
   if (iter > dim(res$diagnostic$pop)[3])
     stop("iter out of range.")
-
+  
   if (is.null(res$diagnostic$value))
     warning("Result object contains no function values. ",
             "Please set diag.value if you also want function values and rerun cma_es.",
