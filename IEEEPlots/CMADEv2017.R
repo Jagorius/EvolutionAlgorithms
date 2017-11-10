@@ -240,7 +240,7 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
       if (log.pop) pop.log[,,iter] <- population
       if (log.bestVal) bestVal.log <- rbind(bestVal.log,min(suppressWarnings(min(bestVal.log)), min(fitness)))
       if (log.worstVal) worstVal.log <- rbind(worstVal.log,max(suppressWarnings(max(worstVal.log)), max(fitness)))
-      if (log.eigen) eigen.log <- rbind(eigen.log, eigen(cov(t(population)))$values)
+      if (log.eigen) eigen.log <- rbind(eigen.log, rev(sort(eigen(cov(t(population)))$values)))
         
       ## Select best 'mu' individuals of popu-lation
       selection       <- order(fitness)[1:mu]
