@@ -1,20 +1,25 @@
 eigenplotDES<- function(){
   source('C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEPlots/CMADEv2017.R')
   N <- 10
+  Iters <- 50
   
-  resDES <- CMADE(rep(0,N),fn=function(x){ 
-    res <- 0
-    for(i in 1:length(x))
-      res <- res + 10^(6*(i-1)/(length(x)-1))*x[i]^2
-    return(res)
-  }, 
-  lower=-10^100, upper=10^100,
-  control=list("budget"=6000,"diag.pop"=TRUE,"diag.eigen"=TRUE)
-  )
-  
+  eigenLog <- list()
+  for (i in 1:Iters){
+    print(i)
+    resDES <- CMADE(rep(0,N),fn=function(x){ 
+      res <- 0
+      for(i in 1:length(x))
+        res <- res + 10^(6*(i-1)/(length(x)-1))*x[i]^2
+      return(res)
+    }, 
+    lower=-10^100, upper=10^100,
+    control=list("budget"=6000,"diag.pop"=TRUE,"diag.eigen"=TRUE)
+    )
+    eigenLog[[length(eigenLog)+1]] <- sqrt(abs(resDES$diagnostic$eigen))
+  }
   # Square root of each value in vector
-  eigen <- sqrt(abs(resDES$diagnostic$eigen))
-  
+  eigen <- Reduce("+", eigenLog) / length(eigenLog)
+
   # Divide each column by corresponding fitness function weight
   #for(i in 1:ncol(eigen))
   # eigen[,i] <- eigen[,i] / 10^(6*( (i-1)/(ncol(eigen)-1) ))
@@ -44,20 +49,25 @@ eigenplotDES<- function(){
 eigenplotCMAES<- function(){
   source('C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEPlots/CMAES.R')
   N <- 10
-  
-  resCMAES <- cma_es(rep(0,N),
-                     fn=function(x){ 
-                       res <- 0
-                       for(i in 1:length(x))
-                         res <- res + 10^(6*(i-1)/(length(x)-1))*x[i]^2
-                       return(res)
-                     }, 
-                     lower=-10^100, upper=10^100,
-                     control=list("diag.eigen"=TRUE,"budget"=6000)                
-  )
-  
+  Iters <- 50
+
+  eigenLog <- list()
+  for (i in 1:Iters){
+    print(i)
+    resCMAES <- cma_es(rep(0,N),
+                       fn=function(x){ 
+                         res <- 0
+                         for(i in 1:length(x))
+                           res <- res + 10^(6*(i-1)/(length(x)-1))*x[i]^2
+                         return(res)
+                       }, 
+                       lower=-10^100, upper=10^100,
+                       control=list("diag.eigen"=TRUE,"budget"=6000)                
+    )
+    eigenLog[[length(eigenLog)+1]] <- sqrt(abs(resCMAES$diagnostic$eigen))
+  }
   # Square root of each value in vector
-  eigen <- sqrt(abs(resCMAES$diagnostic$eigen))
+  eigen <- Reduce("+", eigenLog) / length(eigenLog)
   
   # Divide each column by corresponding fitness function weight
   #for(i in 1:ncol(eigen))
@@ -87,23 +97,27 @@ eigenplotCMAES<- function(){
 eigenplotCMAESNos<- function(){
   source('C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEPlots/cmaesNoS.R')
   N <- 10
+  Iters <- 50
   
-  resCMAESNos <- cma_esNos(rep(0,N),
-                     fn=function(x){ 
-                       res <- 0
-                       for(i in 1:length(x))
-                         res <- res + 10^(6*(i-1)/(length(x)-1))*x[i]^2
-                       return(res)
-                     }, 
-                     lower=-10^100, upper=10^100,
-                     control=list("diag.eigen"=TRUE,"budget"=6000)                
-  )
-  
+  eigenLog <- list()
+  for (i in 1:Iters){
+    print(i)
+    resCMAESNos <- cma_esNos(rep(0,N),
+                       fn=function(x){ 
+                         res <- 0
+                         for(i in 1:length(x))
+                           res <- res + 10^(6*(i-1)/(length(x)-1))*x[i]^2
+                         return(res)
+                       }, 
+                       lower=-10^100, upper=10^100,
+                       control=list("diag.eigen"=TRUE,"budget"=6000)                
+    )
+    eigenLog[[length(eigenLog)+1]] <- sqrt(abs(resCMAESNos$diagnostic$eigen))
+  }
 
   # Square root of each value in vector
-  eigen <- sqrt(abs(resCMAESNos$diagnostic$eigen))
-
-  eigenCMAES <<- eigen
+  eigen <- Reduce("+", eigenLog) / length(eigenLog)
+  
   # Divide each column by corresponding fitness function weight
   #for(i in 1:ncol(eigen))
   # eigen[,i] <- eigen[,i] / 10^(6*( (i-1)/(ncol(eigen)-1) ))

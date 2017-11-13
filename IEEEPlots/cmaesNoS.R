@@ -279,6 +279,7 @@ cma_esNos <- function(par, fn, ..., lower, upper, control=list()) {
     ## sigma <- sigma * exp((norm(ps)/chiN - 1)*cs/damps)
     
     e <- eigen(C, symmetric=TRUE)
+    eE <- eigen(cov(t(arx)))
     if (log.eigen)
       eigen.log[iter,] <- rev(sort(e$values))
 

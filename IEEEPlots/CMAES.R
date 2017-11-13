@@ -222,7 +222,6 @@ cma_es <- function(par, fn, ..., lower, upper, control=list()) {
     if (log.bestVal) 
       bestVal.log <- rbind(bestVal.log,min(suppressWarnings(min(bestVal.log)), min(arfitness)))
     
-    
     ## Generate new population:
     arz <- matrix(rnorm(N*lambda), ncol=lambda)
     arx <- xmean + sigma * (BD %*% arz)
@@ -279,6 +278,7 @@ cma_es <- function(par, fn, ..., lower, upper, control=list()) {
     sigma <- sigma * exp((norm(ps)/chiN - 1)*cs/damps)
     
     e <- eigen(C, symmetric=TRUE)
+    eE <- eigen(cov(t(arx)))
     if (log.eigen)
       eigen.log[iter,] <- rev(sort(e$values))
     
