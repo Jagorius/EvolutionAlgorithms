@@ -281,7 +281,7 @@ cma_esNos <- function(par, fn, ..., lower, upper, control=list()) {
     e <- eigen(C, symmetric=TRUE)
     eE <- eigen(cov(t(arx)))
     if (log.eigen)
-      eigen.log[iter,] <- rev(sort(e$values))
+      eigen.log[iter,] <- rev(sort(eE$values))
 
     if (!all(e$values >= sqrt(.Machine$double.eps) * abs(e$values[1]))) {      
       msg <- "Covariance matrix 'C' is numerically not positive definite."

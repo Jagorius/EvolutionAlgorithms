@@ -50,6 +50,7 @@ eigenplotCMAES<- function(){
   source('C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEPlots/CMAES.R')
   N <- 10
   Iters <- 50
+  L = 4*N
 
   eigenLog <- list()
   for (i in 1:Iters){
@@ -62,7 +63,7 @@ eigenplotCMAES<- function(){
                          return(res)
                        }, 
                        lower=-10^100, upper=10^100,
-                       control=list("diag.eigen"=TRUE,"budget"=6000)                
+                       control=list("diag.eigen"=TRUE,"budget"=6000,"lambda"=L)                
     )
     eigenLog[[length(eigenLog)+1]] <- sqrt(abs(resCMAES$diagnostic$eigen))
   }
@@ -73,14 +74,14 @@ eigenplotCMAES<- function(){
   #for(i in 1:ncol(eigen))
   # eigen[,i] <- eigen[,i] / 10^(6*( (i-1)/(ncol(eigen)-1) ))
   
-  functionEvalVec <- (1:nrow(eigen))*(4+floor(3*log(N)))
+  functionEvalVec <- (1:nrow(eigen))*(L)
   
   setEPS()
   postscript( paste("CMAES-N",N,".eps",sep=""), width = 8, height = 8)
   
   # Plot eigen values changes for each dimmension
-  options(scipen=0) 
-  
+  options(scipen=10) 
+                                        #ylim=c(min(eigen),max(eigen))
   plot(functionEvalVec,eigen[,N],log="y",ylim=c(min(eigen),max(eigen)), xlab="function evaluations", ylab="Eigenvalues",cex=0)
   lines(functionEvalVec,eigen[,N], lwd=2)
   
@@ -98,6 +99,7 @@ eigenplotCMAESNos<- function(){
   source('C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEPlots/cmaesNoS.R')
   N <- 10
   Iters <- 50
+  L = 4*N
   
   eigenLog <- list()
   for (i in 1:Iters){
@@ -110,7 +112,7 @@ eigenplotCMAESNos<- function(){
                          return(res)
                        }, 
                        lower=-10^100, upper=10^100,
-                       control=list("diag.eigen"=TRUE,"budget"=6000)                
+                       control=list("diag.eigen"=TRUE,"budget"=6000,"lambda"=L )            
     )
     eigenLog[[length(eigenLog)+1]] <- sqrt(abs(resCMAESNos$diagnostic$eigen))
   }
@@ -122,13 +124,15 @@ eigenplotCMAESNos<- function(){
   #for(i in 1:ncol(eigen))
   # eigen[,i] <- eigen[,i] / 10^(6*( (i-1)/(ncol(eigen)-1) ))
   
-  functionEvalVec <- (1:nrow(eigen))*(4+floor(3*log(N)))
+  functionEvalVec <- (1:nrow(eigen))*(L)
   
   setEPS()
   postscript( paste("CMAESNos-N",N,".eps",sep=""), width = 8, height = 8)
   
+  options(scipen=10)
   # Plot eigen values changes for each dimmension
-  plot(functionEvalVec,eigen[,N],log="y",ylim=c(min(eigen),max(eigen)), xlab="function evaluations", ylab="Eigenvalues",cex=0)
+                                        #ylim=c(min(eigen),max(eigen))
+  plot(functionEvalVec,eigen[,N],log="y",ylim=c(0.000625,4), xlab="function evaluations", ylab="Eigenvalues",cex=0)
   lines(functionEvalVec,eigen[,N], lwd=2)
   
   colours <- c("red","darkgreen","orchid","blue","tomato4","yellow4","snow3","plum","seashell4","black","black","black","black")
