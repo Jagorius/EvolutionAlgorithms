@@ -15,9 +15,9 @@ eigenplotDES<- function(){
     lower=-10^100, upper=10^100,
     control=list("budget"=6000,"diag.pop"=TRUE,"diag.eigen"=TRUE)
     )
-    eigenLog[[length(eigenLog)+1]] <- sqrt(abs(resDES$diagnostic$eigen))
+    eigenLog[[length(eigenLog)+1]] <- abs(resDES$diagnostic$eigen)
   }
-  # Square root of each value in vector
+  # Mean of each value in vector
   eigen <- Reduce("+", eigenLog) / length(eigenLog)
 
   # Divide each column by corresponding fitness function weight
@@ -30,8 +30,8 @@ eigenplotDES<- function(){
   postscript( paste("DES-N",N,".eps",sep=""), width = 8, height = 8)
   
   # Plot eigen values changes for each dimmension
-  options(scipen=10)
-  plot(functionEvalVec,eigen[,N],log="y",ylim=c(0.000625,4), xlab="function evaluations", ylab="Eigenvalues",cex=0)
+  options(scipen=3)
+  plot(functionEvalVec,eigen[,N],log="y",ylim=c(1e-7,1e1), xlab="function evaluations", ylab="Eigenvalues",cex=0)
 
   
   lines(functionEvalVec,eigen[,N], lwd=2)
@@ -65,9 +65,9 @@ eigenplotCMAES<- function(){
                        lower=-10^100, upper=10^100,
                        control=list("diag.eigen"=TRUE,"budget"=6000,"lambda"=L)                
     )
-    eigenLog[[length(eigenLog)+1]] <- sqrt(abs(resCMAES$diagnostic$eigen))
+    eigenLog[[length(eigenLog)+1]] <- abs(resCMAES$diagnostic$eigen)
   }
-  # Square root of each value in vector
+  # Mean of each value in vector
   eigen <- Reduce("+", eigenLog) / length(eigenLog)
   
   # Divide each column by corresponding fitness function weight
@@ -80,7 +80,7 @@ eigenplotCMAES<- function(){
   postscript( paste("CMAES-N",N,".eps",sep=""), width = 8, height = 8)
   
   # Plot eigen values changes for each dimmension
-  options(scipen=10) 
+  options(scipen=3) 
                                         #ylim=c(min(eigen),max(eigen))
   plot(functionEvalVec,eigen[,N],log="y",ylim=c(min(eigen),max(eigen)), xlab="function evaluations", ylab="Eigenvalues",cex=0)
   lines(functionEvalVec,eigen[,N], lwd=2)
@@ -114,10 +114,10 @@ eigenplotCMAESNos<- function(){
                        lower=-10^100, upper=10^100,
                        control=list("diag.eigen"=TRUE,"budget"=6000,"lambda"=L )            
     )
-    eigenLog[[length(eigenLog)+1]] <- sqrt(abs(resCMAESNos$diagnostic$eigen))
+    eigenLog[[length(eigenLog)+1]] <- abs(resCMAESNos$diagnostic$eigen)
   }
 
-  # Square root of each value in vector
+  # Mean of each value in vector
   eigen <- Reduce("+", eigenLog) / length(eigenLog)
   
   # Divide each column by corresponding fitness function weight
@@ -129,10 +129,10 @@ eigenplotCMAESNos<- function(){
   setEPS()
   postscript( paste("CMAESNos-N",N,".eps",sep=""), width = 8, height = 8)
   
-  options(scipen=10)
+  options(scipen=3)
   # Plot eigen values changes for each dimmension
                                         #ylim=c(min(eigen),max(eigen))
-  plot(functionEvalVec,eigen[,N],log="y",ylim=c(0.000625,4), xlab="function evaluations", ylab="Eigenvalues",cex=0)
+  plot(functionEvalVec,eigen[,N],log="y",ylim=c(1e-7,1e1), xlab="function evaluations", ylab="Eigenvalues",cex=0)
   lines(functionEvalVec,eigen[,N], lwd=2)
   
   colours <- c("red","darkgreen","orchid","blue","tomato4","yellow4","snow3","plum","seashell4","black","black","black","black")
