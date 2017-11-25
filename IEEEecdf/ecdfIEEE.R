@@ -4,7 +4,7 @@ ecdfIEEE<- function(){
   
   des_path = "C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/CEC2017/CMADE-BBComp5 HistSize=3sqrt(N) init(-80,80) FINALTEST/M/"
   rb_ipop_cma_es_path = "C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Results for all papers/paper ID  E-17343/RB-IPOP-CMA-ES/"
-  ecdfValues <- rev(c(1 %o% 10^(-5:8)))
+  ecdfValues <- rev(c(1 %o% 10^(-8:5)))
   N <- 10
   budgetSteps <- c(0.01, 0.02, 0.03, 0.05, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0)*log10(10000)
   
@@ -27,8 +27,6 @@ ecdfIEEE<- function(){
       
       }
     }
-    #minCountDES[e] <-  minCountDES[e]/(30*51*e)
-    #minCountRB_IPOP_CMA_ES[e] <-  minCountRB_IPOP_CMA_ES[e]/(30*51*e)
   }
 
   budgetDES <- c()
@@ -38,23 +36,10 @@ ecdfIEEE<- function(){
     budgetRB_IPOP_CMA_ES <- c(budgetRB_IPOP_CMA_ES,rep(budgetSteps[m],minCountRB_IPOP_CMA_ES[m]))
     
   }
-  #budgetDES <<- budgetDES
-  #minCountDES <<- minCountDES
-  #resultsDES <<- resultsDES
-  #FF <<- ecdf(minCountDES)
-  #plot(ecdf(minCountDES), do.points = FALSE, log="x")
-  #abline(v = knots(ecdf(minCountDES)), lty = 2, col = "gray70")
-  
-  
-  #df <- data.frame(error=minCountDES)
-  #df2 <- data.frame(error=minCountRB_IPOP_CMA_ES)
-  
-  DF <- data.frame(variable=rep(c('DES', 'RB_IPOP_CMA_ES'), c(length(budgetDES),length(budgetRB_IPOP_CMA_ES))), value=c(budgetDES, budgetRB_IPOP_CMA_ES))
+  budgetDES <<- budgetDES
+  DF <- data.frame(method=rep(c('DES', 'RB_IPOP_CMA_ES'), c(length(budgetDES),length(budgetRB_IPOP_CMA_ES))), value=c(budgetDES, budgetRB_IPOP_CMA_ES))
    
-  ggplot(DF) + stat_ecdf(aes(value, color=variable),geom = "line") #+ scale_x_continuous(trans='log2')
+  ggplot(DF) + stat_ecdf(aes(value, color=method),geom = "line") + xlab("log10 of (f-evals / dimension)") +
+    ylab("Proportion of function + target pairs") + theme_bw()#+ scale_x_continuous(trans='log2')
   
-  #plot(ecdf(minCountDES), do.points = FALSE, log="x")
-  
-  #ggplot(df, aes(error)) + stat_ecdf(geom = "line")
-  #ggplot(df2, aes(error)) + stat_ecdf(geom = "line")
 }

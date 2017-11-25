@@ -106,7 +106,7 @@
 ##'
 ##' @keywords optimize
 ##' @export
-cma_esNos <- function(par, fn, ..., lower, upper, control=list()) {
+cma_es <- function(par, fn, ..., lower, upper, control=list()) {
   norm <- function(x)
     drop(sqrt(crossprod(x)))
   
@@ -136,7 +136,7 @@ cma_esNos <- function(par, fn, ..., lower, upper, control=list()) {
   trace       <- controlParam("trace", FALSE)
   fnscale     <- controlParam("fnscale", 1)
   stopfitness <- controlParam("stopfitness", -Inf)
-  maxiter     <- controlParam("maxit", 10000*N)
+  budget      <- controlParam("budget", 10000*N )                     ## The maximum number of fitness function calls
   sigma       <- controlParam("sigma", 0.5)
   sc_tolx     <- controlParam("stop.tolx", 1e-12 * sigma) ## Undocumented stop criterion
   keep.best   <- controlParam("keep.best", TRUE)
@@ -148,9 +148,11 @@ cma_esNos <- function(par, fn, ..., lower, upper, control=list()) {
   log.eigen  <- controlParam("diag.eigen", log.all)
   log.value  <- controlParam("diag.value", log.all)
   log.pop    <- controlParam("diag.pop", log.all)
+  log.bestVal<- controlParam("diag.bestVal", log.all)
   
   ## Strategy parameter setting (defaults as recommended by Nicolas Hansen):
   lambda      <- controlParam("lambda", 4+floor(3*log(N)))
+  maxiter     <- controlParam("maxit", round(budget/lambda))
   mu          <- controlParam("mu", floor(lambda/2))
   weights     <- controlParam("weights", log(mu+1) - log(1:mu))
   weights     <- weights/sum(weights)
@@ -183,6 +185,8 @@ cma_esNos <- function(par, fn, ..., lower, upper, control=list()) {
     value.log <- matrix(0, nrow=maxiter, ncol=mu)
   if (log.pop)
     pop.log <- array(0, c(N, mu, maxiter))
+  if(log.bestVal)
+    bestVal.log <-  matrix(0, nrow=0, ncol=1)
   
   ## Initialize dynamic (internal) strategy parameters and constants
   pc <- rep(0.0, N)
@@ -201,9 +205,11 @@ cma_esNos <- function(par, fn, ..., lower, upper, control=list()) {
   nm <- names(par) ## Names of parameters
   
   ## Preallocate work arrays:
-  arx <- matrix(0.0, nrow=N, ncol=lambda)
-  arfitness <- numeric(lambda)
-  while (iter < maxiter/lambda) {
+  # arx <- matrix(0.0, nrow=N, ncol=lambda)
+  arx <-  replicate(lambda, runif(N,0,3))
+  arfitness <- apply(arx, 2, function(x) fn(x, ...) * fnscale)
+  counteval <- counteval + lambda
+  while (counteval < budget) {
     iter <- iter + 1L
     
     if (!keep.best) {
@@ -212,6 +218,9 @@ cma_esNos <- function(par, fn, ..., lower, upper, control=list()) {
     }
     if (log.sigma)
       sigma.log[iter] <- sigma
+    
+    if (log.bestVal) 
+      bestVal.log <- rbind(bestVal.log,min(suppressWarnings(min(bestVal.log)), min(arfitness)))
     
     ## Generate new population:
     arz <- matrix(rnorm(N*lambda), ncol=lambda)
@@ -269,8 +278,9 @@ cma_esNos <- function(par, fn, ..., lower, upper, control=list()) {
     sigma <- sigma * exp((norm(ps)/chiN - 1)*cs/damps)
     
     e <- eigen(C, symmetric=TRUE)
+    eE <- eigen(cov(t(arx)))
     if (log.eigen)
-      eigen.log[iter,] <- rev(sort(e$values))
+      eigen.log[iter,] <- rev(sort(eE$values))
     
     if (!all(e$values >= sqrt(.Machine$double.eps) * abs(e$values[1]))) {      
       msg <- "Covariance matrix 'C' is numerically not positive definite."
@@ -298,8 +308,8 @@ cma_esNos <- function(par, fn, ..., lower, upper, control=list()) {
     ## Escape from flat-land:
     if (arfitness[1] == arfitness[min(1+floor(lambda/2), 2+ceiling(lambda/4))]) { 
       sigma <- sigma * exp(0.2+cs/damps);
-    if (trace)
-      message("Flat fitness function. Increasing sigma.")
+      if (trace)
+        message("Flat fitness function. Increasing sigma.")
     }
     if (trace)
       message(sprintf("Iteration %i of %i: current fitness %f",
@@ -314,6 +324,7 @@ cma_esNos <- function(par, fn, ..., lower, upper, control=list()) {
   if (log.sigma) log$sigma <- sigma.log[1:iter]
   if (log.eigen) log$eigen <- eigen.log[1:iter,]
   if (log.pop)   log$pop   <- pop.log[,,1:iter]
+  if (log.bestVal) log$bestVal <- bestVal.log
   
   ## Drop names from value object
   names(best.fit) <- NULL
