@@ -205,9 +205,11 @@ cma_esNos <- function(par, fn, ..., lower, upper, control=list()) {
   nm <- names(par) ## Names of parameters
 
   ## Preallocate work arrays:
-  arx <- matrix(0.0, nrow=N, ncol=lambda)
-  arfitness <- numeric(lambda)
-  while (iter < maxiter/lambda) {
+ # arx <- matrix(0.0, nrow=N, ncol=lambda)
+  arx <-  replicate(lambda, runif(N,0,3))
+  arfitness <- apply(arx, 2, function(x) fn(x, ...) * fnscale)
+  counteval <- counteval + lambda
+  while (counteval < budget) {
     iter <- iter + 1L
 
     if (!keep.best) {
@@ -217,7 +219,8 @@ cma_esNos <- function(par, fn, ..., lower, upper, control=list()) {
     if (log.sigma)
       sigma.log[iter] <- sigma
     
-    if (log.bestVal) bestVal.log <- rbind(bestVal.log,min(suppressWarnings(min(bestVal.log)), min(arfitness)))
+    if (log.bestVal) 
+      bestVal.log <- rbind(bestVal.log,min(suppressWarnings(min(bestVal.log)), min(arfitness)))
     
 
     ## Generate new population:
@@ -276,8 +279,9 @@ cma_esNos <- function(par, fn, ..., lower, upper, control=list()) {
     ## sigma <- sigma * exp((norm(ps)/chiN - 1)*cs/damps)
     
     e <- eigen(C, symmetric=TRUE)
+    eE <- eigen(cov(t(arx)))
     if (log.eigen)
-      eigen.log[iter,] <- rev(sort(e$values))
+      eigen.log[iter,] <- rev(sort(eE$values))
 
     if (!all(e$values >= sqrt(.Machine$double.eps) * abs(e$values[1]))) {      
       msg <- "Covariance matrix 'C' is numerically not positive definite."
