@@ -206,7 +206,7 @@ cma_es <- function(par, fn, ..., lower, upper, control=list()) {
   
   ## Preallocate work arrays:
   # arx <- matrix(0.0, nrow=N, ncol=lambda)
-  arx <-  replicate(lambda, runif(N,0,3))
+  arx <-  replicate(lambda, runif(N,lower,upper))
   arfitness <- apply(arx, 2, function(x) fn(x, ...) * fnscale)
   counteval <- counteval + lambda
   while (counteval < budget) {
@@ -308,8 +308,8 @@ cma_es <- function(par, fn, ..., lower, upper, control=list()) {
     ## Escape from flat-land:
     if (arfitness[1] == arfitness[min(1+floor(lambda/2), 2+ceiling(lambda/4))]) { 
       sigma <- sigma * exp(0.2+cs/damps);
-      if (trace)
-        message("Flat fitness function. Increasing sigma.")
+    if (trace)
+      message("Flat fitness function. Increasing sigma.")
     }
     if (trace)
       message(sprintf("Iteration %i of %i: current fitness %f",
