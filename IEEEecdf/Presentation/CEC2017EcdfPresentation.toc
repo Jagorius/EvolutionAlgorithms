@@ -1,0 +1,7 @@
+\beamer@sectionintoc {1}{CEC2017 Competition}{3}{0}{1}
+\beamer@subsectionintoc {1}{1}{Evaluation criteria}{3}{0}{1}
+\beamer@subsectionintoc {1}{2}{Results record}{4}{0}{1}
+\beamer@sectionintoc {2}{Performance Measures}{5}{0}{2}
+\beamer@subsectionintoc {2}{1}{Empirical runtime distributions}{5}{0}{2}
+\beamer@subsectionintoc {2}{2}{Example}{7}{0}{2}
+\beamer@sectionintoc {3}{Results}{8}{0}{3}
