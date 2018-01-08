@@ -5,9 +5,11 @@
 \usepackage{subcaption}
 \usepackage{lmodern}
 \usetheme{Pittsburgh}
-\title{CEC2017 method comparison based on empirical runtime distributions}  
-\author{Jaroslaw Arabas and Dariusz Jagodzinski\newline\url{jarabas@elka.pw.edu.pl}\newline
-\url{d.jagodzinski@elka.pw.edu.pl}} 
+\title{Comparison of optimization results submitted for the 
+CEC 2017 Competition of Single Objective Numerical Optimization methods
+based on empirical runtime distributions}  
+\author{Dariusz Jagodzinski and Jaroslaw Arabas \newline\url{d.jagodzinski@elka.pw.edu.pl}\newline
+\url{jarabas@elka.pw.edu.pl}} 
 \date{\today} 
 
 \begin{document}
@@ -23,33 +25,35 @@
 \end{frame} 
 
 
-\section{CEC2017 Competition} 
+\section{
+CEC 2017 Competition of Single Objective Numerical Optimization methods
+} 
 \subsection{Evaluation criteria}
 \begin{frame}
-\frametitle{CEC2017 bound constrained case} 
+\frametitle{CEC'2017 Competition conditions at a glance} 
 Test functions are minimization problems defined as following:
 \begin{equation*}
-  Min\ F_P(x),\ x=[x_1,x_2,...,x_D]^D
+  min\ F_P(x),\ x=[x_1,x_2,...,x_D]^D
 \end{equation*}
 \textbf{D:} Dimension = {10,30,50,100}
 \textbf{P:} Problem Number = {1,..,30}
 \textbf{Search range} = $[-100,100]^D$
-\textbf{Budget:} f-evals = $10000*D$
-\textbf{Initialization:} Uniform random initialization within the search space. Random seed is based on time.
-\newline \textbf{Global Optimum:} $F_P(x^*) =100*P $
+\textbf{Budget:} f-evals = $10000\cdot D$
+\textbf{Initialization:} Uniform random initialization within the search range. Random seed is based on time.
+\newline \textbf{Global Optimum:} $F_P(x^*) =100\cdot P $
 
 \AddToShipoutPictureFG*{
-    \put(-180,5){
-    \makebox[\paperwidth][r]{Full CEC2017 specification: \href{http://web.mysites.ntu.edu.sg/epnsugan/PublicSite/Shared\%20Documents/CEC-2017/Bound-Constrained/Definitions\%20of\%20\%20CEC2017\%20benchmark\%20suite\%20final\%20version\%20updated.pdf}{\beamergotobutton{Link}}
+    \put(-60,5){
+    \makebox[\paperwidth][r]{Full specification of CEC'2017 competition conditions: \href{http://web.mysites.ntu.edu.sg/epnsugan/PublicSite/Shared\%20Documents/CEC-2017/Bound-Constrained/Definitions\%20of\%20\%20CEC2017\%20benchmark\%20suite\%20final\%20version\%20updated.pdf}{\beamergotobutton{Link}}
 }
  }
   }%
     
 \end{frame}
 
-\subsection{Results record}
+\subsection{Results recording}
 \begin{frame}
-\frametitle{CEC2017 results record} 
+\frametitle{Recording results for CEC'2017} 
 Function error value is defined as:
 \begin{equation*}
   ERR_P = F_P(x^{best})- F_P(x^*)
@@ -59,8 +63,10 @@ The accuracy of finding the optimum is $10^{-8}$:
  ERR_P \leq 10^{-8} \ \implies \ ERR_P = 0
 \end{equation*}
 Tuning search method parameters for each problem or dimension is \textcolor{red}{\textbf{not allowed.}}
-\newline \newline \textbf{Runs/problem}: 51
-\newline \textbf{Recorded ERR}: 14 error values are recorded for each problem for each run, after (0.01, 0.02, 0.03, 0.05, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0)$*Budget_D$.
+\newline \newline 
+\textbf{Number of runs}: For each problem and each dimension, 51 independent runs of the method. 
+\newline
+\newline \textbf{Progress reporting}: For each run, record the smallest-so-far error after exceeding (0.01, 0.02, 0.03, 0.05, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0)$\cdot Budget_D$.
 \end{frame}
 
 
@@ -118,24 +124,24 @@ The $P_P(b)$ ratio can be considered as \textbf{probability of achieving success
 \begin{figure}
 \captionsetup[subfigure]{labelformat=empty}
 \centering
-\begin{subfigure}{0.49\textwidth}
+\begin{subfigure}{0.46\textwidth}
 %\vspace{-10mm}
 \centering
 \includegraphics[width = \textwidth]{DESConvergence.pdf}
-\caption{Convergence plot for a single run, with 14 budget steps on which error values have been reported. }
+\caption{Convergence curve for a single run, with 14 budget steps on which error values have been reported. }
 \label{fig:left}
 \end{subfigure}
-\begin{subfigure}{0.49\textwidth}
+\begin{subfigure}{0.46\textwidth}
 \vspace{-5mm}
 \centering
 \includegraphics[width = \textwidth]{DESEcdf.pdf}
-\caption{ECDF plot aggregated for 51 runs, for a single problem: P=1, N=10.}
+\caption{ECDF plot aggregated for 51 runs, for a single problem.}
 \label{fig:right}
 \end{subfigure}
 \label{fig:combined}
 \end{figure}
 \vspace{-3mm}
-We can see in right plot, for example, that about \textcolor{red}{90 percent} of the problems were solved within $10^2*D = 10^3$ function evaluations.
+\textbf{Interpretation of the ECDF curve}: About \textcolor{red}{90 percent} of the error levels were achieved within budget of $10^2\cdot D$ function evaluations.
 
 \end{frame}
 
@@ -166,8 +172,8 @@ We can see in right plot, for example, that about \textcolor{red}{90 percent} of
     \centering
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
-            	\caption{D=30}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=1,N=30.pdf} 
+        \caption{D=30}
     	\end{minipage}%
 	} 
     \vspace{-12mm}
@@ -185,8 +191,8 @@ We can see in right plot, for example, that about \textcolor{red}{90 percent} of
     \centering
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
-        \caption{D=100} 
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=1,N=100.pdf}
+     \caption{D=100} 
     \end{minipage}%
 	}   
   \end{subfigure} 
@@ -220,8 +226,8 @@ We can see in right plot, for example, that about \textcolor{red}{90 percent} of
     \centering
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
-            	\caption{D=30}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=2,N=30.pdf} 
+                	\caption{D=30}
     	\end{minipage}%
 	} 
     \vspace{-12mm}
@@ -239,8 +245,8 @@ We can see in right plot, for example, that about \textcolor{red}{90 percent} of
     \centering
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
-        \caption{D=100} 
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=2,N=100.pdf}
+            \caption{D=100} 
     \end{minipage}%
 	}   
   \end{subfigure} 
@@ -275,8 +281,8 @@ We can see in right plot, for example, that about \textcolor{red}{90 percent} of
     \centering
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
-            	\caption{D=30}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=3,N=30.pdf} 
+                	\caption{D=30}
     	\end{minipage}%
 	} 
     \vspace{-12mm}
@@ -294,8 +300,8 @@ We can see in right plot, for example, that about \textcolor{red}{90 percent} of
     \centering
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
-        \caption{D=100} 
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=3,N=100.pdf}
+            \caption{D=100} 
     \end{minipage}%
 	}   
   \end{subfigure} 
@@ -330,8 +336,8 @@ We can see in right plot, for example, that about \textcolor{red}{90 percent} of
     \centering
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
-            	\caption{D=30}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=4,N=30.pdf} 
+                	\caption{D=30}
     	\end{minipage}%
 	} 
     \vspace{-12mm}
@@ -349,8 +355,8 @@ We can see in right plot, for example, that about \textcolor{red}{90 percent} of
     \centering
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
-        \caption{D=100} 
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=4,N=100.pdf}
+            \caption{D=100} 
     \end{minipage}%
 	}   
   \end{subfigure} 
@@ -385,8 +391,8 @@ We can see in right plot, for example, that about \textcolor{red}{90 percent} of
     \centering
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
-            	\caption{D=30}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=5,N=30.pdf} 
+                	\caption{D=30}
     	\end{minipage}%
 	} 
     \vspace{-12mm}
@@ -404,8 +410,8 @@ We can see in right plot, for example, that about \textcolor{red}{90 percent} of
     \centering
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
-        \caption{D=100} 
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=5,N=100.pdf}
+            \caption{D=100} 
     \end{minipage}%
 	}   
   \end{subfigure} 
@@ -440,8 +446,8 @@ We can see in right plot, for example, that about \textcolor{red}{90 percent} of
     \centering
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
-            	\caption{D=30}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=6,N=30.pdf} 
+                	\caption{D=30}
     	\end{minipage}%
 	} 
     \vspace{-12mm}
@@ -459,8 +465,8 @@ We can see in right plot, for example, that about \textcolor{red}{90 percent} of
     \centering
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
-        \caption{D=100} 
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=6,N=100.pdf}
+            \caption{D=100} 
     \end{minipage}%
 	}   
   \end{subfigure} 
@@ -495,8 +501,8 @@ We can see in right plot, for example, that about \textcolor{red}{90 percent} of
     \centering
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
-            	\caption{D=30}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=7,N=30.pdf} 
+                	\caption{D=30}
     	\end{minipage}%
 	} 
     \vspace{-12mm}
@@ -514,8 +520,8 @@ We can see in right plot, for example, that about \textcolor{red}{90 percent} of
     \centering
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
-        \caption{D=100} 
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=7,N=100.pdf}
+            \caption{D=100} 
     \end{minipage}%
 	}   
   \end{subfigure} 
@@ -551,8 +557,8 @@ We can see in right plot, for example, that about \textcolor{red}{90 percent} of
     \centering
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
-            	\caption{D=30}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=8,N=30.pdf} 
+                	\caption{D=30}
     	\end{minipage}%
 	} 
     \vspace{-12mm}
@@ -570,8 +576,8 @@ We can see in right plot, for example, that about \textcolor{red}{90 percent} of
     \centering
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
-        \caption{D=100} 
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=8,N=100.pdf}
+            \caption{D=100} 
     \end{minipage}%
 	}   
   \end{subfigure} 
@@ -606,8 +612,8 @@ We can see in right plot, for example, that about \textcolor{red}{90 percent} of
     \centering
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
-            	\caption{D=30}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=9,N=30.pdf} 
+                	\caption{D=30}
     	\end{minipage}%
 	} 
     \vspace{-12mm}
@@ -625,8 +631,8 @@ We can see in right plot, for example, that about \textcolor{red}{90 percent} of
     \centering
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
-        \caption{D=100} 
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=9,N=100.pdf}
+            \caption{D=100} 
     \end{minipage}%
 	}   
   \end{subfigure} 
@@ -662,8 +668,8 @@ We can see in right plot, for example, that about \textcolor{red}{90 percent} of
     \centering
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
-            	\caption{D=30}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=10,N=30.pdf} 
+                	\caption{D=30}
     	\end{minipage}%
 	} 
     \vspace{-12mm}
@@ -681,8 +687,8 @@ We can see in right plot, for example, that about \textcolor{red}{90 percent} of
     \centering
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
-        \caption{D=100} 
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=10,N=100.pdf}
+            \caption{D=100} 
     \end{minipage}%
 	}   
   \end{subfigure} 
@@ -717,8 +723,8 @@ We can see in right plot, for example, that about \textcolor{red}{90 percent} of
     \centering
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
-            	\caption{D=30}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=11,N=30.pdf} 
+                	\caption{D=30}
     	\end{minipage}%
 	} 
     \vspace{-12mm}
@@ -736,8 +742,8 @@ We can see in right plot, for example, that about \textcolor{red}{90 percent} of
     \centering
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
-        \caption{D=100} 
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=11,N=100.pdf}
+            \caption{D=100} 
     \end{minipage}%
 	}   
   \end{subfigure} 
@@ -771,8 +777,8 @@ We can see in right plot, for example, that about \textcolor{red}{90 percent} of
     \centering
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
-            	\caption{D=30}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=12,N=30.pdf} 
+                	\caption{D=30}
     	\end{minipage}%
 	} 
     \vspace{-12mm}
@@ -790,8 +796,8 @@ We can see in right plot, for example, that about \textcolor{red}{90 percent} of
     \centering
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
-        \caption{D=100} 
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=12,N=100.pdf}
+            \caption{D=100} 
     \end{minipage}%
 	}   
   \end{subfigure} 
@@ -826,8 +832,8 @@ We can see in right plot, for example, that about \textcolor{red}{90 percent} of
     \centering
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
-            	\caption{D=30}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=13,N=30.pdf} 
+                	\caption{D=30}
     	\end{minipage}%
 	} 
     \vspace{-12mm}
@@ -845,8 +851,8 @@ We can see in right plot, for example, that about \textcolor{red}{90 percent} of
     \centering
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
-        \caption{D=100} 
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=13,N=100.pdf}
+            \caption{D=100} 
     \end{minipage}%
 	}   
   \end{subfigure} 
@@ -881,8 +887,8 @@ We can see in right plot, for example, that about \textcolor{red}{90 percent} of
     \centering
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
-            	\caption{D=30}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=14,N=30.pdf} 
+                	\caption{D=30}
     	\end{minipage}%
 	} 
     \vspace{-12mm}
@@ -900,8 +906,8 @@ We can see in right plot, for example, that about \textcolor{red}{90 percent} of
     \centering
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
-        \caption{D=100} 
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=14,N=100.pdf}
+            \caption{D=100} 
     \end{minipage}%
 	}   
   \end{subfigure} 
@@ -936,8 +942,8 @@ We can see in right plot, for example, that about \textcolor{red}{90 percent} of
     \centering
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
-            	\caption{D=30}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=15,N=30.pdf} 
+                	\caption{D=30}
     	\end{minipage}%
 	} 
     \vspace{-12mm}
@@ -955,8 +961,8 @@ We can see in right plot, for example, that about \textcolor{red}{90 percent} of
     \centering
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
-        \caption{D=100} 
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=15,N=100.pdf}
+            \caption{D=100} 
     \end{minipage}%
 	}   
   \end{subfigure} 
@@ -991,8 +997,8 @@ We can see in right plot, for example, that about \textcolor{red}{90 percent} of
     \centering
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
-            	\caption{D=30}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=16,N=30.pdf} 
+                	\caption{D=30}
     	\end{minipage}%
 	} 
     \vspace{-12mm}
@@ -1010,8 +1016,8 @@ We can see in right plot, for example, that about \textcolor{red}{90 percent} of
     \centering
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
-        \caption{D=100} 
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=16,N=100.pdf}
+            \caption{D=100} 
     \end{minipage}%
 	}   
   \end{subfigure} 
@@ -1046,8 +1052,8 @@ We can see in right plot, for example, that about \textcolor{red}{90 percent} of
     \centering
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
-            	\caption{D=30}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=17,N=30.pdf} 
+                	\caption{D=30}
     	\end{minipage}%
 	} 
     \vspace{-12mm}
@@ -1065,8 +1071,8 @@ We can see in right plot, for example, that about \textcolor{red}{90 percent} of
     \centering
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
-        \caption{D=100} 
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=17,N=100.pdf}
+            \caption{D=100} 
     \end{minipage}%
 	}   
   \end{subfigure} 
@@ -1101,8 +1107,8 @@ We can see in right plot, for example, that about \textcolor{red}{90 percent} of
     \centering
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
-            	\caption{D=30}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=18,N=30.pdf} 
+                	\caption{D=30}
     	\end{minipage}%
 	} 
     \vspace{-12mm}
@@ -1120,8 +1126,8 @@ We can see in right plot, for example, that about \textcolor{red}{90 percent} of
     \centering
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
-        \caption{D=100} 
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=18,N=100.pdf}
+            \caption{D=100} 
     \end{minipage}%
 	}   
   \end{subfigure} 
@@ -1155,8 +1161,8 @@ We can see in right plot, for example, that about \textcolor{red}{90 percent} of
     \centering
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
-            	\caption{D=30}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=19,N=30.pdf} 
+                	\caption{D=30}
     	\end{minipage}%
 	} 
     \vspace{-12mm}
@@ -1174,8 +1180,8 @@ We can see in right plot, for example, that about \textcolor{red}{90 percent} of
     \centering
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
-        \caption{D=100} 
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=19,N=100.pdf}
+            \caption{D=100} 
     \end{minipage}%
 	}   
   \end{subfigure} 
@@ -1210,8 +1216,8 @@ We can see in right plot, for example, that about \textcolor{red}{90 percent} of
     \centering
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
-            	\caption{D=30}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=20,N=30.pdf} 
+                	\caption{D=30}
     	\end{minipage}%
 	} 
     \vspace{-12mm}
@@ -1229,8 +1235,8 @@ We can see in right plot, for example, that about \textcolor{red}{90 percent} of
     \centering
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
-        \caption{D=100} 
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=20,N=100.pdf}
+            \caption{D=100} 
     \end{minipage}%
 	}   
   \end{subfigure} 
@@ -1265,8 +1271,8 @@ We can see in right plot, for example, that about \textcolor{red}{90 percent} of
     \centering
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
-            	\caption{D=30}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=21,N=30.pdf} 
+                	\caption{D=30}
     	\end{minipage}%
 	} 
     \vspace{-12mm}
@@ -1284,8 +1290,8 @@ We can see in right plot, for example, that about \textcolor{red}{90 percent} of
     \centering
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
-        \caption{D=100} 
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=21,N=100.pdf}
+            \caption{D=100} 
     \end{minipage}%
 	}   
   \end{subfigure} 
@@ -1320,8 +1326,8 @@ We can see in right plot, for example, that about \textcolor{red}{90 percent} of
     \centering
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
-            	\caption{D=30}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=22,N=30.pdf} 
+                	\caption{D=30}
     	\end{minipage}%
 	} 
     \vspace{-12mm}
@@ -1339,8 +1345,8 @@ We can see in right plot, for example, that about \textcolor{red}{90 percent} of
     \centering
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
-        \caption{D=100} 
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=22,N=100.pdf}
+           \caption{D=100} 
     \end{minipage}%
 	}   
   \end{subfigure} 
@@ -1375,8 +1381,8 @@ We can see in right plot, for example, that about \textcolor{red}{90 percent} of
     \centering
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
-            	\caption{D=30}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=23,N=30.pdf} 
+                	\caption{D=30}
     	\end{minipage}%
 	} 
     \vspace{-12mm}
@@ -1394,8 +1400,8 @@ We can see in right plot, for example, that about \textcolor{red}{90 percent} of
     \centering
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
-        \caption{D=100} 
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=23,N=100.pdf}
+            \caption{D=100} 
     \end{minipage}%
 	}   
   \end{subfigure} 
@@ -1431,8 +1437,8 @@ We can see in right plot, for example, that about \textcolor{red}{90 percent} of
     \centering
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
-            	\caption{D=30}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=24,N=30.pdf} 
+                	\caption{D=30}
     	\end{minipage}%
 	} 
     \vspace{-12mm}
@@ -1450,8 +1456,8 @@ We can see in right plot, for example, that about \textcolor{red}{90 percent} of
     \centering
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
-        \caption{D=100} 
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=24,N=100.pdf}
+            \caption{D=100} 
     \end{minipage}%
 	}   
   \end{subfigure} 
@@ -1486,8 +1492,8 @@ We can see in right plot, for example, that about \textcolor{red}{90 percent} of
     \centering
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
-            	\caption{D=30}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=25,N=30.pdf} 
+                	\caption{D=30}
     	\end{minipage}%
 	} 
     \vspace{-12mm}
@@ -1505,8 +1511,8 @@ We can see in right plot, for example, that about \textcolor{red}{90 percent} of
     \centering
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
-        \caption{D=100} 
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=25,N=100.pdf}
+            \caption{D=100} 
     \end{minipage}%
 	}   
   \end{subfigure} 
@@ -1541,8 +1547,8 @@ We can see in right plot, for example, that about \textcolor{red}{90 percent} of
     \centering
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
-            	\caption{D=30}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=26,N=30.pdf} 
+                	\caption{D=30}
     	\end{minipage}%
 	} 
     \vspace{-12mm}
@@ -1560,8 +1566,8 @@ We can see in right plot, for example, that about \textcolor{red}{90 percent} of
     \centering
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
-        \caption{D=100} 
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=26,N=100.pdf}
+            \caption{D=100} 
     \end{minipage}%
 	}   
   \end{subfigure} 
@@ -1596,8 +1602,8 @@ We can see in right plot, for example, that about \textcolor{red}{90 percent} of
     \centering
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
-            	\caption{D=30}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=27,N=30.pdf} 
+                	\caption{D=30}
     	\end{minipage}%
 	} 
     \vspace{-12mm}
@@ -1615,8 +1621,8 @@ We can see in right plot, for example, that about \textcolor{red}{90 percent} of
     \centering
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
-        \caption{D=100} 
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=27,N=100.pdf}
+            \caption{D=100} 
     \end{minipage}%
 	}   
   \end{subfigure} 
@@ -1651,8 +1657,8 @@ We can see in right plot, for example, that about \textcolor{red}{90 percent} of
     \centering
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
-            	\caption{D=30}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=28,N=30.pdf} 
+                	\caption{D=30}
     	\end{minipage}%
 	} 
     \vspace{-12mm}
@@ -1670,8 +1676,8 @@ We can see in right plot, for example, that about \textcolor{red}{90 percent} of
     \centering
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
-        \caption{D=100} 
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=28,N=100.pdf}
+            \caption{D=100} 
     \end{minipage}%
 	}   
   \end{subfigure} 
@@ -1706,8 +1712,8 @@ We can see in right plot, for example, that about \textcolor{red}{90 percent} of
     \centering
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
-            	\caption{D=30}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=29,N=30.pdf} 
+                	\caption{D=30}
     	\end{minipage}%
 	} 
     \vspace{-12mm}
@@ -1725,8 +1731,8 @@ We can see in right plot, for example, that about \textcolor{red}{90 percent} of
     \centering
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
-        \caption{D=100} 
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=29,N=100.pdf}
+            \caption{D=100} 
     \end{minipage}%
 	}   
   \end{subfigure} 
@@ -1760,8 +1766,8 @@ We can see in right plot, for example, that about \textcolor{red}{90 percent} of
     \centering
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
-            	\caption{D=30}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=30,N=30.pdf} 
+                	\caption{D=30}
     	\end{minipage}%
 	} 
     \vspace{-12mm}
@@ -1779,8 +1785,8 @@ We can see in right plot, for example, that about \textcolor{red}{90 percent} of
     \centering
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
-        \caption{D=100} 
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=30,N=100.pdf}
+            \caption{D=100} 
     \end{minipage}%
 	}   
   \end{subfigure} 
