@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.9.4)  8 JAN 2018 10:31
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.9.4)  8 JAN 2018 11:34
 entering extended mode
 **./CEC2017EcdfPresentation.tex
 (CEC2017EcdfPresentation.tex
@@ -1335,89 +1335,71 @@ esentation.toc)
 
 ] [6
 
-] <DESConvergence.pdf, id=218, 578.16pt x 578.16pt>
+] [7
+
+] <DESConvergence.pdf, id=251, 578.16pt x 578.16pt>
 File: DESConvergence.pdf Graphic file (type pdf)
 
 <use DESConvergence.pdf>
-Package pdftex.def Info: DESConvergence.pdf used on input line 146.
+Package pdftex.def Info: DESConvergence.pdf used on input line 158.
 (pdftex.def)             Requested size: 141.3554pt x 141.3549pt.
- <DESEcdf.pdf, id=219, 578.16pt x 578.16pt>
+ <DESEcdf.pdf, id=252, 578.16pt x 578.16pt>
 File: DESEcdf.pdf Graphic file (type pdf)
 
 <use DESEcdf.pdf>
-Package pdftex.def Info: DESEcdf.pdf used on input line 146.
+Package pdftex.def Info: DESEcdf.pdf used on input line 158.
 (pdftex.def)             Requested size: 141.3554pt x 141.3549pt.
- [7
+ [8
 
  <./DESConvergence.pdf> <./DESEcdf.pdf>]
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=1,N=10.pdf, id=260, 722.7pt x 722.7pt>
+oblem=1,N=10.pdf, id=292, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=1,N=10.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=1,N=10.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=1,N=10.pdf used on input line 201.
+cdf/Plots/singlePlots/Problem=1,N=10.pdf used on input line 217.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 201--201
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=1,N=30.pdf, id=261, 722.7pt x 722.7pt>
+oblem=1,N=30.pdf, id=293, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=1,N=30.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=1,N=30.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=1,N=30.pdf used on input line 201.
+cdf/Plots/singlePlots/Problem=1,N=30.pdf used on input line 217.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 201--201
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=1,N=50.pdf, id=262, 722.7pt x 722.7pt>
+oblem=1,N=50.pdf, id=294, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=1,N=50.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=1,N=50.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=1,N=50.pdf used on input line 201.
+cdf/Plots/singlePlots/Problem=1,N=50.pdf used on input line 217.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 201--201
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=1,N=100.pdf, id=263, 722.7pt x 722.7pt>
+oblem=1,N=100.pdf, id=295, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=1,N=100.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=1,N=100.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=1,N=100.pdf used on input line 201.
+cdf/Plots/singlePlots/Problem=1,N=100.pdf used on input line 217.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 201--201
- [][] 
+Overfull \vbox (19.60939pt too high) detected at line 217
  []
 
-
-Overfull \vbox (20.60939pt too high) detected at line 201
- []
-
-[8
+[9
 
  <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/P
 roblem=1,N=10.pdf> <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/P
@@ -1425,73 +1407,53 @@ lots/singlePlots/Problem=1,N=30.pdf> <C:/Users/JS/Desktop/Doktorat/EvolutionAlg
 orithms/IEEEecdf/Plots/singlePlots/Problem=1,N=50.pdf> <C:/Users/JS/Desktop/Dok
 torat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=1,N=100.pdf>]
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=2,N=10.pdf, id=317, 722.7pt x 722.7pt>
+oblem=2,N=10.pdf, id=349, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=2,N=10.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=2,N=10.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=2,N=10.pdf used on input line 255.
+cdf/Plots/singlePlots/Problem=2,N=10.pdf used on input line 275.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 255--255
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=2,N=30.pdf, id=318, 722.7pt x 722.7pt>
+oblem=2,N=30.pdf, id=350, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=2,N=30.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=2,N=30.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=2,N=30.pdf used on input line 255.
+cdf/Plots/singlePlots/Problem=2,N=30.pdf used on input line 275.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 255--255
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=2,N=50.pdf, id=319, 722.7pt x 722.7pt>
+oblem=2,N=50.pdf, id=351, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=2,N=50.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=2,N=50.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=2,N=50.pdf used on input line 255.
+cdf/Plots/singlePlots/Problem=2,N=50.pdf used on input line 275.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 255--255
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=2,N=100.pdf, id=320, 722.7pt x 722.7pt>
+oblem=2,N=100.pdf, id=352, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=2,N=100.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=2,N=100.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=2,N=100.pdf used on input line 255.
+cdf/Plots/singlePlots/Problem=2,N=100.pdf used on input line 275.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 255--255
- [][] 
+Overfull \vbox (19.60939pt too high) detected at line 275
  []
 
-
-Overfull \vbox (20.60939pt too high) detected at line 255
- []
-
-[9
+[10
 
  <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/P
 roblem=2,N=10.pdf> <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/P
@@ -1499,73 +1461,53 @@ lots/singlePlots/Problem=2,N=30.pdf> <C:/Users/JS/Desktop/Doktorat/EvolutionAlg
 orithms/IEEEecdf/Plots/singlePlots/Problem=2,N=50.pdf> <C:/Users/JS/Desktop/Dok
 torat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=2,N=100.pdf>]
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=3,N=10.pdf, id=374, 722.7pt x 722.7pt>
+oblem=3,N=10.pdf, id=406, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=3,N=10.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=3,N=10.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=3,N=10.pdf used on input line 310.
+cdf/Plots/singlePlots/Problem=3,N=10.pdf used on input line 334.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 310--310
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=3,N=30.pdf, id=375, 722.7pt x 722.7pt>
+oblem=3,N=30.pdf, id=407, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=3,N=30.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=3,N=30.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=3,N=30.pdf used on input line 310.
+cdf/Plots/singlePlots/Problem=3,N=30.pdf used on input line 334.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 310--310
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=3,N=50.pdf, id=376, 722.7pt x 722.7pt>
+oblem=3,N=50.pdf, id=408, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=3,N=50.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=3,N=50.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=3,N=50.pdf used on input line 310.
+cdf/Plots/singlePlots/Problem=3,N=50.pdf used on input line 334.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 310--310
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=3,N=100.pdf, id=377, 722.7pt x 722.7pt>
+oblem=3,N=100.pdf, id=409, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=3,N=100.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=3,N=100.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=3,N=100.pdf used on input line 310.
+cdf/Plots/singlePlots/Problem=3,N=100.pdf used on input line 334.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 310--310
- [][] 
+Overfull \vbox (19.60939pt too high) detected at line 334
  []
 
-
-Overfull \vbox (20.60939pt too high) detected at line 310
- []
-
-[10
+[11
 
  <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/P
 roblem=3,N=10.pdf> <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/P
@@ -1573,73 +1515,53 @@ lots/singlePlots/Problem=3,N=30.pdf> <C:/Users/JS/Desktop/Doktorat/EvolutionAlg
 orithms/IEEEecdf/Plots/singlePlots/Problem=3,N=50.pdf> <C:/Users/JS/Desktop/Dok
 torat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=3,N=100.pdf>]
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=4,N=10.pdf, id=431, 722.7pt x 722.7pt>
+oblem=4,N=10.pdf, id=463, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=4,N=10.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=4,N=10.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=4,N=10.pdf used on input line 365.
+cdf/Plots/singlePlots/Problem=4,N=10.pdf used on input line 393.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 365--365
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=4,N=30.pdf, id=432, 722.7pt x 722.7pt>
+oblem=4,N=30.pdf, id=464, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=4,N=30.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=4,N=30.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=4,N=30.pdf used on input line 365.
+cdf/Plots/singlePlots/Problem=4,N=30.pdf used on input line 393.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 365--365
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=4,N=50.pdf, id=433, 722.7pt x 722.7pt>
+oblem=4,N=50.pdf, id=465, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=4,N=50.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=4,N=50.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=4,N=50.pdf used on input line 365.
+cdf/Plots/singlePlots/Problem=4,N=50.pdf used on input line 393.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 365--365
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=4,N=100.pdf, id=434, 722.7pt x 722.7pt>
+oblem=4,N=100.pdf, id=466, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=4,N=100.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=4,N=100.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=4,N=100.pdf used on input line 365.
+cdf/Plots/singlePlots/Problem=4,N=100.pdf used on input line 393.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 365--365
- [][] 
+Overfull \vbox (19.60939pt too high) detected at line 393
  []
 
-
-Overfull \vbox (20.60939pt too high) detected at line 365
- []
-
-[11
+[12
 
  <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/P
 roblem=4,N=10.pdf> <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/P
@@ -1647,73 +1569,53 @@ lots/singlePlots/Problem=4,N=30.pdf> <C:/Users/JS/Desktop/Doktorat/EvolutionAlg
 orithms/IEEEecdf/Plots/singlePlots/Problem=4,N=50.pdf> <C:/Users/JS/Desktop/Dok
 torat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=4,N=100.pdf>]
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=5,N=10.pdf, id=488, 722.7pt x 722.7pt>
+oblem=5,N=10.pdf, id=520, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=5,N=10.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=5,N=10.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=5,N=10.pdf used on input line 420.
+cdf/Plots/singlePlots/Problem=5,N=10.pdf used on input line 452.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 420--420
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=5,N=30.pdf, id=489, 722.7pt x 722.7pt>
+oblem=5,N=30.pdf, id=521, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=5,N=30.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=5,N=30.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=5,N=30.pdf used on input line 420.
+cdf/Plots/singlePlots/Problem=5,N=30.pdf used on input line 452.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 420--420
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=5,N=50.pdf, id=490, 722.7pt x 722.7pt>
+oblem=5,N=50.pdf, id=522, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=5,N=50.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=5,N=50.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=5,N=50.pdf used on input line 420.
+cdf/Plots/singlePlots/Problem=5,N=50.pdf used on input line 452.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 420--420
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=5,N=100.pdf, id=491, 722.7pt x 722.7pt>
+oblem=5,N=100.pdf, id=523, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=5,N=100.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=5,N=100.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=5,N=100.pdf used on input line 420.
+cdf/Plots/singlePlots/Problem=5,N=100.pdf used on input line 452.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 420--420
- [][] 
+Overfull \vbox (19.60939pt too high) detected at line 452
  []
 
-
-Overfull \vbox (20.60939pt too high) detected at line 420
- []
-
-[12
+[13
 
  <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/P
 roblem=5,N=10.pdf> <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/P
@@ -1721,73 +1623,53 @@ lots/singlePlots/Problem=5,N=30.pdf> <C:/Users/JS/Desktop/Doktorat/EvolutionAlg
 orithms/IEEEecdf/Plots/singlePlots/Problem=5,N=50.pdf> <C:/Users/JS/Desktop/Dok
 torat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=5,N=100.pdf>]
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=6,N=10.pdf, id=545, 722.7pt x 722.7pt>
+oblem=6,N=10.pdf, id=578, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=6,N=10.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=6,N=10.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=6,N=10.pdf used on input line 475.
+cdf/Plots/singlePlots/Problem=6,N=10.pdf used on input line 511.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 475--475
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=6,N=30.pdf, id=546, 722.7pt x 722.7pt>
+oblem=6,N=30.pdf, id=579, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=6,N=30.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=6,N=30.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=6,N=30.pdf used on input line 475.
+cdf/Plots/singlePlots/Problem=6,N=30.pdf used on input line 511.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 475--475
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=6,N=50.pdf, id=547, 722.7pt x 722.7pt>
+oblem=6,N=50.pdf, id=580, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=6,N=50.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=6,N=50.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=6,N=50.pdf used on input line 475.
+cdf/Plots/singlePlots/Problem=6,N=50.pdf used on input line 511.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 475--475
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=6,N=100.pdf, id=548, 722.7pt x 722.7pt>
+oblem=6,N=100.pdf, id=581, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=6,N=100.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=6,N=100.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=6,N=100.pdf used on input line 475.
+cdf/Plots/singlePlots/Problem=6,N=100.pdf used on input line 511.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 475--475
- [][] 
+Overfull \vbox (19.60939pt too high) detected at line 511
  []
 
-
-Overfull \vbox (20.60939pt too high) detected at line 475
- []
-
-[13
+[14
 
  <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/P
 roblem=6,N=10.pdf> <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/P
@@ -1795,73 +1677,53 @@ lots/singlePlots/Problem=6,N=30.pdf> <C:/Users/JS/Desktop/Doktorat/EvolutionAlg
 orithms/IEEEecdf/Plots/singlePlots/Problem=6,N=50.pdf> <C:/Users/JS/Desktop/Dok
 torat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=6,N=100.pdf>]
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=7,N=10.pdf, id=603, 722.7pt x 722.7pt>
+oblem=7,N=10.pdf, id=635, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=7,N=10.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=7,N=10.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=7,N=10.pdf used on input line 530.
+cdf/Plots/singlePlots/Problem=7,N=10.pdf used on input line 570.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 530--530
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=7,N=30.pdf, id=604, 722.7pt x 722.7pt>
+oblem=7,N=30.pdf, id=636, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=7,N=30.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=7,N=30.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=7,N=30.pdf used on input line 530.
+cdf/Plots/singlePlots/Problem=7,N=30.pdf used on input line 570.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 530--530
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=7,N=50.pdf, id=605, 722.7pt x 722.7pt>
+oblem=7,N=50.pdf, id=637, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=7,N=50.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=7,N=50.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=7,N=50.pdf used on input line 530.
+cdf/Plots/singlePlots/Problem=7,N=50.pdf used on input line 570.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 530--530
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=7,N=100.pdf, id=606, 722.7pt x 722.7pt>
+oblem=7,N=100.pdf, id=638, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=7,N=100.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=7,N=100.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=7,N=100.pdf used on input line 530.
+cdf/Plots/singlePlots/Problem=7,N=100.pdf used on input line 570.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 530--530
- [][] 
+Overfull \vbox (19.60939pt too high) detected at line 570
  []
 
-
-Overfull \vbox (20.60939pt too high) detected at line 530
- []
-
-[14
+[15
 
  <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/P
 roblem=7,N=10.pdf> <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/P
@@ -1869,73 +1731,53 @@ lots/singlePlots/Problem=7,N=30.pdf> <C:/Users/JS/Desktop/Doktorat/EvolutionAlg
 orithms/IEEEecdf/Plots/singlePlots/Problem=7,N=50.pdf> <C:/Users/JS/Desktop/Dok
 torat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=7,N=100.pdf>]
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=8,N=10.pdf, id=660, 722.7pt x 722.7pt>
+oblem=8,N=10.pdf, id=692, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=8,N=10.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=8,N=10.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=8,N=10.pdf used on input line 586.
+cdf/Plots/singlePlots/Problem=8,N=10.pdf used on input line 630.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 586--586
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=8,N=30.pdf, id=661, 722.7pt x 722.7pt>
+oblem=8,N=30.pdf, id=693, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=8,N=30.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=8,N=30.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=8,N=30.pdf used on input line 586.
+cdf/Plots/singlePlots/Problem=8,N=30.pdf used on input line 630.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 586--586
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=8,N=50.pdf, id=662, 722.7pt x 722.7pt>
+oblem=8,N=50.pdf, id=694, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=8,N=50.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=8,N=50.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=8,N=50.pdf used on input line 586.
+cdf/Plots/singlePlots/Problem=8,N=50.pdf used on input line 630.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 586--586
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=8,N=100.pdf, id=663, 722.7pt x 722.7pt>
+oblem=8,N=100.pdf, id=695, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=8,N=100.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=8,N=100.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=8,N=100.pdf used on input line 586.
+cdf/Plots/singlePlots/Problem=8,N=100.pdf used on input line 630.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 586--586
- [][] 
+Overfull \vbox (19.60939pt too high) detected at line 630
  []
 
-
-Overfull \vbox (20.60939pt too high) detected at line 586
- []
-
-[15
+[16
 
  <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/P
 roblem=8,N=10.pdf> <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/P
@@ -1943,73 +1785,53 @@ lots/singlePlots/Problem=8,N=30.pdf> <C:/Users/JS/Desktop/Doktorat/EvolutionAlg
 orithms/IEEEecdf/Plots/singlePlots/Problem=8,N=50.pdf> <C:/Users/JS/Desktop/Dok
 torat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=8,N=100.pdf>]
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=9,N=10.pdf, id=717, 722.7pt x 722.7pt>
+oblem=9,N=10.pdf, id=749, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=9,N=10.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=9,N=10.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=9,N=10.pdf used on input line 641.
+cdf/Plots/singlePlots/Problem=9,N=10.pdf used on input line 689.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 641--641
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=9,N=30.pdf, id=718, 722.7pt x 722.7pt>
+oblem=9,N=30.pdf, id=750, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=9,N=30.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=9,N=30.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=9,N=30.pdf used on input line 641.
+cdf/Plots/singlePlots/Problem=9,N=30.pdf used on input line 689.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 641--641
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=9,N=50.pdf, id=719, 722.7pt x 722.7pt>
+oblem=9,N=50.pdf, id=751, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=9,N=50.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=9,N=50.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=9,N=50.pdf used on input line 641.
+cdf/Plots/singlePlots/Problem=9,N=50.pdf used on input line 689.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 641--641
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=9,N=100.pdf, id=720, 722.7pt x 722.7pt>
+oblem=9,N=100.pdf, id=752, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=9,N=100.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=9,N=100.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=9,N=100.pdf used on input line 641.
+cdf/Plots/singlePlots/Problem=9,N=100.pdf used on input line 689.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 641--641
- [][] 
+Overfull \vbox (19.60939pt too high) detected at line 689
  []
 
-
-Overfull \vbox (20.60939pt too high) detected at line 641
- []
-
-[16
+[17
 
  <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/P
 roblem=9,N=10.pdf> <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/P
@@ -2017,73 +1839,53 @@ lots/singlePlots/Problem=9,N=30.pdf> <C:/Users/JS/Desktop/Doktorat/EvolutionAlg
 orithms/IEEEecdf/Plots/singlePlots/Problem=9,N=50.pdf> <C:/Users/JS/Desktop/Dok
 torat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=9,N=100.pdf>]
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=10,N=10.pdf, id=774, 722.7pt x 722.7pt>
+oblem=10,N=10.pdf, id=806, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=10,N=10.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=10,N=10.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=10,N=10.pdf used on input line 697.
+cdf/Plots/singlePlots/Problem=10,N=10.pdf used on input line 749.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 697--697
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=10,N=30.pdf, id=775, 722.7pt x 722.7pt>
+oblem=10,N=30.pdf, id=807, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=10,N=30.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=10,N=30.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=10,N=30.pdf used on input line 697.
+cdf/Plots/singlePlots/Problem=10,N=30.pdf used on input line 749.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 697--697
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=10,N=50.pdf, id=776, 722.7pt x 722.7pt>
+oblem=10,N=50.pdf, id=808, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=10,N=50.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=10,N=50.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=10,N=50.pdf used on input line 697.
+cdf/Plots/singlePlots/Problem=10,N=50.pdf used on input line 749.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 697--697
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=10,N=100.pdf, id=777, 722.7pt x 722.7pt>
+oblem=10,N=100.pdf, id=809, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=10,N=100.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=10,N=100.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=10,N=100.pdf used on input line 697.
+cdf/Plots/singlePlots/Problem=10,N=100.pdf used on input line 749.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 697--697
- [][] 
+Overfull \vbox (19.60939pt too high) detected at line 749
  []
 
-
-Overfull \vbox (20.60939pt too high) detected at line 697
- []
-
-[17
+[18
 
  <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/P
 roblem=10,N=10.pdf> <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/
@@ -2091,73 +1893,53 @@ Plots/singlePlots/Problem=10,N=30.pdf> <C:/Users/JS/Desktop/Doktorat/EvolutionA
 lgorithms/IEEEecdf/Plots/singlePlots/Problem=10,N=50.pdf> <C:/Users/JS/Desktop/
 Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=10,N=100.pdf>]
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=11,N=10.pdf, id=831, 722.7pt x 722.7pt>
+oblem=11,N=10.pdf, id=863, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=11,N=10.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=11,N=10.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=11,N=10.pdf used on input line 752.
+cdf/Plots/singlePlots/Problem=11,N=10.pdf used on input line 808.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 752--752
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=11,N=30.pdf, id=832, 722.7pt x 722.7pt>
+oblem=11,N=30.pdf, id=864, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=11,N=30.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=11,N=30.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=11,N=30.pdf used on input line 752.
+cdf/Plots/singlePlots/Problem=11,N=30.pdf used on input line 808.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 752--752
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=11,N=50.pdf, id=833, 722.7pt x 722.7pt>
+oblem=11,N=50.pdf, id=865, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=11,N=50.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=11,N=50.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=11,N=50.pdf used on input line 752.
+cdf/Plots/singlePlots/Problem=11,N=50.pdf used on input line 808.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 752--752
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=11,N=100.pdf, id=834, 722.7pt x 722.7pt>
+oblem=11,N=100.pdf, id=866, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=11,N=100.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=11,N=100.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=11,N=100.pdf used on input line 752.
+cdf/Plots/singlePlots/Problem=11,N=100.pdf used on input line 808.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 752--752
- [][] 
+Overfull \vbox (19.60939pt too high) detected at line 808
  []
 
-
-Overfull \vbox (20.60939pt too high) detected at line 752
- []
-
-[18
+[19
 
  <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/P
 roblem=11,N=10.pdf> <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/
@@ -2165,73 +1947,53 @@ Plots/singlePlots/Problem=11,N=30.pdf> <C:/Users/JS/Desktop/Doktorat/EvolutionA
 lgorithms/IEEEecdf/Plots/singlePlots/Problem=11,N=50.pdf> <C:/Users/JS/Desktop/
 Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=11,N=100.pdf>]
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=12,N=10.pdf, id=888, 722.7pt x 722.7pt>
+oblem=12,N=10.pdf, id=921, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=12,N=10.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=12,N=10.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=12,N=10.pdf used on input line 806.
+cdf/Plots/singlePlots/Problem=12,N=10.pdf used on input line 866.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 806--806
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=12,N=30.pdf, id=889, 722.7pt x 722.7pt>
+oblem=12,N=30.pdf, id=922, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=12,N=30.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=12,N=30.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=12,N=30.pdf used on input line 806.
+cdf/Plots/singlePlots/Problem=12,N=30.pdf used on input line 866.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 806--806
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=12,N=50.pdf, id=890, 722.7pt x 722.7pt>
+oblem=12,N=50.pdf, id=923, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=12,N=50.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=12,N=50.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=12,N=50.pdf used on input line 806.
+cdf/Plots/singlePlots/Problem=12,N=50.pdf used on input line 866.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 806--806
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=12,N=100.pdf, id=891, 722.7pt x 722.7pt>
+oblem=12,N=100.pdf, id=924, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=12,N=100.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=12,N=100.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=12,N=100.pdf used on input line 806.
+cdf/Plots/singlePlots/Problem=12,N=100.pdf used on input line 866.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 806--806
- [][] 
+Overfull \vbox (19.60939pt too high) detected at line 866
  []
 
-
-Overfull \vbox (20.60939pt too high) detected at line 806
- []
-
-[19
+[20
 
  <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/P
 roblem=12,N=10.pdf> <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/
@@ -2239,73 +2001,53 @@ Plots/singlePlots/Problem=12,N=30.pdf> <C:/Users/JS/Desktop/Doktorat/EvolutionA
 lgorithms/IEEEecdf/Plots/singlePlots/Problem=12,N=50.pdf> <C:/Users/JS/Desktop/
 Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=12,N=100.pdf>]
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=13,N=10.pdf, id=946, 722.7pt x 722.7pt>
+oblem=13,N=10.pdf, id=978, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=13,N=10.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=13,N=10.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=13,N=10.pdf used on input line 861.
+cdf/Plots/singlePlots/Problem=13,N=10.pdf used on input line 925.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 861--861
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=13,N=30.pdf, id=947, 722.7pt x 722.7pt>
+oblem=13,N=30.pdf, id=979, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=13,N=30.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=13,N=30.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=13,N=30.pdf used on input line 861.
+cdf/Plots/singlePlots/Problem=13,N=30.pdf used on input line 925.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 861--861
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=13,N=50.pdf, id=948, 722.7pt x 722.7pt>
+oblem=13,N=50.pdf, id=980, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=13,N=50.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=13,N=50.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=13,N=50.pdf used on input line 861.
+cdf/Plots/singlePlots/Problem=13,N=50.pdf used on input line 925.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 861--861
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=13,N=100.pdf, id=949, 722.7pt x 722.7pt>
+oblem=13,N=100.pdf, id=981, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=13,N=100.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=13,N=100.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=13,N=100.pdf used on input line 861.
+cdf/Plots/singlePlots/Problem=13,N=100.pdf used on input line 925.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 861--861
- [][] 
+Overfull \vbox (19.60939pt too high) detected at line 925
  []
 
-
-Overfull \vbox (20.60939pt too high) detected at line 861
- []
-
-[20
+[21
 
  <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/P
 roblem=13,N=10.pdf> <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/
@@ -2313,73 +2055,53 @@ Plots/singlePlots/Problem=13,N=30.pdf> <C:/Users/JS/Desktop/Doktorat/EvolutionA
 lgorithms/IEEEecdf/Plots/singlePlots/Problem=13,N=50.pdf> <C:/Users/JS/Desktop/
 Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=13,N=100.pdf>]
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=14,N=10.pdf, id=1003, 722.7pt x 722.7pt>
+oblem=14,N=10.pdf, id=1035, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=14,N=10.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=14,N=10.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=14,N=10.pdf used on input line 916.
+cdf/Plots/singlePlots/Problem=14,N=10.pdf used on input line 984.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 916--916
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=14,N=30.pdf, id=1004, 722.7pt x 722.7pt>
+oblem=14,N=30.pdf, id=1036, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=14,N=30.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=14,N=30.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=14,N=30.pdf used on input line 916.
+cdf/Plots/singlePlots/Problem=14,N=30.pdf used on input line 984.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 916--916
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=14,N=50.pdf, id=1005, 722.7pt x 722.7pt>
+oblem=14,N=50.pdf, id=1037, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=14,N=50.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=14,N=50.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=14,N=50.pdf used on input line 916.
+cdf/Plots/singlePlots/Problem=14,N=50.pdf used on input line 984.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 916--916
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=14,N=100.pdf, id=1006, 722.7pt x 722.7pt>
+oblem=14,N=100.pdf, id=1038, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=14,N=100.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=14,N=100.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=14,N=100.pdf used on input line 916.
+cdf/Plots/singlePlots/Problem=14,N=100.pdf used on input line 984.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 916--916
- [][] 
+Overfull \vbox (19.60939pt too high) detected at line 984
  []
 
-
-Overfull \vbox (20.60939pt too high) detected at line 916
- []
-
-[21
+[22
 
  <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/P
 roblem=14,N=10.pdf> <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/
@@ -2387,73 +2109,53 @@ Plots/singlePlots/Problem=14,N=30.pdf> <C:/Users/JS/Desktop/Doktorat/EvolutionA
 lgorithms/IEEEecdf/Plots/singlePlots/Problem=14,N=50.pdf> <C:/Users/JS/Desktop/
 Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=14,N=100.pdf>]
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=15,N=10.pdf, id=1060, 722.7pt x 722.7pt>
+oblem=15,N=10.pdf, id=1092, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=15,N=10.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=15,N=10.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=15,N=10.pdf used on input line 971.
+cdf/Plots/singlePlots/Problem=15,N=10.pdf used on input line 1043.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 971--971
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=15,N=30.pdf, id=1061, 722.7pt x 722.7pt>
+oblem=15,N=30.pdf, id=1093, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=15,N=30.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=15,N=30.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=15,N=30.pdf used on input line 971.
+cdf/Plots/singlePlots/Problem=15,N=30.pdf used on input line 1043.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 971--971
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=15,N=50.pdf, id=1062, 722.7pt x 722.7pt>
+oblem=15,N=50.pdf, id=1094, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=15,N=50.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=15,N=50.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=15,N=50.pdf used on input line 971.
+cdf/Plots/singlePlots/Problem=15,N=50.pdf used on input line 1043.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 971--971
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=15,N=100.pdf, id=1063, 722.7pt x 722.7pt>
+oblem=15,N=100.pdf, id=1095, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=15,N=100.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=15,N=100.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=15,N=100.pdf used on input line 971.
+cdf/Plots/singlePlots/Problem=15,N=100.pdf used on input line 1043.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 971--971
- [][] 
+Overfull \vbox (19.60939pt too high) detected at line 1043
  []
 
-
-Overfull \vbox (20.60939pt too high) detected at line 971
- []
-
-[22
+[23
 
  <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/P
 roblem=15,N=10.pdf> <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/
@@ -2461,73 +2163,53 @@ Plots/singlePlots/Problem=15,N=30.pdf> <C:/Users/JS/Desktop/Doktorat/EvolutionA
 lgorithms/IEEEecdf/Plots/singlePlots/Problem=15,N=50.pdf> <C:/Users/JS/Desktop/
 Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=15,N=100.pdf>]
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=16,N=10.pdf, id=1117, 722.7pt x 722.7pt>
+oblem=16,N=10.pdf, id=1149, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=16,N=10.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=16,N=10.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=16,N=10.pdf used on input line 1026.
+cdf/Plots/singlePlots/Problem=16,N=10.pdf used on input line 1102.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 1026--1026
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=16,N=30.pdf, id=1118, 722.7pt x 722.7pt>
+oblem=16,N=30.pdf, id=1150, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=16,N=30.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=16,N=30.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=16,N=30.pdf used on input line 1026.
+cdf/Plots/singlePlots/Problem=16,N=30.pdf used on input line 1102.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 1026--1026
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=16,N=50.pdf, id=1119, 722.7pt x 722.7pt>
+oblem=16,N=50.pdf, id=1151, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=16,N=50.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=16,N=50.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=16,N=50.pdf used on input line 1026.
+cdf/Plots/singlePlots/Problem=16,N=50.pdf used on input line 1102.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 1026--1026
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=16,N=100.pdf, id=1120, 722.7pt x 722.7pt>
+oblem=16,N=100.pdf, id=1152, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=16,N=100.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=16,N=100.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=16,N=100.pdf used on input line 1026.
+cdf/Plots/singlePlots/Problem=16,N=100.pdf used on input line 1102.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 1026--1026
- [][] 
+Overfull \vbox (19.60939pt too high) detected at line 1102
  []
 
-
-Overfull \vbox (20.60939pt too high) detected at line 1026
- []
-
-[23
+[24
 
  <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/P
 roblem=16,N=10.pdf> <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/
@@ -2535,73 +2217,53 @@ Plots/singlePlots/Problem=16,N=30.pdf> <C:/Users/JS/Desktop/Doktorat/EvolutionA
 lgorithms/IEEEecdf/Plots/singlePlots/Problem=16,N=50.pdf> <C:/Users/JS/Desktop/
 Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=16,N=100.pdf>]
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=17,N=10.pdf, id=1174, 722.7pt x 722.7pt>
+oblem=17,N=10.pdf, id=1206, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=17,N=10.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=17,N=10.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=17,N=10.pdf used on input line 1081.
+cdf/Plots/singlePlots/Problem=17,N=10.pdf used on input line 1161.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 1081--1081
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=17,N=30.pdf, id=1175, 722.7pt x 722.7pt>
+oblem=17,N=30.pdf, id=1207, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=17,N=30.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=17,N=30.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=17,N=30.pdf used on input line 1081.
+cdf/Plots/singlePlots/Problem=17,N=30.pdf used on input line 1161.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 1081--1081
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=17,N=50.pdf, id=1176, 722.7pt x 722.7pt>
+oblem=17,N=50.pdf, id=1208, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=17,N=50.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=17,N=50.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=17,N=50.pdf used on input line 1081.
+cdf/Plots/singlePlots/Problem=17,N=50.pdf used on input line 1161.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 1081--1081
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=17,N=100.pdf, id=1177, 722.7pt x 722.7pt>
+oblem=17,N=100.pdf, id=1209, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=17,N=100.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=17,N=100.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=17,N=100.pdf used on input line 1081.
+cdf/Plots/singlePlots/Problem=17,N=100.pdf used on input line 1161.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 1081--1081
- [][] 
+Overfull \vbox (19.60939pt too high) detected at line 1161
  []
 
-
-Overfull \vbox (20.60939pt too high) detected at line 1081
- []
-
-[24
+[25
 
  <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/P
 roblem=17,N=10.pdf> <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/
@@ -2609,73 +2271,53 @@ Plots/singlePlots/Problem=17,N=30.pdf> <C:/Users/JS/Desktop/Doktorat/EvolutionA
 lgorithms/IEEEecdf/Plots/singlePlots/Problem=17,N=50.pdf> <C:/Users/JS/Desktop/
 Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=17,N=100.pdf>]
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=18,N=10.pdf, id=1231, 722.7pt x 722.7pt>
+oblem=18,N=10.pdf, id=1264, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=18,N=10.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=18,N=10.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=18,N=10.pdf used on input line 1136.
+cdf/Plots/singlePlots/Problem=18,N=10.pdf used on input line 1220.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 1136--1136
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=18,N=30.pdf, id=1232, 722.7pt x 722.7pt>
+oblem=18,N=30.pdf, id=1265, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=18,N=30.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=18,N=30.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=18,N=30.pdf used on input line 1136.
+cdf/Plots/singlePlots/Problem=18,N=30.pdf used on input line 1220.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 1136--1136
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=18,N=50.pdf, id=1233, 722.7pt x 722.7pt>
+oblem=18,N=50.pdf, id=1266, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=18,N=50.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=18,N=50.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=18,N=50.pdf used on input line 1136.
+cdf/Plots/singlePlots/Problem=18,N=50.pdf used on input line 1220.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 1136--1136
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=18,N=100.pdf, id=1234, 722.7pt x 722.7pt>
+oblem=18,N=100.pdf, id=1267, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=18,N=100.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=18,N=100.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=18,N=100.pdf used on input line 1136.
+cdf/Plots/singlePlots/Problem=18,N=100.pdf used on input line 1220.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 1136--1136
- [][] 
+Overfull \vbox (19.60939pt too high) detected at line 1220
  []
 
-
-Overfull \vbox (20.60939pt too high) detected at line 1136
- []
-
-[25
+[26
 
  <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/P
 roblem=18,N=10.pdf> <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/
@@ -2683,73 +2325,53 @@ Plots/singlePlots/Problem=18,N=30.pdf> <C:/Users/JS/Desktop/Doktorat/EvolutionA
 lgorithms/IEEEecdf/Plots/singlePlots/Problem=18,N=50.pdf> <C:/Users/JS/Desktop/
 Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=18,N=100.pdf>]
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=19,N=10.pdf, id=1289, 722.7pt x 722.7pt>
+oblem=19,N=10.pdf, id=1321, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=19,N=10.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=19,N=10.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=19,N=10.pdf used on input line 1190.
+cdf/Plots/singlePlots/Problem=19,N=10.pdf used on input line 1278.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 1190--1190
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=19,N=30.pdf, id=1290, 722.7pt x 722.7pt>
+oblem=19,N=30.pdf, id=1322, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=19,N=30.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=19,N=30.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=19,N=30.pdf used on input line 1190.
+cdf/Plots/singlePlots/Problem=19,N=30.pdf used on input line 1278.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 1190--1190
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=19,N=50.pdf, id=1291, 722.7pt x 722.7pt>
+oblem=19,N=50.pdf, id=1323, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=19,N=50.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=19,N=50.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=19,N=50.pdf used on input line 1190.
+cdf/Plots/singlePlots/Problem=19,N=50.pdf used on input line 1278.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 1190--1190
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=19,N=100.pdf, id=1292, 722.7pt x 722.7pt>
+oblem=19,N=100.pdf, id=1324, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=19,N=100.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=19,N=100.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=19,N=100.pdf used on input line 1190.
+cdf/Plots/singlePlots/Problem=19,N=100.pdf used on input line 1278.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 1190--1190
- [][] 
+Overfull \vbox (19.60939pt too high) detected at line 1278
  []
 
-
-Overfull \vbox (20.60939pt too high) detected at line 1190
- []
-
-[26
+[27
 
  <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/P
 roblem=19,N=10.pdf> <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/
@@ -2757,73 +2379,53 @@ Plots/singlePlots/Problem=19,N=30.pdf> <C:/Users/JS/Desktop/Doktorat/EvolutionA
 lgorithms/IEEEecdf/Plots/singlePlots/Problem=19,N=50.pdf> <C:/Users/JS/Desktop/
 Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=19,N=100.pdf>]
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=20,N=10.pdf, id=1346, 722.7pt x 722.7pt>
+oblem=20,N=10.pdf, id=1378, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=20,N=10.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=20,N=10.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=20,N=10.pdf used on input line 1245.
+cdf/Plots/singlePlots/Problem=20,N=10.pdf used on input line 1337.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 1245--1245
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=20,N=30.pdf, id=1347, 722.7pt x 722.7pt>
+oblem=20,N=30.pdf, id=1379, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=20,N=30.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=20,N=30.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=20,N=30.pdf used on input line 1245.
+cdf/Plots/singlePlots/Problem=20,N=30.pdf used on input line 1337.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 1245--1245
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=20,N=50.pdf, id=1348, 722.7pt x 722.7pt>
+oblem=20,N=50.pdf, id=1380, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=20,N=50.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=20,N=50.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=20,N=50.pdf used on input line 1245.
+cdf/Plots/singlePlots/Problem=20,N=50.pdf used on input line 1337.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 1245--1245
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=20,N=100.pdf, id=1349, 722.7pt x 722.7pt>
+oblem=20,N=100.pdf, id=1381, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=20,N=100.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=20,N=100.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=20,N=100.pdf used on input line 1245.
+cdf/Plots/singlePlots/Problem=20,N=100.pdf used on input line 1337.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 1245--1245
- [][] 
+Overfull \vbox (19.60939pt too high) detected at line 1337
  []
 
-
-Overfull \vbox (20.60939pt too high) detected at line 1245
- []
-
-[27
+[28
 
  <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/P
 roblem=20,N=10.pdf> <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/
@@ -2831,73 +2433,53 @@ Plots/singlePlots/Problem=20,N=30.pdf> <C:/Users/JS/Desktop/Doktorat/EvolutionA
 lgorithms/IEEEecdf/Plots/singlePlots/Problem=20,N=50.pdf> <C:/Users/JS/Desktop/
 Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=20,N=100.pdf>]
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=21,N=10.pdf, id=1403, 722.7pt x 722.7pt>
+oblem=21,N=10.pdf, id=1435, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=21,N=10.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=21,N=10.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=21,N=10.pdf used on input line 1300.
+cdf/Plots/singlePlots/Problem=21,N=10.pdf used on input line 1396.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 1300--1300
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=21,N=30.pdf, id=1404, 722.7pt x 722.7pt>
+oblem=21,N=30.pdf, id=1436, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=21,N=30.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=21,N=30.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=21,N=30.pdf used on input line 1300.
+cdf/Plots/singlePlots/Problem=21,N=30.pdf used on input line 1396.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 1300--1300
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=21,N=50.pdf, id=1405, 722.7pt x 722.7pt>
+oblem=21,N=50.pdf, id=1437, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=21,N=50.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=21,N=50.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=21,N=50.pdf used on input line 1300.
+cdf/Plots/singlePlots/Problem=21,N=50.pdf used on input line 1396.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 1300--1300
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=21,N=100.pdf, id=1406, 722.7pt x 722.7pt>
+oblem=21,N=100.pdf, id=1438, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=21,N=100.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=21,N=100.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=21,N=100.pdf used on input line 1300.
+cdf/Plots/singlePlots/Problem=21,N=100.pdf used on input line 1396.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 1300--1300
- [][] 
+Overfull \vbox (19.60939pt too high) detected at line 1396
  []
 
-
-Overfull \vbox (20.60939pt too high) detected at line 1300
- []
-
-[28
+[29
 
  <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/P
 roblem=21,N=10.pdf> <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/
@@ -2905,73 +2487,53 @@ Plots/singlePlots/Problem=21,N=30.pdf> <C:/Users/JS/Desktop/Doktorat/EvolutionA
 lgorithms/IEEEecdf/Plots/singlePlots/Problem=21,N=50.pdf> <C:/Users/JS/Desktop/
 Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=21,N=100.pdf>]
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=22,N=10.pdf, id=1460, 722.7pt x 722.7pt>
+oblem=22,N=10.pdf, id=1492, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=22,N=10.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=22,N=10.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=22,N=10.pdf used on input line 1355.
+cdf/Plots/singlePlots/Problem=22,N=10.pdf used on input line 1455.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 1355--1355
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=22,N=30.pdf, id=1461, 722.7pt x 722.7pt>
+oblem=22,N=30.pdf, id=1493, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=22,N=30.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=22,N=30.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=22,N=30.pdf used on input line 1355.
+cdf/Plots/singlePlots/Problem=22,N=30.pdf used on input line 1455.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 1355--1355
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=22,N=50.pdf, id=1462, 722.7pt x 722.7pt>
+oblem=22,N=50.pdf, id=1494, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=22,N=50.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=22,N=50.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=22,N=50.pdf used on input line 1355.
+cdf/Plots/singlePlots/Problem=22,N=50.pdf used on input line 1455.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 1355--1355
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=22,N=100.pdf, id=1463, 722.7pt x 722.7pt>
+oblem=22,N=100.pdf, id=1495, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=22,N=100.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=22,N=100.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=22,N=100.pdf used on input line 1355.
+cdf/Plots/singlePlots/Problem=22,N=100.pdf used on input line 1455.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 1355--1355
- [][] 
+Overfull \vbox (19.60939pt too high) detected at line 1455
  []
 
-
-Overfull \vbox (20.60939pt too high) detected at line 1355
- []
-
-[29
+[30
 
  <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/P
 roblem=22,N=10.pdf> <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/
@@ -2979,73 +2541,53 @@ Plots/singlePlots/Problem=22,N=30.pdf> <C:/Users/JS/Desktop/Doktorat/EvolutionA
 lgorithms/IEEEecdf/Plots/singlePlots/Problem=22,N=50.pdf> <C:/Users/JS/Desktop/
 Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=22,N=100.pdf>]
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=23,N=10.pdf, id=1517, 722.7pt x 722.7pt>
+oblem=23,N=10.pdf, id=1549, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=23,N=10.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=23,N=10.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=23,N=10.pdf used on input line 1410.
+cdf/Plots/singlePlots/Problem=23,N=10.pdf used on input line 1514.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 1410--1410
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=23,N=30.pdf, id=1518, 722.7pt x 722.7pt>
+oblem=23,N=30.pdf, id=1550, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=23,N=30.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=23,N=30.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=23,N=30.pdf used on input line 1410.
+cdf/Plots/singlePlots/Problem=23,N=30.pdf used on input line 1514.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 1410--1410
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=23,N=50.pdf, id=1519, 722.7pt x 722.7pt>
+oblem=23,N=50.pdf, id=1551, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=23,N=50.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=23,N=50.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=23,N=50.pdf used on input line 1410.
+cdf/Plots/singlePlots/Problem=23,N=50.pdf used on input line 1514.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 1410--1410
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=23,N=100.pdf, id=1520, 722.7pt x 722.7pt>
+oblem=23,N=100.pdf, id=1552, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=23,N=100.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=23,N=100.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=23,N=100.pdf used on input line 1410.
+cdf/Plots/singlePlots/Problem=23,N=100.pdf used on input line 1514.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 1410--1410
- [][] 
+Overfull \vbox (19.60939pt too high) detected at line 1514
  []
 
-
-Overfull \vbox (20.60939pt too high) detected at line 1410
- []
-
-[30
+[31
 
  <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/P
 roblem=23,N=10.pdf> <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/
@@ -3053,73 +2595,53 @@ Plots/singlePlots/Problem=23,N=30.pdf> <C:/Users/JS/Desktop/Doktorat/EvolutionA
 lgorithms/IEEEecdf/Plots/singlePlots/Problem=23,N=50.pdf> <C:/Users/JS/Desktop/
 Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=23,N=100.pdf>]
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=24,N=10.pdf, id=1574, 722.7pt x 722.7pt>
+oblem=24,N=10.pdf, id=1607, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=24,N=10.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=24,N=10.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=24,N=10.pdf used on input line 1466.
+cdf/Plots/singlePlots/Problem=24,N=10.pdf used on input line 1574.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 1466--1466
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=24,N=30.pdf, id=1575, 722.7pt x 722.7pt>
+oblem=24,N=30.pdf, id=1608, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=24,N=30.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=24,N=30.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=24,N=30.pdf used on input line 1466.
+cdf/Plots/singlePlots/Problem=24,N=30.pdf used on input line 1574.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 1466--1466
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=24,N=50.pdf, id=1576, 722.7pt x 722.7pt>
+oblem=24,N=50.pdf, id=1609, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=24,N=50.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=24,N=50.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=24,N=50.pdf used on input line 1466.
+cdf/Plots/singlePlots/Problem=24,N=50.pdf used on input line 1574.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 1466--1466
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=24,N=100.pdf, id=1577, 722.7pt x 722.7pt>
+oblem=24,N=100.pdf, id=1610, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=24,N=100.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=24,N=100.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=24,N=100.pdf used on input line 1466.
+cdf/Plots/singlePlots/Problem=24,N=100.pdf used on input line 1574.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 1466--1466
- [][] 
+Overfull \vbox (19.60939pt too high) detected at line 1574
  []
 
-
-Overfull \vbox (20.60939pt too high) detected at line 1466
- []
-
-[31
+[32
 
  <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/P
 roblem=24,N=10.pdf> <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/
@@ -3127,73 +2649,53 @@ Plots/singlePlots/Problem=24,N=30.pdf> <C:/Users/JS/Desktop/Doktorat/EvolutionA
 lgorithms/IEEEecdf/Plots/singlePlots/Problem=24,N=50.pdf> <C:/Users/JS/Desktop/
 Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=24,N=100.pdf>]
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=25,N=10.pdf, id=1632, 722.7pt x 722.7pt>
+oblem=25,N=10.pdf, id=1664, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=25,N=10.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=25,N=10.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=25,N=10.pdf used on input line 1521.
+cdf/Plots/singlePlots/Problem=25,N=10.pdf used on input line 1633.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 1521--1521
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=25,N=30.pdf, id=1633, 722.7pt x 722.7pt>
+oblem=25,N=30.pdf, id=1665, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=25,N=30.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=25,N=30.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=25,N=30.pdf used on input line 1521.
+cdf/Plots/singlePlots/Problem=25,N=30.pdf used on input line 1633.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 1521--1521
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=25,N=50.pdf, id=1634, 722.7pt x 722.7pt>
+oblem=25,N=50.pdf, id=1666, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=25,N=50.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=25,N=50.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=25,N=50.pdf used on input line 1521.
+cdf/Plots/singlePlots/Problem=25,N=50.pdf used on input line 1633.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 1521--1521
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=25,N=100.pdf, id=1635, 722.7pt x 722.7pt>
+oblem=25,N=100.pdf, id=1667, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=25,N=100.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=25,N=100.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=25,N=100.pdf used on input line 1521.
+cdf/Plots/singlePlots/Problem=25,N=100.pdf used on input line 1633.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 1521--1521
- [][] 
+Overfull \vbox (19.60939pt too high) detected at line 1633
  []
 
-
-Overfull \vbox (20.60939pt too high) detected at line 1521
- []
-
-[32
+[33
 
  <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/P
 roblem=25,N=10.pdf> <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/
@@ -3201,73 +2703,53 @@ Plots/singlePlots/Problem=25,N=30.pdf> <C:/Users/JS/Desktop/Doktorat/EvolutionA
 lgorithms/IEEEecdf/Plots/singlePlots/Problem=25,N=50.pdf> <C:/Users/JS/Desktop/
 Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=25,N=100.pdf>]
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=26,N=10.pdf, id=1689, 722.7pt x 722.7pt>
+oblem=26,N=10.pdf, id=1721, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=26,N=10.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=26,N=10.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=26,N=10.pdf used on input line 1576.
+cdf/Plots/singlePlots/Problem=26,N=10.pdf used on input line 1692.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 1576--1576
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=26,N=30.pdf, id=1690, 722.7pt x 722.7pt>
+oblem=26,N=30.pdf, id=1722, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=26,N=30.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=26,N=30.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=26,N=30.pdf used on input line 1576.
+cdf/Plots/singlePlots/Problem=26,N=30.pdf used on input line 1692.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 1576--1576
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=26,N=50.pdf, id=1691, 722.7pt x 722.7pt>
+oblem=26,N=50.pdf, id=1723, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=26,N=50.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=26,N=50.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=26,N=50.pdf used on input line 1576.
+cdf/Plots/singlePlots/Problem=26,N=50.pdf used on input line 1692.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 1576--1576
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=26,N=100.pdf, id=1692, 722.7pt x 722.7pt>
+oblem=26,N=100.pdf, id=1724, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=26,N=100.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=26,N=100.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=26,N=100.pdf used on input line 1576.
+cdf/Plots/singlePlots/Problem=26,N=100.pdf used on input line 1692.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 1576--1576
- [][] 
+Overfull \vbox (19.60939pt too high) detected at line 1692
  []
 
-
-Overfull \vbox (20.60939pt too high) detected at line 1576
- []
-
-[33
+[34
 
  <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/P
 roblem=26,N=10.pdf> <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/
@@ -3275,73 +2757,53 @@ Plots/singlePlots/Problem=26,N=30.pdf> <C:/Users/JS/Desktop/Doktorat/EvolutionA
 lgorithms/IEEEecdf/Plots/singlePlots/Problem=26,N=50.pdf> <C:/Users/JS/Desktop/
 Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=26,N=100.pdf>]
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=27,N=10.pdf, id=1746, 722.7pt x 722.7pt>
+oblem=27,N=10.pdf, id=1778, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=27,N=10.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=27,N=10.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=27,N=10.pdf used on input line 1631.
+cdf/Plots/singlePlots/Problem=27,N=10.pdf used on input line 1751.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 1631--1631
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=27,N=30.pdf, id=1747, 722.7pt x 722.7pt>
+oblem=27,N=30.pdf, id=1779, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=27,N=30.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=27,N=30.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=27,N=30.pdf used on input line 1631.
+cdf/Plots/singlePlots/Problem=27,N=30.pdf used on input line 1751.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 1631--1631
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=27,N=50.pdf, id=1748, 722.7pt x 722.7pt>
+oblem=27,N=50.pdf, id=1780, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=27,N=50.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=27,N=50.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=27,N=50.pdf used on input line 1631.
+cdf/Plots/singlePlots/Problem=27,N=50.pdf used on input line 1751.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 1631--1631
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=27,N=100.pdf, id=1749, 722.7pt x 722.7pt>
+oblem=27,N=100.pdf, id=1781, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=27,N=100.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=27,N=100.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=27,N=100.pdf used on input line 1631.
+cdf/Plots/singlePlots/Problem=27,N=100.pdf used on input line 1751.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 1631--1631
- [][] 
+Overfull \vbox (19.60939pt too high) detected at line 1751
  []
 
-
-Overfull \vbox (20.60939pt too high) detected at line 1631
- []
-
-[34
+[35
 
  <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/P
 roblem=27,N=10.pdf> <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/
@@ -3349,73 +2811,53 @@ Plots/singlePlots/Problem=27,N=30.pdf> <C:/Users/JS/Desktop/Doktorat/EvolutionA
 lgorithms/IEEEecdf/Plots/singlePlots/Problem=27,N=50.pdf> <C:/Users/JS/Desktop/
 Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=27,N=100.pdf>]
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=28,N=10.pdf, id=1803, 722.7pt x 722.7pt>
+oblem=28,N=10.pdf, id=1835, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=28,N=10.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=28,N=10.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=28,N=10.pdf used on input line 1686.
+cdf/Plots/singlePlots/Problem=28,N=10.pdf used on input line 1810.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 1686--1686
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=28,N=30.pdf, id=1804, 722.7pt x 722.7pt>
+oblem=28,N=30.pdf, id=1836, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=28,N=30.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=28,N=30.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=28,N=30.pdf used on input line 1686.
+cdf/Plots/singlePlots/Problem=28,N=30.pdf used on input line 1810.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 1686--1686
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=28,N=50.pdf, id=1805, 722.7pt x 722.7pt>
+oblem=28,N=50.pdf, id=1837, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=28,N=50.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=28,N=50.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=28,N=50.pdf used on input line 1686.
+cdf/Plots/singlePlots/Problem=28,N=50.pdf used on input line 1810.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 1686--1686
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=28,N=100.pdf, id=1806, 722.7pt x 722.7pt>
+oblem=28,N=100.pdf, id=1838, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=28,N=100.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=28,N=100.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=28,N=100.pdf used on input line 1686.
+cdf/Plots/singlePlots/Problem=28,N=100.pdf used on input line 1810.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 1686--1686
- [][] 
+Overfull \vbox (19.60939pt too high) detected at line 1810
  []
 
-
-Overfull \vbox (20.60939pt too high) detected at line 1686
- []
-
-[35
+[36
 
  <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/P
 roblem=28,N=10.pdf> <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/
@@ -3423,73 +2865,53 @@ Plots/singlePlots/Problem=28,N=30.pdf> <C:/Users/JS/Desktop/Doktorat/EvolutionA
 lgorithms/IEEEecdf/Plots/singlePlots/Problem=28,N=50.pdf> <C:/Users/JS/Desktop/
 Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=28,N=100.pdf>]
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=29,N=10.pdf, id=1860, 722.7pt x 722.7pt>
+oblem=29,N=10.pdf, id=1892, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=29,N=10.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=29,N=10.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=29,N=10.pdf used on input line 1741.
+cdf/Plots/singlePlots/Problem=29,N=10.pdf used on input line 1869.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 1741--1741
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=29,N=30.pdf, id=1861, 722.7pt x 722.7pt>
+oblem=29,N=30.pdf, id=1893, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=29,N=30.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=29,N=30.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=29,N=30.pdf used on input line 1741.
+cdf/Plots/singlePlots/Problem=29,N=30.pdf used on input line 1869.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 1741--1741
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=29,N=50.pdf, id=1862, 722.7pt x 722.7pt>
+oblem=29,N=50.pdf, id=1894, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=29,N=50.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=29,N=50.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=29,N=50.pdf used on input line 1741.
+cdf/Plots/singlePlots/Problem=29,N=50.pdf used on input line 1869.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 1741--1741
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=29,N=100.pdf, id=1863, 722.7pt x 722.7pt>
+oblem=29,N=100.pdf, id=1895, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=29,N=100.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=29,N=100.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=29,N=100.pdf used on input line 1741.
+cdf/Plots/singlePlots/Problem=29,N=100.pdf used on input line 1869.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 1741--1741
- [][] 
+Overfull \vbox (19.60939pt too high) detected at line 1869
  []
 
-
-Overfull \vbox (20.60939pt too high) detected at line 1741
- []
-
-[36
+[37
 
  <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/P
 roblem=29,N=10.pdf> <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/
@@ -3497,73 +2919,53 @@ Plots/singlePlots/Problem=29,N=30.pdf> <C:/Users/JS/Desktop/Doktorat/EvolutionA
 lgorithms/IEEEecdf/Plots/singlePlots/Problem=29,N=50.pdf> <C:/Users/JS/Desktop/
 Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=29,N=100.pdf>]
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=30,N=10.pdf, id=1916, 722.7pt x 722.7pt>
+oblem=30,N=10.pdf, id=1949, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=30,N=10.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=30,N=10.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=30,N=10.pdf used on input line 1795.
+cdf/Plots/singlePlots/Problem=30,N=10.pdf used on input line 1927.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 1795--1795
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=30,N=30.pdf, id=1917, 722.7pt x 722.7pt>
+oblem=30,N=30.pdf, id=1950, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=30,N=30.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=30,N=30.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=30,N=30.pdf used on input line 1795.
+cdf/Plots/singlePlots/Problem=30,N=30.pdf used on input line 1927.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 1795--1795
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=30,N=50.pdf, id=1918, 722.7pt x 722.7pt>
+oblem=30,N=50.pdf, id=1951, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=30,N=50.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=30,N=50.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=30,N=50.pdf used on input line 1795.
+cdf/Plots/singlePlots/Problem=30,N=50.pdf used on input line 1927.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 1795--1795
- [][] 
- []
-
-
 <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Pr
-oblem=30,N=100.pdf, id=1919, 722.7pt x 722.7pt>
+oblem=30,N=100.pdf, id=1952, 722.7pt x 722.7pt>
 File: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlo
 ts/Problem=30,N=100.pdf Graphic file (type pdf)
 
 <use C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlot
 s/Problem=30,N=100.pdf>
 Package pdftex.def Info: C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEe
-cdf/Plots/singlePlots/Problem=30,N=100.pdf used on input line 1795.
+cdf/Plots/singlePlots/Problem=30,N=100.pdf used on input line 1927.
 (pdftex.def)             Requested size: 138.27382pt x 138.2795pt.
 
-Overfull \hbox (2.62889pt too wide) in paragraph at lines 1795--1795
- [][] 
+Overfull \vbox (19.60939pt too high) detected at line 1927
  []
 
-
-Overfull \vbox (20.60939pt too high) detected at line 1795
- []
-
-[37
+[38
 
  <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/P
 roblem=30,N=10.pdf> <C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/
@@ -3579,24 +2981,24 @@ Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=30,N=100.pdf>]
 \tf@snm=\write8
 \openout8 = `CEC2017EcdfPresentation.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1797.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1797.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1929.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1929.
  (CEC2017EcdfPresentation.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 1797.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1797.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 1929.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1929.
 
 Package rerunfilecheck Info: File `CEC2017EcdfPresentation.out' has not changed
 .
-(rerunfilecheck)             Checksum: C258061CE7B6625A09F6BB9626F14D44;482.
+(rerunfilecheck)             Checksum: 8C246E6CCE86A19C284B1F41EA715BD4;545.
  ) 
 Here is how much of TeX's memory you used:
- 19051 strings out of 493323
- 397176 string characters out of 3139076
+ 19083 strings out of 493323
+ 397990 string characters out of 3139076
  420220 words of memory out of 3000000
- 21964 multiletter control sequences out of 15000+200000
+ 21993 multiletter control sequences out of 15000+200000
  35306 words of font info for 40 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 56i,14n,75p,813b,687s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 56i,14n,75p,813b,651s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathex.enc}{C:/Program Fil
 es/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathit.enc}{C:/Program Files/MiKTeX 2.9/fon
 ts/enc/dvips/lm/lm-mathsy.enc}{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/l
@@ -3611,9 +3013,9 @@ type1/public/lm/lmssbx10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm
 Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy10.pfb><C:/Program Files/MiK
 TeX 2.9/fonts/type1/public/lm/lmsy8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type
 1/public/lm/lmtt10.pfb>
-Output written on CEC2017EcdfPresentation.pdf (37 pages, 1617834 bytes).
+Output written on CEC2017EcdfPresentation.pdf (38 pages, 1624653 bytes).
 PDF statistics:
- 2039 PDF objects out of 2073 (max. 8388607)
- 87 named destinations out of 1000 (max. 500000)
- 709 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 2071 PDF objects out of 2073 (max. 8388607)
+ 90 named destinations out of 1000 (max. 500000)
+ 717 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -30,7 +30,7 @@ CEC 2017 Competition of Single Objective Numerical Optimization methods
 } 
 \subsection{Evaluation criteria}
 \begin{frame}
-\frametitle{CEC'2017 Competition conditions at a glance} 
+\frametitle{CEC'2017 Competition conditions} 
 Test functions are minimization problems defined as following:
 \begin{equation*}
   min\ F_P(x),\ x=[x_1,x_2,...,x_D]^D
@@ -43,7 +43,7 @@ Test functions are minimization problems defined as following:
 \newline \textbf{Global Optimum:} $F_P(x^*) =100\cdot P $
 
 \AddToShipoutPictureFG*{
-    \put(-60,5){
+    \put(-60,20){
     \makebox[\paperwidth][r]{Full specification of CEC'2017 competition conditions: \href{http://web.mysites.ntu.edu.sg/epnsugan/PublicSite/Shared\%20Documents/CEC-2017/Bound-Constrained/Definitions\%20of\%20\%20CEC2017\%20benchmark\%20suite\%20final\%20version\%20updated.pdf}{\beamergotobutton{Link}}
 }
  }
@@ -67,6 +67,18 @@ Tuning search method parameters for each problem or dimension is \textcolor{red}
 \textbf{Number of runs}: For each problem and each dimension, 51 independent runs of the method. 
 \newline
 \newline \textbf{Progress reporting}: For each run, record the smallest-so-far error after exceeding (0.01, 0.02, 0.03, 0.05, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0)$\cdot Budget_D$.
+\end{frame}
+
+\begin{frame}
+\subsection{Final results}
+\frametitle{Results of the competition} 
+\begin{itemize}
+  \item 12 competing teams,
+  \item 14 optimization methods,
+  \item detailed results for 13 optimization methods were published in the format required by the organizers: \href{http://web.mysites.ntu.edu.sg/epnsugan/PublicSite/Shared\%20Documents/CEC-2017/Bound-Constrained/Results\%20for\%20all\%20papers.rar}{\beamergotobutton{Link}}
+  \item for details see summary of methods and results: \href{http://web.mysites.ntu.edu.sg/epnsugan/PublicSite/Shared\%20Documents/CEC-2017/Bound-Constrained/CEC\%202017\%20Special\%20Session-\%20CEC\%202017\%20benchmark-V2\%20(2).pdf}{\beamergotobutton{Link}}
+\end{itemize}
+
 \end{frame}
 
 
@@ -160,39 +172,43 @@ The $P_P(b)$ ratio can be considered as \textbf{probability of achieving success
 \captionsetup[subfigure]{labelformat=empty}
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+    	    		\rotatebox[origin=c]{90}{D=10}
       \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     		\includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=1,N=10.pdf} 
-    		\caption{D=10} 
+    		%\caption{D=10}
       	\end{minipage}%
 	}
     \vspace{-12mm}
   \end{subfigure}%% 
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+    	    		\rotatebox[origin=c]{90}{D=30}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=1,N=30.pdf} 
-        \caption{D=30}
+        %\caption{D=30}
     	\end{minipage}%
 	} 
     \vspace{-12mm}
   \end{subfigure} 
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+    	    		\rotatebox[origin=c]{90}{D=50}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=1,N=50.pdf} 
-    	\caption{D=50}
+    	%\caption{D=50}
     	\end{minipage}%
 	}  
   \end{subfigure}%%
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+    	    		\rotatebox[origin=c]{90}{D=100}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=1,N=100.pdf}
-     \caption{D=100} 
+     %\caption{D=100} 
     \end{minipage}%
 	}   
   \end{subfigure} 
@@ -214,39 +230,43 @@ The $P_P(b)$ ratio can be considered as \textbf{probability of achieving success
 \captionsetup[subfigure]{labelformat=empty}
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+        	    		\rotatebox[origin=c]{90}{D=10}
       \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     		\includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=2,N=10.pdf} 
-    		\caption{D=10} 
+    		%\caption{D=10} 
       	\end{minipage}%
 	}
     \vspace{-12mm}
   \end{subfigure}%% 
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+        	    		\rotatebox[origin=c]{90}{D=30}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=2,N=30.pdf} 
-                	\caption{D=30}
+                	%\caption{D=30}
     	\end{minipage}%
 	} 
     \vspace{-12mm}
   \end{subfigure} 
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+        	    		\rotatebox[origin=c]{90}{D=50}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=2,N=50.pdf} 
-    	\caption{D=50}
+    	%\caption{D=50}
     	\end{minipage}%
 	}  
   \end{subfigure}%%
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+        	    		\rotatebox[origin=c]{90}{D=100}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=2,N=100.pdf}
-            \caption{D=100} 
+            %\caption{D=100} 
     \end{minipage}%
 	}   
   \end{subfigure} 
@@ -269,39 +289,43 @@ The $P_P(b)$ ratio can be considered as \textbf{probability of achieving success
 \captionsetup[subfigure]{labelformat=empty}
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+        	    		\rotatebox[origin=c]{90}{D=10}
       \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     		\includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=3,N=10.pdf} 
-    		\caption{D=10} 
+    		%\caption{D=10} 
       	\end{minipage}%
 	}
     \vspace{-12mm}
   \end{subfigure}%% 
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+        	    		\rotatebox[origin=c]{90}{D=30}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=3,N=30.pdf} 
-                	\caption{D=30}
+                	%\caption{D=30}
     	\end{minipage}%
 	} 
     \vspace{-12mm}
   \end{subfigure} 
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+        	    		\rotatebox[origin=c]{90}{D=50}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=3,N=50.pdf} 
-    	\caption{D=50}
+    	%\caption{D=50}
     	\end{minipage}%
 	}  
   \end{subfigure}%%
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+        	    		\rotatebox[origin=c]{90}{D=100}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=3,N=100.pdf}
-            \caption{D=100} 
+            %\caption{D=100} 
     \end{minipage}%
 	}   
   \end{subfigure} 
@@ -324,39 +348,43 @@ The $P_P(b)$ ratio can be considered as \textbf{probability of achieving success
 \captionsetup[subfigure]{labelformat=empty}
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+        	    		\rotatebox[origin=c]{90}{D=10}
       \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     		\includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=4,N=10.pdf} 
-    		\caption{D=10} 
+    		%\caption{D=10} 
       	\end{minipage}%
 	}
     \vspace{-12mm}
   \end{subfigure}%% 
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+        	    		\rotatebox[origin=c]{90}{D=30}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=4,N=30.pdf} 
-                	\caption{D=30}
+                	%\caption{D=30}
     	\end{minipage}%
 	} 
     \vspace{-12mm}
   \end{subfigure} 
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+        	    		\rotatebox[origin=c]{90}{D=50}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=4,N=50.pdf} 
-    	\caption{D=50}
+    	%\caption{D=50}
     	\end{minipage}%
 	}  
   \end{subfigure}%%
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+        	    		\rotatebox[origin=c]{90}{D=100}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=4,N=100.pdf}
-            \caption{D=100} 
+           % \caption{D=100} 
     \end{minipage}%
 	}   
   \end{subfigure} 
@@ -379,39 +407,43 @@ The $P_P(b)$ ratio can be considered as \textbf{probability of achieving success
 \captionsetup[subfigure]{labelformat=empty}
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+        	    		\rotatebox[origin=c]{90}{D=10}
       \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     		\includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=5,N=10.pdf} 
-    		\caption{D=10} 
+    		%\caption{D=10} 
       	\end{minipage}%
 	}
     \vspace{-12mm}
   \end{subfigure}%% 
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+        	    		\rotatebox[origin=c]{90}{D=30}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=5,N=30.pdf} 
-                	\caption{D=30}
+                	%\caption{D=30}
     	\end{minipage}%
 	} 
     \vspace{-12mm}
   \end{subfigure} 
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+        	    		\rotatebox[origin=c]{90}{D=50}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=5,N=50.pdf} 
-    	\caption{D=50}
+    	%\caption{D=50}
     	\end{minipage}%
 	}  
   \end{subfigure}%%
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+        	    		\rotatebox[origin=c]{90}{D=100}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=5,N=100.pdf}
-            \caption{D=100} 
+           % \caption{D=100} 
     \end{minipage}%
 	}   
   \end{subfigure} 
@@ -434,39 +466,43 @@ The $P_P(b)$ ratio can be considered as \textbf{probability of achieving success
 \captionsetup[subfigure]{labelformat=empty}
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+        	    		\rotatebox[origin=c]{90}{D=10}
       \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     		\includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=6,N=10.pdf} 
-    		\caption{D=10} 
+    		%\caption{D=10} 
       	\end{minipage}%
 	}
     \vspace{-12mm}
   \end{subfigure}%% 
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+        	    		\rotatebox[origin=c]{90}{D=30}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=6,N=30.pdf} 
-                	\caption{D=30}
+                	%\caption{D=30}
     	\end{minipage}%
 	} 
     \vspace{-12mm}
   \end{subfigure} 
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+        	    		\rotatebox[origin=c]{90}{D=50}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=6,N=50.pdf} 
-    	\caption{D=50}
+    	%\caption{D=50}
     	\end{minipage}%
 	}  
   \end{subfigure}%%
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+        	    		\rotatebox[origin=c]{90}{D=100}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=6,N=100.pdf}
-            \caption{D=100} 
+            %\caption{D=100} 
     \end{minipage}%
 	}   
   \end{subfigure} 
@@ -489,39 +525,43 @@ The $P_P(b)$ ratio can be considered as \textbf{probability of achieving success
 \captionsetup[subfigure]{labelformat=empty}
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+        	    		\rotatebox[origin=c]{90}{D=10}
       \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     		\includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=7,N=10.pdf} 
-    		\caption{D=10} 
+    		%\caption{D=10} 
       	\end{minipage}%
 	}
     \vspace{-12mm}
   \end{subfigure}%% 
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+        	    		\rotatebox[origin=c]{90}{D=30}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=7,N=30.pdf} 
-                	\caption{D=30}
+                	%\caption{D=30}
     	\end{minipage}%
 	} 
     \vspace{-12mm}
   \end{subfigure} 
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+        	    		\rotatebox[origin=c]{90}{D=50}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=7,N=50.pdf} 
-    	\caption{D=50}
+    	%\caption{D=50}
     	\end{minipage}%
 	}  
   \end{subfigure}%%
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+        	    		\rotatebox[origin=c]{90}{D=100}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=7,N=100.pdf}
-            \caption{D=100} 
+            %\caption{D=100} 
     \end{minipage}%
 	}   
   \end{subfigure} 
@@ -545,39 +585,43 @@ The $P_P(b)$ ratio can be considered as \textbf{probability of achieving success
 \captionsetup[subfigure]{labelformat=empty}
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+        	    		\rotatebox[origin=c]{90}{D=10}
       \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     		\includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=8,N=10.pdf} 
-    		\caption{D=10} 
+    		%\caption{D=10} 
       	\end{minipage}%
 	}
     \vspace{-12mm}
   \end{subfigure}%% 
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+        	    		\rotatebox[origin=c]{90}{D=30}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=8,N=30.pdf} 
-                	\caption{D=30}
+                	%\caption{D=30}
     	\end{minipage}%
 	} 
     \vspace{-12mm}
   \end{subfigure} 
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+        	    		\rotatebox[origin=c]{90}{D=50}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=8,N=50.pdf} 
-    	\caption{D=50}
+    	%\caption{D=50}
     	\end{minipage}%
 	}  
   \end{subfigure}%%
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+        	    		\rotatebox[origin=c]{90}{D=100}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=8,N=100.pdf}
-            \caption{D=100} 
+            %\caption{D=100} 
     \end{minipage}%
 	}   
   \end{subfigure} 
@@ -600,39 +644,43 @@ The $P_P(b)$ ratio can be considered as \textbf{probability of achieving success
 \captionsetup[subfigure]{labelformat=empty}
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+        	    		\rotatebox[origin=c]{90}{D=10}
       \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     		\includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=9,N=10.pdf} 
-    		\caption{D=10} 
+    		%\caption{D=10} 
       	\end{minipage}%
 	}
     \vspace{-12mm}
   \end{subfigure}%% 
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+        	    		\rotatebox[origin=c]{90}{D=30}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=9,N=30.pdf} 
-                	\caption{D=30}
+                	%\caption{D=30}
     	\end{minipage}%
 	} 
     \vspace{-12mm}
   \end{subfigure} 
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+        	    		\rotatebox[origin=c]{90}{D=50}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=9,N=50.pdf} 
-    	\caption{D=50}
+    	%\caption{D=50}
     	\end{minipage}%
 	}  
   \end{subfigure}%%
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+        	    		\rotatebox[origin=c]{90}{D=100}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=9,N=100.pdf}
-            \caption{D=100} 
+            %\caption{D=100} 
     \end{minipage}%
 	}   
   \end{subfigure} 
@@ -656,39 +704,43 @@ The $P_P(b)$ ratio can be considered as \textbf{probability of achieving success
 \captionsetup[subfigure]{labelformat=empty}
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+        	    		\rotatebox[origin=c]{90}{D=10}
       \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     		\includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=10,N=10.pdf} 
-    		\caption{D=10} 
+    		%\caption{D=10} 
       	\end{minipage}%
 	}
     \vspace{-12mm}
   \end{subfigure}%% 
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+        	    		\rotatebox[origin=c]{90}{D=30}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=10,N=30.pdf} 
-                	\caption{D=30}
+                	%\caption{D=30}
     	\end{minipage}%
 	} 
     \vspace{-12mm}
   \end{subfigure} 
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+        	    		\rotatebox[origin=c]{90}{D=50}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=10,N=50.pdf} 
-    	\caption{D=50}
+    	%\caption{D=50}
     	\end{minipage}%
 	}  
   \end{subfigure}%%
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+        	    		\rotatebox[origin=c]{90}{D=100}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=10,N=100.pdf}
-            \caption{D=100} 
+           % \caption{D=100} 
     \end{minipage}%
 	}   
   \end{subfigure} 
@@ -711,39 +763,43 @@ The $P_P(b)$ ratio can be considered as \textbf{probability of achieving success
 \captionsetup[subfigure]{labelformat=empty}
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+        	    		\rotatebox[origin=c]{90}{D=10}
       \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     		\includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=11,N=10.pdf} 
-    		\caption{D=10} 
+    		%\caption{D=10} 
       	\end{minipage}%
 	}
     \vspace{-12mm}
   \end{subfigure}%% 
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+            	    		\rotatebox[origin=c]{90}{D=30}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=11,N=30.pdf} 
-                	\caption{D=30}
+                	%\caption{D=30}
     	\end{minipage}%
 	} 
     \vspace{-12mm}
   \end{subfigure} 
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+            	    		\rotatebox[origin=c]{90}{D=50}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=11,N=50.pdf} 
-    	\caption{D=50}
+    	%\caption{D=50}
     	\end{minipage}%
 	}  
   \end{subfigure}%%
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+            	    		\rotatebox[origin=c]{90}{D=100}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=11,N=100.pdf}
-            \caption{D=100} 
+           % \caption{D=100} 
     \end{minipage}%
 	}   
   \end{subfigure} 
@@ -765,39 +821,43 @@ The $P_P(b)$ ratio can be considered as \textbf{probability of achieving success
 \captionsetup[subfigure]{labelformat=empty}
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+        	    		\rotatebox[origin=c]{90}{D=10}
       \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     		\includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=12,N=10.pdf} 
-    		\caption{D=10} 
+    		%\caption{D=10} 
       	\end{minipage}%
 	}
     \vspace{-12mm}
   \end{subfigure}%% 
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+            	    		\rotatebox[origin=c]{90}{D=30}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=12,N=30.pdf} 
-                	\caption{D=30}
+                	%\caption{D=30}
     	\end{minipage}%
 	} 
     \vspace{-12mm}
   \end{subfigure} 
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+            	    		\rotatebox[origin=c]{90}{D=50}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=12,N=50.pdf} 
-    	\caption{D=50}
+    	%\caption{D=50}
     	\end{minipage}%
 	}  
   \end{subfigure}%%
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+            	    		\rotatebox[origin=c]{90}{D=100}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=12,N=100.pdf}
-            \caption{D=100} 
+           % \caption{D=100} 
     \end{minipage}%
 	}   
   \end{subfigure} 
@@ -820,39 +880,43 @@ The $P_P(b)$ ratio can be considered as \textbf{probability of achieving success
 \captionsetup[subfigure]{labelformat=empty}
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+        	    		\rotatebox[origin=c]{90}{D=10}
       \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     		\includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=13,N=10.pdf} 
-    		\caption{D=10} 
+    		%\caption{D=10} 
       	\end{minipage}%
 	}
     \vspace{-12mm}
   \end{subfigure}%% 
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+            	    		\rotatebox[origin=c]{90}{D=30}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=13,N=30.pdf} 
-                	\caption{D=30}
+                	%\caption{D=30}
     	\end{minipage}%
 	} 
     \vspace{-12mm}
   \end{subfigure} 
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+            	    		\rotatebox[origin=c]{90}{D=50}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=13,N=50.pdf} 
-    	\caption{D=50}
+    	%\caption{D=50}
     	\end{minipage}%
 	}  
   \end{subfigure}%%
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+            	    		\rotatebox[origin=c]{90}{D=100}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=13,N=100.pdf}
-            \caption{D=100} 
+           % \caption{D=100} 
     \end{minipage}%
 	}   
   \end{subfigure} 
@@ -875,39 +939,43 @@ The $P_P(b)$ ratio can be considered as \textbf{probability of achieving success
 \captionsetup[subfigure]{labelformat=empty}
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+        	    		\rotatebox[origin=c]{90}{D=10}
       \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     		\includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=14,N=10.pdf} 
-    		\caption{D=10} 
+    		%\caption{D=10} 
       	\end{minipage}%
 	}
     \vspace{-12mm}
   \end{subfigure}%% 
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+            	    		\rotatebox[origin=c]{90}{D=30}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=14,N=30.pdf} 
-                	\caption{D=30}
+                	%\caption{D=30}
     	\end{minipage}%
 	} 
     \vspace{-12mm}
   \end{subfigure} 
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+            	    		\rotatebox[origin=c]{90}{D=50}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=14,N=50.pdf} 
-    	\caption{D=50}
+    	%\caption{D=50}
     	\end{minipage}%
 	}  
   \end{subfigure}%%
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+            	    		\rotatebox[origin=c]{90}{D=100}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=14,N=100.pdf}
-            \caption{D=100} 
+            %\caption{D=100} 
     \end{minipage}%
 	}   
   \end{subfigure} 
@@ -930,39 +998,43 @@ The $P_P(b)$ ratio can be considered as \textbf{probability of achieving success
 \captionsetup[subfigure]{labelformat=empty}
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+        	    		\rotatebox[origin=c]{90}{D=10}
       \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     		\includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=15,N=10.pdf} 
-    		\caption{D=10} 
+    		%\caption{D=10} 
       	\end{minipage}%
 	}
     \vspace{-12mm}
   \end{subfigure}%% 
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+            	    		\rotatebox[origin=c]{90}{D=30}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=15,N=30.pdf} 
-                	\caption{D=30}
+                	%\caption{D=30}
     	\end{minipage}%
 	} 
     \vspace{-12mm}
   \end{subfigure} 
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+            	    		\rotatebox[origin=c]{90}{D=50}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=15,N=50.pdf} 
-    	\caption{D=50}
+    	%\caption{D=50}
     	\end{minipage}%
 	}  
   \end{subfigure}%%
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+            	    		\rotatebox[origin=c]{90}{D=100}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=15,N=100.pdf}
-            \caption{D=100} 
+            %\caption{D=100} 
     \end{minipage}%
 	}   
   \end{subfigure} 
@@ -985,39 +1057,43 @@ The $P_P(b)$ ratio can be considered as \textbf{probability of achieving success
 \captionsetup[subfigure]{labelformat=empty}
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+        	    		\rotatebox[origin=c]{90}{D=10}
       \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     		\includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=16,N=10.pdf} 
-    		\caption{D=10} 
+    		%\caption{D=10} 
       	\end{minipage}%
 	}
     \vspace{-12mm}
   \end{subfigure}%% 
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+            	    		\rotatebox[origin=c]{90}{D=30}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=16,N=30.pdf} 
-                	\caption{D=30}
+                	%\caption{D=30}
     	\end{minipage}%
 	} 
     \vspace{-12mm}
   \end{subfigure} 
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+            	    		\rotatebox[origin=c]{90}{D=50}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=16,N=50.pdf} 
-    	\caption{D=50}
+    	%\caption{D=50}
     	\end{minipage}%
 	}  
   \end{subfigure}%%
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+            	    		\rotatebox[origin=c]{90}{D=100}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=16,N=100.pdf}
-            \caption{D=100} 
+            %\caption{D=100} 
     \end{minipage}%
 	}   
   \end{subfigure} 
@@ -1040,39 +1116,43 @@ The $P_P(b)$ ratio can be considered as \textbf{probability of achieving success
 \captionsetup[subfigure]{labelformat=empty}
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+        	    		\rotatebox[origin=c]{90}{D=10}
       \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     		\includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=17,N=10.pdf} 
-    		\caption{D=10} 
+    		%\caption{D=10} 
       	\end{minipage}%
 	}
     \vspace{-12mm}
   \end{subfigure}%% 
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+            	    		\rotatebox[origin=c]{90}{D=30}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=17,N=30.pdf} 
-                	\caption{D=30}
+                	%\caption{D=30}
     	\end{minipage}%
 	} 
     \vspace{-12mm}
   \end{subfigure} 
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+            	    		\rotatebox[origin=c]{90}{D=50}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=17,N=50.pdf} 
-    	\caption{D=50}
+    	%\caption{D=50}
     	\end{minipage}%
 	}  
   \end{subfigure}%%
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+            	    		\rotatebox[origin=c]{90}{D=100}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=17,N=100.pdf}
-            \caption{D=100} 
+            %\caption{D=100} 
     \end{minipage}%
 	}   
   \end{subfigure} 
@@ -1095,39 +1175,43 @@ The $P_P(b)$ ratio can be considered as \textbf{probability of achieving success
 \captionsetup[subfigure]{labelformat=empty}
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+        	    		\rotatebox[origin=c]{90}{D=10}
       \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     		\includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=18,N=10.pdf} 
-    		\caption{D=10} 
+    		%\caption{D=10} 
       	\end{minipage}%
 	}
     \vspace{-12mm}
   \end{subfigure}%% 
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+            	    		\rotatebox[origin=c]{90}{D=30}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=18,N=30.pdf} 
-                	\caption{D=30}
+                	%\caption{D=30}
     	\end{minipage}%
 	} 
     \vspace{-12mm}
   \end{subfigure} 
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+            	    		\rotatebox[origin=c]{90}{D=50}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=18,N=50.pdf} 
-    	\caption{D=50}
+    	%\caption{D=50}
     	\end{minipage}%
 	}  
   \end{subfigure}%%
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+            	    		\rotatebox[origin=c]{90}{D=100}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=18,N=100.pdf}
-            \caption{D=100} 
+            %\caption{D=100} 
     \end{minipage}%
 	}   
   \end{subfigure} 
@@ -1149,39 +1233,43 @@ The $P_P(b)$ ratio can be considered as \textbf{probability of achieving success
 \captionsetup[subfigure]{labelformat=empty}
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+        	    		\rotatebox[origin=c]{90}{D=10}
       \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     		\includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=19,N=10.pdf} 
-    		\caption{D=10} 
+    		%\caption{D=10} 
       	\end{minipage}%
 	}
     \vspace{-12mm}
   \end{subfigure}%% 
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+            	    		\rotatebox[origin=c]{90}{D=30}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=19,N=30.pdf} 
-                	\caption{D=30}
+                	%\caption{D=30}
     	\end{minipage}%
 	} 
     \vspace{-12mm}
   \end{subfigure} 
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+            	    		\rotatebox[origin=c]{90}{D=50}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=19,N=50.pdf} 
-    	\caption{D=50}
+    	%\caption{D=50}
     	\end{minipage}%
 	}  
   \end{subfigure}%%
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+            	    		\rotatebox[origin=c]{90}{D=100}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=19,N=100.pdf}
-            \caption{D=100} 
+            %\caption{D=100} 
     \end{minipage}%
 	}   
   \end{subfigure} 
@@ -1204,39 +1292,43 @@ The $P_P(b)$ ratio can be considered as \textbf{probability of achieving success
 \captionsetup[subfigure]{labelformat=empty}
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+        	    		\rotatebox[origin=c]{90}{D=10}
       \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     		\includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=20,N=10.pdf} 
-    		\caption{D=10} 
+    		%\caption{D=10} 
       	\end{minipage}%
 	}
     \vspace{-12mm}
   \end{subfigure}%% 
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+            	    		\rotatebox[origin=c]{90}{D=30}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=20,N=30.pdf} 
-                	\caption{D=30}
+                	%\caption{D=30}
     	\end{minipage}%
 	} 
     \vspace{-12mm}
   \end{subfigure} 
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+            	    		\rotatebox[origin=c]{90}{D=50}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=20,N=50.pdf} 
-    	\caption{D=50}
+    	%\caption{D=50}
     	\end{minipage}%
 	}  
   \end{subfigure}%%
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+            	    		\rotatebox[origin=c]{90}{D=100}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=20,N=100.pdf}
-            \caption{D=100} 
+            %\caption{D=100} 
     \end{minipage}%
 	}   
   \end{subfigure} 
@@ -1259,39 +1351,43 @@ The $P_P(b)$ ratio can be considered as \textbf{probability of achieving success
 \captionsetup[subfigure]{labelformat=empty}
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+        	    		\rotatebox[origin=c]{90}{D=10}
       \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     		\includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=21,N=10.pdf} 
-    		\caption{D=10} 
+    		%\caption{D=10} 
       	\end{minipage}%
 	}
     \vspace{-12mm}
   \end{subfigure}%% 
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+            	    		\rotatebox[origin=c]{90}{D=30}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=21,N=30.pdf} 
-                	\caption{D=30}
+                	%\caption{D=30}
     	\end{minipage}%
 	} 
     \vspace{-12mm}
   \end{subfigure} 
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+            	    		\rotatebox[origin=c]{90}{D=50}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=21,N=50.pdf} 
-    	\caption{D=50}
+    	%\caption{D=50}
     	\end{minipage}%
 	}  
   \end{subfigure}%%
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+            	    		\rotatebox[origin=c]{90}{D=100}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=21,N=100.pdf}
-            \caption{D=100} 
+            %\caption{D=100} 
     \end{minipage}%
 	}   
   \end{subfigure} 
@@ -1314,39 +1410,43 @@ The $P_P(b)$ ratio can be considered as \textbf{probability of achieving success
 \captionsetup[subfigure]{labelformat=empty}
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+        	    		\rotatebox[origin=c]{90}{D=10}
       \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     		\includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=22,N=10.pdf} 
-    		\caption{D=10} 
+    		%\caption{D=10} 
       	\end{minipage}%
 	}
     \vspace{-12mm}
   \end{subfigure}%% 
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+            	    		\rotatebox[origin=c]{90}{D=30}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=22,N=30.pdf} 
-                	\caption{D=30}
+                	%\caption{D=30}
     	\end{minipage}%
 	} 
     \vspace{-12mm}
   \end{subfigure} 
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+            	    		\rotatebox[origin=c]{90}{D=50}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=22,N=50.pdf} 
-    	\caption{D=50}
+    	%\caption{D=50}
     	\end{minipage}%
 	}  
   \end{subfigure}%%
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+            	    		\rotatebox[origin=c]{90}{D=100}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=22,N=100.pdf}
-           \caption{D=100} 
+          % \caption{D=100} 
     \end{minipage}%
 	}   
   \end{subfigure} 
@@ -1369,39 +1469,43 @@ The $P_P(b)$ ratio can be considered as \textbf{probability of achieving success
 \captionsetup[subfigure]{labelformat=empty}
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+        	    		\rotatebox[origin=c]{90}{D=10}
       \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     		\includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=23,N=10.pdf} 
-    		\caption{D=10} 
+    		%\caption{D=10} 
       	\end{minipage}%
 	}
     \vspace{-12mm}
   \end{subfigure}%% 
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+            	    		\rotatebox[origin=c]{90}{D=30}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=23,N=30.pdf} 
-                	\caption{D=30}
+                	%\caption{D=30}
     	\end{minipage}%
 	} 
     \vspace{-12mm}
   \end{subfigure} 
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+            	    		\rotatebox[origin=c]{90}{D=50}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=23,N=50.pdf} 
-    	\caption{D=50}
+    	%\caption{D=50}
     	\end{minipage}%
 	}  
   \end{subfigure}%%
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+            	    		\rotatebox[origin=c]{90}{D=100}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=23,N=100.pdf}
-            \caption{D=100} 
+           % \caption{D=100} 
     \end{minipage}%
 	}   
   \end{subfigure} 
@@ -1425,39 +1529,43 @@ The $P_P(b)$ ratio can be considered as \textbf{probability of achieving success
 \captionsetup[subfigure]{labelformat=empty}
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+        	    		\rotatebox[origin=c]{90}{D=10}
       \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     		\includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=24,N=10.pdf} 
-    		\caption{D=10} 
+    		%\caption{D=10} 
       	\end{minipage}%
 	}
     \vspace{-12mm}
   \end{subfigure}%% 
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+            	    		\rotatebox[origin=c]{90}{D=30}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=24,N=30.pdf} 
-                	\caption{D=30}
+                	%\caption{D=30}
     	\end{minipage}%
 	} 
     \vspace{-12mm}
   \end{subfigure} 
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+            	    		\rotatebox[origin=c]{90}{D=50}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=24,N=50.pdf} 
-    	\caption{D=50}
+    	%\caption{D=50}
     	\end{minipage}%
 	}  
   \end{subfigure}%%
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+            	    		\rotatebox[origin=c]{90}{D=100}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=24,N=100.pdf}
-            \caption{D=100} 
+           % \caption{D=100} 
     \end{minipage}%
 	}   
   \end{subfigure} 
@@ -1480,39 +1588,43 @@ The $P_P(b)$ ratio can be considered as \textbf{probability of achieving success
 \captionsetup[subfigure]{labelformat=empty}
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+        	    		\rotatebox[origin=c]{90}{D=10}
       \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     		\includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=25,N=10.pdf} 
-    		\caption{D=10} 
+    		%\caption{D=10} 
       	\end{minipage}%
 	}
     \vspace{-12mm}
   \end{subfigure}%% 
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+            	    		\rotatebox[origin=c]{90}{D=30}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=25,N=30.pdf} 
-                	\caption{D=30}
+                	%\caption{D=30}
     	\end{minipage}%
 	} 
     \vspace{-12mm}
   \end{subfigure} 
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+            	    		\rotatebox[origin=c]{90}{D=50}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=25,N=50.pdf} 
-    	\caption{D=50}
+    	%\caption{D=50}
     	\end{minipage}%
 	}  
   \end{subfigure}%%
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+            	    		\rotatebox[origin=c]{90}{D=100}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=25,N=100.pdf}
-            \caption{D=100} 
+            %\caption{D=100} 
     \end{minipage}%
 	}   
   \end{subfigure} 
@@ -1535,39 +1647,43 @@ The $P_P(b)$ ratio can be considered as \textbf{probability of achieving success
 \captionsetup[subfigure]{labelformat=empty}
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+        	    		\rotatebox[origin=c]{90}{D=10}
       \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     		\includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=26,N=10.pdf} 
-    		\caption{D=10} 
+    		%\caption{D=10} 
       	\end{minipage}%
 	}
     \vspace{-12mm}
   \end{subfigure}%% 
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+            	    		\rotatebox[origin=c]{90}{D=30}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=26,N=30.pdf} 
-                	\caption{D=30}
+                	%\caption{D=30}
     	\end{minipage}%
 	} 
     \vspace{-12mm}
   \end{subfigure} 
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+            	    		\rotatebox[origin=c]{90}{D=50}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=26,N=50.pdf} 
-    	\caption{D=50}
+    	%\caption{D=50}
     	\end{minipage}%
 	}  
   \end{subfigure}%%
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+            	    		\rotatebox[origin=c]{90}{D=100}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=26,N=100.pdf}
-            \caption{D=100} 
+           % \caption{D=100} 
     \end{minipage}%
 	}   
   \end{subfigure} 
@@ -1590,39 +1706,43 @@ The $P_P(b)$ ratio can be considered as \textbf{probability of achieving success
 \captionsetup[subfigure]{labelformat=empty}
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+        	    		\rotatebox[origin=c]{90}{D=10}
       \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     		\includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=27,N=10.pdf} 
-    		\caption{D=10} 
+    		%\caption{D=10} 
       	\end{minipage}%
 	}
     \vspace{-12mm}
   \end{subfigure}%% 
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+            	    		\rotatebox[origin=c]{90}{D=30}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=27,N=30.pdf} 
-                	\caption{D=30}
+                	%\caption{D=30}
     	\end{minipage}%
 	} 
     \vspace{-12mm}
   \end{subfigure} 
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+            	    		\rotatebox[origin=c]{90}{D=50}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=27,N=50.pdf} 
-    	\caption{D=50}
+    	%\caption{D=50}
     	\end{minipage}%
 	}  
   \end{subfigure}%%
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+            	    		\rotatebox[origin=c]{90}{D=100}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=27,N=100.pdf}
-            \caption{D=100} 
+            %\caption{D=100} 
     \end{minipage}%
 	}   
   \end{subfigure} 
@@ -1645,39 +1765,43 @@ The $P_P(b)$ ratio can be considered as \textbf{probability of achieving success
 \captionsetup[subfigure]{labelformat=empty}
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+        	    		\rotatebox[origin=c]{90}{D=10}
       \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     		\includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=28,N=10.pdf} 
-    		\caption{D=10} 
+    		%\caption{D=10} 
       	\end{minipage}%
 	}
     \vspace{-12mm}
   \end{subfigure}%% 
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+            	    		\rotatebox[origin=c]{90}{D=30}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=28,N=30.pdf} 
-                	\caption{D=30}
+                	%\caption{D=30}
     	\end{minipage}%
 	} 
     \vspace{-12mm}
   \end{subfigure} 
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+            	    		\rotatebox[origin=c]{90}{D=50}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=28,N=50.pdf} 
-    	\caption{D=50}
+    	%\caption{D=50}
     	\end{minipage}%
 	}  
   \end{subfigure}%%
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+            	    		\rotatebox[origin=c]{90}{D=100}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=28,N=100.pdf}
-            \caption{D=100} 
+            %\caption{D=100} 
     \end{minipage}%
 	}   
   \end{subfigure} 
@@ -1700,39 +1824,43 @@ The $P_P(b)$ ratio can be considered as \textbf{probability of achieving success
 \captionsetup[subfigure]{labelformat=empty}
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+        	    		\rotatebox[origin=c]{90}{D=10}
       \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     		\includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=29,N=10.pdf} 
-    		\caption{D=10} 
+    		%\caption{D=10} 
       	\end{minipage}%
 	}
     \vspace{-12mm}
   \end{subfigure}%% 
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+            	    		\rotatebox[origin=c]{90}{D=30}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=29,N=30.pdf} 
-                	\caption{D=30}
+                	%\caption{D=30}
     	\end{minipage}%
 	} 
     \vspace{-12mm}
   \end{subfigure} 
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+            	    		\rotatebox[origin=c]{90}{D=50}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=29,N=50.pdf} 
-    	\caption{D=50}
+    	%\caption{D=50}
     	\end{minipage}%
 	}  
   \end{subfigure}%%
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+            	    		\rotatebox[origin=c]{90}{D=100}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=29,N=100.pdf}
-            \caption{D=100} 
+          %  \caption{D=100} 
     \end{minipage}%
 	}   
   \end{subfigure} 
@@ -1754,39 +1882,43 @@ The $P_P(b)$ ratio can be considered as \textbf{probability of achieving success
 \captionsetup[subfigure]{labelformat=empty}
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+        	    		\rotatebox[origin=c]{90}{D=10}
       \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     		\includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=30,N=10.pdf} 
-    		\caption{D=10} 
+    		%\caption{D=10} 
       	\end{minipage}%
 	}
     \vspace{-12mm}
   \end{subfigure}%% 
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+            	    		\rotatebox[origin=c]{90}{D=30}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=30,N=30.pdf} 
-                	\caption{D=30}
+                	%\caption{D=30}
     	\end{minipage}%
 	} 
     \vspace{-12mm}
   \end{subfigure} 
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+            	    		\rotatebox[origin=c]{90}{D=50}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=30,N=50.pdf} 
-    	\caption{D=50}
+    	%\caption{D=50}
     	\end{minipage}%
 	}  
   \end{subfigure}%%
   \begin{subfigure}[b]{0.5\linewidth}
     \centering
+            	    		\rotatebox[origin=c]{90}{D=100}
     \rotatebox[origin=c]{-90}{
         \begin{minipage}{1\linewidth}
     \includegraphics[height=0.9\linewidth,angle=90]{C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Plots/singlePlots/Problem=30,N=100.pdf}
-            \caption{D=100} 
+          %  \caption{D=100} 
     \end{minipage}%
 	}   
   \end{subfigure} 
