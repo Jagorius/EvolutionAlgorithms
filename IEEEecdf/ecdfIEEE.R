@@ -228,3 +228,17 @@ plotAllSingle <- function(){
     }
   }
 }
+
+plotEcdfPresentation <- function(){
+  path <- "C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/DESv2/DES + dMean custom1 (DESv2.5)/M/DES_1_10.txt"
+  resDES <- read.table(file = path,sep = ",")
+  budgetSteps <- c(0.01, 0.02, 0.03, 0.05, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0)
+  
+  par(mfrow=c(1,1))
+  #plot(budgetSteps,resDES[,1],xlab="function evaluations / 10000*D",ylab="error value",log = "y", type="b", lwd=2,lty=1, col="red", pch=15,cex.lab=1.5,xaxt="n")
+  #axis(1, at=budgetSteps, labels=budgetSteps)
+  
+  minCountDES <- c(0.08446456, 0.14264167, 0.18487395, 0.26330532, 0.38655462, 0.81017022, 0.91618186, 0.92243051, 0.92544710 ,0.92824822, 0.92889463, 0.92954105, 0.93040293, 0.93061840)
+  plot(budgetSteps*log10(10000),minCountDES, xlab="log10 of (f-evals / dimension)",ylab="Proportion of function + target pairs", ylim=c(0, 1), type="b", lwd=2,lty=1, col="red", pch=15,cex.lab=1.5)
+  
+}

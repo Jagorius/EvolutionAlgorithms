@@ -1,0 +1,8 @@
+#!/bin/bash
+rm calc_pid.txt
+rm -rf N
+mkdir N
+rm -rf M
+mkdir M
+nohup Rscript $1 > $2 2>&1&
+echo $! > calc_pid.txt
