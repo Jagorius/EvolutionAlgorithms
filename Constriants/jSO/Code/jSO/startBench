@@ -1,0 +1,7 @@
+#!/bin/bash
+rm calc_pid.txt
+rm $1
+rm -rf M
+mkdir M
+nohup ./lshade_exe > $1 2>&1&
+echo $! > calc_pid.txt
