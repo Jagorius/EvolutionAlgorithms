@@ -1,7 +1,7 @@
 Quadric2 <- function(){
   N <- 10
   reps <- 10
-  b <- seq(0,1,by=0.01)
+  b <- seq(0,1,by=0.05)
   colors <- rainbow(16)
   linetype <- c(c(2:6),c(1:6),c(1:6))
   handlingMethods <- c("BounceBack","Darwinian","Drawing","ExpS","MidBase","MidTarget","RandBase","ScaledMutant","ScaledMutant2","ThrowOnLimit","Wrapping")
@@ -18,7 +18,7 @@ Quadric2 <- function(){
         },
         lower=-10^8,
         upper=10^8,
-        control=list("Lamarckism"=FALSE,"diag.bestVal"=TRUE)
+        control=list("Lamarckism"=FALSE,"diag.bestVal"=TRUE, "budget"=1000*N)
       )
 
       # In which population the level 10^-8 was reached for the first time
@@ -44,7 +44,7 @@ Quadric2 <- function(){
                 },
                 lower=-1,
                 upper=1,
-                control=list("Lamarckism"=FALSE,"diag.bestVal"=TRUE)
+                control=list("Lamarckism"=FALSE,"diag.bestVal"=TRUE,"budget"=1000*N)
               )
 
               level<-mean(c( level, which(result$diagnostic$bestVal < 10^-8)[1] ))
@@ -54,12 +54,13 @@ Quadric2 <- function(){
       resConstraints[[handlingMethodNum]] <- resMethod
   }
 
+  resConstraints <<- resConstraints
 
-  plot(b,resConstraints[[1]], type="l",lwd=2, ylim=c(0,1),ylab="targetLevel / level",col=colors[1], lty=linetype[1])
+  plot(b,resConstraints[[1]], type="l",lwd=2, log="y", ylim = c(0.02,2), ylab="targetLevel / level",col=colors[1], lty=linetype[1])
   for(j in 2:handlingMethodNum )
     lines(b,resConstraints[[j]], type="l",lwd=2, col=colors[j], lty=linetype[j])
 
-  legend("topright",handlingMethods,text.font=2, cex=1.2, col=colors[1:handlingMethodNum], lty=linetype[1:handlingMethodNum], lwd=2, ncol=3)
+  legend("topright",handlingMethods,text.font=2, cex=1, col=colors[1:handlingMethodNum], lty=linetype[1:handlingMethodNum], lwd=2, ncol=3)
 
 
 }
