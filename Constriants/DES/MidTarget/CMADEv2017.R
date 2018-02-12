@@ -203,7 +203,7 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
 
     # Create fisrt population
     prev_popul <- replicate(lambda, runif(N,0,0))
-    population <- replicate(lambda, runif(N,0.5*lower,0.5*upper))
+    population <- replicate(lambda, runif(N,lower,upper))
     cumMean=(upper+lower)/2
     prevPopCounter <- 1
     populationRepaired <- apply(population,2,MidTarget,oldIndividuals=prev_popul)

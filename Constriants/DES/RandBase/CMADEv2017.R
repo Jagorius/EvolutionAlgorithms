@@ -194,7 +194,7 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
     newMean         <- par
 
     # Create fisrt population
-    population <- replicate(lambda, runif(N,0.5*lower,0.5*upper))
+    population <- replicate(lambda, runif(N,lower,upper))
     cumMean=(upper+lower)/2
     populationRepaired <- apply(population,2,RandBase,baseVector=newMean)
 
