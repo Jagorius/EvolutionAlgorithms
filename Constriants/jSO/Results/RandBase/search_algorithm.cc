@@ -18,30 +18,10 @@ void searchAlgorithm::initializeParameters() {
   initializeFitnessFunctionParameters();
 }
 
-void searchAlgorithm::evaluatePopulation(const vector<Individual> &pop, vector<Fitness> &fitness, int &repairedNum) {
-  int l_problem_size = problem_size;
-  variable l_min_region = min_region;
-  variable l_max_region = max_region;
-  repairedNum = 0;
-
+void searchAlgorithm::evaluatePopulation(const vector<Individual> &pop, vector<Fitness> &fitness) {
   for (int i = 0; i < pop_size; i++) {
-	int isConstViolated = 0;
-	Individual repaired = pop[i];
-	for (int j = 0; j < l_problem_size; j++) {
-		 if (pop[i][j] < l_min_region)  repaired[j] = l_min_region + ((int)(l_min_region - repaired[j])) % ((int)(l_max_region - l_min_region));
-		 if (pop[i][j] > l_max_region)  repaired[j] = l_max_region - ((int)(repaired[j] -l_max_region )) % ((int)(l_max_region - l_min_region ));
-	}
-	if(pop[i] != repaired){
-		float eu_distance=0;
-		for (int k = 0; k < l_problem_size; k++){
-			eu_distance += (pop[i][k]-repaired[k])*(pop[i][k]-repaired[k]);
-		}
-
-		fitness[i] = worst_fit + eu_distance;
-		repairedNum++;
-	}else{
-    		cec17_test_func(pop[i],  &fitness[i], problem_size, 1, function_number);
-	}
+    //cec14_test_func(pop[i],  &fitness[i], problem_size, 1, function_number);
+    cec17_test_func(pop[i],  &fitness[i], problem_size, 1, function_number);
   }
 }
 
@@ -88,6 +68,17 @@ Individual searchAlgorithm::makeNewIndividual() {
   IEEE Tran. Evol. Comput., vol. 13, no. 5, pp. 945–958, 2009.
  */
 void searchAlgorithm::modifySolutionWithParentMedium(Individual child, Individual parent) {
-  // do nothing
+  int l_problem_size = problem_size;
+  variable l_min_region = min_region;
+  variable l_max_region = max_region;
+
+  for (int j = 0; j < l_problem_size; j++) {
+    if (child[j] < l_min_region) {
+      child[j]= l_min_region +  (rand() / (RAND_MAX / (parent[i]- l_min_region)));
+    }
+    else if (child[j] > l_max_region) {
+      child[j]= parent[i] + (rand() / (RAND_MAX / (l_max_region -parent[i])));
+    }
+  }
 }
 
