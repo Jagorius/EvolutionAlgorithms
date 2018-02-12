@@ -1,7 +1,7 @@
 Quadric2 <- function(){
   N <- 10
-  reps <- 1
-  b <- seq(0,1,by=0.1)
+  reps <- 10
+  b <- seq(0,1,by=0.01)
   colors <- rainbow(16)
   linetype <- c(c(2:6),c(1:6),c(1:6))
   handlingMethods <- c("BounceBack","Darwinian","Drawing","ExpS","MidBase","MidTarget","RandBase","ScaledMutant","ScaledMutant2","ThrowOnLimit","Wrapping")
@@ -56,7 +56,7 @@ Quadric2 <- function(){
 
 
   plot(b,resConstraints[[1]], type="l",lwd=2, ylim=c(0,1),ylab="targetLevel / level",col=colors[1], lty=linetype[1])
-  for(j in 1:handlingMethodNum )
+  for(j in 2:handlingMethodNum )
     lines(b,resConstraints[[j]], type="l",lwd=2, col=colors[j], lty=linetype[j])
 
   legend("topright",handlingMethods,text.font=2, cex=1.2, col=colors[1:handlingMethodNum], lty=linetype[1:handlingMethodNum], lwd=2, ncol=3)
