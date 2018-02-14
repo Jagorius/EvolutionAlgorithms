@@ -10,6 +10,7 @@ Quadric2 <- function(){
   targetLevel <- NULL
   source('C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/Constriants/QuadricProblem/CMADEv2017.R')
   for (i in 1:reps) {
+      set.seed(1)
       # Variant with virtually no constraints
       result <- CMADE(
         rep(0,N),
@@ -22,7 +23,7 @@ Quadric2 <- function(){
       )
 
       # In which population the level 10^-8 was reached for the first time
-      targetLevel<-mean(c( targetLevel, which(result$diagnostic$bestVal < 10^-8)[1] ))
+      targetLevel<-mean(c( targetLevel, which(result$diagnostic$bestVal <= 10^-8)[1] ))
   }
 
   ## THE LEVELS FOR CONSTRAINTED PROBLEM (-1,1) FOR EACH HANDLING METHOD
@@ -37,27 +38,41 @@ Quadric2 <- function(){
         print(bb)
         level <- NULL
         for (i in 1:reps) {
-              result <- CMADE(
-                rep(0,N),
-                fn=function(x){
-                  sum(x-bb)^2
-                },
-                lower=-1,
-                upper=1,
-                control=list("Lamarckism"=FALSE,"diag.bestVal"=TRUE,"budget"=1000*N)
-              )
-
-              level<-mean(c( level, which(result$diagnostic$bestVal < 10^-8)[1] ))
+              set.seed(1)
+              if(cc=="Darwinian")
+                  result <- CMADE(
+                    rep(0,N),
+                    fn=function(x){
+                      sum(x-bb)^2
+                    },
+                    lower=-1,
+                    upper=1,
+                    control=list("Lamarckism"=FALSE,"diag.bestVal"=TRUE,"budget"=1000*N)
+                  )
+              else
+                result <- CMADE(
+                  rep(0,N),
+                  fn=function(x){
+                    sum(x-bb)^2
+                  },
+                  lower=-1,
+                  upper=1,
+                  control=list("Lamarckism"=TRUE,"diag.bestVal"=TRUE,"budget"=1000*N)
+                )
+              if(any(result$diagnostic$bestVal <= 10^-8))
+                level<-mean(c( level, which(result$diagnostic$bestVal <= 10^-8)[1] ))
+              else
+                level<-mean(c( level, length(result$diagnostic$bestVal) ))
         }
-        resMethod <- c(resMethod,targetLevel/level)
+        resMethod <- c(resMethod,level/targetLevel)
       }
       resConstraints[[handlingMethodNum]] <- resMethod
   }
 
   resConstraints <<- resConstraints
 
-  plot(b,resConstraints[[1]], type="l",lwd=2, log="y", ylim = c(0.02,2), ylab="targetLevel / level",col=colors[1], lty=linetype[1])
-  for(j in 2:handlingMethodNum )
+  plot(b,resConstraints[[2]], type="l",lwd=2, log="x", ylab="level / targetLevel",col=colors[2], lty=linetype[2])
+  for(j in 1:handlingMethodNum )
     lines(b,resConstraints[[j]], type="l",lwd=2, col=colors[j], lty=linetype[j])
 
   legend("topright",handlingMethods,text.font=2, cex=1, col=colors[1:handlingMethodNum], lty=linetype[1:handlingMethodNum], lwd=2, ncol=3)
