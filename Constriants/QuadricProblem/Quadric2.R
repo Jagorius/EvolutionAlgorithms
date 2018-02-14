@@ -1,7 +1,8 @@
 Quadric2 <- function(){
   N <- 10
   reps <- 10
-  b <- seq(0,1,by=0.05)
+  #b <- seq(0,1,by=0.1)
+  b <- c(0.2, 0.6, 0.8, 0.9, 0.95, 0.975, 0.987, 0.99375, 0.996875, 0.9984375, 0.9992188, 1)
   colors <- rainbow(16)
   linetype <- c(c(2:6),c(1:6),c(1:6))
   handlingMethods <- c("BounceBack","Darwinian","Drawing","ExpS","MidBase","MidTarget","RandBase","ScaledMutant","ScaledMutant2","ThrowOnLimit","Wrapping")
