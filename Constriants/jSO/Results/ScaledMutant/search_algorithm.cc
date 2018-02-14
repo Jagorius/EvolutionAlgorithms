@@ -71,13 +71,18 @@ void searchAlgorithm::modifySolutionWithParentMedium(Individual child, Individua
   int l_problem_size = problem_size;
   variable l_min_region = min_region;
   variable l_max_region = max_region;
+  double alphas,alpha;
 
   for (int j = 0; j < l_problem_size; j++) {
     if (child[j] < l_min_region) {
-      child[j]= l_min_region +  (rand() / (RAND_MAX / (parent[j]- l_min_region)));
+      alphas= l_min_region/child[j];
+      alpha = (((1) < (alphas)) ? (1) : (alphas)); 
+      child[j]= alpha*child[j];
     }
     else if (child[j] > l_max_region) {
-      child[j]= parent[j] + (rand() / (RAND_MAX / (l_max_region -parent[j])));
+      alphas= l_max_region/child[j];
+      alpha = (((1) < (alphas)) ? (1) : (alphas)); 
+      child[j]= alpha*child[j];
     }
   }
 }
