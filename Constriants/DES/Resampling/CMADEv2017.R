@@ -125,13 +125,14 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
     if(is.matrix(P) && is.matrix(P_repaired)){
       repairedInd <- apply(P!=P_repaired,2,all)
       P_fit <- fitness
-      P_fit[which(repairedInd)] <- apply(P_repaired[,which(repairedInd)], 2, fn_)
+      vecDist <- colSums((P - P_repaired)^2)
+      P_fit[which(repairedInd)] <- worst.fit + vecDist[which(repairedInd)]
       P_fit <- deleteInfsNaNs(P_fit)
       return(P_fit)
     }else{
       P_fit <- fitness
       if (P!=P_repaired){
-        P_fit <- fn_(P_repaired)
+        P_fit <- worst.fit + (sum(P-P_repaired)^2)
         P_fit <- deleteInfsNaNs(P_fit)
       }
       return (P_fit)
@@ -287,9 +288,12 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
         x1 <- history[[historySample[i]]][,x1sample[i]]
         x2 <- history[[historySample[i]]][,x2sample[i]]
 
-        diffs[,i] <- sqrt(cc)*( (x1 - x2) + rnorm(1)*dMean[,historySample[i]] ) + sqrt(1-cc) * rnorm(1)*pc[,historySample2[i]]
-        
+        for(r in 1:100){
+          diffs[,i] <- sqrt(cc)*( (x1 - x2) + rnorm(1)*dMean[,historySample[i]] ) + sqrt(1-cc) * rnorm(1)*pc[,historySample2[i]]
+          if(all( diffs[,i] >= cbind(lower)) && all( diffs[,i] <= cbind(upper))) break
+        }
       }
+      
 
       ## New population
       population <- newMean + Ft * diffs + tol*rnorm(diffs)/chiN

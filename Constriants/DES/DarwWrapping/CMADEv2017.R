@@ -29,17 +29,14 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
   else if (length(upper) == 1)
     upper <- rep(upper, N)
 
-  ThrowOnLimit <- function(x){
-    if(all(x >= cbind(lower)) && all(x <= cbind(upper)))
-      return (x)
-    else if(any(x < cbind(lower)))
-      for(i in which(x < cbind(lower)) )
-        x[i] <- lower[i]
-      else if(any(x > cbind(upper)))
-        for(i in which(x > cbind(upper)) )
-          x[i] <- upper[i]
-        x <-deleteInfsNaNs(x)
-        return (ThrowOnLimit(x))
+  Wrapping <- function(x){
+    indxs = which( x < lower )
+    x[ indxs] = upper[indxs] - ( lower[indxs] - x[ indxs ])%% (upper[indxs]- lower[indxs])
+    indxs = which( x > upper )
+    x[ indxs] = lower[indxs] +  (x[ indxs] - upper[indxs] )%% (upper[indxs]- lower[indxs])
+    
+    x <-deleteInfsNaNs(x)
+    return( x )
   }
 
  
@@ -196,7 +193,7 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
     # Create fisrt population
     population <- replicate(lambda, runif(N,lower,upper))
     cumMean=(upper+lower)/2
-    populationRepaired <- apply(population,2,ThrowOnLimit)
+    populationRepaired <- apply(population,2,Wrapping)
 
     if(Lamarckism==TRUE){
       population <- populationRepaired
@@ -236,7 +233,7 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
 
       if (log.Ft) Ft.log <- rbind(Ft.log,Ft)
       if (log.value) value.log <- rbind(value.log,fitness)
-      if (log.mean) mean.log <- rbind(mean.log,fn_l(ThrowOnLimit(newMean)))
+      if (log.mean) mean.log <- rbind(mean.log,fn_l(Wrapping(newMean)))
       if (log.pop) pop.log[,,iter] <- population
       if (log.bestVal) bestVal.log <- rbind(bestVal.log,min(suppressWarnings(min(bestVal.log)), min(fitness)))
       if (log.worstVal) worstVal.log <- rbind(worstVal.log,max(suppressWarnings(max(worstVal.log)), max(fitness)))
@@ -298,7 +295,7 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
       # Check constraints violations
       # Repair the individual if necessary
       populationTemp <- population
-      populationRepaired <- apply(population,2,ThrowOnLimit)
+      populationRepaired <- apply(population,2,Wrapping)
 
       counterRepaired=0
       for(tt in 1:ncol(populationTemp)){
@@ -342,7 +339,7 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
 
       ## Check if the middle point is the best found so far
       cumMean <- 0.8*cumMean+0.2*newMean
-      cumMeanRepaired <-ThrowOnLimit(cumMean)
+      cumMeanRepaired <-Wrapping(cumMean)
   
       fn_cum  <- fn_l(cumMeanRepaired)
       if (fn_cum < best.fit) {

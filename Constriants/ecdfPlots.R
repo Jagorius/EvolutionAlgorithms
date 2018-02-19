@@ -118,21 +118,42 @@ ecdfIEEE<- function(n,f_from,f_to){
   isYaxt <- "s"
   #isXaxt <- if(N==100) "s" else "n"
   #isYaxt <- if(F_from==1) "s" else "n"
-  setEPS()
-  postscript( paste("Problems",F_from,"-",F_to,",N=",N,".eps",sep=""), width = 8, height = 8)
-                                              #xlab="log10 of (f-evals / dimension)",ylab="Proportion of function + target pairs",
-  rplot <- plot(budgetSteps,minCountDES_THROW/(ecdfMaxSucess),xlab="log10 of (f-evals / dimension)",ylab="Proportion of function + target pairs",ylim=c(0, 1),type="b", lwd=2,lty=linetype[1], col=colors[1], pch=plotchar[1], xaxt=isXaxt,  yaxt=isYaxt)
+  #setEPS()
+  #postscript( paste("Problems",F_from,"-",F_to,",N=",N,".eps",sep=""), width = 8, height = 8)
+  pdf(paste("Problems",F_from,"-",F_to,",N=",N,".pdf",sep=""), width = 8, height = 8) 
+                                             #xlab="log10 of (f-evals / dimension)",ylab="Proportion of function + target pairs",
+  rplot <- plot(budgetSteps,minCountDES_THROW/(ecdfMaxSucess),xlab="log10 of (f-evals / dimension)",ylab="Proportion of function + target pairs",ylim=c(0, 1),type="l", lwd=2,lty=linetype[1], col=colors[1], pch=plotchar[1], xaxt=isXaxt,  yaxt=isYaxt)
+  points(budgetSteps[seq(1,length(budgetSteps),by=10)],(minCountDES_THROW/(ecdfMaxSucess))[seq(1,length(budgetSteps),by=10)],col=colors[1], pch=plotchar[1])
+  
+  lines(budgetSteps,minCountDES_BBACK/(ecdfMaxSucess),type="l", lwd=2,lty=linetype[2], col=colors[2], pch=plotchar[2])
+  points(budgetSteps[seq(2,length(budgetSteps),by=10)],(minCountDES_BBACK/(ecdfMaxSucess))[seq(2,length(budgetSteps),by=10)],col=colors[2], pch=plotchar[2])
  
-  lines(budgetSteps,minCountDES_BBACK/(ecdfMaxSucess),type="b", lwd=2,lty=linetype[2], col=colors[2], pch=plotchar[2])
-  lines(budgetSteps,minCountDES_WRAPP/(ecdfMaxSucess),type="b", lwd=2,lty=linetype[3], col=colors[3], pch=plotchar[3])
-  lines(budgetSteps,minCountDES_DRAW/(ecdfMaxSucess),type="b", lwd=2,lty=linetype[4], col=colors[4], pch=plotchar[4])
-  lines(budgetSteps,minCountDES_DDES/(ecdfMaxSucess),type="b", lwd=2,lty=linetype[5], col=colors[5], pch=plotchar[5])
-  lines(budgetSteps,minCountDES_SMUT/(ecdfMaxSucess),type="b", lwd=2,lty=linetype[6], col=colors[6], pch=plotchar[6])
-  lines(budgetSteps,minCountDES_MIDT/(ecdfMaxSucess),type="b", lwd=2,lty=linetype[7], col=colors[7], pch=plotchar[7])
-  lines(budgetSteps,minCountDES_SMUT2/(ecdfMaxSucess),type="b", lwd=2,lty=linetype[8], col=colors[8], pch=plotchar[8])
-  lines(budgetSteps,minCountDES_RBASE/(ecdfMaxSucess),type="b", lwd=2,lty=linetype[9], col=colors[9], pch=plotchar[9])
-  lines(budgetSteps,minCountDES_MBASE/(ecdfMaxSucess),type="b", lwd=2,lty=linetype[10], col=colors[10], pch=plotchar[10])
-  lines(budgetSteps,minCountDES_EXPS/(ecdfMaxSucess),type="b", lwd=2,lty=linetype[11], col=colors[11], pch=plotchar[11])
+  lines(budgetSteps,minCountDES_WRAPP/(ecdfMaxSucess),type="l", lwd=2,lty=linetype[3], col=colors[3], pch=plotchar[3])
+  points(budgetSteps[seq(3,length(budgetSteps),by=10)],(minCountDES_WRAPP/(ecdfMaxSucess))[seq(3,length(budgetSteps),by=10)],col=colors[3], pch=plotchar[3])
+ 
+  lines(budgetSteps,minCountDES_DRAW/(ecdfMaxSucess),type="l", lwd=2,lty=linetype[4], col=colors[4], pch=plotchar[4])
+  points(budgetSteps[seq(4,length(budgetSteps),by=10)],(minCountDES_DRAW/(ecdfMaxSucess))[seq(4,length(budgetSteps),by=10)],col=colors[4], pch=plotchar[4])
+   
+  lines(budgetSteps,minCountDES_DDES/(ecdfMaxSucess),type="l", lwd=2,lty=linetype[5], col=colors[5], pch=plotchar[5])
+  points(budgetSteps[seq(5,length(budgetSteps),by=10)],(minCountDES_DDES/(ecdfMaxSucess))[seq(5,length(budgetSteps),by=10)],col=colors[5], pch=plotchar[5])
+  
+  lines(budgetSteps,minCountDES_SMUT/(ecdfMaxSucess),type="l", lwd=2,lty=linetype[6], col=colors[6], pch=plotchar[6])
+  points(budgetSteps[seq(6,length(budgetSteps),by=10)],(minCountDES_SMUT/(ecdfMaxSucess))[seq(6,length(budgetSteps),by=10)],col=colors[6], pch=plotchar[6])
+  
+  lines(budgetSteps,minCountDES_MIDT/(ecdfMaxSucess),type="l", lwd=2,lty=linetype[7], col=colors[7], pch=plotchar[7])
+  points(budgetSteps[seq(7,length(budgetSteps),by=10)],(minCountDES_MIDT/(ecdfMaxSucess))[seq(7,length(budgetSteps),by=10)],col=colors[7], pch=plotchar[7])
+  
+  lines(budgetSteps,minCountDES_SMUT2/(ecdfMaxSucess),type="l", lwd=2,lty=linetype[8], col=colors[8], pch=plotchar[8])
+  points(budgetSteps[seq(8,length(budgetSteps),by=10)],(minCountDES_SMUT2/(ecdfMaxSucess))[seq(8,length(budgetSteps),by=10)],col=colors[8], pch=plotchar[8])
+  
+  lines(budgetSteps,minCountDES_RBASE/(ecdfMaxSucess),type="l", lwd=2,lty=linetype[9], col=colors[9], pch=plotchar[9])
+  points(budgetSteps[seq(9,length(budgetSteps),by=10)],(minCountDES_RBASE/(ecdfMaxSucess))[seq(9,length(budgetSteps),by=10)],col=colors[9], pch=plotchar[9])
+  
+  lines(budgetSteps,minCountDES_MBASE/(ecdfMaxSucess),type="l", lwd=2,lty=linetype[10], col=colors[10], pch=plotchar[10])
+  points(budgetSteps[seq(10,length(budgetSteps),by=10)],(minCountDES_MBASE/(ecdfMaxSucess))[seq(10,length(budgetSteps),by=10)],col=colors[10], pch=plotchar[10])
+  
+  lines(budgetSteps,minCountDES_EXPS/(ecdfMaxSucess),type="l", lwd=2,lty=linetype[11], col=colors[11], pch=plotchar[11])
+  points(budgetSteps[seq(11,length(budgetSteps),by=10)],(minCountDES_EXPS/(ecdfMaxSucess))[seq(11,length(budgetSteps),by=10)],col=colors[11], pch=plotchar[11])
   
   legend("topleft", c( "rzut", "odb", "zawijanie", "losowanie", "DES", "scaledMutant","midTarget", "scaledMutant2", "randBase", "midBase", "expS" ), text.font=2, cex=1, col=colors[1:11],pch=plotchar[1:11], lty=linetype[1:11] )
   
@@ -142,24 +163,20 @@ ecdfIEEE<- function(n,f_from,f_to){
 
 combinedPlots <- function(){
   ecdfIEEE(10,1,3)
-  ecdfIEEE(10,4,10)
-  ecdfIEEE(10,11,20)
-  ecdfIEEE(10,21,30)
+  ecdfIEEE(10,4,30)
+  ecdfIEEE(10,1,30)
   
   ecdfIEEE(30,1,3)
-  ecdfIEEE(30,4,10)
-  ecdfIEEE(30,11,20)
-  ecdfIEEE(30,21,30)
+  ecdfIEEE(30,4,30)
+  ecdfIEEE(30,1,30)
   
   ecdfIEEE(50,1,3)
-  ecdfIEEE(50,4,10)
-  ecdfIEEE(50,11,20)
-  ecdfIEEE(50,21,30)
+  ecdfIEEE(50,4,30)
+  ecdfIEEE(50,1,30)
   
   ecdfIEEE(100,1,3)
-  ecdfIEEE(100,4,10)
-  ecdfIEEE(100,11,20)
-  ecdfIEEE(100,21,30)  
+  ecdfIEEE(100,4,30)
+  ecdfIEEE(100,1,30)
 }
 
 
