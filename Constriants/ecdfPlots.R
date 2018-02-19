@@ -1,0 +1,166 @@
+library(ggplot2)
+
+ecdfIEEE<- function(n,f_from,f_to){
+  N       <- n         
+  F_from  <- f_from
+  F_to    <- f_to
+  
+  print(paste("Dimension: ",n,sep=''))
+  
+  des_throw_path = "C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/Constriants/DES/ThrowOnLimit/M/"
+  des_bback_path = "C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/Constriants/DES/BounceBack/M/"
+  des_wrapp_path = "C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/Constriants/DES/Wrapping/M/"
+  des_draw_path =  "C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/Constriants/DES/Drawing/M/"
+  des_ddes_path =  "C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/Constriants/DES/Darwinian/M/"
+  des_smut_path =  "C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/Constriants/DES/ScaledMutant/M/"
+  des_midt_path =  "C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/Constriants/DES/MidTarget/M/"
+  des_smut2_path =  "C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/Constriants/DES/ScaledMutant2/M/"
+  des_rbase_path =  "C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/Constriants/DES/RandBase/M/"
+  des_mbase_path =  "C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/Constriants/DES/MidBase/M/"
+  des_exps_path =  "C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/Constriants/DES/ExpS/M/"
+  
+  
+  ecdfValues <- list()
+  budgetSteps <- seq(0.01,1,by=0.01)*log10(10000)
+  
+  colors <- rainbow(12)
+  linetype <- c(c(1:6),c(1:6),c(1:6),c(1:2))
+  plotchar <- c( 0:10, 0:10)
+
+  ecdfMaxSucess <- 0
+  resultsDES_THROW <- list()
+  resultsDES_BBACK <- list()
+  resultsDES_WRAPP <- list()
+  resultsDES_DRAW <- list()
+  resultsDES_DDES <- list()
+  resultsDES_SMUT <- list()
+  resultsDES_MIDT <- list()
+  resultsDES_SMUT2 <- list()
+  resultsDES_RBASE <- list()
+  resultsDES_MBASE <- list()
+  resultsDES_EXPS <- list()
+  
+  for(p in 1:30){
+    resultsDES_THROW[[p]] <- read.table(file = paste( des_throw_path,"DES_",p,"_",N,".txt",sep=""),sep = ",")
+    resultsDES_BBACK[[p]] <- read.table(file = paste( des_bback_path,"DES_",p,"_",N,".txt",sep=""),sep = ",")
+    resultsDES_WRAPP[[p]] <- read.table(file = paste( des_wrapp_path,"DES_",p,"_",N,".txt",sep=""),sep = ",")
+    resultsDES_DRAW[[p]] <- read.table(file = paste( des_draw_path,"DES_",p,"_",N,".txt",sep=""),sep = ",")
+    resultsDES_DDES[[p]] <- read.table(file = paste( des_ddes_path,"DES_",p,"_",N,".txt",sep=""),sep = ",")
+    resultsDES_SMUT[[p]] <- read.table(file = paste( des_smut_path,"DES_",p,"_",N,".txt",sep=""),sep = ",")
+    resultsDES_MIDT[[p]] <- read.table(file = paste( des_midt_path,"DES_",p,"_",N,".txt",sep=""),sep = ",")
+    resultsDES_SMUT2[[p]] <- read.table(file = paste( des_smut2_path,"DES_",p,"_",N,".txt",sep=""),sep = ",")
+    resultsDES_RBASE[[p]] <- read.table(file = paste( des_rbase_path,"DES_",p,"_",N,".txt",sep=""),sep = ",")
+    resultsDES_MBASE[[p]] <- read.table(file = paste( des_mbase_path,"DES_",p,"_",N,".txt",sep=""),sep = ",")
+    resultsDES_EXPS[[p]] <- read.table(file = paste( des_exps_path,"DES_",p,"_",N,".txt",sep=""),sep = ",")
+    
+    ecdfValues[[p]] <- rev(c(1 %o% (10)^(0.2*((log10(max(min(
+                                                        min(resultsDES_THROW[[p]][100,]),
+                                                        min(resultsDES_BBACK[[p]][100,]),
+                                                        min(resultsDES_WRAPP[[p]][100,]),
+                                                        min(resultsDES_DRAW[[p]][100,]),
+                                                        min(resultsDES_DDES[[p]][100,]),
+                                                        min(resultsDES_SMUT[[p]][100,]),
+                                                        min(resultsDES_MIDT[[p]][100,]),
+                                                        min(resultsDES_SMUT2[[p]][100,]),
+                                                        min(resultsDES_RBASE[[p]][100,]),
+                                                        min(resultsDES_MBASE[[p]][100,]),
+                                                        min(resultsDES_EXPS[[p]][100,])
+                                                        
+                                                            ),10^-8)  )/0.2):(log10(median(
+                                                                 max(resultsDES_THROW[[p]][1,]),
+                                                                 max(resultsDES_BBACK[[p]][1,]),
+                                                                 max(resultsDES_WRAPP[[p]][1,]),
+                                                                 max(resultsDES_DRAW[[p]][1,]),
+                                                                 max(resultsDES_DDES[[p]][1,]),
+                                                                 max(resultsDES_SMUT[[p]][1,]),
+                                                                 max(resultsDES_MIDT[[p]][1,]),
+                                                                 max(resultsDES_SMUT2[[p]][1,]),
+                                                                 max(resultsDES_RBASE[[p]][1,]),
+                                                                 max(resultsDES_MBASE[[p]][1,]),
+                                                                 max(resultsDES_EXPS[[p]][1,])
+                                                                 
+                                                                 )  )/0.2) ))))
+      }
+  
+  minCountDES_THROW <- rep(0,length(budgetSteps))
+  minCountDES_BBACK <- rep(0,length(budgetSteps))
+  minCountDES_WRAPP <- rep(0,length(budgetSteps))
+  minCountDES_DRAW <- rep(0,length(budgetSteps))
+  minCountDES_DDES <- rep(0,length(budgetSteps))
+  minCountDES_SMUT <- rep(0,length(budgetSteps))
+  minCountDES_MIDT <- rep(0,length(budgetSteps))
+  minCountDES_SMUT2 <- rep(0,length(budgetSteps))
+  minCountDES_RBASE <- rep(0,length(budgetSteps))
+  minCountDES_MBASE <- rep(0,length(budgetSteps))
+  minCountDES_EXPS <- rep(0,length(budgetSteps))
+  
+  for(p in F_from:F_to){
+    print(paste("Calculating for function: ",p))
+    for(b in 1:length(budgetSteps)){
+      for(e in 1:length(ecdfValues[[p]])){
+        minCountDES_THROW[b] <- minCountDES_THROW[b] + sum(resultsDES_THROW[[p]][b,]<ecdfValues[[p]][e])
+        minCountDES_BBACK[b] <- minCountDES_BBACK[b] + sum(resultsDES_BBACK[[p]][b,]<ecdfValues[[p]][e])
+        minCountDES_WRAPP[b] <- minCountDES_WRAPP[b] + sum(resultsDES_WRAPP[[p]][b,]<ecdfValues[[p]][e])
+        minCountDES_DRAW[b] <- minCountDES_DRAW[b] + sum(resultsDES_DRAW[[p]][b,]<ecdfValues[[p]][e])
+        minCountDES_DDES[b] <- minCountDES_DDES[b] + sum(resultsDES_DDES[[p]][b,]<ecdfValues[[p]][e])
+        minCountDES_SMUT[b] <- minCountDES_SMUT[b] + sum(resultsDES_SMUT[[p]][b,]<ecdfValues[[p]][e])
+        minCountDES_MIDT[b] <- minCountDES_MIDT[b] + sum(resultsDES_MIDT[[p]][b,]<ecdfValues[[p]][e])
+        minCountDES_SMUT2[b] <- minCountDES_SMUT2[b] + sum(resultsDES_SMUT2[[p]][b,]<ecdfValues[[p]][e])
+        minCountDES_RBASE[b] <- minCountDES_RBASE[b] + sum(resultsDES_RBASE[[p]][b,]<ecdfValues[[p]][e])
+        minCountDES_MBASE[b] <- minCountDES_MBASE[b] + sum(resultsDES_MBASE[[p]][b,]<ecdfValues[[p]][e])
+        minCountDES_EXPS[b] <- minCountDES_EXPS[b] + sum(resultsDES_EXPS[[p]][b,]<ecdfValues[[p]][e])
+        
+      }
+    }
+    ecdfMaxSucess <- ecdfMaxSucess + length(ecdfValues[[p]])*51
+  }
+  isXaxt <- "s"
+  isYaxt <- "s"
+  #isXaxt <- if(N==100) "s" else "n"
+  #isYaxt <- if(F_from==1) "s" else "n"
+  setEPS()
+  postscript( paste("Problems",F_from,"-",F_to,",N=",N,".eps",sep=""), width = 8, height = 8)
+                                              #xlab="log10 of (f-evals / dimension)",ylab="Proportion of function + target pairs",
+  rplot <- plot(budgetSteps,minCountDES_THROW/(ecdfMaxSucess),xlab="log10 of (f-evals / dimension)",ylab="Proportion of function + target pairs",ylim=c(0, 1),type="b", lwd=2,lty=linetype[1], col=colors[1], pch=plotchar[1], xaxt=isXaxt,  yaxt=isYaxt)
+ 
+  lines(budgetSteps,minCountDES_BBACK/(ecdfMaxSucess),type="b", lwd=2,lty=linetype[2], col=colors[2], pch=plotchar[2])
+  lines(budgetSteps,minCountDES_WRAPP/(ecdfMaxSucess),type="b", lwd=2,lty=linetype[3], col=colors[3], pch=plotchar[3])
+  lines(budgetSteps,minCountDES_DRAW/(ecdfMaxSucess),type="b", lwd=2,lty=linetype[4], col=colors[4], pch=plotchar[4])
+  lines(budgetSteps,minCountDES_DDES/(ecdfMaxSucess),type="b", lwd=2,lty=linetype[5], col=colors[5], pch=plotchar[5])
+  lines(budgetSteps,minCountDES_SMUT/(ecdfMaxSucess),type="b", lwd=2,lty=linetype[6], col=colors[6], pch=plotchar[6])
+  lines(budgetSteps,minCountDES_MIDT/(ecdfMaxSucess),type="b", lwd=2,lty=linetype[7], col=colors[7], pch=plotchar[7])
+  lines(budgetSteps,minCountDES_SMUT2/(ecdfMaxSucess),type="b", lwd=2,lty=linetype[8], col=colors[8], pch=plotchar[8])
+  lines(budgetSteps,minCountDES_RBASE/(ecdfMaxSucess),type="b", lwd=2,lty=linetype[9], col=colors[9], pch=plotchar[9])
+  lines(budgetSteps,minCountDES_MBASE/(ecdfMaxSucess),type="b", lwd=2,lty=linetype[10], col=colors[10], pch=plotchar[10])
+  lines(budgetSteps,minCountDES_EXPS/(ecdfMaxSucess),type="b", lwd=2,lty=linetype[11], col=colors[11], pch=plotchar[11])
+  
+  legend("topleft", c( "rzut", "odb", "zawijanie", "losowanie", "DES", "scaledMutant","midTarget", "scaledMutant2", "randBase", "midBase", "expS" ), text.font=2, cex=1, col=colors[1:11],pch=plotchar[1:11], lty=linetype[1:11] )
+  
+  dev.off()
+  return(rplot)
+}
+
+combinedPlots <- function(){
+  ecdfIEEE(10,1,3)
+  ecdfIEEE(10,4,10)
+  ecdfIEEE(10,11,20)
+  ecdfIEEE(10,21,30)
+  
+  ecdfIEEE(30,1,3)
+  ecdfIEEE(30,4,10)
+  ecdfIEEE(30,11,20)
+  ecdfIEEE(30,21,30)
+  
+  ecdfIEEE(50,1,3)
+  ecdfIEEE(50,4,10)
+  ecdfIEEE(50,11,20)
+  ecdfIEEE(50,21,30)
+  
+  ecdfIEEE(100,1,3)
+  ecdfIEEE(100,4,10)
+  ecdfIEEE(100,11,20)
+  ecdfIEEE(100,21,30)  
+}
+
+
+
