@@ -72,11 +72,10 @@ Quadric2 <- function(){
 
   resConstraints <<- resConstraints
 
-  plot(b,resConstraints[[2]], type="l",lwd=2, log="x", ylab="level / targetLevel",col=colors[2], lty=linetype[2])
+  plot(1-b,resConstraints[[2]], type="l",lwd=2, log="x", ylab="level / targetLevel",col=colors[2], lty=linetype[2])
   for(j in 1:handlingMethodNum )
-    lines(b,resConstraints[[j]], type="l",lwd=2, col=colors[j], lty=linetype[j])
+    lines(1-b,resConstraints[[j]], type="l",lwd=2, col=colors[j], lty=linetype[j])
 
-  legend("topright",handlingMethods,text.font=2, cex=1, col=colors[1:handlingMethodNum], lty=linetype[1:handlingMethodNum], lwd=2, ncol=3)
 
 
 }
