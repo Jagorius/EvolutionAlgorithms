@@ -20,7 +20,7 @@ Quadric2 <- function(){
         },
         lower=-10^8,
         upper=10^8,
-        control=list("Lamarckism"=FALSE,"diag.bestVal"=TRUE, "budget"=1000*N)
+        control=list("Lamarckism"=FALSE,"diag.bestVal"=TRUE)
       )
 
       # In which population the level 10^-8 was reached for the first time
@@ -48,7 +48,7 @@ Quadric2 <- function(){
                     },
                     lower=-1,
                     upper=1,
-                    control=list("Lamarckism"=FALSE,"diag.bestVal"=TRUE,"budget"=1000*N)
+                    control=list("Lamarckism"=FALSE,"diag.bestVal"=TRUE)
                   )
               else
                 result <- CMADE(
@@ -58,7 +58,7 @@ Quadric2 <- function(){
                   },
                   lower=-1,
                   upper=1,
-                  control=list("Lamarckism"=TRUE,"diag.bestVal"=TRUE,"budget"=1000*N)
+                  control=list("Lamarckism"=TRUE,"diag.bestVal"=TRUE)
                 )
               if(any(result$diagnostic$bestVal <= 10^-8))
                 level<-mean(c( level, which(result$diagnostic$bestVal <= 10^-8)[1] ))
@@ -71,8 +71,11 @@ Quadric2 <- function(){
   }
 
   resConstraints <<- resConstraints
-
-  plot(1-b,resConstraints[[2]], type="l",lwd=2, log="x", ylab="level / targetLevel",col=colors[2], lty=linetype[2])
+  
+  minY = min(unlist(x)) 
+  maxY=3
+  
+  plot(1-b,resConstraints[[2]], type="l",lwd=2, log="x", ylab="level/targetLevel",col=colors[2], lty=linetype[2])
   for(j in 1:handlingMethodNum )
     lines(1-b,resConstraints[[j]], type="l",lwd=2, col=colors[j], lty=linetype[j])
 
