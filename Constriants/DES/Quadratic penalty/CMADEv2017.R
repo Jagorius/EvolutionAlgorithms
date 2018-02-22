@@ -125,9 +125,11 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
     if(is.matrix(P) && is.matrix(P_repaired)){
       repairedInd <- apply(P!=P_repaired,2,all)
       P_fit <- fitness
-      vecDist <- colSums((P - P_repaired)^2)
-      P_fit[which(repairedInd)] <- apply(P_repaired[,which(repairedInd)], 2, fn_) + vecDist[which(repairedInd)]
-      P_fit <- deleteInfsNaNs(P_fit)
+      if(any(repairedInd)){
+      	vecDist <- colSums((P - P_repaired)^2)
+      	P_fit[which(repairedInd)] <- apply(P_repaired[,which(repairedInd),drop=F], 2, fn_) + vecDist[which(repairedInd)]
+      	P_fit <- deleteInfsNaNs(P_fit)
+      }
       return(P_fit)
     }else{
       P_fit <- fitness

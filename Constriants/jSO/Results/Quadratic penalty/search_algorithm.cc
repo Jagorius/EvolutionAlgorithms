@@ -38,7 +38,7 @@ void searchAlgorithm::evaluatePopulation(const vector<Individual> &pop, vector<F
 		}
 		
 		Fitness repFit;
-		cec17_test_func(repaired,  repFit, problem_size, 1, function_number);
+		cec17_test_func(repaired, &repFit, problem_size, 1, function_number);
 
 		fitness[i] = repFit + eu_distance;
 		
