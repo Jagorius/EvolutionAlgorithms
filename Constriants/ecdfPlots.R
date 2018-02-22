@@ -5,27 +5,36 @@ ecdfIEEE<- function(n,f_from,f_to){
   F_from  <- f_from
   F_to    <- f_to
   
+  DATA_VERS_NICE_NAMES=c("Reinitialization", "Lamarckian projection" , "Darwinian projection", "Lamarckian reflection", "Darwinian reflection", "Lamarckian wrapping", 
+                         "Darwinian wrapping", "Scaled mutant", "Death penalty", 
+                         "Quadratic penalty", "Substitution penalty", "Resampling",
+                         "Rand base", "Midpoint base", "Midpoint target", "Scaled to base", "Conservatism")
+  
   print(paste("Dimension: ",n,sep=''))
   
-  des_throw_path = "C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/Constriants/DES/ThrowOnLimit/M/"
-  des_bback_path = "C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/Constriants/DES/BounceBack/M/"
-  des_wrapp_path = "C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/Constriants/DES/Wrapping/M/"
-  des_draw_path =  "C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/Constriants/DES/Drawing/M/"
-  des_ddes_path =  "C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/Constriants/DES/Darwinian/M/"
-  des_smut_path =  "C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/Constriants/DES/ScaledMutant/M/"
-  des_midt_path =  "C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/Constriants/DES/MidTarget/M/"
-  des_smut2_path =  "C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/Constriants/DES/ScaledMutant2/M/"
-  des_rbase_path =  "C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/Constriants/DES/RandBase/M/"
-  des_mbase_path =  "C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/Constriants/DES/MidBase/M/"
-  des_exps_path =  "C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/Constriants/DES/ExpS/M/"
+  des_throw_path = "C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/Constriants/DES/Lamarckian projection/M/"
+  des_bback_path = "C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/Constriants/DES/Lamarckian reflection/M/"
+  des_wrapp_path = "C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/Constriants/DES/Lamarckian wrapping/M/"
+  des_draw_path =  "C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/Constriants/DES/Reinitialization/M/"
+  des_ddes_path =  "C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/Constriants/DES/Substitution penalty/M/"
+  des_smut_path =  "C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/Constriants/DES/Scaled mutant/M/"
+  des_midt_path =  "C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/Constriants/DES/Midpoint target/M/"
+  des_smut2_path =  "C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/Constriants/DES/Scaled to base/M/"
+  des_rbase_path =  "C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/Constriants/DES/Rand base/M/"
+  des_mbase_path =  "C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/Constriants/DES/Midpoint base/M/"
+  des_dthrow_path =  "C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/Constriants/DES/Darwinian projection/M/"
+  des_dbback_path =  "C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/Constriants/DES/Darwinian reflection/M/"
+  des_dwrapp_path =  "C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/Constriants/DES/Darwinian wrapping/M/"
+  des_qpenalty_path =  "C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/Constriants/DES/Quadratic penalty/M/"
+  des_resampl_path =  "C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/Constriants/DES/Resampling/M/"
+  des_conserv_path =  "C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/Constriants/DES/Conservatism/M/"
   
   
   ecdfValues <- list()
   budgetSteps <- seq(0.01,1,by=0.01)*log10(10000)
   
-  colors <- rainbow(12)
-  linetype <- c(c(1:6),c(1:6),c(1:6),c(1:2))
-  plotchar <- c( 0:10, 0:10)
+  colors <- c("black", "black", "grey", "black", "grey", "black", "grey", rep("black",11))
+  plotchar <- c( 4, 0, 15, 1, 16, 2, 17, 3, 5:14)
 
   ecdfMaxSucess <- 0
   resultsDES_THROW <- list()
@@ -38,7 +47,12 @@ ecdfIEEE<- function(n,f_from,f_to){
   resultsDES_SMUT2 <- list()
   resultsDES_RBASE <- list()
   resultsDES_MBASE <- list()
-  resultsDES_EXPS <- list()
+  resultsDES_DTHROW <- list()
+  resultsDES_DBBACK <- list()
+  resultsDES_DWRAPP <- list()
+  resultsDES_QPENAL <- list()
+  resultsDES_RESAMPL <- list()
+  resultsDES_CONSERV <- list()
   
   for(p in 1:30){
     resultsDES_THROW[[p]] <- read.table(file = paste( des_throw_path,"DES_",p,"_",N,".txt",sep=""),sep = ",")
@@ -51,7 +65,12 @@ ecdfIEEE<- function(n,f_from,f_to){
     resultsDES_SMUT2[[p]] <- read.table(file = paste( des_smut2_path,"DES_",p,"_",N,".txt",sep=""),sep = ",")
     resultsDES_RBASE[[p]] <- read.table(file = paste( des_rbase_path,"DES_",p,"_",N,".txt",sep=""),sep = ",")
     resultsDES_MBASE[[p]] <- read.table(file = paste( des_mbase_path,"DES_",p,"_",N,".txt",sep=""),sep = ",")
-    resultsDES_EXPS[[p]] <- read.table(file = paste( des_exps_path,"DES_",p,"_",N,".txt",sep=""),sep = ",")
+    resultsDES_DTHROW[[p]] <- read.table(file = paste( des_dthrow_path,"DES_",p,"_",N,".txt",sep=""),sep = ",")
+    resultsDES_DBBACK[[p]] <- read.table(file = paste( des_dbback_path,"DES_",p,"_",N,".txt",sep=""),sep = ",")
+    resultsDES_DWRAPP[[p]] <- read.table(file = paste( des_dwrapp_path,"DES_",p,"_",N,".txt",sep=""),sep = ",")
+    resultsDES_QPENAL[[p]] <- read.table(file = paste( des_qpenalty_path,"DES_",p,"_",N,".txt",sep=""),sep = ",")
+    resultsDES_RESAMPL[[p]] <- read.table(file = paste( des_resampl_path,"DES_",p,"_",N,".txt",sep=""),sep = ",")
+    resultsDES_CONSERV[[p]] <- read.table(file = paste( des_conserv_path,"DES_",p,"_",N,".txt",sep=""),sep = ",")
     
     ecdfValues[[p]] <- rev(c(1 %o% (10)^(0.2*((log10(max(min(
                                                         min(resultsDES_THROW[[p]][100,]),
@@ -64,7 +83,12 @@ ecdfIEEE<- function(n,f_from,f_to){
                                                         min(resultsDES_SMUT2[[p]][100,]),
                                                         min(resultsDES_RBASE[[p]][100,]),
                                                         min(resultsDES_MBASE[[p]][100,]),
-                                                        min(resultsDES_EXPS[[p]][100,])
+                                                        min(resultsDES_DTHROW[[p]][100,]),
+                                                        min(resultsDES_DBBACK[[p]][100,]),
+                                                        min(resultsDES_DWRAPP[[p]][100,]),
+                                                        min(resultsDES_QPENAL[[p]][100,]),
+                                                        min(resultsDES_RESAMPL[[p]][100,]),
+                                                        min(resultsDES_CONSERV[[p]][100,])
                                                         
                                                             ),10^-8)  )/0.2):(log10(median(
                                                                  max(resultsDES_THROW[[p]][1,]),
@@ -77,7 +101,12 @@ ecdfIEEE<- function(n,f_from,f_to){
                                                                  max(resultsDES_SMUT2[[p]][1,]),
                                                                  max(resultsDES_RBASE[[p]][1,]),
                                                                  max(resultsDES_MBASE[[p]][1,]),
-                                                                 max(resultsDES_EXPS[[p]][1,])
+                                                                 max(resultsDES_DTHROW[[p]][1,]),
+                                                                 max(resultsDES_DBBACK[[p]][1,]),
+                                                                 max(resultsDES_DWRAPP[[p]][1,]),
+                                                                 max(resultsDES_QPENAL[[p]][1,]),
+                                                                 max(resultsDES_RESAMPL[[p]][1,]),
+                                                                 max(resultsDES_CONSERV[[p]][1,])
                                                                  
                                                                  )  )/0.2) ))))
       }
@@ -92,7 +121,12 @@ ecdfIEEE<- function(n,f_from,f_to){
   minCountDES_SMUT2 <- rep(0,length(budgetSteps))
   minCountDES_RBASE <- rep(0,length(budgetSteps))
   minCountDES_MBASE <- rep(0,length(budgetSteps))
-  minCountDES_EXPS <- rep(0,length(budgetSteps))
+  minCountDES_DTHROW <- rep(0,length(budgetSteps))
+  minCountDES_DBACK <- rep(0,length(budgetSteps))
+  minCountDES_DWRAPP <- rep(0,length(budgetSteps))
+  minCountDES_QPENAL <- rep(0,length(budgetSteps))
+  minCountDES_RESAMPL <- rep(0,length(budgetSteps))
+  minCountDES_CONSERV <- rep(0,length(budgetSteps))
   
   for(p in F_from:F_to){
     print(paste("Calculating for function: ",p))
@@ -108,7 +142,12 @@ ecdfIEEE<- function(n,f_from,f_to){
         minCountDES_SMUT2[b] <- minCountDES_SMUT2[b] + sum(resultsDES_SMUT2[[p]][b,]<ecdfValues[[p]][e])
         minCountDES_RBASE[b] <- minCountDES_RBASE[b] + sum(resultsDES_RBASE[[p]][b,]<ecdfValues[[p]][e])
         minCountDES_MBASE[b] <- minCountDES_MBASE[b] + sum(resultsDES_MBASE[[p]][b,]<ecdfValues[[p]][e])
-        minCountDES_EXPS[b] <- minCountDES_EXPS[b] + sum(resultsDES_EXPS[[p]][b,]<ecdfValues[[p]][e])
+        minCountDES_DTHROW[b] <- minCountDES_DTHROW[b] + sum(resultsDES_DTHROW[[p]][b,]<ecdfValues[[p]][e])
+        minCountDES_DBACK[b] <- minCountDES_DBACK[b] + sum(resultsDES_DBBACK[[p]][b,]<ecdfValues[[p]][e])
+        minCountDES_DWRAPP[b] <- minCountDES_DWRAPP[b] + sum(resultsDES_DWRAPP[[p]][b,]<ecdfValues[[p]][e])
+        minCountDES_QPENAL[b] <- minCountDES_QPENAL[b] + sum(resultsDES_QPENAL[[p]][b,]<ecdfValues[[p]][e])
+        minCountDES_RESAMPL[b] <- minCountDES_RESAMPL[b] + sum(resultsDES_RESAMPL[[p]][b,]<ecdfValues[[p]][e])
+        minCountDES_CONSERV[b] <- minCountDES_CONSERV[b] + sum(resultsDES_CONSERV[[p]][b,]<ecdfValues[[p]][e])
         
       }
     }
@@ -155,7 +194,7 @@ ecdfIEEE<- function(n,f_from,f_to){
   lines(budgetSteps,minCountDES_EXPS/(ecdfMaxSucess),type="l", lwd=2,lty=linetype[11], col=colors[11], pch=plotchar[11])
   points(budgetSteps[seq(11,length(budgetSteps),by=10)],(minCountDES_EXPS/(ecdfMaxSucess))[seq(11,length(budgetSteps),by=10)],col=colors[11], pch=plotchar[11])
   
-  legend("topleft", c( "rzut", "odb", "zawijanie", "losowanie", "DES", "scaledMutant","midTarget", "scaledMutant2", "randBase", "midBase", "expS" ), text.font=2, cex=1, col=colors[1:11],pch=plotchar[1:11], lty=linetype[1:11] )
+  legend("topleft",DATA_VERS_NICE_NAMES, text.font=2, cex=1, col=colors[1:11],pch=plotchar[1:11], lty=linetype[1:11] )
   
   dev.off()
   return(rplot)

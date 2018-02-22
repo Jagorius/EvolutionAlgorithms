@@ -1,6 +1,6 @@
 Quadric2 <- function(){
   N <- 10
-  reps <- 10
+  reps <- 51
   #b <- seq(0,1,by=0.1)
   b <- c(0.2, 0.6, 0.8, 0.9, 0.95, 0.975, 0.987, 0.99375, 0.996875, 0.9984375, 0.9992188, 1)
   colors <- rainbow(16)
@@ -11,6 +11,7 @@ Quadric2 <- function(){
   targetLevel <- NULL
   source('C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/Constriants/QuadricProblem/CMADEv2017.R')
   for (i in 1:reps) {
+      print(i)
       set.seed(1)
       # Variant with virtually no constraints
       result <- CMADE(
