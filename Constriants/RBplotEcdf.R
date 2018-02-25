@@ -135,13 +135,13 @@ if(ALG_NAME == "CMAES"){
   DATA_VERS = c( "Lamarckian projection", "Lamarckian reflection", "Lamarckian wrapping", "Reinitialization", 
                  "Resampling", "Darwinian projection", "Darwinian reflection", 
                  "Darwinian wrapping", "Substitution penalty", "Scaled mutant", 
-                 "Quadratic penalty", "Midpoint target", "Rand base", "Conservatism" ) 
+                 "Quadratic penalty", "Midpoint target", "Scaled to base", "Rand base", "Conservatism" ) 
   
   DATA_VERS_NAMES_MAPPING = list("Reinitialization"="Reinitialization", "Lamarckian projection"="Lamarckian projection" , "Darwinian projection"="Darwinian projection", 
                                  "Lamarckian reflection"="Lamarckian reflection", "Darwinian reflection"="Darwinian reflection", "Lamarckian wrapping"="Lamarckian wrapping", 
                                  "Darwinian wrapping"="Darwinian wrapping", "Scaled mutant"="Scaled mutant", "Death penalty"="NONE", 
                                  "Quadratic penalty"="Quadratic penalty", "Substitution penalty"="Substitution penalty", "Resampling"="Resampling",
-                                 "Rand base"="Rand base", "Midpoint base"="NONE", "Midpoint target"="Midpoint target", "Scaled to base"="NONE", 
+                                 "Rand base"="Rand base", "Midpoint base"="NONE", "Midpoint target"="Midpoint target", "Scaled to base"="Scaled to base", 
                                  "Conservatism"="Conservatism" )
 }else{
   #komplet
@@ -228,10 +228,10 @@ for( funNmbr in 1:MAX_FUN_NMBR ){
   }
 
   #ToDo:inaczej liczysz progi
-  #length.out=51
-  #progi[[funNmbr]]<-  10^seq( log10( median(kompletnyPoczatekJakosc)), log10( max(minAtEnd, 10^-8)  ), length.out= length.out) 
-  progi[[funNmbr]] <- rev(c(1 %o% (10)^(0.2*((log10( max(minAtEnd, 10^-8))/0.2):(log10(median(kompletnyPoczatekJakosc))/0.2) ))))
-  #progi[[funNmbr]][length.out] = max(minAtEnd, 10^-8)
+  length.out=51
+  progi[[funNmbr]]<-  10^seq( log10( median(kompletnyPoczatekJakosc)), log10( max(minAtEnd, 10^-8)  ), length.out= length.out) 
+  #progi[[funNmbr]] <- rev(c(1 %o% (10)^(0.2*((log10( max(minAtEnd, 10^-8))/0.2):(log10(median(kompletnyPoczatekJakosc))/0.2) ))))
+  progi[[funNmbr]][length.out] = max(minAtEnd, 10^-8)
 } 
 
 progi<<- progi
@@ -327,7 +327,7 @@ for(plotSeqEl in plotSequence ){
 
 }
 
-ecdfplot(10)
+#ecdfplot(10)
 #ecdfplot(30)
 #ecdfplot(50)
-#ecdfplot(100)
+ecdfplot(100)

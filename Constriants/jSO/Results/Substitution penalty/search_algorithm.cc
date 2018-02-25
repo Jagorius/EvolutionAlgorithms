@@ -26,12 +26,19 @@ void searchAlgorithm::evaluatePopulation(const vector<Individual> &pop, vector<F
 
   for (int i = 0; i < pop_size; i++) {
 	int isConstViolated = 0;
-	Individual repaired = pop[i];
+	double *repaired = (double *)malloc(sizeof(double )*l_problem_size);
+   	memcpy(repaired , pop[i], sizeof(double)*l_problem_size);
 	for (int j = 0; j < l_problem_size; j++) {
-		 if (pop[i][j] < l_min_region)  repaired[j] = l_min_region + ((int)(l_min_region - repaired[j])) % ((int)(l_max_region - l_min_region));
-		 if (pop[i][j] > l_max_region)  repaired[j] = l_max_region - ((int)(repaired[j] -l_max_region )) % ((int)(l_max_region - l_min_region ));
+		 if (pop[i][j] < l_min_region){
+		 	repaired[j] = l_min_region + ((int)(l_min_region - repaired[j])) % ((int)(l_max_region - l_min_region));
+		 	isConstViolated = 1;
+		} 
+		 if (pop[i][j] > l_max_region){  
+			repaired[j] = l_max_region - ((int)(repaired[j] -l_max_region )) % ((int)(l_max_region - l_min_region ));
+			isConstViolated = 1; 
+		}
 	}
-	if(pop[i] != repaired){
+	if(isConstViolated  != 0){
 		float eu_distance=0;
 		for (int k = 0; k < l_problem_size; k++){
 			eu_distance += (pop[i][k]-repaired[k])*(pop[i][k]-repaired[k]);
@@ -42,6 +49,7 @@ void searchAlgorithm::evaluatePopulation(const vector<Individual> &pop, vector<F
 	}else{
     		cec17_test_func(pop[i],  &fitness[i], problem_size, 1, function_number);
 	}
+	free(repaired);
   }
 }
 

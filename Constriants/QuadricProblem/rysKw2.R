@@ -6,7 +6,7 @@ DATA_VERS_NICE_NAMES=c("Reinitialization", "Lamarckian projection" , "Darwinian 
                        "Rand base", "Midpoint base", "Midpoint target", "Scaled to base", "Conservatism" )
 
 ALG_NAME = "DES"
-NMBR_OF_RUNS = 2
+NMBR_OF_RUNS = 51
 DIM = 10
 DESIRED_LEVEL = 10^-8
 Evals4iter = 4*DIM+1
@@ -130,7 +130,7 @@ par(mar=c(3,4,1,1)+0.1)#bottom left top right
 
 DATA_VER = DATA_VERS_NAMES_MAPPING[[1]]
 LWD = 1
-#maxY=3
+maxY=3
 plot(res4Constraints[[DATA_VER]], ylab="ERT/reference ERT",  type="n", lwd=LWD, col=colors[1], ylim=c(minY, maxY), xaxt = "n" )
 axis(1, at=1:length(bSeq), labels=round(bSeq, digits=3) )
 title(xlab="b", mgp=c(2,1,0) )
