@@ -24,6 +24,7 @@ typedef  double variable;
 typedef variable *Individual;
 typedef  double Fitness;
 
+extern double bb;
 extern int g_function_number;
 extern int g_problem_size;
 extern unsigned int g_max_num_evaluations;

@@ -27,6 +27,7 @@
 double *OShift,*M,*y,*z,*x_bound;
 int ini_flag=0,n_flag,func_flag,*SS;
 
+double bb=0;
 int g_function_number;
 int g_problem_size;
 unsigned int g_max_num_evaluations;
@@ -39,18 +40,27 @@ double g_p_best_rate;
 ofstream outFile;
 
 int main(int argc, char **argv) {
-	
-  for (int n = 0; n < 1; n++) {
+
+  g_problem_size = 10;
+  for (int bi = 0; bi < 12; bi++) {
 	  //number of runs
-	  int num_runs = 5;
+	  int num_runs = 51;
 	  //int num_runs = 5;
 	  //int num_runs = 2;
-		//dimension size. please select from 10, 30, 50, 100
-	  switch (n) {
-		case  0: g_problem_size = 10; break;
-		case  1: g_problem_size = 30; break;
-		case  2: g_problem_size = 50; break;
-		case  3: g_problem_size = 100; break;
+	  switch (bi) {
+		case  0: bb = 0.2; break;
+		case  1: bb = 0.6; break;
+		case  2: bb = 0.8; break;
+		case  3: bb = 0.9; break;
+		case  4: bb = 0.95; break;
+		case  5: bb = 0.975; break;
+		case  6: bb = 0.9875; break;
+		case  7: bb = 0.99375; break;
+		case  8: bb = 0.996875; break;
+		case  9: bb = 0.9984375; break;
+		case  10: bb = 0.9992188; break;
+		case  11: bb = 1; break;
+
 	  }
 	  
 	  //available number of fitness evaluations 
@@ -85,16 +95,16 @@ int main(int argc, char **argv) {
 	  //ofstream outFile(fileName, ios::out);
 	  //outFile.open(fileName, ios::out);
 
-	 for (int i = 0; i < 30; i++) {
+	 for (int i = 0; i < 1; i++) {
 		stringstream ss;
 		ss << g_problem_size;
 		string dim_(ss.str());
 		
 		stringstream pp;
-		pp << i+1;
-		string probNum(pp.str());
+		pp << bb;
+		string bbNum(pp.str());
 		
-		string fileNameStr="M/jSO_"+probNum+"_"+dim_+".txt";
+		string fileNameStr="M/jSO_QUADIC_bb="+bbNum+".txt";
 		//cout << fileNameStr << endl;
 		char fileName[500];
 		strcpy(fileName,fileNameStr.c_str());
@@ -102,10 +112,9 @@ int main(int argc, char **argv) {
 		outFile.open(fileName, ios::out);
 	  
 		g_function_number = i + 1;
-		bb = 0.1;
 		
 		cout << "\n-------------------------------------------------------" << endl;
-		cout << "Function = " << g_function_number << ", Dimension size = " << g_problem_size << ", g_pop_size[_INIT] = " << g_pop_size << "\n" << endl;
+		cout << "bb = " << bbNum << ", Dimension size = " << g_problem_size << ", g_pop_size[_INIT] = " << g_pop_size << "\n" << endl;
 
 		Fitness *bsf_fitness_array = (Fitness*)malloc(sizeof(Fitness) * num_runs);
 		Fitness mean_bsf_fitness = 0;

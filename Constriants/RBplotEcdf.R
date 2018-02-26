@@ -122,15 +122,17 @@ if(ALG_NAME == "CMAES"){
                                  "Conservatism"="NONE" )
   
 }else if(ALG_NAME == "DES"){
-  DATA_VERS = c( "Lamarckian projection", "Lamarckian reflection", "Lamarckian wrapping", "Reinitialization", "Substitution penalty",
-                 "Scaled mutant","Midpoint target", "Scaled to base", "Rand base", "Midpoint base" )
+  DATA_VERS = c( "Lamarckian projection", "Lamarckian reflection", "Lamarckian wrapping", "Reinitialization", 
+                 "Resampling", "Darwinian projection", "Darwinian reflection", 
+                 "Darwinian wrapping", "Substitution penalty", "Scaled mutant", 
+                 "Quadratic penalty", "Midpoint target", "Scaled to base", "Rand base", "Conservatism", "Midpoint base" )
   
-  DATA_VERS_NAMES_MAPPING = list("Reinitialization"="Reinitialization", "Lamarckian projection"="Lamarckian projection" , "Darwinian projection"="NONE", 
-                                 "Lamarckian reflection"="Lamarckian reflection", "Darwinian reflection"="NONE", "Lamarckian wrapping"="Lamarckian wrapping", 
-                                 "Darwinian wrapping"="NONE", "Scaled mutant"="Scaled mutant", "Death penalty"="NONE", 
-                                 "Quadratic penalty"="NONE", "Substitution penalty"="Substitution penalty", "Resampling"="NONE",
+  DATA_VERS_NAMES_MAPPING = list("Reinitialization"="Reinitialization", "Lamarckian projection"="Lamarckian projection" , "Darwinian projection"="Darwinian projection", 
+                                 "Lamarckian reflection"="Lamarckian reflection", "Darwinian reflection"="Darwinian reflection", "Lamarckian wrapping"="Lamarckian wrapping", 
+                                 "Darwinian wrapping"="Darwinian wrapping", "Scaled mutant"="Scaled mutant", "Death penalty"="NONE", 
+                                 "Quadratic penalty"="Quadratic penalty", "Substitution penalty"="Substitution penalty", "Resampling"="Resampling",
                                  "Rand base"="Rand base", "Midpoint base"="Midpoint base", "Midpoint target"="Midpoint target", "Scaled to base"="Scaled to base", 
-                                 "Conservatism"="NONE" )
+                                 "Conservatism"="Conservatism" )
 }else if(ALG_NAME == "jSO"){
   DATA_VERS = c( "Lamarckian projection", "Lamarckian reflection", "Lamarckian wrapping", "Reinitialization", 
                  "Resampling", "Darwinian projection", "Darwinian reflection", 
@@ -182,6 +184,7 @@ csvMedMatrix = matrix(0, length(csvRowNames), length(csvColNames), dimnames=list
 
 for( funNmbr in 1:MAX_FUN_NMBR ){
   print(funNmbr)
+  lastDumpIndx = MAX_GEN
   minAtEnd = Inf
   maxAtStart = -Inf
   kompletnyPoczatekJakosc = c()
@@ -196,8 +199,14 @@ for( funNmbr in 1:MAX_FUN_NMBR ){
     }else if(ALG_NAME == "jSO"){
       print(DATA_VER)
       jso_res_path = paste0("C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/Constriants/jSO/Results/",DATA_VER,"/M/")
-      resMatrix <- read.table(file = paste(  jso_res_path,"jSO_",funNmbr,"_",DIM,".txt",sep=""),sep = " ", nrow=51)
-      resMatrix <- t(resMatrix)
+      if(DATA_VER == "Substitution penalty"){
+        for(rr in 0:50){
+          resMatrix[,rr+1] <-  unlist(read.table(file = paste(  jso_res_path,"jSO_",funNmbr,"_",DIM,".txt",sep=""),sep = " ", skip=rr ,nrows=1 )[1,1:lastDumpIndx])
+        }
+      }else{
+        resMatrix <- read.table(file = paste(  jso_res_path,"jSO_",funNmbr,"_",DIM,".txt",sep=""),sep = " ", nrow=51)
+        resMatrix <- t(resMatrix)
+      }
       results[[DATA_VER ]][[funNmbr]] = resMatrix
     }else{
         load( paste0( 'bin/', TEST_SUIT_NAME, '_alg:', ALG_NAME, '_dim:', DIM, '_fun:', funNmbr, '_ver:', DATA_VER, '.bin')  ) 
@@ -234,7 +243,7 @@ for( funNmbr in 1:MAX_FUN_NMBR ){
   progi[[funNmbr]][length.out] = max(minAtEnd, 10^-8)
 } 
 
-progi<<- progi
+progi<- progi
 
 #outFileName = paste0( 'csv/', TEST_SUIT_NAME, '_dim:', DIM, '_alg:', ALG_NAME, 'PorSr.csv')
 

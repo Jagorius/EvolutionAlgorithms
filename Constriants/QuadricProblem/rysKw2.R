@@ -5,16 +5,21 @@ DATA_VERS_NICE_NAMES=c("Reinitialization", "Lamarckian projection" , "Darwinian 
                        "Quadratic penalty", "Substitution penalty", "Resampling",
                        "Rand base", "Midpoint base", "Midpoint target", "Scaled to base", "Conservatism" )
 
-ALG_NAME = "DES"
+#ALG_NAME = "DES"
+ALG_NAME = "jSO"
 NMBR_OF_RUNS = 51
 DIM = 10
 DESIRED_LEVEL = 10^-8
-Evals4iter = 4*DIM+1
 TEST_SUIT_NAME = "kw"
 
 if(ALG_NAME == "DES"){
+  Evals4iter = 4*DIM+1
   targetLevel = 29*Evals4iter
+}else if(ALG_NAME == "jSO"){
+  Evals4iter = 10000*10/96
+  targetLevel = 2*Evals4iter
 }
+
 
 if(ALG_NAME == "CMAES"){#, "expS", "expC"
   DATA_VERS = c( "rzut", "odb", "zawijanie", "losowanie", "powtMut", "genPhenSepRzut", "genPhenSepOdb", "genPhenzawijanie", 
@@ -39,7 +44,18 @@ if(ALG_NAME == "CMAES"){#, "expS", "expC"
                                  "Quadratic penalty"="Quadratic penalty", "Substitution penalty"="Substitution penalty", "Resampling"="Resampling",
                                  "Rand base"="Rand base", "Midpoint base"="Midpoint base", "Midpoint target"="Midpoint target", "Scaled to base"="Scaled to base", "Conservatism"="Conservatism" )
   
-
+}else if(ALG_NAME == "jSO"){
+  DATA_VERS = c( "Lamarckian projection", "Lamarckian reflection", "Lamarckian wrapping", "Reinitialization", 
+                 "Resampling", "Darwinian projection", "Darwinian reflection", 
+                 "Darwinian wrapping", "Substitution penalty", "Scaled mutant", 
+                 "Quadratic penalty", "Midpoint target", "Scaled to base", "Rand base", "Conservatism" ) 
+  
+  DATA_VERS_NAMES_MAPPING = list("Reinitialization"="Reinitialization", "Lamarckian projection"="Lamarckian projection" , "Darwinian projection"="Darwinian projection", 
+                                 "Lamarckian reflection"="Lamarckian reflection", "Darwinian reflection"="Darwinian reflection", "Lamarckian wrapping"="Lamarckian wrapping", 
+                                 "Darwinian wrapping"="Darwinian wrapping", "Scaled mutant"="Scaled mutant", "Death penalty"="NONE", 
+                                 "Quadratic penalty"="Quadratic penalty", "Substitution penalty"="Substitution penalty", "Resampling"="Resampling",
+                                 "Rand base"="Rand base", "Midpoint base"="NONE", "Midpoint target"="Midpoint target", "Scaled to base"="Scaled to base", 
+                                 "Conservatism"="Conservatism" )
 }else{
   #komplet
   DATA_VERS = c( "rzut", "odb", "zawijanie", "losowanie", 
@@ -72,7 +88,7 @@ for( DATA_VER in DATA_VERS){
   print(DATA_VER)
   baseVect4b=c()
   for( b in bSeq ){
-    
+    print(b)
     numberOfSucc = 0
     for( run in 1:NMBR_OF_RUNS){
       if(ALG_NAME == "DES"){
@@ -93,6 +109,14 @@ for( DATA_VER in DATA_VERS){
           control=list("Lamarckism"=isDarw,"diag.bestVal"=TRUE)
         )
         whichIters = which(wyniki$diagnostic$bestVal<=DESIRED_LEVEL)
+      }else if(ALG_NAME == "jSO"){
+        bb = b
+        if(b == 0.9984375) bb = 0.998437
+        if(b == 0.99921875) bb = 0.999219
+        jSOpath=paste0("C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/Constriants/QuadricProblem/jSO/",DATA_VER,"/M/")
+        wyniki = read.table(paste0(jSOpath,"jSO_QUADIC_bb=",bb,".txt"), sep=" ", fill = TRUE)
+        wyniki = t(wyniki)
+        whichIters = which(wyniki[!is.na(wyniki[,run]),run]<=DESIRED_LEVEL)
       }else{
         load(paste0( 'bin/', TEST_SUIT_NAME, '_alg:', ALG_NAME, '_dim:', DIM, '_b:', b, '_ver:', DATA_VER, '.bin') )
         whichIters = which(wyniki[[run]]$bestSoFarFitHist<=DESIRED_LEVEL)
@@ -101,10 +125,17 @@ for( DATA_VER in DATA_VERS){
         whichIter=whichIters[1]
         numberOfSucc = numberOfSucc+1
       }else{
-        whichIter = length(wyniki$diagnostic$bestVal)
-        
+        #whichIter = length(wyniki$diagnostic$bestVal)
+        whichIter = 96 # for jSO
       }
-      whichEval=whichIter*Evals4iter #+ocena pop poczatkowej
+      
+      if(ALG_NAME == "jSO" && DATA_VER == "Substitution penalty"){
+        genNum = length(wyniki[,run])
+        if(any(is.na(wyniki[,run])))
+          genNum = which(is.na(wyniki[,run]))[1] - 1
+        whichEval= whichIter * (10000*10/genNum )
+      }else
+        whichEval=whichIter*Evals4iter #+ocena pop poczatkowej
       baseVect[run] = whichEval
     }
     if(numberOfSucc>0){

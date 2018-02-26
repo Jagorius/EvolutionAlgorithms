@@ -18,34 +18,52 @@ void searchAlgorithm::initializeParameters() {
   initializeFitnessFunctionParameters();
 }
 
-void searchAlgorithm::evaluatePopulation(const vector<Individual> &pop, vector<Fitness> &fitness, int &repairedNum) {
+void searchAlgorithm::evaluatePopulation(const vector<Individual> &pop, vector<Fitness> &fitness) {
   int l_problem_size = problem_size;
   variable l_min_region = min_region;
   variable l_max_region = max_region;
-  repairedNum = 0;
 
   for (int i = 0; i < pop_size; i++) {
 	int isConstViolated = 0;
-	Individual repaired = pop[i];
+	double *repaired = (double *)malloc(sizeof(double )*l_problem_size);
+   	memcpy(repaired , pop[i], sizeof(double)*l_problem_size);
+
 	for (int j = 0; j < l_problem_size; j++) {
-		 if (pop[i][j] < l_min_region)  repaired[j] = l_min_region + ((int)(l_min_region - repaired[j])) % ((int)(l_max_region - l_min_region));
-		 if (pop[i][j] > l_max_region)  repaired[j] = l_max_region - ((int)(repaired[j] -l_max_region )) % ((int)(l_max_region - l_min_region ));
+		 if (pop[i][j] < l_min_region){
+		  	repaired[j] = l_min_region + ((int)(l_min_region - repaired[j])) % ((int)(l_max_region - l_min_region));
+			isConstViolated = 1;
+		} 
+		if (pop[i][j] > l_max_region){
+			repaired[j] = l_max_region - ((int)(repaired[j] -l_max_region )) % ((int)(l_max_region - l_min_region ));
+			isConstViolated = 1;
+		} 
 	}
-	if(pop[i] != repaired){
+	if(isConstViolated  != 0){
 		float eu_distance=0;
 		for (int k = 0; k < l_problem_size; k++){
 			eu_distance += (pop[i][k]-repaired[k])*(pop[i][k]-repaired[k]);
 		}
 		
 		Fitness repFit;
-		cec17_test_func(repaired, &repFit, problem_size, 1, function_number);
+		double sum_of_elems = 0;
+		for (int j = 0; j < l_problem_size; j++) {
+			sum_of_elems += (repaired[j] - bb);
+		}
+		repFit = (sum_of_elems)*(sum_of_elems);
 
 		fitness[i] = repFit + eu_distance;
 		
 	}else{
-    		cec17_test_func(pop[i],  &fitness[i], problem_size, 1, function_number);
+		double sum_of_elems = 0;
+		for (int j = 0; j < l_problem_size; j++) {
+			sum_of_elems += (pop[i][j] - bb);
+		}
+		fitness[i]= (sum_of_elems)*(sum_of_elems);
+
 	}
+	free(repaired);
   }
+
 }
 
 void searchAlgorithm::initializeFitnessFunctionParameters() {
@@ -54,7 +72,7 @@ void searchAlgorithm::initializeFitnessFunctionParameters() {
   max_region = 1.0;
   min_region = -1.0;
 
-  optimum = function_number * 100;
+  optimum = 0;
 }
 
 //set best solution (bsf_solution) and its fitness value (bsf_fitness) in the initial population
@@ -91,6 +109,6 @@ Individual searchAlgorithm::makeNewIndividual() {
   IEEE Tran. Evol. Comput., vol. 13, no. 5, pp. 945–958, 2009.
  */
 void searchAlgorithm::modifySolutionWithParentMedium(Individual child, Individual parent) {
-  // do nothing
+  
 }
 

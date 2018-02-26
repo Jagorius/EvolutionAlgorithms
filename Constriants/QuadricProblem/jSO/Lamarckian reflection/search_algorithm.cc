@@ -19,9 +19,13 @@ void searchAlgorithm::initializeParameters() {
 }
 
 void searchAlgorithm::evaluatePopulation(const vector<Individual> &pop, vector<Fitness> &fitness) {
+  int l_problem_size = problem_size;
   for (int i = 0; i < pop_size; i++) {
-    //cec14_test_func(pop[i],  &fitness[i], problem_size, 1, function_number);
-    cec17_test_func(pop[i],  &fitness[i], problem_size, 1, function_number);
+    	double sum_of_elems = 0;
+	for (int j = 0; j < l_problem_size; j++) {
+		sum_of_elems += (pop[i][j] - bb);
+	}
+	fitness[i] = (sum_of_elems)*(sum_of_elems);
   }
 }
 
@@ -31,7 +35,7 @@ void searchAlgorithm::initializeFitnessFunctionParameters() {
   max_region = 1.0;
   min_region = -1.0;
 
-  optimum = function_number * 100;
+  optimum = 0;
 }
 
 //set best solution (bsf_solution) and its fitness value (bsf_fitness) in the initial population
@@ -68,7 +72,7 @@ Individual searchAlgorithm::makeNewIndividual() {
   IEEE Tran. Evol. Comput., vol. 13, no. 5, pp. 945–958, 2009.
  */
 void searchAlgorithm::modifySolutionWithParentMedium(Individual child, Individual parent) {
-  int l_problem_size = problem_size;
+   int l_problem_size = problem_size;
   variable l_min_region = min_region;
   variable l_max_region = max_region;
 
