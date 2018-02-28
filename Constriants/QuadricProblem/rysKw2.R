@@ -5,8 +5,8 @@ DATA_VERS_NICE_NAMES=c("Reinitialization", "Lamarckian projection" , "Darwinian 
                        "Quadratic penalty", "Substitution penalty", "Resampling",
                        "Rand base", "Midpoint base", "Midpoint target", "Scaled to base", "Conservatism" )
 
-#ALG_NAME = "DES"
-ALG_NAME = "jSO"
+ALG_NAME = "DES"
+#ALG_NAME = "jSO"
 NMBR_OF_RUNS = 51
 DIM = 10
 DESIRED_LEVEL = 10^-8
@@ -14,7 +14,7 @@ TEST_SUIT_NAME = "kw"
 
 if(ALG_NAME == "DES"){
   Evals4iter = 4*DIM+1
-  targetLevel = 29*Evals4iter
+  targetLevel = 20*Evals4iter
 }else if(ALG_NAME == "jSO"){
   Evals4iter = 10000*10/96
   targetLevel = 2*Evals4iter
@@ -219,4 +219,24 @@ for( dataVerIndx in 1:length(DATA_VERS_NICE_NAMES) ){
 }
 dev.off()
 
+}
+
+targetDES <- function(){
+  source('C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/Constriants/QuadricProblem/CMADEv2017.R')
+  targetVector <- c()
+  for(i in 1:51){ 
+    res <- CMADE(
+        rep(0,10),
+        fn=function(x){
+          sum(x)^2
+        },
+        lower=-10000000,
+        upper=10000000,
+        control=list("Lamarckism"=FALSE,"diag.bestVal"=TRUE)
+    )
+    print(which(res$diagnostic$bestVal<=10^-8)[1])
+    targetVector <- c(targetVector, which(res$diagnostic$bestVal<=10^-8)[1])
+    
+  }
+  print(mean(targetVector))
 }
