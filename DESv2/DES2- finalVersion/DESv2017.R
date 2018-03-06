@@ -194,7 +194,7 @@ DES <- function(par, fn, ..., lower, upper, control=list()) {
     Ft          <- initFt
 
     # Create fisrt population
-    population <- replicate(lambda, runif(N,0,3))
+    population <- replicate(lambda, runif(N,0.8*lower,0.8*upper))
     cumMean=(upper+lower)/2
     populationRepaired <- apply(population,2,bounceBackBoundary2)
 
