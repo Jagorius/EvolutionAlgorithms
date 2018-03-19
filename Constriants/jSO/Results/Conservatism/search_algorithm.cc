@@ -71,14 +71,17 @@ void searchAlgorithm::modifySolutionWithParentMedium(Individual child, Individua
   int l_problem_size = problem_size;
   variable l_min_region = min_region;
   variable l_max_region = max_region;
-
+  bool isViolated = false;
   for (int j = 0; j < l_problem_size; j++) {
     if (child[j] < l_min_region) {
-      child[j]= parent[j];
+      isViolated = true;
     }
     else if (child[j] > l_max_region) {
-      child[j]= parent[j];
+      isViolated = true;
     }
   }
+
+  if(isViolated)
+	child = parent;
 }
 
