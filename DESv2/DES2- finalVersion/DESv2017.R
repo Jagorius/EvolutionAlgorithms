@@ -83,7 +83,7 @@ DES <- function(par, fn, ..., lower, upper, control=list()) {
 
   ## nonLamarckian approach allows individuals to violate boundaries.
   ## Fitness value is estimeted by fitness of repaired individual.
-  Lamarckism     <- controlParam("Lamarckism", TRUE)
+  Lamarckism     <- controlParam("Lamarckism", FALSE)
 
   ## Fitness function wrapper
   fn_ <- function(x){
@@ -259,7 +259,6 @@ DES <- function(par, fn, ..., lower, upper, control=list()) {
       dMean[,histHead] <- (muMean - popMean) / Ft
 
       step <- (newMean - oldMean) / Ft
-      steps$write(step)
 
       ## Update Ft
       FtHistory[histHead] = Ft
