@@ -14,7 +14,6 @@ TEST_SUIT_NAME = "kw"
 
 if(ALG_NAME == "DES"){
   Evals4iter = 4*DIM+1
-  targetLevel = 20*Evals4iter
 }else if(ALG_NAME == "jSO"){
   Evals4iter = 10000*10/96
   targetLevel = 2*Evals4iter
@@ -84,6 +83,10 @@ baseVect=c()
 baseVect4b=c()
 minY = Inf
 maxY = -Inf
+targetLevel = c()
+
+POPULATION_DES_FIRST <<- replicate(4*DIM, runif(DIM,-0.8,0.8))
+
 for( DATA_VER in DATA_VERS){
   print(DATA_VER)
   baseVect4b=c()
@@ -99,6 +102,20 @@ for( DATA_VER in DATA_VERS){
         else
           isDarw= FALSE
         source(paste("C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/Constriants/DES/",DATA_VER,"/CMADEv2017.R",sep=""))
+        # Target level calculation w/o constraints
+        targetlevels <-  CMADE(
+          rep(0,DIM),
+          fn=function(x){
+            sum(x-b)^2
+          },
+          lower=-10^20,
+          upper=10^20,
+          control=list("Lamarckism"=isDarw,"diag.bestVal"=TRUE)
+        )
+        whichItersTarget = which(targetlevels$diagnostic$bestVal<=DESIRED_LEVEL)
+        targetLevel <- c(targetLevel, whichItersTarget[1] )
+          
+        # Calculation with constraints
         wyniki <- CMADE(
           rep(0,DIM),
           fn=function(x){
@@ -121,12 +138,13 @@ for( DATA_VER in DATA_VERS){
         load(paste0( 'bin/', TEST_SUIT_NAME, '_alg:', ALG_NAME, '_dim:', DIM, '_b:', b, '_ver:', DATA_VER, '.bin') )
         whichIters = which(wyniki[[run]]$bestSoFarFitHist<=DESIRED_LEVEL)
       }
+      
       if(length(whichIters)>0){
         whichIter=whichIters[1]
         numberOfSucc = numberOfSucc+1
       }else{
-        #whichIter = length(wyniki$diagnostic$bestVal)
-        whichIter = 96 # for jSO
+        whichIter = length(wyniki$diagnostic$bestVal)
+        #whichIter = 96 # for jSO
       }
       
       if(ALG_NAME == "jSO" && DATA_VER == "Substitution penalty"){
@@ -143,6 +161,8 @@ for( DATA_VER in DATA_VERS){
     }else{
       curLevel=sum(baseVect)/0.5 #ERT
     }
+    targetLevel = median(targetLevel)   # DES
+    targetLevel = targetLevel * Evals4iter  # DES
     baseVect4b=c(baseVect4b, curLevel/targetLevel)
   }
   res4Constraints[[DATA_VER]] <- baseVect4b

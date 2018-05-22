@@ -30,11 +30,9 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
     upper <- rep(upper, N)
 
   Conservative <- function(x, baseVector){
-    indxs = which( x < lower )
-    x[ indxs] = baseVector[indxs]
-    indxs = which( x > upper )
-    x[ indxs ] = baseVector[indxs]
-
+  
+    if( any(x < lower) || any(x > upper) )
+      x = baseVector
     x <-deleteInfsNaNs(x)
     return( x )
   }
@@ -194,7 +192,8 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
     newMean         <- par
 
     # Create fisrt population
-    population <- replicate(lambda, runif(N,lower,upper))
+	  population <- POPULATION_DES_FIRST
+    #population <- replicate(lambda, runif(N,0.8*lower,0.8*upper))
     cumMean=(upper+lower)/2
     populationRepaired <- apply(population,2,Conservative,baseVector=newMean)
 
@@ -271,7 +270,7 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
         pc[,histHead] = (1 - cp)* rep(0.0, N)/sqrt(N) + sqrt(mu * cp * (2-cp))* step
       else
         pc[,histHead] = (1 - cp)* pc[,histHead-1] + sqrt(mu * cp * (2-cp))* step
-
+  
       ## Sample from history with uniform distribution
       limit <- ifelse(iter < histSize, histHead, histSize)
       historySample <- sample(1:limit,lambda, T)

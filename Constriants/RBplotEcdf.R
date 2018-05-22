@@ -14,8 +14,8 @@ NMBR_OF_RUNS = 51
 #ALG_NAME = "SADE"
 #ALG_NAME = "CMAES"
 #ALG_NAME = "BBDE"
-#ALG_NAME = "jSO"
-ALG_NAME = "DES"
+ALG_NAME = "jSO"
+#ALG_NAME = "DES"
 
 #TEST_SUIT_NAME = 'cec05'
 #TEST_SUIT_NAME = 'cec13'
@@ -122,28 +122,28 @@ if(ALG_NAME == "CMAES"){
                                  "Conservatism"="NONE" )
   
 }else if(ALG_NAME == "DES"){
-  #DATA_VERS = c( "Lamarckian projection", "Lamarckian reflection", "Lamarckian wrapping", "Reinitialization", 
-  #               "Resampling", "Darwinian projection", "Darwinian reflection", 
-  #               "Darwinian wrapping", "Substitution penalty", "Scaled mutant", 
-  #               "Quadratic penalty", "Midpoint target", "Scaled to base", "Rand base", "Conservatism", "Midpoint base" )
-#  
-#  DATA_VERS_NAMES_MAPPING = list("Reinitialization"="Reinitialization", "Lamarckian projection"="Lamarckian projection" , "Darwinian projection"="Darwinian projection", 
-#                                 "Lamarckian reflection"="Lamarckian reflection", "Darwinian reflection"="Darwinian reflection", "Lamarckian wrapping"="Lamarckian wrapping", 
-#                                 "Darwinian wrapping"="Darwinian wrapping", "Scaled mutant"="Scaled mutant", "Death penalty"="NONE", 
-#                                 "Quadratic penalty"="Quadratic penalty", "Substitution penalty"="Substitution penalty", "Resampling"="Resampling",
-#                                 "Rand base"="Rand base", "Midpoint base"="Midpoint base", "Midpoint target"="Midpoint target", "Scaled to base"="Scaled to base", 
-#                                 "Conservatism"="Conservatism" )
-  
   DATA_VERS = c( "Lamarckian projection", "Lamarckian reflection", "Lamarckian wrapping", "Reinitialization", 
-                 "Resampling", "Substitution penalty", "Scaled mutant", 
-                  "Midpoint target", "Scaled to base", "Rand base", "Conservatism", "Midpoint base" )
+                 "Resampling", "Darwinian projection", "Darwinian reflection", 
+                 "Darwinian wrapping", "Substitution penalty", "Scaled mutant", 
+                 "Quadratic penalty", "Midpoint target", "Scaled to base", "Rand base", "Conservatism", "Midpoint base" )
   
-  DATA_VERS_NAMES_MAPPING = list("Reinitialization"="Reinitialization", "Lamarckian projection"="Lamarckian projection" , "Darwinian projection"="NONE", 
-                                 "Lamarckian reflection"="Lamarckian reflection", "Darwinian reflection"="NONE", "Lamarckian wrapping"="Lamarckian wrapping", 
-                                 "Darwinian wrapping"="NONE", "Scaled mutant"="Scaled mutant", "Death penalty"="NONE", 
-                                 "Quadratic penalty"="NONE", "Substitution penalty"="Substitution penalty", "Resampling"="Resampling",
+  DATA_VERS_NAMES_MAPPING = list("Reinitialization"="Reinitialization", "Lamarckian projection"="Lamarckian projection" , "Darwinian projection"="Darwinian projection", 
+                                 "Lamarckian reflection"="Lamarckian reflection", "Darwinian reflection"="Darwinian reflection", "Lamarckian wrapping"="Lamarckian wrapping", 
+                                 "Darwinian wrapping"="Darwinian wrapping", "Scaled mutant"="Scaled mutant", "Death penalty"="NONE", 
+                                 "Quadratic penalty"="Quadratic penalty", "Substitution penalty"="Substitution penalty", "Resampling"="Resampling",
                                  "Rand base"="Rand base", "Midpoint base"="Midpoint base", "Midpoint target"="Midpoint target", "Scaled to base"="Scaled to base", 
                                  "Conservatism"="Conservatism" )
+  
+#  DATA_VERS = c( "Lamarckian projection", "Lamarckian reflection", "Lamarckian wrapping", "Reinitialization", 
+#                 "Resampling", "Substitution penalty", "Scaled mutant", 
+#                  "Midpoint target", "Scaled to base", "Rand base", "Conservatism", "Midpoint base" )
+#  
+#  DATA_VERS_NAMES_MAPPING = list("Reinitialization"="Reinitialization", "Lamarckian projection"="Lamarckian projection" , "Darwinian projection"="NONE", 
+#                                 "Lamarckian reflection"="Lamarckian reflection", "Darwinian reflection"="NONE", "Lamarckian wrapping"="Lamarckian wrapping", 
+#                                 "Darwinian wrapping"="NONE", "Scaled mutant"="Scaled mutant", "Death penalty"="NONE", 
+#                                 "Quadratic penalty"="NONE", "Substitution penalty"="Substitution penalty", "Resampling"="Resampling",
+#                                 "Rand base"="Rand base", "Midpoint base"="Midpoint base", "Midpoint target"="Midpoint target", "Scaled to base"="Scaled to base", 
+#                                 "Conservatism"="Conservatism" )
 }else if(ALG_NAME == "jSO"){
   DATA_VERS = c( "Lamarckian projection", "Lamarckian reflection", "Lamarckian wrapping", "Reinitialization", 
                  "Resampling", "Darwinian projection", "Darwinian reflection", 
@@ -347,7 +347,7 @@ for(plotSeqEl in plotSequence ){
 
 }
 
-#ecdfplot(10)
-#ecdfplot(30)
-#ecdfplot(50)
+ecdfplot(10)
+ecdfplot(30)
+ecdfplot(50)
 ecdfplot(100)
