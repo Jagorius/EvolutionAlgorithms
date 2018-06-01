@@ -64,7 +64,7 @@ DES <- function(par, fn, ..., lower, upper, control=list()) {
   maxiter     <- controlParam("maxit", floor(budget/(lambda+1)))      ## Maximum number of iterations after which algorithm stops
   c_Ft        <- controlParam("c_Ft",  0)
   pathRatio   <- controlParam("pathRatio",sqrt(pathLength))           ## Path Length Control reference value
-  histSize    <- controlParam("history",ceiling(6+ceiling(3*sqrt(N))))## Size of the window of history - the step length history
+  histSize    <- controlParam("history",maxiter)                      ## Size of the window of history - the step length history
   Ft_scale    <- controlParam("Ft_scale", ((mueff+2)/(N+mueff+3))/(1 + 2*max(0, sqrt((mueff-1)/(N+1))-1) + (mueff+2)/(N+mueff+3)))
   tol         <- controlParam("tol", 10^-6)
   counteval   <- 0                                                    ## Number of function evaluations
@@ -205,13 +205,13 @@ DES <- function(par, fn, ..., lower, upper, control=list()) {
     selection       <- rep(0, mu)
     selectedPoints  <- matrix(0, nrow=N, ncol=mu)
     fitness         <- fn_l(population)
-    oldMean         <- numeric(N)
     newMean         <- par
     limit           <- 0
     worst.fit       <- max(fitness)
 
     # Store population and selection means
     popMean         <- drop(population %*% weightsPop)
+    oldMean         <- popMean
     muMean          <- newMean
 
     ## Matrices for creating diffs
@@ -290,12 +290,14 @@ DES <- function(par, fn, ..., lower, upper, control=list()) {
         x1 <- history[[historySample[i]]][,x1sample[i]]
         x2 <- history[[historySample[i]]][,x2sample[i]]
 
-        diffs[,i] <- sqrt(cc)*( (x1 - x2) + rnorm(1)*dMean[,historySample[i]] ) + sqrt(1-cc) * rnorm(1)*pc[,historySample2[i]]
-
+        DELTA1 <- if(runif(1) < c1cmu^limit) 0 else rnorm(1)*pc[,historySample2[i]]
+        DELTA2 <- if(runif(1) < c1cmu^limit) 0 else rnorm(1)*dMean[,historySample[i]]
+        DELTA3 <- if(runif(1) < c1cmu^limit) rnorm(N) else (x1 - x2)
+        diffs[,i] <- sqrt(cc)*(DELTA2 + DELTA3) + sqrt(1-cc) * DELTA1
       }
 
       ## New population
-      population <- newMean + Ft * diffs + tol*rnorm(diffs)/chiN
+      population <- newMean + Ft * diffs
       population <- deleteInfsNaNs(population)
 
       # Check constraints violations
