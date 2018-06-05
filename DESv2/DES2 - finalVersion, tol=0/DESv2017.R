@@ -64,9 +64,9 @@ DES <- function(par, fn, ..., lower, upper, control=list()) {
   maxiter     <- controlParam("maxit", floor(budget/(lambda+1)))      ## Maximum number of iterations after which algorithm stops
   c_Ft        <- controlParam("c_Ft",  0)
   pathRatio   <- controlParam("pathRatio",sqrt(pathLength))           ## Path Length Control reference value
-  histSize    <- controlParam("history",maxiter)                      ## Size of the window of history - the step length history
+  histSize    <- controlParam("history",ceiling(6+ceiling(3*sqrt(N))))## Size of the window of history - the step length history
   Ft_scale    <- controlParam("Ft_scale", ((mueff+2)/(N+mueff+3))/(1 + 2*max(0, sqrt((mueff-1)/(N+1))-1) + (mueff+2)/(N+mueff+3)))
-  tol         <- controlParam("tol", 10^-6)
+  tol         <- controlParam("tol", 0)
   counteval   <- 0                                                    ## Number of function evaluations
   sqrt_N      <- sqrt(N)
 
@@ -181,7 +181,6 @@ DES <- function(par, fn, ..., lower, upper, control=list()) {
 
   while( counteval < budget){
     restart.number  <- restart.number+1
-    #lambda          <- round(((minlambda-initlambda)/budget)*counteval+initlambda)
     mu              <- floor(lambda/2)
     weights         <- log(mu+1) - log(1:mu)
     weights         <- weights/sum(weights)
@@ -194,9 +193,7 @@ DES <- function(par, fn, ..., lower, upper, control=list()) {
     Ft          <- initFt
 
     # Create fisrt population
-    #population <- replicate(lambda, runif(N,0.8*lower,0.8*upper))
-    population <- replicate(lambda, runif(N,0,3))
-
+    population <- replicate(lambda, runif(N,0.8*lower,0.8*upper))
     cumMean=(upper+lower)/2
     populationRepaired <- apply(population,2,bounceBackBoundary2)
 
@@ -207,13 +204,13 @@ DES <- function(par, fn, ..., lower, upper, control=list()) {
     selection       <- rep(0, mu)
     selectedPoints  <- matrix(0, nrow=N, ncol=mu)
     fitness         <- fn_l(population)
+    oldMean         <- numeric(N)
     newMean         <- par
     limit           <- 0
     worst.fit       <- max(fitness)
 
     # Store population and selection means
     popMean         <- drop(population %*% weightsPop)
-    oldMean         <- popMean
     muMean          <- newMean
 
     ## Matrices for creating diffs
@@ -230,8 +227,6 @@ DES <- function(par, fn, ..., lower, upper, control=list()) {
       iter      <- iter + 1L
       histHead  <- (histHead %% histSize) + 1
 
-      lambda <- lambda
-      #lambda      <- round(((minlambda-initlambda)/budget)*counteval+initlambda)
       mu          <- floor(lambda/2)
       weights <- log(mu+1) - log(1:mu)
       weights <- weights/sum(weights)
@@ -275,14 +270,10 @@ DES <- function(par, fn, ..., lower, upper, control=list()) {
       else
         pc[,histHead] = (1 - cp)* pc[,histHead-1] + sqrt(mu * cp * (2-cp))* step
 
-      ## Sample from history with geometric distribution
+      ## Sample from history with uniform distribution
       limit <- ifelse(iter < histSize, histHead, histSize)
-      c1cmu = 1 - (2 + 0.3*lambda)/N^2
-      prb <- rep(c1cmu,limit)
-      prb <- prb ^ (seq_along(prb)-1)
-      prb <- prb*(c1cmu)
-      historySample <- sample(1:limit,lambda, replace = TRUE, prob = prb)
-      historySample2 <- sample(1:limit,lambda, replace = TRUE, prob = prb)
+      historySample <- sample(1:limit,lambda, T)
+      historySample2 <- sample(1:limit,lambda, T)
 
       x1sample <- sampleFromHistory(history,historySample,lambda)
       x2sample <- sampleFromHistory(history,historySample,lambda)
@@ -292,14 +283,12 @@ DES <- function(par, fn, ..., lower, upper, control=list()) {
         x1 <- history[[historySample[i]]][,x1sample[i]]
         x2 <- history[[historySample[i]]][,x2sample[i]]
 
-        DELTA1 <- if(runif(1) < c1cmu^limit) 0 else rnorm(1)*pc[,historySample2[i]]
-        DELTA2 <- if(runif(1) < c1cmu^limit) 0 else rnorm(1)*dMean[,historySample[i]]
-        DELTA3 <- if(runif(1) < c1cmu^limit) rnorm(N) else (x1 - x2)
-        diffs[,i] <- sqrt(cc)*(DELTA2 + DELTA3) + sqrt(1-cc) * DELTA1
+        diffs[,i] <- sqrt(cc)*( (x1 - x2) + rnorm(1)*dMean[,historySample[i]] ) + sqrt(1-cc) * rnorm(1)*pc[,historySample2[i]]
+
       }
 
       ## New population
-      population <- newMean + Ft * diffs
+      population <- newMean + Ft * diffs + tol*rnorm(diffs)/chiN
       population <- deleteInfsNaNs(population)
 
       # Check constraints violations
@@ -367,11 +356,11 @@ DES <- function(par, fn, ..., lower, upper, control=list()) {
         break
       }
 
-    #  if(abs(range(fitness)[2] - range(fitness)[1]) < tol)
-    #  {
-    #    if (counteval < 0.8*budget)
-    #      stoptol=T
-    #  }
+      if(abs(range(fitness)[2] - range(fitness)[1]) < tol)
+      {
+        if (counteval < 0.8*budget)
+          stoptol=T
+      }
 
 
     }
