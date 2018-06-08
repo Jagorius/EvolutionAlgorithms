@@ -66,7 +66,7 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
   pathRatio   <- controlParam("pathRatio",sqrt(pathLength))           ## Path Length Control reference value
   histSize    <- controlParam("history",ceiling(6+ceiling(3*sqrt(N))))## Size of the window of history - the step length history
   Ft_scale    <- controlParam("Ft_scale", ((mueff+2)/(N+mueff+3))/(1 + 2*max(0, sqrt((mueff-1)/(N+1))-1) + (mueff+2)/(N+mueff+3)))
-  tol         <- controlParam("tol", 10^-6)
+  tol         <- controlParam("tol", 10^-50)
   counteval   <- 0                                                    ## Number of function evaluations
   sqrt_N      <- sqrt(N)
 
@@ -181,7 +181,6 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
 
   while( counteval < budget){
     restart.number  <- restart.number+1
-    lambda          <- round(((minlambda-initlambda)/budget)*counteval+initlambda)
     mu              <- floor(lambda/2)
     weights         <- log(mu+1) - log(1:mu)
     weights         <- weights/sum(weights)
@@ -232,7 +231,6 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
       histHead  <- (histHead %% histSize) + 1
 
       lambda <- lambda
-      #lambda      <- round(((minlambda-initlambda)/budget)*counteval+initlambda)
       mu          <- floor(lambda/2)
       weights <- log(mu+1) - log(1:mu)
       weights <- weights/sum(weights)
@@ -285,12 +283,13 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
       x1sample <- sampleFromHistory(history,historySample,lambda)
       x2sample <- sampleFromHistory(history,historySample,lambda)
 
+
       ## Make diffs
       for (i in 1:lambda) {
         x1 <- history[[historySample[i]]][,x1sample[i]]
         x2 <- history[[historySample[i]]][,x2sample[i]]
 
-        diffs[,i] <- sqrt(cc)*( (x1 - x2) + rnorm(1)*dMean[,historySample[i]] ) + sqrt(1-cc) * rnorm(1)*pc[,historySample2[i]]
+        diffs[,i] <- sqrt(cc)*( (x1 - x2) +rnorm(1)*dMean[,historySample[i]] ) + sqrt(1-cc)*rnorm(1)*pc[,historySample2[i]]
 
       }
 
@@ -331,6 +330,8 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
           best.par <- populationRepaired[,wb]
       }
 
+      print(c(best.fit, mean(diffs^2) ))
+
       ## Check worst fit:
       ww <- which.max(fitness)
       if (fitness[ww] > worst.fit){
@@ -363,11 +364,10 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
         break
       }
 
-   #   if(abs(range(fitness)[2] - range(fitness)[1]) < tol)
-   #    {
-  #      if (counteval < 0.8*budget)
-  #        stoptol=T
-  #    }
+      #if(abs(range(fitness)[2] - range(fitness)[1]) < 10^-30) {
+      #  if (counteval < 0.8*budget)
+      #    stoptol=T
+      #}
 
 
     }
