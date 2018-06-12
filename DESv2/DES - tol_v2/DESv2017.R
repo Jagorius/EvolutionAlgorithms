@@ -66,7 +66,7 @@ DES <- function(par, fn, ..., lower, upper, control=list()) {
   pathRatio   <- controlParam("pathRatio",sqrt(pathLength))           ## Path Length Control reference value
   histSize    <- controlParam("history",ceiling(6+ceiling(3*sqrt(N))))## Size of the window of history - the step length history
   Ft_scale    <- controlParam("Ft_scale", ((mueff+2)/(N+mueff+3))/(1 + 2*max(0, sqrt((mueff-1)/(N+1))-1) + (mueff+2)/(N+mueff+3)))
-  tol         <- controlParam("tol", 10^-6)
+  tol         <- controlParam("tol", 10^-8)
   counteval   <- 0                                                    ## Number of function evaluations
   sqrt_N      <- sqrt(N)
 
@@ -193,7 +193,8 @@ DES <- function(par, fn, ..., lower, upper, control=list()) {
     Ft          <- initFt
 
     # Create fisrt population
-    population <- replicate(lambda, runif(N,0.8*lower,0.8*upper))
+    #population <- replicate(lambda, runif(N,0.8*lower,0.8*upper))
+    population <- replicate(lambda, runif(N,0,3))
     cumMean=(upper+lower)/2
     populationRepaired <- apply(population,2,bounceBackBoundary2)
 
@@ -288,7 +289,7 @@ DES <- function(par, fn, ..., lower, upper, control=list()) {
       }
 
       ## New population
-      population <- newMean + Ft * diffs + tol*(1 - 4/(N*log(N)))^iter/2  *rnorm(diffs)/chiN
+      population <- newMean + Ft * diffs + tol*(1 - 4/(N*log(N)))^(iter/2)  *rnorm(diffs)/chiN
       population <- deleteInfsNaNs(population)
 
       # Check constraints violations

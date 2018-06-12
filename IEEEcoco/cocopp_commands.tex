@@ -5,6 +5,273 @@ Empirical cumulative distribution of simulated (bootstrapped)
              targets $10^{[-8..2]}$ in dimension #1.
 }
 \providecommand{\cocoversion}{\hspace{\textwidth}\scriptsize\sffamily{}\color{Gray}Data produced with COCO v2.2.1.10}
+\providecommand{\numofalgs}{2+}
+\providecommand{\bbobECDFslegend}[1]{
+Bootstrapped empirical cumulative distribution of the number of objective function evaluations divided by dimension (FEvals/DIM) for $51$ targets with target precision in $10^{[-8..2]}$ for all functions and subgroups in #1-D. As reference algorithm, the best algorithm from BBOB 2009 is shown as light thick line with diamond markers.
+}
+\providecommand{\bbobppfigslegend}[1]{
+Average running time (\aRT\ in number of $f$-evaluations
+                    as $\log_{10}$ value), divided by dimension for target function value $10^{-8}$
+                    versus dimension. Slanted grid lines indicate quadratic scaling with the dimension. Different symbols correspond to different algorithms given in the legend of #1. Light symbols give the maximum number of function evaluations from the longest trial divided by dimension. Black stars indicate a statistically better result compared to all other algorithms with $p<0.01$ and Bonferroni correction number of dimensions (six).  
+Legend: 
+{\color{NavyBlue}$\circ$}: \algorithmA
+, {\color{Magenta}$\diamondsuit$}: \algorithmB
+, {\color{Orange}$\star$}: \algorithmC
+, {\color{CornflowerBlue}$\triangledown$}: \algorithmD
+, {\color{red}$\varhexagon$}: \algorithmE
+, {\color{YellowGreen}$\triangle$}: \algorithmF
+, {\color{cyan}$\pentagon$}: \algorithmG
+, {\color{GreenYellow}$\rightY$}: \algorithmH
+, {\color{ForestGreen}$\downY$}: \algorithmI
+, {\color{Lavender}$\Diamond$}: \algorithmJ
+, {\color{SkyBlue}$\triangleleft$}: \algorithmK
+}
+% define some COCO/dvipsnames colors because
+% ACM style does not allow to use them directly
+\definecolor{NavyBlue}{HTML}{000080}
+\definecolor{Magenta}{HTML}{FF00FF}
+\definecolor{Orange}{HTML}{FFA500}
+\definecolor{CornflowerBlue}{HTML}{6495ED}
+\definecolor{YellowGreen}{HTML}{9ACD32}
+\definecolor{Gray}{HTML}{BEBEBE}
+\definecolor{Yellow}{HTML}{FFFF00}
+\definecolor{GreenYellow}{HTML}{ADFF2F}
+\definecolor{ForestGreen}{HTML}{228B22}
+\definecolor{Lavender}{HTML}{FFC0CB}
+\definecolor{SkyBlue}{HTML}{87CEEB}
+\definecolor{NavyBlue}{HTML}{000080}
+\definecolor{Goldenrod}{HTML}{DDF700}
+\definecolor{VioletRed}{HTML}{D02090}
+\definecolor{CornflowerBlue}{HTML}{6495ED}
+\definecolor{LimeGreen}{HTML}{32CD32}
+
+\providecommand{\ntables}{7}
+\providecommand{\ntables}{7}
+\providecommand{\ntables}{7}
+\providecommand{\pptablesfooter}{
+\end{tabularx}
+}
+\providecommand{\pptablesheader}{
+\begin{tabularx}{1.0\textwidth}{@{}c@{}|*{7}{@{}r@{}X@{}}|@{}r@{}@{}l@{}}
+$\Delta f_\mathrm{opt}$ & \multicolumn{2}{@{\,}l@{\,}}{1e1} & \multicolumn{2}{@{\,}l@{\,}}{1e0} & \multicolumn{2}{@{\,}l@{\,}}{1e-1} & \multicolumn{2}{@{\,}l@{\,}}{1e-2} & \multicolumn{2}{@{\,}l@{\,}}{1e-3} & \multicolumn{2}{@{\,}l@{\,}}{1e-5} & \multicolumn{2}{@{\,}l@{\,}}{1e-7} & \multicolumn{2}{|@{}l@{}}{\#succ}\\\hline
+}
+\providecommand{\algKtables}{\StrLeft{SSEABC-Aydin}{\ntables}}
+\providecommand{\algJtables}{\StrLeft{Ord-Q-DTS-CMA-ES-Pitra}{\ntables}}
+\providecommand{\algItables}{\StrLeft{Ord-N-DTS-CMA-ES-Pitra}{\ntables}}
+\providecommand{\algHtables}{\StrLeft{Ord-H-DTS-CMA-ES-Pitra}{\ntables}}
+\providecommand{\algGtables}{\StrLeft{KL-Restart-CMA-ES-Yamaguchi}{\ntables}}
+\providecommand{\algFtables}{\StrLeft{KL-IPOP-CMA-ES-Yamaguchi}{\ntables}}
+\providecommand{\algEtables}{\StrLeft{KL-BIPOP-CMA-ES-Yamaguchi}{\ntables}}
+\providecommand{\algDtables}{\StrLeft{EvoSpace-PSO-GA-Garcia-Valdez}{\ntables}}
+\providecommand{\algCtables}{\StrLeft{DTS-CMA-ES-Pitra}{\ntables}}
+\providecommand{\algBtables}{\StrLeft{CMAES-APOP-Nguyen}{\ntables}}
+\providecommand{\algAtables}{\StrLeft{DES}{\ntables}}
+\providecommand{\ntables}{7}
+\providecommand{\ntables}{7}
+\providecommand{\ntables}{7}
+\providecommand{\bbobpptablesmanylegend}[1]{%
+        Average runtime (\aRT\ in number of function 
+        evaluations) divided by the respective best \aRT\ measured during BBOB-2009 in
+        #1.
+        The \aRT\ and in braces, as dispersion measure, the half difference between 
+        10 and 90\%-tile of bootstrapped run lengths appear for each algorithm and 
+        %
+        target, the corresponding reference \aRT\
+        in the first row. The different target \Df-values are shown in the top row.
+        \#succ is the number of trials that reached the (final) target
+        $\fopt + 10^{-8}$.
+        %
+        The median number of conducted function evaluations is additionally given in 
+        \textit{italics}, if the target in the last column was never reached. 
+        Entries, succeeded by a star, are statistically significantly better (according to
+        the rank-sum test) when compared to all other algorithms of the table, with
+        $p = 0.05$ or $p = 10^{-k}$ when the number $k$ following the star is larger
+        than 1, with Bonferroni correction by the number of functions (24). A $\downarrow$ indicates the same tested against the best algorithm from BBOB 2009. Best results are printed in bold.
+        \cocoversion}
+\providecommand{\algsfolder}{DES_CMAES_DTS-C_EvoSp_KL-BI_KL-IP_KL-Re_et_al/}
+\providecommand{\algorithmA}{CMAES-APOP-Nguyen}
+\providecommand{\algorithmB}{DES}
+\providecommand{\algorithmC}{DTS-CMA-ES-Pitra}
+\providecommand{\algorithmD}{EvoSpace-PSO-GA-Garcia-Valdez}
+\providecommand{\algorithmE}{KL-BIPOP-CMA-ES-Yamaguchi}
+\providecommand{\algorithmF}{KL-IPOP-CMA-ES-Yamaguchi}
+\providecommand{\algorithmG}{KL-Restart-CMA-ES-Yamaguchi}
+\providecommand{\algorithmH}{Ord-H-DTS-CMA-ES-Pitra}
+\providecommand{\algorithmI}{Ord-N-DTS-CMA-ES-Pitra}
+\providecommand{\algorithmJ}{Ord-Q-DTS-CMA-ES-Pitra}
+\providecommand{\algorithmK}{SSEABC-Aydin}
+\providecommand{\bbobecdfcaptionsinglefunctionssingledim}[1]{
+Empirical cumulative distribution of simulated (bootstrapped)
+             runtimes, measured in number of objective function evaluations,
+             divided by dimension (FEvals/DIM) for the $51$ 
+             targets $10^{[-8..2]}$ in dimension #1.
+}
+\providecommand{\cocoversion}{\hspace{\textwidth}\scriptsize\sffamily{}\color{Gray}Data produced with COCO v2.2.1.10}
+\providecommand{\numofalgs}{2+}
+\providecommand{\bbobECDFslegend}[1]{
+Bootstrapped empirical cumulative distribution of the number of objective function evaluations divided by dimension (FEvals/DIM) for $51$ targets with target precision in $10^{[-8..2]}$ for all functions and subgroups in #1-D. As reference algorithm, the best algorithm from BBOB 2009 is shown as light thick line with diamond markers.
+}
+\providecommand{\bbobppfigslegend}[1]{
+Average running time (\aRT\ in number of $f$-evaluations
+                    as $\log_{10}$ value), divided by dimension for target function value $10^{-8}$
+                    versus dimension. Slanted grid lines indicate quadratic scaling with the dimension. Different symbols correspond to different algorithms given in the legend of #1. Light symbols give the maximum number of function evaluations from the longest trial divided by dimension. Black stars indicate a statistically better result compared to all other algorithms with $p<0.01$ and Bonferroni correction number of dimensions (six).  
+Legend: 
+{\color{NavyBlue}$\circ$}: \algorithmA
+, {\color{Magenta}$\diamondsuit$}: \algorithmB
+, {\color{Orange}$\star$}: \algorithmC
+, {\color{CornflowerBlue}$\triangledown$}: \algorithmD
+, {\color{red}$\varhexagon$}: \algorithmE
+, {\color{YellowGreen}$\triangle$}: \algorithmF
+, {\color{cyan}$\pentagon$}: \algorithmG
+, {\color{GreenYellow}$\rightY$}: \algorithmH
+, {\color{ForestGreen}$\downY$}: \algorithmI
+, {\color{Lavender}$\Diamond$}: \algorithmJ
+, {\color{SkyBlue}$\triangleleft$}: \algorithmK
+, {\color{NavyBlue}$\triangledown$}: \algorithmL
+, {\color{red}$\star$}: \algorithmM
+, {\color{Goldenrod}$\Box$}: \algorithmN
+, {\color{VioletRed}$\diamondsuit$}: \algorithmO
+, {\color{CornflowerBlue}$\triangle$}: \algorithmP
+, {\color{Orange}$\triangleleft$}: \algorithmQ
+, {\color{Magenta}$\varhexagon$}: \algorithmR
+, {\color{Gray}$\pentagon$}: \algorithmS
+, {\color{SkyBlue}$\hexagon$}: \algorithmT
+, {\color{Lavender}$\downY$}: \algorithmU
+, {\color{ForestGreen}$\upY$}: \algorithmV
+, {\color{LimeGreen}$\leftY$}: \algorithmW
+, {\color{YellowGreen}$\rightY$}: \algorithmX
+, {\color{GreenYellow}$\Diamond$}: \algorithmY
+, {\color{NavyBlue}$\diamondsuit$}: \algorithmZ
+, {\color{Magenta}$\star$}: \algorithma
+, {\color{Orange}$\triangledown$}: \algorithmb
+, {\color{CornflowerBlue}$\varhexagon$}: \algorithmc
+, {\color{red}$\triangle$}: \algorithmd
+, {\color{YellowGreen}$\pentagon$}: \algorithme
+, {\color{cyan}$\hexagon$}: \algorithmf
+}
+% define some COCO/dvipsnames colors because
+% ACM style does not allow to use them directly
+\definecolor{NavyBlue}{HTML}{000080}
+\definecolor{Magenta}{HTML}{FF00FF}
+\definecolor{Orange}{HTML}{FFA500}
+\definecolor{CornflowerBlue}{HTML}{6495ED}
+\definecolor{YellowGreen}{HTML}{9ACD32}
+\definecolor{Gray}{HTML}{BEBEBE}
+\definecolor{Yellow}{HTML}{FFFF00}
+\definecolor{GreenYellow}{HTML}{ADFF2F}
+\definecolor{ForestGreen}{HTML}{228B22}
+\definecolor{Lavender}{HTML}{FFC0CB}
+\definecolor{SkyBlue}{HTML}{87CEEB}
+\definecolor{NavyBlue}{HTML}{000080}
+\definecolor{Goldenrod}{HTML}{DDF700}
+\definecolor{VioletRed}{HTML}{D02090}
+\definecolor{CornflowerBlue}{HTML}{6495ED}
+\definecolor{LimeGreen}{HTML}{32CD32}
+
+\providecommand{\ntables}{7}
+\providecommand{\ntables}{7}
+\providecommand{\ntables}{7}
+\providecommand{\pptablesfooter}{
+\end{tabularx}
+}
+\providecommand{\pptablesheader}{
+\begin{tabularx}{1.0\textwidth}{@{}c@{}|*{7}{@{}r@{}X@{}}|@{}r@{}@{}l@{}}
+$\Delta f_\mathrm{opt}$ & \multicolumn{2}{@{\,}l@{\,}}{1e1} & \multicolumn{2}{@{\,}l@{\,}}{1e0} & \multicolumn{2}{@{\,}l@{\,}}{1e-1} & \multicolumn{2}{@{\,}l@{\,}}{1e-2} & \multicolumn{2}{@{\,}l@{\,}}{1e-3} & \multicolumn{2}{@{\,}l@{\,}}{1e-5} & \multicolumn{2}{@{\,}l@{\,}}{1e-7} & \multicolumn{2}{|@{}l@{}}{\#succ}\\\hline
+}
+\providecommand{\algftables}{\StrLeft{iAMALGAM bosman noiseless}{\ntables}}
+\providecommand{\algetables}{\StrLeft{VNS garcia-martinez noiseless}{\ntables}}
+\providecommand{\algdtables}{\StrLeft{Rosenbrock posik noiseless}{\ntables}}
+\providecommand{\algctables}{\StrLeft{RANDOMSEARCH auger noiseless}{\ntables}}
+\providecommand{\algbtables}{\StrLeft{PSO el-abd noiseless}{\ntables}}
+\providecommand{\algatables}{\StrLeft{PSO Bounds el-abd noiseless}{\ntables}}
+\providecommand{\algZtables}{\StrLeft{POEMS kubalik noiseless}{\ntables}}
+\providecommand{\algYtables}{\StrLeft{ONEFIFTH auger noiseless}{\ntables}}
+\providecommand{\algXtables}{\StrLeft{NEWUOA ros noiseless}{\ntables}}
+\providecommand{\algWtables}{\StrLeft{NELDER hansen noiseless}{\ntables}}
+\providecommand{\algVtables}{\StrLeft{NELDERDOERR doerr noiseless}{\ntables}}
+\providecommand{\algUtables}{\StrLeft{MCS huyer noiseless}{\ntables}}
+\providecommand{\algTtables}{\StrLeft{MA-LS-CHAIN molina noiseless}{\ntables}}
+\providecommand{\algStables}{\StrLeft{LSstep posik noiseless}{\ntables}}
+\providecommand{\algRtables}{\StrLeft{LSfminbnd posik noiseless}{\ntables}}
+\providecommand{\algQtables}{\StrLeft{IPOP-SEP-CMA-ES ros noiseless}{\ntables}}
+\providecommand{\algPtables}{\StrLeft{GLOBAL pal noiseless}{\ntables}}
+\providecommand{\algOtables}{\StrLeft{GA nicolau noiseless}{\ntables}}
+\providecommand{\algNtables}{\StrLeft{G3PCX posik noiseless}{\ntables}}
+\providecommand{\algMtables}{\StrLeft{FULLNEWUOA ros noiseless}{\ntables}}
+\providecommand{\algLtables}{\StrLeft{EDA-PSO el-abd noiseless}{\ntables}}
+\providecommand{\algKtables}{\StrLeft{DIRECT posik noiseless}{\ntables}}
+\providecommand{\algJtables}{\StrLeft{DE-PSO garcia-nieto noiseless}{\ntables}}
+\providecommand{\algItables}{\StrLeft{DASA korosec noiseless}{\ntables}}
+\providecommand{\algHtables}{\StrLeft{Cauchy-EDA posik noiseless}{\ntables}}
+\providecommand{\algGtables}{\StrLeft{CMA-ESPLUSSEL auger noiseless}{\ntables}}
+\providecommand{\algFtables}{\StrLeft{BIPOP-CMA-ES hansen noiseless}{\ntables}}
+\providecommand{\algEtables}{\StrLeft{BFGS ros noiseless}{\ntables}}
+\providecommand{\algDtables}{\StrLeft{BAYEDA gallagher noiseless}{\ntables}}
+\providecommand{\algCtables}{\StrLeft{AMALGAM bosman noiseless}{\ntables}}
+\providecommand{\algBtables}{\StrLeft{ALPS hornby noiseless}{\ntables}}
+\providecommand{\algAtables}{\StrLeft{DES}{\ntables}}
+\providecommand{\ntables}{7}
+\providecommand{\ntables}{7}
+\providecommand{\ntables}{7}
+\providecommand{\bbobpptablesmanylegend}[1]{%
+        Average runtime (\aRT\ in number of function 
+        evaluations) divided by the respective best \aRT\ measured during BBOB-2009 in
+        #1.
+        The \aRT\ and in braces, as dispersion measure, the half difference between 
+        10 and 90\%-tile of bootstrapped run lengths appear for each algorithm and 
+        %
+        target, the corresponding reference \aRT\
+        in the first row. The different target \Df-values are shown in the top row.
+        \#succ is the number of trials that reached the (final) target
+        $\fopt + 10^{-8}$.
+        %
+        The median number of conducted function evaluations is additionally given in 
+        \textit{italics}, if the target in the last column was never reached. 
+        Entries, succeeded by a star, are statistically significantly better (according to
+        the rank-sum test) when compared to all other algorithms of the table, with
+        $p = 0.05$ or $p = 10^{-k}$ when the number $k$ following the star is larger
+        than 1, with Bonferroni correction by the number of functions (24). A $\downarrow$ indicates the same tested against the best algorithm from BBOB 2009. Best results are printed in bold.
+        \cocoversion}
+\providecommand{\algsfolder}{DES_ALPS__AMALG_BAYED_BFGS__BIPOP_Cauch_et_al/}
+\providecommand{\algorithmA}{ALPS hornby noiseless}
+\providecommand{\algorithmB}{AMALGAM bosman noiseless}
+\providecommand{\algorithmC}{BAYEDA gallagher noiseless}
+\providecommand{\algorithmD}{BFGS ros noiseless}
+\providecommand{\algorithmE}{BIPOP-CMA-ES hansen noiseless}
+\providecommand{\algorithmF}{CMA-ESPLUSSEL auger noiseless}
+\providecommand{\algorithmG}{Cauchy-EDA posik noiseless}
+\providecommand{\algorithmH}{DASA korosec noiseless}
+\providecommand{\algorithmI}{DE-PSO garcia-nieto noiseless}
+\providecommand{\algorithmJ}{DES}
+\providecommand{\algorithmK}{DIRECT posik noiseless}
+\providecommand{\algorithmL}{EDA-PSO el-abd noiseless}
+\providecommand{\algorithmM}{FULLNEWUOA ros noiseless}
+\providecommand{\algorithmN}{G3PCX posik noiseless}
+\providecommand{\algorithmO}{GA nicolau noiseless}
+\providecommand{\algorithmP}{GLOBAL pal noiseless}
+\providecommand{\algorithmQ}{IPOP-SEP-CMA-ES ros noiseless}
+\providecommand{\algorithmR}{LSfminbnd posik noiseless}
+\providecommand{\algorithmS}{LSstep posik noiseless}
+\providecommand{\algorithmT}{MA-LS-CHAIN molina noiseless}
+\providecommand{\algorithmU}{MCS huyer noiseless}
+\providecommand{\algorithmV}{NELDER hansen noiseless}
+\providecommand{\algorithmW}{NELDERDOERR doerr noiseless}
+\providecommand{\algorithmX}{NEWUOA ros noiseless}
+\providecommand{\algorithmY}{ONEFIFTH auger noiseless}
+\providecommand{\algorithmZ}{POEMS kubalik noiseless}
+\providecommand{\algorithma}{PSO Bounds el-abd noiseless}
+\providecommand{\algorithmb}{PSO el-abd noiseless}
+\providecommand{\algorithmc}{RANDOMSEARCH auger noiseless}
+\providecommand{\algorithmd}{Rosenbrock posik noiseless}
+\providecommand{\algorithme}{VNS garcia-martinez noiseless}
+\providecommand{\algorithmf}{iAMALGAM bosman noiseless}
+\providecommand{\bbobecdfcaptionsinglefunctionssingledim}[1]{
+Empirical cumulative distribution of simulated (bootstrapped)
+             runtimes, measured in number of objective function evaluations,
+             divided by dimension (FEvals/DIM) for the $51$ 
+             targets $10^{[-8..2]}$ in dimension #1.
+}
+\providecommand{\cocoversion}{\hspace{\textwidth}\scriptsize\sffamily{}\color{Gray}Data produced with COCO v2.2.1.10}
 \providecommand{\algname}{DES{}}
 \providecommand{\algfolder}{DES/}
 \providecommand{\bbobecdfcaptionallgroups}[1]{
@@ -41,72 +308,3 @@ Empirical cumulative distribution of simulated (bootstrapped) runtimes in number
         functions (24).\cocoversion
         
 }
-\providecommand{\bbobppfigdimlegend}[1]{
-%
-        Scaling of runtime with dimension to reach certain target values \Df.
-        Lines: average runtime (\aRT);
-        Cross (+): median runtime of successful runs to reach the most difficult
-        target that was reached at least once (but not always);
-        Cross ({\color{red}$\times$}): maximum number of
-        $f$-evaluations in any trial. Notched boxes: interquartile range with median of simulated runs; 
-        All values are divided by dimension and  
-        plotted as $\log_{10}$ values versus dimension. %
-        %
-        Shown is the \aRT\ for fixed values of $\Df = 10^k$ with $k$ given
-        in the legend.
-        Numbers above \aRT-symbols (if appearing) indicate the number of trials
-        reaching the respective target. The light thick line with diamonds indicates the best algorithm from BBOB 2009 for the most difficult target.  Horizontal lines mean linear scaling, slanted
-        grid lines depict quadratic scaling.
-}
-\providecommand{\bbobpprldistrlegend}[1]{
-%
-         Empirical cumulative distribution functions (ECDF), plotting the fraction of
-         trials with an outcome not larger than the respective value on the $x$-axis.
-         #1%
-         Left subplots: ECDF of the number of function evaluations (FEvals) divided by search space dimension $D$,
-         to fall below $\fopt+\Df$ with $\Df=10^{k}$, where $k$ is the first value in the legend.
-         The thick red line represents the most difficult target value $\fopt+ 10^{-8}$. %
-         Legends indicate for each target the number of functions that were solved in at
-         least one trial within the displayed budget.
-         Right subplots: ECDF of the best achieved $\Df$
-         for running times of $0.5D, 1.2D, 3D, 10D, 100D, 1000D,\dots$
-         function evaluations
-         (from right to left cycling cyan-magenta-black\dots) and final $\Df$-value (red),
-         where \Df and \textsf{Df} denote the difference to the optimal function value. 
-         Light brown lines in the background show ECDFs for the most difficult target of all
-            algorithms benchmarked during BBOB-2009.
-}
-\providecommand{\bbobloglossfigurecaption}[1]{
-%
-        \aRT\ loss ratios (see Figure~\ref{tab:aRTloss} for details).
-
-        Each cross ({\color{blue}$+$}) represents a single function, the line
-        is the geometric mean.
-        
-}
-\providecommand{\bbobloglosstablecaption}[1]{
-%
-        \aRT\ loss ratio versus the budget in number of $f$-evaluations
-        divided by dimension.
-        For each given budget \FEvals, the target value \ftarget\ is computed
-        as the best target $f$-value reached within the
-        budget by the given algorithm.
-        Shown is then the \aRT\ to reach \ftarget\ for the given algorithm
-        or the budget, if the best algorithm from BBOB 2009
-        reached a better target within the budget,
-        divided by the \aRT\ of the best algorithm from BBOB 2009 to reach \ftarget.
-        Line: geometric mean. Box-Whisker error bar: 25-75\%-ile with median
-        (box), 10-90\%-ile (caps), and minimum and maximum \aRT\ loss ratio
-        (points). The vertical line gives the maximal number of function evaluations
-        in a single trial in this function subset. See also
-        Figure~\ref{fig:aRTlogloss} for results on each function subgroup.\cocoversion
-        
-}
-\providecommand{\pptablefooter}{
-\end{tabular}
-}
-\providecommand{\pptableheader}{
-\begin{tabular}{@{}c@{}|*{7}{@{}r@{}@{}l@{}}|@{}r@{}@{}l@{}}
-$\Delta f$ & \multicolumn{2}{c}{1e+1} & \multicolumn{2}{c}{1e+0} & \multicolumn{2}{c}{1e-1} & \multicolumn{2}{c}{1e-2} & \multicolumn{2}{c}{1e-3} & \multicolumn{2}{c}{1e-5} & \multicolumn{2}{c}{1e-7} & \multicolumn{2}{|@{}r@{}}{\#succ}\\\hline
-}
-\providecommand{\cocoversion}{\hspace{\textwidth}\scriptsize\sffamily{}\color{Gray}Data produced with COCO v2.2.1.10}
