@@ -66,7 +66,7 @@ DES <- function(par, fn, ..., lower, upper, control=list()) {
   pathRatio   <- controlParam("pathRatio",sqrt(pathLength))           ## Path Length Control reference value
   histSize    <- controlParam("history",ceiling(6+ceiling(3*sqrt(N))))## Size of the window of history - the step length history
   Ft_scale    <- controlParam("Ft_scale", ((mueff+2)/(N+mueff+3))/(1 + 2*max(0, sqrt((mueff-1)/(N+1))-1) + (mueff+2)/(N+mueff+3)))
-  tol         <- controlParam("tol", 10^-8)
+  tol         <- controlParam("tol", 10^-15)
   counteval   <- 0                                                    ## Number of function evaluations
   sqrt_N      <- sqrt(N)
 
@@ -103,8 +103,10 @@ DES <- function(par, fn, ..., lower, upper, control=list()) {
       else{
         ret <- c()
         budLeft <- budget-counteval
-        for (i in 1:budLeft ) {
-          ret <- c(ret,fn_(P[,i]))
+        if(budLeft > 0){
+          for (i in 1:budLeft ) {
+            ret <- c(ret,fn_(P[,i]))
+          }
         }
         return(c(ret,rep(.Machine$double.xmax,ncol(P)-budLeft)))
       }
@@ -289,7 +291,7 @@ DES <- function(par, fn, ..., lower, upper, control=list()) {
       }
 
       ## New population
-      population <- newMean + Ft * diffs + tol*(1 - 4/(N*log(N)))^(iter/2)  *rnorm(diffs)/chiN
+      population <- newMean + Ft * diffs + tol*rnorm(diffs)/chiN
       population <- deleteInfsNaNs(population)
 
       # Check constraints violations
@@ -357,11 +359,11 @@ DES <- function(par, fn, ..., lower, upper, control=list()) {
         break
       }
 
-      if(abs(range(fitness)[2] - range(fitness)[1]) < tol)
-      {
-        if (counteval < 0.8*budget)
-          stoptol=T
-      }
+      #if(abs(range(fitness)[2] - range(fitness)[1]) < tol)
+      #{
+      #  if (counteval < 0.8*budget)
+      #    stoptol=T
+      #}
 
 
     }
