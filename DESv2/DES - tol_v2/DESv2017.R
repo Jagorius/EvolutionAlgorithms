@@ -291,7 +291,7 @@ DES <- function(par, fn, ..., lower, upper, control=list()) {
       }
 
       ## New population
-      population <- newMean + Ft * diffs + tol*rnorm(diffs)/chiN
+      population <- newMean + Ft * diffs + tol*(1 - 4/(N*log(N)))^(iter*2)  *rnorm(diffs)/chiN
       population <- deleteInfsNaNs(population)
 
       # Check constraints violations
