@@ -330,8 +330,6 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
           best.par <- populationRepaired[,wb]
       }
 
-      print(c(best.fit, mean(diffs^2) ))
-
       ## Check worst fit:
       ww <- which.max(fitness)
       if (fitness[ww] > worst.fit){

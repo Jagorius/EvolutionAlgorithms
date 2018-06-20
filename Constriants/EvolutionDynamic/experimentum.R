@@ -76,12 +76,12 @@ AbsSigmaPlotEllpsoidd <- function(N){
                 control=list("lambda"=lambda_DES, "budget"=1000*N,"diag.pop"=TRUE,"diag.Ft"=TRUE,diag.mean=TRUE,"diag.bestVal"=TRUE,"diag.worstVal"=TRUE)
   )
 
-  setEPS()
-  postscript( paste("Ellipsoid",",N=",N,".eps",sep=""), width = 8, height = 8)
+  #setEPS()
+  #postscript( paste("Ellipsoid",",N=",N,".eps",sep=""), width = 8, height = 8)
 
   functionEvalVec <- (1:nrow(resDES$diagnostic$bestVal))*(lambda_DES)
   # Plot
-  plot(functionEvalVec,resDES$diagnostic$Ft,log="y",ylim=c(10^-15,10^5), xlim=c(0,which(resDES$diagnostic$bestVal<=10^-15)[1]*lambda_DES),xlab="function evaluations",ylab="blue:DES, red:CMAES, orange:CMADE",cex=0)
+  plot(functionEvalVec,resDES$diagnostic$Ft,log="y",ylim=c(10^-10,10^5), xlim=c(0,6000),xlab="function evaluations",ylab="blue:DES, red:CMAES, orange:CMADE",cex=0)
   # Plot f(best)
   lines(functionEvalVec,resDES$diagnostic$bestVal, lwd=3, col="blue")
   # Plot f(mean)
@@ -108,7 +108,7 @@ AbsSigmaPlotEllpsoidd <- function(N){
   )
   functionEvalVec3 <- (1:length(rowMeans(resCMAES$diagnostic$bestVal)))*(lambda_DES)
   lines(functionEvalVec3,abs(resCMAES$diagnostic$bestVal), lwd=3, col="red")
-  dev.off()
+  #dev.off()
 
 
 }
@@ -324,12 +324,12 @@ AbsSigmaPlotRosenbrock <- function(N){
                 control=list("lambda"=lambda_DES, "budget"=5000*N,"diag.pop"=TRUE,"diag.Ft"=TRUE,diag.mean=TRUE,"diag.bestVal"=TRUE,"diag.worstVal"=TRUE)
   )
 
-  setEPS()
-  postscript( paste("Rosenbrock",",N=",N,".eps",sep=""), width = 8, height = 8)
+  #setEPS()
+  #postscript( paste("Rosenbrock",",N=",N,".eps",sep=""), width = 8, height = 8)
 
   functionEvalVec <- (1:nrow(resDES$diagnostic$bestVal))*(lambda_DES)
   # Plot
-  plot(functionEvalVec,resDES$diagnostic$Ft,log="y",ylim=c(10^-15,10^10),xlab="function evaluations",ylab="blue:DES, red:CMAES, orange:CMADE",cex=0)
+  plot(functionEvalVec,resDES$diagnostic$Ft,log="y",ylim=c(10^-10,10^10),xlab="function evaluations",ylab="blue:DES, red:CMAES, orange:CMADE",cex=0)
   # Plot f(best)
   lines(functionEvalVec,resDES$diagnostic$bestVal, lwd=3, col="blue")
   # Plot f(mean)
@@ -356,7 +356,7 @@ AbsSigmaPlotRosenbrock <- function(N){
   )
   functionEvalVec3 <- (1:length(rowMeans(resCMAES$diagnostic$bestVal)))*(lambda_DES)
   lines(functionEvalVec3,abs(resCMAES$diagnostic$bestVal), lwd=3, col="red")
-  dev.off()
+  #dev.off()
 }
 # lambda_ = 1  - Sharp ridge
 # lambda_ = 2  - Parabolic ridge
@@ -379,19 +379,19 @@ AbsSigmaPlotParabolicRidge <- function(N,lambda_){
                 control=list("lambda"=lambda_DES, "budget"=5000*N,"diag.pop"=TRUE,"diag.Ft"=TRUE,diag.mean=TRUE,"diag.bestVal"=TRUE,"diag.worstVal"=TRUE)
   )
 
-  setEPS()
-  if(lambda_ == 1 )
-    postscript( paste("SharpRidge",",N=",N,".eps",sep=""), width = 8, height = 8)
-  else
-    postscript( paste("ParabolicRidge",",N=",N,".eps",sep=""), width = 8, height = 8)
+ # setEPS()
+  #if(lambda_ == 1 )
+  #  postscript( paste("SharpRidge",",N=",N,".eps",sep=""), width = 8, height = 8)
+  #else
+  #  postscript( paste("ParabolicRidge",",N=",N,".eps",sep=""), width = 8, height = 8)
 
+  resDES$diagnostic$bestVal[resDES$diagnostic$bestVal<=0] <-10^-64
   functionEvalVec <- (1:nrow(resDES$diagnostic$bestVal))*(lambda_DES)
   # Plot
   #xlim=c(0,which(resDES$diagnostic$bestVal<=10^-10)[1]*lambda_DES)
   # ylim=c(10^-10,10^5)
   plot(functionEvalVec,resDES$diagnostic$Ft,log="y",xlab="function evaluations",ylim=c(10^-10,10^10),ylab="blue:DES, red:CMAES, orange:CMADE",cex=0)
   # Plot f(best)
-  print(resDES$diagnostic$bestVal)
   lines(functionEvalVec,resDES$diagnostic$bestVal, lwd=3, col="blue")
   # Plot f(mean)
   #lines(functionEvalVec,resDES$diagnostic$mean, lwd=3, col="black")
@@ -402,6 +402,8 @@ AbsSigmaPlotParabolicRidge <- function(N,lambda_){
                      lower=-10^100, upper=10^100,
                      control=list( "lambda"=lambda_DES, "budget"=5000*N,"diag.pop"=TRUE,"diag.Ft"=TRUE,diag.mean=TRUE,"diag.bestVal"=TRUE,"diag.worstVal"=TRUE)
   )
+
+  resDESCMAES$diagnostic$bestVal[resDESCMAES$diagnostic$bestVal<=0] <-10^-64
 
   functionEvalVec2 <- (1:nrow(resDESCMAES$diagnostic$bestVal))*(lambda_DES)
   lines(functionEvalVec2,resDESCMAES$diagnostic$bestVal, lwd=3, col="orange")
@@ -415,9 +417,13 @@ AbsSigmaPlotParabolicRidge <- function(N,lambda_){
                      lower=-10^100, upper=10^100,
                      control=list("lambda"=lambda_DES,"diag.bestVal"=TRUE,"budget"=5000*N)
   )
+  resCMAES$diagnostic$bestVal[resCMAES$diagnostic$bestVal<=0] <-10^-64
+
   functionEvalVec3 <- (1:length(rowMeans(resCMAES$diagnostic$bestVal)))*(lambda_DES)
   lines(functionEvalVec3,abs(resCMAES$diagnostic$bestVal), lwd=3, col="red")
-  dev.off()
+  print(resCMAES$diagnostic$bestVal)
+
+  #dev.off()
 }
 
 

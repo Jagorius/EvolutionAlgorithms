@@ -15,14 +15,14 @@ ecdfIEEE<- function(n,f_from,f_to){
   lshadeSpacma_path = "C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Results for all papers/Paper ID 17051/LSHADE_SPACMA/"
   #cmaesNos_path = "C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/CEC2017/CMAES noSigma/M/"
   ebopath = "C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Results for all papers/EBOwithCMAR/data for email/"
-  idepath = "C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Results for all papers/Paper ID  E-17322/IDEbestNsize/"
-  ppsopath = "C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Results for all papers/paper ID E-17447/cec2017PPSO/"
-  mmoedpath = "C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Results for all papers/Paper ID  17321/Multi-method based Orthogonal Experimental Design Algorithm for Solving CEC2017 Competition Problems results/"
-  dyypopath = "C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Results for all papers/Paper ID 17543/DYYPO/"
-  tlboflpath = "C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Results for all papers/Paper ID 17544/TLBO-FL/"
-  moscec2012path = "C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Results for all papers/Paper ID E-17260/E-17260_results/res_cec2012/"
-  moscec2013path = "C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Results for all papers/Paper ID E-17260/E-17260_results/res_cec2013/"
-  mossoco2011path = "C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Results for all papers/Paper ID E-17260/E-17260_results/res_soco2011/"
+  #idepath = "C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Results for all papers/Paper ID  E-17322/IDEbestNsize/"
+  #ppsopath = "C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Results for all papers/paper ID E-17447/cec2017PPSO/"
+  #mmoedpath = "C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Results for all papers/Paper ID  17321/Multi-method based Orthogonal Experimental Design Algorithm for Solving CEC2017 Competition Problems results/"
+  #dyypopath = "C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Results for all papers/Paper ID 17543/DYYPO/"
+  #tlboflpath = "C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Results for all papers/Paper ID 17544/TLBO-FL/"
+  #moscec2012path = "C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Results for all papers/Paper ID E-17260/E-17260_results/res_cec2012/"
+  #moscec2013path = "C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Results for all papers/Paper ID E-17260/E-17260_results/res_cec2013/"
+  #mossoco2011path = "C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Results for all papers/Paper ID E-17260/E-17260_results/res_soco2011/"
 
   ecdfValues <- list()
   budgetSteps <- c(0.01, 0.02, 0.03, 0.05, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0)*log10(10000)
@@ -60,14 +60,14 @@ ecdfIEEE<- function(n,f_from,f_to){
     resultslshadeSpacma[[p]] <- read.table(file = paste(lshadeSpacma_path,"LSHADE_SPACMA_",p,"_",N,".txt",sep=""))
     #resultsCmaesNos[[p]] <- read.table(file = paste(cmaesNos_path,"CMAES_",p,"_",N,".txt",sep=""),sep = ",",header = TRUE)
     resultsEbo[[p]] <- read.table(file = paste(ebopath,"EBOwithCMAR_",p,"_",N,".dat",sep=""))
-    resultsIDE[[p]] <- read.table(file = paste(idepath,"IDEbestNsize_",N,"_",p,".txt",sep=""))
-    resultsPPSO[[p]] <- read.table(file = paste(ppsopath,"PPSO_",p,"_",N,".txt",sep=""))
-    resultsMMOED[[p]] <- read.table(file = paste(mmoedpath,"MM_OED_",p,"_",N,".txt",sep=""))
-    resultsDYYPO[[p]] <- read.table(file = paste(dyypopath,"DYYPO_",p,"_",N,".txt",sep=""))
-    resultsTLBOFL[[p]] <- read.table(file = paste(tlboflpath,"TLBO-FL_",p,"_",N,".txt",sep=""))
-    resulsMOSCEC2012[[p]] <- read.table(file = paste(moscec2012path,"MOS-CEC2012_",p,"_",N,".csv",sep=""),sep=",",header = TRUE, colClasses=c("NULL",rep(NA,51)))
-    resulsMOSCEC2013[[p]] <- read.table(file = paste(moscec2013path,"MOS-CEC2013_",p,"_",N,".csv",sep=""),sep=",",header = TRUE, colClasses=c("NULL",rep(NA,51)))
-    resulsMOSSOCO2011[[p]] <- read.table(file = paste(mossoco2011path,"MOS-SOCO2011_",p,"_",N,".csv",sep=""),sep=",",header = TRUE, colClasses=c("NULL",rep(NA,51)))
+    #resultsIDE[[p]] <- read.table(file = paste(idepath,"IDEbestNsize_",N,"_",p,".txt",sep=""))
+    #resultsPPSO[[p]] <- read.table(file = paste(ppsopath,"PPSO_",p,"_",N,".txt",sep=""))
+    #resultsMMOED[[p]] <- read.table(file = paste(mmoedpath,"MM_OED_",p,"_",N,".txt",sep=""))
+    #resultsDYYPO[[p]] <- read.table(file = paste(dyypopath,"DYYPO_",p,"_",N,".txt",sep=""))
+    #resultsTLBOFL[[p]] <- read.table(file = paste(tlboflpath,"TLBO-FL_",p,"_",N,".txt",sep=""))
+    #resulsMOSCEC2012[[p]] <- read.table(file = paste(moscec2012path,"MOS-CEC2012_",p,"_",N,".csv",sep=""),sep=",",header = TRUE, colClasses=c("NULL",rep(NA,51)))
+    #resulsMOSCEC2013[[p]] <- read.table(file = paste(moscec2013path,"MOS-CEC2013_",p,"_",N,".csv",sep=""),sep=",",header = TRUE, colClasses=c("NULL",rep(NA,51)))
+    #resulsMOSSOCO2011[[p]] <- read.table(file = paste(mossoco2011path,"MOS-SOCO2011_",p,"_",N,".csv",sep=""),sep=",",header = TRUE, colClasses=c("NULL",rep(NA,51)))
 
 
     ecdfValues[[p]] <- rev(c(1 %o% (10)^(0.2*((log10(max(min(
@@ -78,15 +78,15 @@ ecdfIEEE<- function(n,f_from,f_to){
                                                         min(resultsjso[[p]][14,]),
                                                         min(resultslshadeSpacma[[p]][14,]),
                                                         #min(resultsCmaesNos[[p]][14,]),
-                                                        min(resultsEbo[[p]][14,]),
-                                                        min(resultsIDE[[p]][14,]),
-                                                        min(resultsPPSO[[p]][14,]),
-                                                        min(resultsMMOED[[p]][14,]),
-                                                        min(resultsDYYPO[[p]][14,]),
-                                                        min(resultsTLBOFL[[p]][14,]),
-                                                        min(resulsMOSCEC2012[[p]][14,]),
-                                                        min(resulsMOSCEC2013[[p]][14,]),
-                                                        min(resulsMOSSOCO2011[[p]][14,])
+                                                        min(resultsEbo[[p]][14,])
+                                                        #min(resultsIDE[[p]][14,]),
+                                                        #min(resultsPPSO[[p]][14,]),
+                                                        #min(resultsMMOED[[p]][14,]),
+                                                        #min(resultsDYYPO[[p]][14,]),
+                                                        #min(resultsTLBOFL[[p]][14,]),
+                                                        #min(resulsMOSCEC2012[[p]][14,]),
+                                                        #min(resulsMOSCEC2013[[p]][14,]),
+                                                        #min(resulsMOSSOCO2011[[p]][14,])
                                                             ),10^-8)  )/0.2):(log10(max(
                                                                  #max(resultsDES[[p]][1,]),
                                                                  max(resultsRB_IPOP_CMA_ES[[p]][1,]),
@@ -95,15 +95,15 @@ ecdfIEEE<- function(n,f_from,f_to){
                                                                  max(resultsjso[[p]][1,]),
                                                                  max(resultslshadeSpacma[[p]][1,]),
                                                                  #max(resultsCmaesNos[[p]][1,]),
-                                                                 max(resultsEbo[[p]][1,]),
-                                                                 max(resultsIDE[[p]][1,]),
-                                                                 max(resultsPPSO[[p]][1,]),
-                                                                 max(resultsMMOED[[p]][1,]),
-                                                                 max(resultsDYYPO[[p]][1,]),
-                                                                 max(resultsTLBOFL[[p]][1,]),
-                                                                 max(resulsMOSCEC2012[[p]][1,]),
-                                                                 max(resulsMOSCEC2013[[p]][1,]),
-                                                                 max(resulsMOSSOCO2011[[p]][1,])
+                                                                 max(resultsEbo[[p]][1,])
+                                                                 #max(resultsIDE[[p]][1,]),
+                                                                 #max(resultsPPSO[[p]][1,]),
+                                                                 #max(resultsMMOED[[p]][1,]),
+                                                                 #max(resultsDYYPO[[p]][1,]),
+                                                                 #max(resultsTLBOFL[[p]][1,]),
+                                                                 #max(resulsMOSCEC2012[[p]][1,]),
+                                                                 #max(resulsMOSCEC2013[[p]][1,]),
+                                                                 #max(resulsMOSSOCO2011[[p]][1,])
                                                                  )  )/0.2) ))))
       }
 
@@ -136,14 +136,14 @@ ecdfIEEE<- function(n,f_from,f_to){
         minCountshadeSpacma[b] <- minCountshadeSpacma[b] + sum(resultslshadeSpacma[[p]][b,]<ecdfValues[[p]][e])
         #minCountCmaes_nos[b] <- minCountCmaes_nos[b] + sum(resultsCmaesNos[[p]][b,]<ecdfValues[[p]][e])
         minCountEbo[b] <- minCountEbo[b] + sum(resultsEbo[[p]][b,]<ecdfValues[[p]][e])
-        minCountIde[b] <- minCountIde[b] + sum(resultsIDE[[p]][b,]<ecdfValues[[p]][e])
-        minCountPpso[b] <- minCountPpso[b] + sum(resultsPPSO[[p]][b,]<ecdfValues[[p]][e])
-        minCountMmoed[b] <- minCountMmoed[b] + sum(resultsMMOED[[p]][b,]<ecdfValues[[p]][e])
-        minCountDyypo[b] <- minCountDyypo[b] + sum(resultsDYYPO[[p]][b,]<ecdfValues[[p]][e])
-        minCountTlbofl[b] <- minCountTlbofl[b] + sum(resultsTLBOFL[[p]][b,]<ecdfValues[[p]][e])
-        minCountMosCec2012[b] <- minCountMosCec2012[b] + sum(resulsMOSCEC2012[[p]][b,]<ecdfValues[[p]][e])
-        minCountMosCec2013[b] <- minCountMosCec2013[b] + sum(resulsMOSCEC2013[[p]][b,]<ecdfValues[[p]][e])
-        minCountMosSoco2011[b] <- minCountMosSoco2011[b] + sum(resulsMOSSOCO2011[[p]][b,]<ecdfValues[[p]][e])
+        #minCountIde[b] <- minCountIde[b] + sum(resultsIDE[[p]][b,]<ecdfValues[[p]][e])
+        #minCountPpso[b] <- minCountPpso[b] + sum(resultsPPSO[[p]][b,]<ecdfValues[[p]][e])
+        #minCountMmoed[b] <- minCountMmoed[b] + sum(resultsMMOED[[p]][b,]<ecdfValues[[p]][e])
+        #minCountDyypo[b] <- minCountDyypo[b] + sum(resultsDYYPO[[p]][b,]<ecdfValues[[p]][e])
+        #minCountTlbofl[b] <- minCountTlbofl[b] + sum(resultsTLBOFL[[p]][b,]<ecdfValues[[p]][e])
+        #minCountMosCec2012[b] <- minCountMosCec2012[b] + sum(resulsMOSCEC2012[[p]][b,]<ecdfValues[[p]][e])
+        #minCountMosCec2013[b] <- minCountMosCec2013[b] + sum(resulsMOSCEC2013[[p]][b,]<ecdfValues[[p]][e])
+        #minCountMosSoco2011[b] <- minCountMosSoco2011[b] + sum(resulsMOSSOCO2011[[p]][b,]<ecdfValues[[p]][e])
 
       }
     }
@@ -162,14 +162,14 @@ ecdfIEEE<- function(n,f_from,f_to){
   rplot <- plot(budgetSteps,minCountjso/(ecdfMaxSucess),xlab="log10 of (f-evals / dimension)",ylab="Proportion of function + target pairs",ylim=c(0, 1),type="b", lwd=2,lty=linetype[4], col=colors_[4], pch=plotchar[4], xaxt=isXaxt,  yaxt=isYaxt)
   lines(budgetSteps,minCountshadeSpacma/(ecdfMaxSucess),type="b", lwd=2,lty=linetype[5], col=colors_[5], pch=plotchar[5])
   lines(budgetSteps,minCountEbo/(ecdfMaxSucess),type="b", lwd=2,lty=linetype[6], col=colors_[6], pch=plotchar[6])
-  lines(budgetSteps,minCountIde/(ecdfMaxSucess),type="b", lwd=2,lty=linetype[7], col=colors_[7], pch=plotchar[7])
-  lines(budgetSteps,minCountPpso/(ecdfMaxSucess),type="b", lwd=2,lty=linetype[8], col=colors_[8], pch=plotchar[8])
-  lines(budgetSteps,minCountMmoed/(ecdfMaxSucess),type="b", lwd=2,lty=linetype[9], col=colors_[9], pch=plotchar[9])
-  lines(budgetSteps,minCountDyypo/(ecdfMaxSucess),type="b", lwd=2,lty=linetype[10], col=colors_[10], pch=plotchar[10])
-  lines(budgetSteps,minCountTlbofl/(ecdfMaxSucess),type="b", lwd=2,lty=linetype[11], col=colors_[11], pch=plotchar[11])
-  lines(budgetSteps,minCountMosCec2012/(ecdfMaxSucess),type="b", lwd=2,lty=linetype[12], col=colors_[12], pch=plotchar[12])
-  lines(budgetSteps,minCountMosCec2013/(ecdfMaxSucess),type="b", lwd=2,lty=linetype[13], col=colors_[13], pch=plotchar[13])
-  lines(budgetSteps,minCountMosSoco2011/(ecdfMaxSucess),type="b", lwd=2,lty=linetype[14], col=colors_[14], pch=plotchar[14])
+  #lines(budgetSteps,minCountIde/(ecdfMaxSucess),type="b", lwd=2,lty=linetype[7], col=colors_[7], pch=plotchar[7])
+  #lines(budgetSteps,minCountPpso/(ecdfMaxSucess),type="b", lwd=2,lty=linetype[8], col=colors_[8], pch=plotchar[8])
+  #lines(budgetSteps,minCountMmoed/(ecdfMaxSucess),type="b", lwd=2,lty=linetype[9], col=colors_[9], pch=plotchar[9])
+  #lines(budgetSteps,minCountDyypo/(ecdfMaxSucess),type="b", lwd=2,lty=linetype[10], col=colors_[10], pch=plotchar[10])
+  #lines(budgetSteps,minCountTlbofl/(ecdfMaxSucess),type="b", lwd=2,lty=linetype[11], col=colors_[11], pch=plotchar[11])
+  #lines(budgetSteps,minCountMosCec2012/(ecdfMaxSucess),type="b", lwd=2,lty=linetype[12], col=colors_[12], pch=plotchar[12])
+  #lines(budgetSteps,minCountMosCec2013/(ecdfMaxSucess),type="b", lwd=2,lty=linetype[13], col=colors_[13], pch=plotchar[13])
+  #lines(budgetSteps,minCountMosSoco2011/(ecdfMaxSucess),type="b", lwd=2,lty=linetype[14], col=colors_[14], pch=plotchar[14])
 
   lines(budgetSteps,minCountRB_IPOP_CMA_ES/(ecdfMaxSucess),type="b", lwd=2,lty=linetype[3], col=colors_[3], pch=plotchar[3])
   lines(budgetSteps,minCountCmaes_pure/(ecdfMaxSucess),type="b", lwd=2,lty=linetype[2], col=colors_[2], pch=plotchar[2])
@@ -187,7 +187,7 @@ combinedPlot <- function(){
 
   colors_ <<- c(rep("black",2),rep("grey",12))
   linetype <<- c(c(1:6),c(1:6),c(1:6))
-  plotchar <<- c( seq(15,15+10,1),8,13,14,13)
+  plotchar <<- c( 15,1,seq(16,15+8,1),8,13,14,13)
 
   setEPS()
   postscript( "combinedPlot.eps", width = 20, height = 18)
@@ -217,7 +217,7 @@ combinedPlot <- function(){
 
   par(fig = c(0, 1, 0, 1), oma = c(0, 0, 0, 0), mar = c(0, 0, 0, 0), new = TRUE)
   plot(0, 0, type = "n", bty = "n", xaxt = "n", yaxt = "n")
-  legend("bottom", c('DES','CMA-ES', 'RB_IPOP_CMA_ES','jSO','LSHADE_SPACMA','EBOwithCMAR','IDEbestNsize','PPSO','MM_OED','DYYPO','TLBO-FL','MOS-CEC2012','MOS-CEC2013','MOS-SOCO2011'), text.font=2, cex=1.5, col=colors_[1:14],pch=plotchar[1:14], lty=linetype[1:14], ncol=6)
+  legend("bottom", c('DES','CMA-ES', 'RB_IPOP_CMA_ES','jSO','LSHADE_SPACMA','EBOwithCMAR'), text.font=2, cex=1.5, col=colors_[1:6],pch=plotchar[1:6], lty=linetype[1:6], ncol=6)
 
   dev.off()
 }
@@ -225,7 +225,7 @@ combinedPlot <- function(){
 plotCECline <- function(){
   colors_ <<- c(rep("black",2),rep("white",12))
   linetype <<- c(c(1:6),c(1:6),c(1:6))
-  plotchar <<- c( seq(15,15+10,1),8,13,14,13)
+  plotchar <<- c( 15,1,seq(16,15+8,1),8,13,14,13)
   setEPS()
   postscript( "plotCECline.eps", width = 20, height = 6)
   layout(mat = matrix(1:4,nrow = 1,ncol = 4,byrow = TRUE),heights = c(1,0.2))
@@ -244,7 +244,7 @@ plotCECline <- function(){
 
   par(fig = c(0, 1, 0, 1), oma = c(0, 0, 0, 0), mar = c(0, 0, 0, 0), new = TRUE)
   plot(0, 0, type = "n", bty = "n", xaxt = "n", yaxt = "n")
-  legend("bottom", c('DES','CMA-ES'), text.font=2, cex=1.5, col=colors_[1:2],pch=plotchar[1:2], lty=linetype[1:2], ncol=8)
+  legend("bottom", c('DES','CMA-ES'), text.font=2, cex=1.5, col=colors_[1:2],pch=plotchar[1:2], lty=linetype[1:2], ncol=2)
 
   dev.off()
 }
