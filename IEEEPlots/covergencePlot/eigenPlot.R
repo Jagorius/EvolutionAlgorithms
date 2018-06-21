@@ -33,7 +33,7 @@ eigenplotDES<- function(){
 
   # Plot eigen values changes for each dimmension
   options(scipen=3)
-  plot(functionEvalVec,eigen[,N],log="y",ylim=c(1e-7,1e1), xlab="function evaluations", ylab="Eigenvalues",cex=0)
+  plot(functionEvalVec,eigen[,N],log="y",ylim=c(1e-7,1e1), xlab="function evaluations", ylab="Eigenvalues",cex=0,cex.axis=1.5,cex.lab=1.5)
 
 
   lines(functionEvalVec,eigen[,N], lwd=2)
@@ -84,7 +84,7 @@ eigenplotCMAES<- function(){
   # Plot eigen values changes for each dimmension
   options(scipen=3)
                                         #ylim=c(min(eigen),max(eigen))
-  plot(functionEvalVec,eigen[,N],log="y",ylim=c(min(eigen),max(eigen)), xlab="function evaluations", ylab="Eigenvalues",cex=0)
+  plot(functionEvalVec,eigen[,N],log="y",ylim=c(min(eigen),max(eigen)), xlab="function evaluations", ylab="Eigenvalues",cex=0,cex.axis=1.5,cex.lab=1.5)
   lines(functionEvalVec,eigen[,N], lwd=2)
 
   colours <- c("red","darkgreen","orchid","blue","tomato4","yellow4","snow3","plum","seashell4","black","black","black","black")
