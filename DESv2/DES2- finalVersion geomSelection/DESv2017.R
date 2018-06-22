@@ -58,7 +58,7 @@ DES <- function(par, fn, ..., lower, upper, control=list()) {
   weights     <- weights/sum(weights)                                 ##    \-> weights are normalized by the sum
   weightsSumS <- sum(weights^2)                                       ## weights sum square
   mueff       <- controlParam("mueff", sum(weights)^2/sum(weights^2)) ## Variance effectiveness factor
-  cc          <- controlParam("ccum", mu/(mu+2))                      ## Evolution Path decay factor
+  cc          <- controlParam("ccum", mu/(mu+2))                         ## Evolution Path decay factor
   pathLength  <- controlParam("pathLength",  6)                       ## Size of evolution path
   cp          <- controlParam("cp", 1/sqrt(N))                        ## Evolution Path decay factor
   maxiter     <- controlParam("maxit", floor(budget/(lambda+1)))      ## Maximum number of iterations after which algorithm stops

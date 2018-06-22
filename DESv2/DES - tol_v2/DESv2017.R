@@ -54,7 +54,7 @@ DES <- function(par, fn, ..., lower, upper, control=list()) {
   minlambda   <- controlParam("minlambda", 4*N)                       ## Population ending size
   lambda      <- initlambda                                           ## Population size
   mu          <- controlParam("mu", floor(lambda/2))                  ## Selection size
-  weights     <- controlParam("weights", log(mu+1) - log(1:mu))       ## Weights to calculate mean from selected individuals
+  weights     <- controlParam("weights", log(mu+1) - log(1:mu))                ## Weights to calculate mean from selected individuals
   weights     <- weights/sum(weights)                                 ##    \-> weights are normalized by the sum
   weightsSumS <- sum(weights^2)                                       ## weights sum square
   mueff       <- controlParam("mueff", sum(weights)^2/sum(weights^2)) ## Variance effectiveness factor
@@ -66,7 +66,7 @@ DES <- function(par, fn, ..., lower, upper, control=list()) {
   pathRatio   <- controlParam("pathRatio",sqrt(pathLength))           ## Path Length Control reference value
   histSize    <- controlParam("history",ceiling(6+ceiling(3*sqrt(N))))## Size of the window of history - the step length history
   Ft_scale    <- controlParam("Ft_scale", ((mueff+2)/(N+mueff+3))/(1 + 2*max(0, sqrt((mueff-1)/(N+1))-1) + (mueff+2)/(N+mueff+3)))
-  tol         <- controlParam("tol", 10^-6)
+  tol         <- controlParam("tol", 10^-12)
   counteval   <- 0                                                    ## Number of function evaluations
   sqrt_N      <- sqrt(N)
 
