@@ -7,7 +7,7 @@ DATA_VERS_NICE_NAMES=c("Reinitialization", "Lamarckian projection" , "Darwinian 
 
 ALG_NAME = "DES"
 #ALG_NAME = "jSO"
-NMBR_OF_RUNS = 51
+NMBR_OF_RUNS = 1
 DIM = 10
 DESIRED_LEVEL = 10^-8
 TEST_SUIT_NAME = "kw"
@@ -34,14 +34,20 @@ if(ALG_NAME == "CMAES"){#, "expS", "expC"
                                  "Conservatism"="NONE" )
   
 }else if(ALG_NAME == "DES"){
-  DATA_VERS = c( "Lamarckian projection", "Lamarckian reflection", "Lamarckian wrapping", "Reinitialization", 
-                 "Resampling", "Darwinian projection", "Darwinian reflection", 
-                 "Darwinian wrapping", "Substitution penalty", "Scaled mutant", 
-                 "Quadratic penalty", "Midpoint target", "Scaled to base", "Rand base", "Conservatism", "Midpoint base" ) 
-  DATA_VERS_NAMES_MAPPING = list("Reinitialization"="Reinitialization", "Lamarckian projection"="Lamarckian projection" , "Darwinian projection"="Darwinian projection", "Lamarckian reflection"="Lamarckian reflection", "Darwinian reflection"="Darwinian reflection", "Lamarckian wrapping"="Lamarckian wrapping", 
-                                 "Darwinian wrapping"="Darwinian wrapping", "Scaled mutant"="Scaled mutant", "Death penalty"="NONE", 
-                                 "Quadratic penalty"="Quadratic penalty", "Substitution penalty"="Substitution penalty", "Resampling"="Resampling",
-                                 "Rand base"="Rand base", "Midpoint base"="Midpoint base", "Midpoint target"="Midpoint target", "Scaled to base"="Scaled to base", "Conservatism"="Conservatism" )
+  #DATA_VERS = c( "Lamarckian projection", "Lamarckian reflection", "Lamarckian wrapping", "Reinitialization", 
+  #               "Resampling", "Darwinian projection", "Darwinian reflection", 
+  #               "Darwinian wrapping", "Substitution penalty", "Scaled mutant", 
+  #               "Quadratic penalty", "Midpoint target", "Scaled to base", "Rand base", "Conservatism", "Midpoint base" ) 
+  #DATA_VERS_NAMES_MAPPING = list("Reinitialization"="Reinitialization", "Lamarckian projection"="Lamarckian projection" , "Darwinian projection"="Darwinian projection", "Lamarckian reflection"="Lamarckian reflection", "Darwinian reflection"="Darwinian reflection", "Lamarckian wrapping"="Lamarckian wrapping", 
+  #                               "Darwinian wrapping"="Darwinian wrapping", "Scaled mutant"="Scaled mutant", "Death penalty"="NONE", 
+  #                               "Quadratic penalty"="Quadratic penalty", "Substitution penalty"="Substitution penalty", "Resampling"="Resampling",
+  #                               "Rand base"="Rand base", "Midpoint base"="Midpoint base", "Midpoint target"="Midpoint target", "Scaled to base"="Scaled to base", "Conservatism"="Conservatism" )
+  DATA_VERS = c( "Reinitialization", "Lamarckian projection",  
+                 "Quadratic penalty" ) 
+  DATA_VERS_NAMES_MAPPING = list("Reinitialization"="Reinitialization", "Lamarckian projection"="Lamarckian projection" , "Darwinian projection"="NONE", "Lamarckian reflection"="NONE", "Darwinian reflection"="NONE", "Lamarckian wrapping"="NONE", 
+                                 "Darwinian wrapping"="NONE", "Scaled mutant"="NONE", "Death penalty"="NONE", 
+                                 "Quadratic penalty"="Quadratic penalty", "Substitution penalty"="NONE", "Resampling"="NONE",
+                                 "Rand base"="NONE", "Midpoint base"="NONE", "Midpoint target"="NONE", "Scaled to base"="NONE", "Conservatism"="NONE" )
   
 }else if(ALG_NAME == "jSO"){
   DATA_VERS = c( "Lamarckian projection", "Lamarckian reflection", "Lamarckian wrapping", "Reinitialization", 
@@ -84,8 +90,7 @@ baseVect4b=c()
 minY = Inf
 maxY = -Inf
 targetLevel = c()
-
-POPULATION_DES_FIRST <<- replicate(4*DIM, runif(DIM,-0.8,0.8))
+POPULATION_LIST <- replicate( NMBR_OF_RUNS,list(replicate(4*DIM, runif(DIM,-0.8,0.8))))
 
 for( DATA_VER in DATA_VERS){
   print(DATA_VER)
@@ -94,6 +99,7 @@ for( DATA_VER in DATA_VERS){
     print(b)
     numberOfSucc = 0
     for( run in 1:NMBR_OF_RUNS){
+      POPULATION_DES_FIRST <<- POPULATION_LIST[[run]]
       if(ALG_NAME == "DES"){
         if(DATA_VER == "Darwinian projection" || DATA_VER == "Darwinian reflection" || 
            DATA_VER == "Darwinian wrapping" || DATA_VER == "Quadratic penalty" || 
@@ -110,7 +116,7 @@ for( DATA_VER in DATA_VERS){
           },
           lower=-10^20,
           upper=10^20,
-          control=list("Lamarckism"=isDarw,"diag.bestVal"=TRUE)
+          control=list("Lamarckism"=!isDarw,"diag.bestVal"=TRUE)
         )
         whichItersTarget = which(targetlevels$diagnostic$bestVal<=DESIRED_LEVEL)
         targetLevel <- c(targetLevel, whichItersTarget[1] )
@@ -123,7 +129,7 @@ for( DATA_VER in DATA_VERS){
           },
           lower=-1,
           upper=1,
-          control=list("Lamarckism"=isDarw,"diag.bestVal"=TRUE)
+          control=list("Lamarckism"=!isDarw,"diag.bestVal"=TRUE)
         )
         whichIters = which(wyniki$diagnostic$bestVal<=DESIRED_LEVEL)
       }else if(ALG_NAME == "jSO"){

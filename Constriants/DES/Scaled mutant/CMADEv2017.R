@@ -163,7 +163,7 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
   if (log.mean)
     mean.log <- matrix(0, nrow=0, ncol=1)
   if (log.pop)
-    pop.log <- array(0, c(N, lambda, maxiter))
+    pop.log <- array(0, c(N, lambda, maxiter*100))
   if (log.bestVal)
     bestVal.log <-  matrix(0, nrow=0, ncol=1)
   if (log.worstVal)

@@ -84,7 +84,7 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
 
   ## nonLamarckian approach allows individuals to violate boundaries.
   ## Fitness value is estimeted by fitness of repaired individual.
-  Lamarckism     <- controlParam("Lamarckism", TRUE)
+  Lamarckism     <- controlParam("Lamarckism", FALSE)
 
   ## Fitness function wrapper
   fn_ <- function(x){
@@ -163,7 +163,7 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
   if (log.mean)
     mean.log <- matrix(0, nrow=0, ncol=1)
   if (log.pop)
-    pop.log <- array(0, c(N, lambda, maxiter))
+    pop.log <- array(0, c(N, lambda, maxiter*100))
   if (log.bestVal)
     bestVal.log <-  matrix(0, nrow=0, ncol=1)
   if (log.worstVal)
@@ -365,8 +365,8 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
 
       if(abs(range(fitness)[2] - range(fitness)[1]) < tol)
       {
-        if (counteval < 0.8*budget)
-          stoptol=T
+        #if (counteval < 0.8*budget)
+          #stoptol=T
       }
 
 
