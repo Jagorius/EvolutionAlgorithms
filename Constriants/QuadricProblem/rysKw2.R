@@ -7,7 +7,7 @@ DATA_VERS_NICE_NAMES=c("Reinitialization", "Lamarckian projection" , "Darwinian 
 
 ALG_NAME = "DES"
 #ALG_NAME = "jSO"
-NMBR_OF_RUNS = 2
+NMBR_OF_RUNS = 51
 DIM = 10
 DESIRED_LEVEL = 10^-8
 TEST_SUIT_NAME = "kw"
