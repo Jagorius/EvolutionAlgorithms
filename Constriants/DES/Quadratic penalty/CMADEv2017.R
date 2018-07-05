@@ -29,17 +29,17 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
   else if (length(upper) == 1)
     upper <- rep(upper, N)
 
-  bounceBackBoundary2 <- function(x){
+  ThrowOnLimit <- function(x){
     if(all(x >= cbind(lower)) && all(x <= cbind(upper)))
       return (x)
     else if(any(x < cbind(lower)))
       for(i in which(x < cbind(lower)) )
-        x[i] <- lower[i] + abs(lower[i] - x[i])%% (upper[i]- lower[i])
+        x[i] <- lower[i]
       else if(any(x > cbind(upper)))
         for(i in which(x > cbind(upper)) )
-          x[i] <- upper[i] - abs(upper[i] - x[i])%% (upper[i]- lower[i])
+          x[i] <- upper[i]
         x <-deleteInfsNaNs(x)
-        return (bounceBackBoundary2(x))
+        return (ThrowOnLimit(x))
   }
 
  
@@ -200,7 +200,7 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
     population <- POPULATION_DES_FIRST
     #population <- replicate(lambda, runif(N,0.8*lower,0.8*upper))      
 	cumMean=(upper+lower)/2
-    populationRepaired <- apply(population,2,bounceBackBoundary2)
+    populationRepaired <- apply(population,2,ThrowOnLimit)
 
     if(Lamarckism==TRUE){
       population <- populationRepaired
@@ -240,7 +240,7 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
 
       if (log.Ft) Ft.log <- rbind(Ft.log,Ft)
       if (log.value) value.log <- rbind(value.log,fitness)
-      if (log.mean) mean.log <- rbind(mean.log,fn_l(bounceBackBoundary2(newMean)))
+      if (log.mean) mean.log <- rbind(mean.log,fn_l(ThrowOnLimit(newMean)))
       if (log.pop) pop.log[,,iter] <- population
       if (log.bestVal) bestVal.log <- rbind(bestVal.log,min(suppressWarnings(min(bestVal.log)), min(fitness)))
       if (log.worstVal) worstVal.log <- rbind(worstVal.log,max(suppressWarnings(max(worstVal.log)), max(fitness)))
@@ -302,7 +302,7 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
       # Check constraints violations
       # Repair the individual if necessary
       populationTemp <- population
-      populationRepaired <- apply(population,2,bounceBackBoundary2)
+      populationRepaired <- apply(population,2,ThrowOnLimit)
 
       counterRepaired=0
       for(tt in 1:ncol(populationTemp)){
@@ -346,7 +346,7 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
 
       ## Check if the middle point is the best found so far
       cumMean <- 0.8*cumMean+0.2*newMean
-      cumMeanRepaired <-bounceBackBoundary2(cumMean)
+      cumMeanRepaired <-ThrowOnLimit(cumMean)
   
       fn_cum  <- fn_l(cumMeanRepaired)
       if (fn_cum < best.fit) {

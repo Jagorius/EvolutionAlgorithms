@@ -193,9 +193,9 @@ CMADE <- function(par, fn, ..., lower, upper, control=list()) {
     Ft          <- initFt
 
     # Create fisrt population
-    #population <- POPULATION_DES_FIRST
+    population <- POPULATION_DES_FIRST
     #population <- replicate(lambda, runif(N,0.8*lower,0.8*upper))
-    population <- replicate(lambda, runif(N,0,3))
+    #population <- replicate(lambda, runif(N,0,3))
 
     cumMean=(upper+lower)/2
     populationRepaired <- apply(population,2,bounceBackBoundary2)
