@@ -64,7 +64,7 @@ DES <- function(par, fn, ..., lower, upper, control=list()) {
   maxiter     <- controlParam("maxit", floor(budget/(lambda+1)))      ## Maximum number of iterations after which algorithm stops
   c_Ft        <- controlParam("c_Ft",  0)
   pathRatio   <- controlParam("pathRatio",sqrt(pathLength))           ## Path Length Control reference value
-  histSize    <- controlParam("history",maxiter)                      ## Size of the window of history - the step length history
+  histSize    <- controlParam("history",ceiling(6+ceiling(3*sqrt(N))))                      ## Size of the window of history - the step length history
   Ft_scale    <- controlParam("Ft_scale", ((mueff+2)/(N+mueff+3))/(1 + 2*max(0, sqrt((mueff-1)/(N+1))-1) + (mueff+2)/(N+mueff+3)))
   tol         <- controlParam("tol", 10^-6)
   counteval   <- 0                                                    ## Number of function evaluations
@@ -231,7 +231,6 @@ DES <- function(par, fn, ..., lower, upper, control=list()) {
       histHead  <- (histHead %% histSize) + 1
 
       lambda <- lambda
-      #lambda      <- round(((minlambda-initlambda)/budget)*counteval+initlambda)
       mu          <- floor(lambda/2)
       weights <- log(mu+1) - log(1:mu)
       weights <- weights/sum(weights)
@@ -261,6 +260,7 @@ DES <- function(par, fn, ..., lower, upper, control=list()) {
       dMean[,histHead] <- (muMean - popMean) / Ft
 
       step <- (newMean - oldMean) / Ft
+      
 
       ## Update Ft
       FtHistory[histHead] = Ft
@@ -278,24 +278,29 @@ DES <- function(par, fn, ..., lower, upper, control=list()) {
       ## Sample from history with geometric distribution
       limit <- ifelse(iter < histSize, histHead, histSize)
       c1cmu = 1 - (2 + 0.3*lambda)/N^2
+      
       prb <- rep(c1cmu,limit)
       prb <- prb ^ (seq_along(prb)-1)
       prb <- prb*(c1cmu)
-      historySample <- sample(1:limit,lambda, replace = TRUE, prob = prb)
+      
+      historySample  <- sample(1:limit,lambda, replace = TRUE, prob = prb)
       historySample2 <- sample(1:limit,lambda, replace = TRUE, prob = prb)
+      historySample3 <- sample(1:limit,lambda, replace = TRUE, prob = prb)
 
-      x1sample <- sampleFromHistory(history,historySample,lambda)
-      x2sample <- sampleFromHistory(history,historySample,lambda)
+      x1sample <- sampleFromHistory(history,historySample3,lambda,weights)
+      x2sample <- sampleFromHistory(history,historySample3,lambda,weights)
 
       ## Make diffs
       for (i in 1:lambda) {
-        x1 <- history[[historySample[i]]][,x1sample[i]]
-        x2 <- history[[historySample[i]]][,x2sample[i]]
+        x1 <- history[[historySample3[i]]][,x1sample[i]]
+        x2 <- history[[historySample3[i]]][,x2sample[i]]
 
         DELTA1 <- if(runif(1) < c1cmu^limit) 0 else rnorm(1)*pc[,historySample2[i]]
         DELTA2 <- if(runif(1) < c1cmu^limit) 0 else rnorm(1)*dMean[,historySample[i]]
         DELTA3 <- if(runif(1) < c1cmu^limit) rnorm(N) else (x1 - x2)
-        diffs[,i] <- sqrt(cc)*(DELTA2 + DELTA3) + sqrt(1-cc) * DELTA1
+  
+        diffs[,i] <- sqrt(cc)*(DELTA2 + DELTA3) + sqrt(1-cc) * DELTA1 
+
       }
 
       ## New population
@@ -405,10 +410,10 @@ DES <- function(par, fn, ..., lower, upper, control=list()) {
   return(res)
 }
 
-sampleFromHistory <- function(history,historySample,lambda){
+sampleFromHistory <- function(history,historySample,lambda,prb){
   ret <- c()
   for(i in 1:lambda)
-    ret <- c(ret,sample(1:ncol(history[[historySample[i]]]), 1))
+    ret <- c(ret,sample(1:ncol(history[[historySample[i]]]), 1,prob = prb))
   return(ret)
 }
 
