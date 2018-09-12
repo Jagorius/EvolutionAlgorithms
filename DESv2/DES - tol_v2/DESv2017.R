@@ -75,10 +75,12 @@ DES <- function(par, fn, ..., lower, upper, control=list()) {
   log.Ft      <- controlParam("diag.Ft", log.all)
   log.value   <- controlParam("diag.value", log.all)
   log.mean    <- controlParam("diag.mean", log.all)
+  log.meanCord<- controlParam("diag.meanCords", log.all)
   log.pop     <- controlParam("diag.pop", log.all)
   log.bestVal <- controlParam("diag.bestVal", log.all)
   log.worstVal<- controlParam("diag.worstVal", log.all)
   log.eigen   <- controlParam("diag.eigen", log.all)
+  
 
 
   ## nonLamarckian approach allows individuals to violate boundaries.
@@ -162,6 +164,8 @@ DES <- function(par, fn, ..., lower, upper, control=list()) {
     value.log <- matrix(0, nrow=0, ncol=lambda)
   if (log.mean)
     mean.log <- matrix(0, nrow=0, ncol=1)
+  if (log.meanCord)
+    meanCords.log <-matrix(0, nrow=0, ncol=N)
   if (log.pop)
     pop.log <- array(0, c(N, lambda, maxiter))
   if (log.bestVal)
@@ -237,6 +241,7 @@ DES <- function(par, fn, ..., lower, upper, control=list()) {
       if (log.Ft) Ft.log <- rbind(Ft.log,Ft)
       if (log.value) value.log <- rbind(value.log,fitness)
       if (log.mean) mean.log <- rbind(mean.log,fn_l(bounceBackBoundary2(newMean)))
+      if (log.meanCord) meanCords.log <- rbind(meanCords.log,newMean)
       if (log.pop) pop.log[,,iter] <- population
       if (log.bestVal) bestVal.log <- rbind(bestVal.log,min(suppressWarnings(min(bestVal.log)), min(fitness)))
       if (log.worstVal) worstVal.log <- rbind(worstVal.log,max(suppressWarnings(max(worstVal.log)), max(fitness)))
@@ -377,6 +382,7 @@ DES <- function(par, fn, ..., lower, upper, control=list()) {
   if (log.Ft) log$Ft <- Ft.log
   if (log.value) log$value <- value.log[1:iter,]
   if (log.mean) log$mean <- mean.log[1:iter]
+  if (log.meanCord) log$meanCord <- meanCords.log
   if (log.pop)   log$pop   <- pop.log[,,1:iter]
   if (log.bestVal) log$bestVal <- bestVal.log
   if (log.worstVal) log$worstVal <- worstVal.log

@@ -137,7 +137,7 @@ cma_esNos <- function(par, fn, ..., lower, upper, control=list()) {
   fnscale     <- controlParam("fnscale", 1)
   stopfitness <- controlParam("stopfitness", -Inf)
   budget      <- controlParam("budget", 10000*N )                     ## The maximum number of fitness function calls
-  sigma       <- controlParam("sigma", 0.5)
+  sigma       <- controlParam("sigma", 1)
   sc_tolx     <- controlParam("stop.tolx", 1e-12 * sigma) ## Undocumented stop criterion
   keep.best   <- controlParam("keep.best", TRUE)
   vectorized  <- controlParam("vectorized", FALSE)
@@ -149,6 +149,8 @@ cma_esNos <- function(par, fn, ..., lower, upper, control=list()) {
   log.value  <- controlParam("diag.value", log.all)
   log.pop    <- controlParam("diag.pop", log.all)
   log.bestVal<- controlParam("diag.bestVal", log.all)
+  log.mean   <- controlParam("diag.mean", log.all)
+  log.meanCord<- controlParam("diag.meanCords", log.all)
   
   ## Strategy parameter setting (defaults as recommended by Nicolas Hansen):
   lambda      <- controlParam("lambda", 4+floor(3*log(N)))
@@ -187,6 +189,10 @@ cma_esNos <- function(par, fn, ..., lower, upper, control=list()) {
     pop.log <- array(0, c(N, mu, maxiter))
   if(log.bestVal)
     bestVal.log <-  matrix(0, nrow=0, ncol=1)
+  if(log.mean)
+    mean.log <-  matrix(0, nrow=0, ncol=1)
+  if (log.meanCord)
+    meanCords.log <-matrix(0, nrow=0, ncol=N)
   
   ## Initialize dynamic (internal) strategy parameters and constants
   pc <- rep(0.0, N)
@@ -221,6 +227,13 @@ cma_esNos <- function(par, fn, ..., lower, upper, control=list()) {
     
     if (log.bestVal) 
       bestVal.log <- rbind(bestVal.log,min(suppressWarnings(min(bestVal.log)), min(arfitness)))
+    
+    if (log.mean) 
+      mean.log <- rbind(mean.log, fn(xmean)*fnscale )
+    
+    if (log.meanCord) 
+      meanCords.log <- rbind(meanCords.log,xmean)
+    
     
 
     ## Generate new population:
@@ -326,7 +339,9 @@ cma_esNos <- function(par, fn, ..., lower, upper, control=list()) {
   if (log.eigen) log$eigen <- eigen.log[1:iter,]
   if (log.pop)   log$pop   <- pop.log[,,1:iter]
   if (log.bestVal) log$bestVal <- bestVal.log
-
+  if (log.mean) log$mean <- mean.log
+  if (log.meanCord) log$meanCord <- meanCords.log
+  
   ## Drop names from value object
   names(best.fit) <- NULL
   res <- list(par=best.par,
