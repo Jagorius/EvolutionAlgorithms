@@ -6,6 +6,9 @@ Cigar <- function(x){
   return(res)
 }
 
+Sphere <- function(x){
+  return(sum(x^2))
+}
 
 midpointPlot <- function(){
  
@@ -223,10 +226,11 @@ eigenplotCMAESNos<- function(){
 }
 
 eigenplotCMADECords<- function(){
-  source('C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/DESv2/DES2- finalVersion geomSelection/DESv2017.R')
+  #source('C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/DESv2/DES2- finalVersion geomSelection/DESv2017.R')
+  source('C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/DESv2/CMA-DE/DESv2017.R')
   
   N <- 10
-  Iters <- 50
+  Iters <- 1
   
   meanCordsLog <- list()
   eigenLog <- list()
@@ -291,12 +295,4 @@ eigenplotCMADECords<- function(){
   
   dev.off()
   
-}
-
-Cigar <- function(x){
-  res <- 0
-  for(i in 2:length(x))
-    res <- res + x[i]^2
-  res <- res*10^6 + x[1]^2
-  return(res)
 }

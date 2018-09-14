@@ -154,7 +154,8 @@ AbsSigmaPlot <- function(N,func,isYaxt="s"){
   # Plot f(mean)
   #lines(functionEvalVec,resDES$diagnostic$mean, lwd=3, col="black")
 
-  source('C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/DESv2/DES2- finalVersion geomSelection/DESv2017.R')
+  #source('C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/DESv2/DES2- finalVersion geomSelection/DESv2017.R')
+  source('C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/DESv2/CMA-DE/DESv2017.R')
   ##### DES-CMAES
   DESCMAESLog <- list()
   for (i in 1:Iters){

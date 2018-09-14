@@ -54,25 +54,31 @@ DES <- function(par, fn, ..., lower, upper, control=list()) {
   minlambda   <- controlParam("minlambda", 4*N)                       ## Population ending size
   lambda      <- initlambda                                           ## Population size
   mu          <- controlParam("mu", floor(lambda/2))                  ## Selection size
-  ccum        <- controlParam("ccum", mu/(mu+2))                    ## Evolution Path decay factor
-  weights     <- controlParam("weights", log(mu+1) - log(1:mu))       ## Weights to calculate mean from selected individuals
+  weights     <- controlParam("weights", log(mu+1) - log(1:mu))                ## Weights to calculate mean from selected individuals
   weights     <- weights/sum(weights)                                 ##    \-> weights are normalized by the sum
   weightsSumS <- sum(weights^2)                                       ## weights sum square
   mueff       <- controlParam("mueff", sum(weights)^2/sum(weights^2)) ## Variance effectiveness factor
+  ccum        <- controlParam("ccum", mu/(mu+2))                      ## Evolution Path decay factor
   pathLength  <- controlParam("pathLength",  6)                       ## Size of evolution path
+  cp          <- controlParam("cp", 1/sqrt(N))                        ## Evolution Path decay factor
   maxiter     <- controlParam("maxit", floor(budget/(lambda+1)))      ## Maximum number of iterations after which algorithm stops
   c_Ft        <- controlParam("c_Ft",  0)
   pathRatio   <- controlParam("pathRatio",sqrt(pathLength))           ## Path Length Control reference value
   histSize    <- controlParam("history",maxiter)                      ## Size of the window of history - the step length history
   Ft_scale    <- controlParam("Ft_scale", ((mueff+2)/(N+mueff+3))/(1 + 2*max(0, sqrt((mueff-1)/(N+1))-1) + (mueff+2)/(N+mueff+3)))
-  tol         <- controlParam("tol", 10^-6)
+  tol         <- controlParam("tol", 10^-12)
   counteval   <- 0                                                    ## Number of function evaluations
   sqrt_N      <- sqrt(N)
-  cc          <- controlParam("cc", 1/sqrt(N))                        
-  c1          <- controlParam("c1", 2/N^2)                          
-  cu          <- controlParam("cu", 0.3*lambda/N^2) 
-  ccov        <- controlParam("ccov", c1+cu) 
-  
+  cc          <- controlParam("cc", 4/N)                        
+ # c1          <- controlParam("c1", 2/N^2)                          
+#  cu          <- controlParam("cu", 0.3*lambda/N^2) 
+ # ccov        <- controlParam("ccov", c1+cu) 
+  mueff       <- controlParam("mueff", sum(weights)^2/sum(weights^2))
+  mucov       <- controlParam("ccov.mu", mueff)
+  ccov        <- controlParam("ccov", (1/mucov) * 2/(N+1.4)^2 + (1-1/mucov) * ((2*mucov-1)/((N+2)^2+2*mucov))) 
+  c1          <- controlParam("c1", ccov * (1/mucov))                          
+  cu          <- controlParam("cu", ccov * (1-1/mucov)) 
+
   ## Logging options:
   log.all     <- controlParam("diag", FALSE)
   log.Ft      <- controlParam("diag.Ft", log.all)
@@ -83,6 +89,7 @@ DES <- function(par, fn, ..., lower, upper, control=list()) {
   log.bestVal <- controlParam("diag.bestVal", log.all)
   log.worstVal<- controlParam("diag.worstVal", log.all)
   log.eigen   <- controlParam("diag.eigen", log.all)
+  
 
 
   ## nonLamarckian approach allows individuals to violate boundaries.
@@ -107,8 +114,10 @@ DES <- function(par, fn, ..., lower, upper, control=list()) {
       else{
         ret <- c()
         budLeft <- budget-counteval
-        for (i in 1:budLeft ) {
-          ret <- c(ret,fn_(P[,i]))
+        if(budLeft > 0){
+          for (i in 1:budLeft ) {
+            ret <- c(ret,fn_(P[,i]))
+          }
         }
         return(c(ret,rep(.Machine$double.xmax,ncol(P)-budLeft)))
       }
@@ -187,7 +196,6 @@ DES <- function(par, fn, ..., lower, upper, control=list()) {
 
   while( counteval < budget){
     restart.number  <- restart.number+1
-    #lambda          <- round(((minlambda-initlambda)/budget)*counteval+initlambda)
     mu              <- floor(lambda/2)
     weights         <- log(mu+1) - log(1:mu)
     weights         <- weights/sum(weights)
@@ -202,7 +210,6 @@ DES <- function(par, fn, ..., lower, upper, control=list()) {
     # Create fisrt population
     #population <- replicate(lambda, runif(N,0.8*lower,0.8*upper))
     population <- replicate(lambda, runif(N,0,3))
-
     cumMean=(upper+lower)/2
     populationRepaired <- apply(population,2,bounceBackBoundary2)
 
@@ -213,13 +220,13 @@ DES <- function(par, fn, ..., lower, upper, control=list()) {
     selection       <- rep(0, mu)
     selectedPoints  <- matrix(0, nrow=N, ncol=mu)
     fitness         <- fn_l(population)
-    newMean         <- par
+    oldMean         <- numeric(N)
+    newMean         <- drop(population %*% rep(1,lambda))/lambda
     limit           <- 0
     worst.fit       <- max(fitness)
 
     # Store population and selection means
     popMean         <- drop(population %*% weightsPop)
-    oldMean         <- popMean
     muMean          <- newMean
 
     ## Matrices for creating diffs
@@ -236,7 +243,6 @@ DES <- function(par, fn, ..., lower, upper, control=list()) {
       iter      <- iter + 1L
       histHead  <- (histHead %% histSize) + 1
 
-      lambda <- lambda
       mu          <- floor(lambda/2)
       weights <- log(mu+1) - log(1:mu)
       weights <- weights/sum(weights)
@@ -260,14 +266,15 @@ DES <- function(par, fn, ..., lower, upper, control=list()) {
 
       ## Calculate weighted mean of selected points
       oldMean <- newMean
-      newMean <- drop(selectedPoints %*% weights)
+      newMean <- drop(selectedPoints %*% rep(1,mu))/mu
 
       ## Write to buffers
-      muMean <- newMean
-      dMean[,histHead] <- (muMean - popMean) / Ft
+      #muMean <- newMean
+      #dMean[,histHead] <- (muMean - popMean) / Ft
 
       step <- (newMean - oldMean) / Ft
-
+      dMean[,histHead] <- step
+      
       ## Update Ft
       FtHistory[histHead] = Ft
       oldFt <- Ft
@@ -277,40 +284,50 @@ DES <- function(par, fn, ..., lower, upper, control=list()) {
 
       ## Update parameters
       if(histHead==1)
-        pc[,histHead] = (1 - cc)* rep(0.0, N)/sqrt(N) + sqrt(mu * cc * (2-cc))*  dMean[,histHead]
+        pc[,histHead] = (1 - cc)* rep(0.0, N)/sqrt(N) + sqrt(mu * cc * (2-cc))* step
       else
-        pc[,histHead] = (1 - cc)* pc[,histHead-1] + sqrt(mu * cc * (2-cc))*  dMean[,histHead]
+        pc[,histHead] = (1 - cc)* pc[,histHead-1] + sqrt(mu * cc * (2-cc))* step
 
+      
+      ## Sample from history with uniform distribution
       ## Sample from history with geometric distribution
       limit <- ifelse(iter < histSize, histHead, histSize)
       c1cmu = 1 - ccov
-      prb <- rep(c1cmu,limit)
+      prb <- rep(c1cmu^2,limit)
       prb <- prb ^ (seq_along(prb)-1)
       prb <- prb*(c1cmu)
       prb <- prb/sum(prb)
       
-      historySample  <- sample(1:limit,lambda, replace = TRUE, prob = prb)
-      historySample2 <- sample(1:limit,lambda, replace = TRUE, prob = prb)
-      historySample3 <- sample(1:limit,lambda, replace = TRUE, prob = prb)
-
-      x1sample <- sampleFromHistory(history,historySample3,lambda,weights)
-      x2sample <- sampleFromHistory(history,historySample3,lambda,weights)
-
+      #historySample  <- sample(1:limit,lambda, replace = TRUE, prob = prb)
+      #historySample2 <- sample(1:limit,lambda, replace = TRUE, prob = prb)
+      #historySample3 <- sample(1:limit,lambda, replace = TRUE, prob = prb)
       
+      historySample   <- iter - sampleGeometric(lambda,limit,c1cmu) + 1
+      historySample2  <- iter - sampleGeometric(lambda,limit,c1cmu) + 1
+      historySample3  <- iter - sampleGeometric(lambda,limit,c1cmu) + 1
+      
+      x1sample <- sampleFromHistory(history,historySample3,lambda)
+      x2sample <- sampleFromHistory(history,historySample3,lambda)
+
+      alphaFactor <- 1/(1 - c1cmu^iter)
+
       ## Make diffs
       for (i in 1:lambda) {
         x1 <- history[[historySample3[i]]][,x1sample[i]]
         x2 <- history[[historySample3[i]]][,x2sample[i]]
 
-        DELTA1 <- if(runif(1) < c1cmu^limit) 0 else rnorm(1)*pc[,historySample2[i]]
-        DELTA2 <- if(runif(1) < c1cmu^limit) 0 else rnorm(1)*dMean[,historySample[i]]
-        DELTA3 <- if(runif(1) < c1cmu^limit) rnorm(N) else (x1 - x2)
-        diffs[,i] <- sqrt(ccum)*(DELTA2 + DELTA3) + sqrt(1-ccum) * DELTA1
-
+        diffs[,i] <-  sqrt(cu/(2*alphaFactor*ccov))*(x1 - x2) +
+                      sqrt(cu/(alphaFactor*ccov))*rnorm(1)*dMean[,historySample[i]]  + 
+                      sqrt(c1/(alphaFactor*ccov))*rnorm(1)*pc[,historySample2[i]] +
+                      (1-ccov)^(iter/2)*rnorm(N)
+        
+        
       }
 
       ## New population
       population <- newMean + Ft * diffs
+
+      #print(mean(sqrt(rowSums(diffs^2))))      
       population <- deleteInfsNaNs(population)
 
       # Check constraints violations
@@ -378,11 +395,11 @@ DES <- function(par, fn, ..., lower, upper, control=list()) {
         break
       }
 
-    #  if(abs(range(fitness)[2] - range(fitness)[1]) < tol)
-    #  {
-    #    if (counteval < 0.8*budget)
-    #      stoptol=T
-    #  }
+      #if(abs(range(fitness)[2] - range(fitness)[1]) < tol)
+      #{
+      #  if (counteval < 0.8*budget)
+      #    stoptol=T
+      #}
 
 
     }
@@ -417,10 +434,10 @@ DES <- function(par, fn, ..., lower, upper, control=list()) {
   return(res)
 }
 
-sampleFromHistory <- function(history,historySample,lambda,prb){
+sampleFromHistory <- function(history,historySample,lambda){
   ret <- c()
   for(i in 1:lambda)
-    ret <- c(ret,sample(1:ncol(history[[historySample[i]]]), 1,prob = prb))
+    ret <- c(ret,sample(1:ncol(history[[historySample[i]]]), 1))
   return(ret)
 }
 
@@ -468,4 +485,28 @@ calculateFt <- function(stepsBuffer, N, lambda, pathLength, currentFt, c_Ft, pat
   return (currentFt * exp(1/(sqrt(N)+1) *(c_Ft * (chiN / (totalPath / directPath)-1))) )
   #return (currentFt * exp(c_Ft * (pathRatio / (totalPath / directPath)-1)))
   #return (currentFt * exp(1/(sqrt(N)+1) * ((chiN / (totalPath / directPath) - 1)*((mueff+2)/(N+mueff+3))/( 1 + 2*max(0, sqrt((mueff-1)/(N+1))-1) + ((mueff+2)/(N+mueff+3))))))
+}
+
+sampleGeometric <- function(size,max,sucessProb){
+  n <- size       # Sample size
+  p <- sucessProb # Success probability
+  X <- c()        # Empty vector for storage
+  
+  
+  ## 0 is a success (stops the loop)
+  ## 1 is a failure (loop continues)
+  for (i in c(1:n)) {
+    temp <- 1 # A temporary variable to store the trial number
+    repeat {  # Sample 0 with prob. p, if 0 then stop
+      sample <- sample(c(0, 1), 1, prob = c(p, 1-p))
+      if (sample == 1) {
+        temp <- temp + 1 # Add 1 if failure (go on to next draw)
+      } else {
+        break
+      }
+    }
+    X <- c(X, temp)
+  }
+  X[X>max] <- max
+  return(X)
 }
