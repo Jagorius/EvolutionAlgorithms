@@ -223,9 +223,32 @@ AbsSigmaPlot <- function(N,func,isYaxt="s"){
   
   #resCMAESnoS[resCMAESnoS<=0] <- 10^-64
   
-  functionEvalVec3 <- (1:length(resCMAESnoS))*(lambda_DES)
-  lines(functionEvalVec3,abs(resCMAESnoS), lwd=3, col="grey")
+  functionEvalVec4 <- (1:length(resCMAESnoS))*(lambda_DES)
+  lines(functionEvalVec4,abs(resCMAESnoS), lwd=3, col="grey")
 
+  ##### DE/rand/1/bin
+  library(DEoptim)
+  DELog <- list()
+  for (i in 1:Iters){
+    print(paste("DE",i,sep=" "))
+    resDE <- DEoptim(    fn=func,lower=rep(-10^100,N), upper=rep(10^100,N),
+                DEoptim.control(strategy = 1, NP=lambda_DES, 
+                                itermax=ceiling(1500*N/lambda_DES), trace=FALSE,
+                                initialpop=t(replicate(lambda_DES, runif(N,0,3)))
+                                )
+      )
+    DELog[[length(DELog)+1]] <- resDE$member$bestvalit
+    
+  }
+  min_l <- Inf
+  for(l in 1:length(DELog))
+    min_l = min(min_l,length(DELog[[l]]))
+  for(l in 1:length(DELog))
+    DELog[[l]] <- DELog[[l]][1:min_l]
+  DEoptim <- Reduce("+", DELog) / length(DELog)
+  
+  functionEvalVec5 <- (1:length(DEoptim))*(lambda_DES)
+  lines(functionEvalVec5,abs(DEoptim), lwd=3, col="black")
   #dev.off()
 
 
