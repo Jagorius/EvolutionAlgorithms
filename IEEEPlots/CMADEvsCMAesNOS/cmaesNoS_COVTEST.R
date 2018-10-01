@@ -186,7 +186,7 @@ cma_esNos <- function(par, fn, ..., lower, upper, control=list()) {
   if (log.value)
     value.log <- matrix(0, nrow=maxiter, ncol=mu)
   if (log.pop)
-    pop.log <- array(0, c(N, mu, maxiter))
+    pop.log <- array(0, c(N, lambda, maxiter))
   if(log.bestVal)
     bestVal.log <-  matrix(0, nrow=0, ncol=1)
   if(log.mean)
@@ -295,7 +295,7 @@ cma_esNos <- function(par, fn, ..., lower, upper, control=list()) {
     zmean <- drop(selz %*% weights)
 
     ## Save selected x value:
-    if (log.pop) pop.log[,,iter] <- selx
+    if (log.pop) if(iter != 11) pop.log[,,iter] <- arx
     if (log.value) value.log[iter,] <- arfitness[aripop]
 
     ## Cumulation: Update evolutionary paths

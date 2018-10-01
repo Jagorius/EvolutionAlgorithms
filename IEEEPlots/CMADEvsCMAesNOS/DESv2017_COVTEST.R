@@ -53,7 +53,7 @@ DES <- function(par, first10pop, fn, ..., lower, upper, control=list()) {
   initlambda  <- controlParam("lambda", 4*N)       		      ## Population starting size
   minlambda   <- controlParam("minlambda", 4*N)                       ## Population ending size
   lambda      <- initlambda                                           ## Population size
-  mu          <- controlParam("mu", floor(lambda/2))                  ## Selection size
+   mu          <- controlParam("mu", floor(lambda/2))                  ## Selection size
   weights     <- controlParam("weights", log(mu+1) - log(1:mu))                ## Weights to calculate mean from selected individuals
   weights     <- weights/sum(weights)                                 ##    \-> weights are normalized by the sum
   weightsSumS <- sum(weights^2)                                       ## weights sum square
@@ -195,17 +195,30 @@ DES <- function(par, first10pop, fn, ..., lower, upper, control=list()) {
   restart.number  <- -1
 
   history     <- list()                                                 ## List stores best 'mu'(variable) individuals for 'hsize' recent iterations
-  histHead <- 0
-  mu              <- floor(lambda/2)
+  histHead    <- 0
+  mu          <- floor(lambda/2)
+  histNorm  <- 1/sqrt(2)
   for (i in 1:10) {
+    histHead  <- (histHead %% histSize) + 1
     fitness         <- fn_l(first10pop[,,i])
     selection       <- order(fitness)[1:mu]
-    selectedPoints  <- population[,selection]
-    
+    selectedPoints  <- first10pop[,selection,i]
     
     history[[histHead]] <- array(0,dim=c(N,mu))
-    history[[histHead]] <- selectedPoints * histNorm/Ft
-    histHead  <- (histHead %% histSize) + 1
+    history[[histHead]] <- selectedPoints
+    
+    if(histHead > 1)
+      dMean[,histHead] <-   drop(history[[histHead]] %*% rep(1,mu))/mu - drop(history[[histHead-1]] %*% rep(1,mu))/mu
+    else
+      dMean[,histHead] <-   drop(history[[histHead]] %*% rep(1,mu))/mu - drop(first10pop[,,1] %*% rep(1,lambda))/lambda
+  
+    if(histHead==1)
+      pc[,histHead] = (1 - cc)* rep(0.0, N)/sqrt(N) + sqrt(mu * cc * (2-cc))*  dMean[,histHead]
+    else
+      pc[,histHead] = (1 - cc)* pc[,histHead-1] + sqrt(mu * cc * (2-cc))*  dMean[,histHead]
+    
+    
+    if (log.pop) pop.log[,,i] <-  first10pop[,,i]
     
   }
     
@@ -218,12 +231,13 @@ DES <- function(par, first10pop, fn, ..., lower, upper, control=list()) {
     weightsPop      <- weightsPop/sum(weightsPop)
 
     #histHead    <- 0                                                      ## Pointer to the history buffer head
-    iter        <- 11                                                     ## Number of iterations
+    iter        <- 10                                                     ## Number of iterations
     Ft          <- initFt
 
     # Create fisrt population
     #population <- replicate(lambda, runif(N,0.8*lower,0.8*upper))
     #population <- replicate(lambda, runif(N,0,3))
+    population <- first10pop[,,10]
     cumMean=(upper+lower)/2
     #populationRepaired <- apply(population,2,bounceBackBoundary2)
 
@@ -233,11 +247,11 @@ DES <- function(par, first10pop, fn, ..., lower, upper, control=list()) {
 
     #selection       <- rep(0, mu)
     #selectedPoints  <- matrix(0, nrow=N, ncol=mu)
-    #fitness         <- fn_l(population)
-    oldMean         <- numeric(N)
+    fitness         <- fn_l(first10pop[,,10])
+    oldMean         <- drop(first10pop[,,9] %*% rep(1,lambda))/lambda
     newMean         <- drop(first10pop[,,10] %*% rep(1,lambda))/lambda
     limit           <- 0
-    worst.fit       <- max(first10pop[,,10])
+    worst.fit       <- max(fitness)
 
     # Store population and selection means
     popMean         <- drop(first10pop[,,10] %*% weightsPop)
@@ -249,7 +263,6 @@ DES <- function(par, first10pop, fn, ..., lower, upper, control=list()) {
     x2sample  <- numeric(lambda)
 
     chiN      <- (sqrt(2)*gamma((N+1)/2)/gamma(N/2))
-    histNorm  <- 1/sqrt(2)
     counterRepaired <- 0
 
     stoptol=F
@@ -316,6 +329,38 @@ DES <- function(par, first10pop, fn, ..., lower, upper, control=list()) {
       #historySample2 <- sample(1:limit,lambda, replace = TRUE, prob = prb)
       #historySample3 <- sample(1:limit,lambda, replace = TRUE, prob = prb)
       
+      if(iter==11){
+        historySample   <- iter - sampleGeometric(1000,limit,c1cmu) + 1
+        historySample2  <- iter - sampleGeometric(1000,limit,c1cmu) + 1
+        historySample3  <- iter - sampleGeometric(1000,limit,c1cmu) + 1
+        
+        x1sample <- sampleFromHistory(history,historySample3,1000)
+        x2sample <- sampleFromHistory(history,historySample3,1000)
+        
+        alphaFactor <- 1/(1 - c1cmu^iter)
+        
+        diffsBIG     <- matrix(0, N, 1000)
+        
+        ## Make diffs
+        for (i in 1:1000) {
+          x1 <- history[[historySample3[i]]][,x1sample[i]]
+          x2 <- history[[historySample3[i]]][,x2sample[i]]
+          
+          diffsBIG[,i] <-  sqrt(cu/(2*alphaFactor*ccov))*(x1 - x2) +
+            sqrt(cu/(alphaFactor*ccov))*rnorm(1)*dMean[,historySample[i]]  + 
+            sqrt(c1/(alphaFactor*ccov))*rnorm(1)*pc[,historySample2[i]] +
+            (1-ccov)^(iter/2)*rnorm(N)
+          
+          
+        }
+        
+        ## New population
+        CMADEPOP11 <<- newMean + Ft * diffsBIG
+      }
+      
+      
+      
+      
       historySample   <- iter - sampleGeometric(lambda,limit,c1cmu) + 1
       historySample2  <- iter - sampleGeometric(lambda,limit,c1cmu) + 1
       historySample3  <- iter - sampleGeometric(lambda,limit,c1cmu) + 1
@@ -324,7 +369,7 @@ DES <- function(par, first10pop, fn, ..., lower, upper, control=list()) {
       x2sample <- sampleFromHistory(history,historySample3,lambda)
 
       alphaFactor <- 1/(1 - c1cmu^iter)
-
+      
       ## Make diffs
       for (i in 1:lambda) {
         x1 <- history[[historySample3[i]]][,x1sample[i]]
