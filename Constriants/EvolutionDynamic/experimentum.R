@@ -135,21 +135,20 @@ AbsSigmaPlot <- function(N,func,isYaxt="s"){
   }
 
   resDES <- Reduce("+", DESLog) / length(DESLog)
-
   #setEPS()
   #postscript( paste("Ellipsoid",",N=",N,".eps",sep=""), width = 8, height = 8)
 
   functionEvalVec <- (1:nrow(resDES))*(lambda_DES)
   # Plot
-  if(any(resDES<=10^-10))
-    x_limit = c(0,which(resDES<=10^-10)[1]*lambda_DES)
+  if(any(abs(resDES)>=10^10))
+    x_limit = c(0,which(abs(resDES)>=10^10)[1]*lambda_DES)
   else
     x_limit = c(0,1400*N)
 
   #resDES[resDES<=0] <- 10^-64
   plot(functionEvalVec,functionEvalVec, log="y",ylim=c(10^-10,10^6),xlim=x_limit,cex=0, yaxt=isYaxt,cex.axis=1.5)
   # Plot f(best)
-  lines(functionEvalVec,resDES, lwd=3, col="blue")
+  lines(functionEvalVec,abs(resDES), lwd=3, col="blue")
   # Plot f(mean)
   #lines(functionEvalVec,resDES$diagnostic$mean, lwd=3, col="black")
 
@@ -170,7 +169,7 @@ AbsSigmaPlot <- function(N,func,isYaxt="s"){
   #resDESCMAES[resDESCMAES<=0] <- 10^-64
 
   functionEvalVec2 <- (1:nrow(resDESCMAES))*(lambda_DES)
-  lines(functionEvalVec2,resDESCMAES, lwd=3, col="orange")
+  lines(functionEvalVec2,abs(resDESCMAES), lwd=3, col="orange")
 
   ##### CMA-ES
   #source('C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEPlots/cmaesNoS.R')
@@ -221,7 +220,6 @@ AbsSigmaPlot <- function(N,func,isYaxt="s"){
   resCMAESnoS <- Reduce("+", CMAESnoSLog) / length(CMAESnoSLog)
   
   #resCMAESnoS[resCMAESnoS<=0] <- 10^-64
-  
   functionEvalVec4 <- (1:length(resCMAESnoS))*(lambda_DES)
   lines(functionEvalVec4,abs(resCMAESnoS), lwd=3, col="grey")
 

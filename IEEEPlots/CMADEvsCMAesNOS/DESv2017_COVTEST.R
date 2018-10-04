@@ -350,7 +350,7 @@ DES <- function(par, first10pop, fn, ..., lower, upper, control=list()) {
           
           diffsBIG[,i] <-  sqrt(cu/(alphaFactor*ccov))*(x1 - x2) +
             sqrt(cu/(alphaFactor*ccov))*rnorm(1)*dMean[,historySample[i]]  + 
-            sqrt(c1/(alphaFactor*ccov))*rnorm(1)*pc[,historySample2[i]] +
+            sqrt(c1/(alphaFactor*ccov))*rnorm(1)*pc[,historySample2[i]] #+
             (1-ccov)^(iter/2)*rnorm(N)
           
           

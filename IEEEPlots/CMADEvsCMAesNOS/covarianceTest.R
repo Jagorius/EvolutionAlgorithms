@@ -20,9 +20,18 @@ RosenBrock = function(x){
     res <- res + 100*(x[i+1]-x[i]^2)^2 + (x[i]-1)^2
   return(res)
 }
+Histogram3D <- function(POPmatrix){
+  library(plot3D)
+  cutLevels = 100
+  setEPS()
+  postscript( paste("Hist3d-.eps",sep=""), width = 8, height = 8)
+  
+  hist3D(z=table(cut(POPmatrix[1,],cutLevels),cut(POPmatrix[2,],cutLevels)))
+  
+  dev.off()
+}
 
 Histogram <- function(POPmatrix){
-  library(gplots)
   library(MASS)
   h1 <- hist(POPmatrix[1,], breaks=100, plot=F)
   h2 <- hist(POPmatrix[2,], breaks=100, plot=F)

@@ -297,28 +297,28 @@ cma_esNos <- function(par, fn, ..., lower, upper, control=list()) {
     if (log.eigen)
       eigen.log[iter,] <- rev(sort(eE$values))
 
-    if (!all(e$values >= sqrt(.Machine$double.eps) * abs(e$values[1]))) {      
-      msg <- "Covariance matrix 'C' is numerically not positive definite."
-      break
-    }
+   # if (!all(e$values >= sqrt(.Machine$double.eps) * abs(e$values[1]))) {      
+  #    msg <- "Covariance matrix 'C' is numerically not positive definite."
+  #    break
+  #  }
 
     B <- e$vectors
     D <- diag(sqrt(e$values), length(e$values))
     BD <- B %*% D
 
     ## break if fit:
-    if (arfitness[1] <= stopfitness * fnscale) {
-      msg <- "Stop fitness reached."
-      break
-    }
+    #if (arfitness[1] <= stopfitness * fnscale) {
+    #  msg <- "Stop fitness reached."
+    #  break
+    #}
 
     ## Check stop conditions:
 
     ## Condition 1 (sd < tolx in all directions):
-    if (all(D < sc_tolx) && all(sigma * pc < sc_tolx)) {
-      msg <- "All standard deviations smaller than tolerance."
-      break
-    }
+   # if (all(D < sc_tolx) && all(sigma * pc < sc_tolx)) {
+    #  msg <- "All standard deviations smaller than tolerance."
+    #  break
+    #}
     
     ## Escape from flat-land:
     #if (arfitness[1] == arfitness[min(1+floor(lambda/2), 2+ceiling(lambda/4))]) { 
