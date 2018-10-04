@@ -316,7 +316,7 @@ DES <- function(par, fn, ..., lower, upper, control=list()) {
         x1 <- history[[historySample3[i]]][,x1sample[i]]
         x2 <- history[[historySample3[i]]][,x2sample[i]]
 
-        diffs[,i] <-  sqrt(cu/(2*alphaFactor*ccov))*(x1 - x2) +
+        diffs[,i] <-  sqrt(cu/(alphaFactor*ccov))*(x1 - x2) +
                       sqrt(cu/(alphaFactor*ccov))*rnorm(1)*dMean[,historySample[i]]  + 
                       sqrt(c1/(alphaFactor*ccov))*rnorm(1)*pc[,historySample2[i]] +
                       (1-ccov)^(iter/2)*rnorm(N)

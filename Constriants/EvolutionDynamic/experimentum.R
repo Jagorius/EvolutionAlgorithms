@@ -147,8 +147,7 @@ AbsSigmaPlot <- function(N,func,isYaxt="s"){
     x_limit = c(0,1400*N)
 
   #resDES[resDES<=0] <- 10^-64
-
-  plot(functionEvalVec,functionEvalVec,log="y",ylim=c(10^-10,10^6), xlim=x_limit,cex=0, yaxt=isYaxt,cex.axis=1.5)
+  plot(functionEvalVec,functionEvalVec, log="y",ylim=c(10^-10,10^6),xlim=x_limit,cex=0, yaxt=isYaxt,cex.axis=1.5)
   # Plot f(best)
   lines(functionEvalVec,resDES, lwd=3, col="blue")
   # Plot f(mean)

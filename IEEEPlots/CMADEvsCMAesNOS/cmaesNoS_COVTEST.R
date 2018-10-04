@@ -107,6 +107,7 @@
 ##' @keywords optimize
 ##' @export
 cma_esNos <- function(par, fn, ..., lower, upper, control=list()) {
+  histNumber <- 2
   norm <- function(x)
     drop(sqrt(crossprod(x)))
   
@@ -145,6 +146,7 @@ cma_esNos <- function(par, fn, ..., lower, upper, control=list()) {
   ## Logging options:
   log.all    <- controlParam("diag", FALSE)
   log.sigma  <- controlParam("diag.sigma", log.all)
+  log.pc     <- controlParam("diag.pc", log.all)
   log.eigen  <- controlParam("diag.eigen", log.all)
   log.value  <- controlParam("diag.value", log.all)
   log.pop    <- controlParam("diag.pop", log.all)
@@ -156,7 +158,8 @@ cma_esNos <- function(par, fn, ..., lower, upper, control=list()) {
   lambda      <- controlParam("lambda", 4+floor(3*log(N)))
   maxiter     <- controlParam("maxit", round(budget/lambda))
   mu          <- controlParam("mu", floor(lambda/2))
-  weights     <- controlParam("weights", log(mu+1) - log(1:mu))
+  weights     <- controlParam("weights", rep(1,mu))
+  
   weights     <- weights/sum(weights)
   mueff       <- controlParam("mueff", sum(weights)^2/sum(weights^2))
   cc          <- controlParam("ccum", 4/(N+4))
@@ -193,6 +196,8 @@ cma_esNos <- function(par, fn, ..., lower, upper, control=list()) {
     mean.log <-  matrix(0, nrow=0, ncol=1)
   if (log.meanCord)
     meanCords.log <-matrix(0, nrow=0, ncol=N)
+  if(log.pc)
+    pc.log <- matrix(0, nrow=0, ncol=N)
   
   ## Initialize dynamic (internal) strategy parameters and constants
   pc <- rep(0.0, N)
@@ -234,11 +239,14 @@ cma_esNos <- function(par, fn, ..., lower, upper, control=list()) {
     if (log.meanCord) 
       meanCords.log <- rbind(meanCords.log,xmean)
     
+    if(log.pc)
+      pc.log <- rbind(pc.log,pc)
+    
     
 
     ## Generate new population:
-    if(iter == 11){
-      bigPopsize <- 1000
+    if(iter == histNumber+1){
+      bigPopsize <- 100000
       
       arz <- matrix(rnorm(N*bigPopsize), ncol=bigPopsize)
       arx <- xmean + sigma * (BD %*% arz)
@@ -254,9 +262,8 @@ cma_esNos <- function(par, fn, ..., lower, upper, control=list()) {
       } else {
         y <- apply(vx, 2, function(x) fn(x, ...) * fnscale)
       }
-      counteval <- counteval + bigPopsize
       CMAESnosPOP11 <<- arx
-    }else{
+    }
       arz <- matrix(rnorm(N*lambda), ncol=lambda)
       arx <- xmean + sigma * (BD %*% arz)
       vx <- ifelse(arx > lower, ifelse(arx < upper, arx, upper), lower)
@@ -272,7 +279,7 @@ cma_esNos <- function(par, fn, ..., lower, upper, control=list()) {
         y <- apply(vx, 2, function(x) fn(x, ...) * fnscale)
       }
       counteval <- counteval + lambda
-    }
+    
     
     arfitness <- y * pen
     valid <- pen <= 1
@@ -362,6 +369,8 @@ cma_esNos <- function(par, fn, ..., lower, upper, control=list()) {
   if (log.bestVal) log$bestVal <- bestVal.log
   if (log.mean) log$mean <- mean.log
   if (log.meanCord) log$meanCord <- meanCords.log
+  if (log.pc) log$pc <- pc.log
+  
   
   ## Drop names from value object
   names(best.fit) <- NULL

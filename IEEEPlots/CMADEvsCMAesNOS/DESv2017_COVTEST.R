@@ -1,5 +1,7 @@
 DES <- function(par, first10pop, fn, ..., lower, upper, control=list()) {
 
+  histNumber <- 2
+  
   library("ringbuffer")
 
   ## Function to check the presence of options in the arguments specified by the user
@@ -198,14 +200,14 @@ DES <- function(par, first10pop, fn, ..., lower, upper, control=list()) {
   histHead    <- 0
   mu          <- floor(lambda/2)
   histNorm  <- 1/sqrt(2)
-  for (i in 1:10) {
+  for (i in 1:histNumber) {
     histHead  <- (histHead %% histSize) + 1
     fitness         <- fn_l(first10pop[,,i])
     selection       <- order(fitness)[1:mu]
     selectedPoints  <- first10pop[,selection,i]
     
     history[[histHead]] <- array(0,dim=c(N,mu))
-    history[[histHead]] <- selectedPoints
+    history[[histHead]] <- selectedPoints* histNorm/Ft
     
     if(histHead > 1)
       dMean[,histHead] <-   drop(history[[histHead]] %*% rep(1,mu))/mu - drop(history[[histHead-1]] %*% rep(1,mu))/mu
@@ -231,13 +233,13 @@ DES <- function(par, first10pop, fn, ..., lower, upper, control=list()) {
     weightsPop      <- weightsPop/sum(weightsPop)
 
     #histHead    <- 0                                                      ## Pointer to the history buffer head
-    iter        <- 10                                                     ## Number of iterations
+    iter        <- histNumber                                                     ## Number of iterations
     Ft          <- initFt
 
     # Create fisrt population
     #population <- replicate(lambda, runif(N,0.8*lower,0.8*upper))
     #population <- replicate(lambda, runif(N,0,3))
-    population <- first10pop[,,10]
+    population <- first10pop[,,histNumber]
     cumMean=(upper+lower)/2
     #populationRepaired <- apply(population,2,bounceBackBoundary2)
 
@@ -247,14 +249,14 @@ DES <- function(par, first10pop, fn, ..., lower, upper, control=list()) {
 
     #selection       <- rep(0, mu)
     #selectedPoints  <- matrix(0, nrow=N, ncol=mu)
-    fitness         <- fn_l(first10pop[,,10])
-    oldMean         <- drop(first10pop[,,9] %*% rep(1,lambda))/lambda
-    newMean         <- drop(first10pop[,,10] %*% rep(1,lambda))/lambda
+    fitness         <- fn_l(first10pop[,,histNumber])
+    oldMean         <- drop(first10pop[,,histNumber-1] %*% rep(1,lambda))/lambda
+    newMean         <- drop(first10pop[,,histNumber] %*% rep(1,lambda))/lambda
     limit           <- 0
     worst.fit       <- max(fitness)
 
     # Store population and selection means
-    popMean         <- drop(first10pop[,,10] %*% weightsPop)
+    popMean         <- drop(first10pop[,,histNumber] %*% weightsPop)
     muMean          <- newMean
 
     ## Matrices for creating diffs
@@ -329,24 +331,24 @@ DES <- function(par, first10pop, fn, ..., lower, upper, control=list()) {
       #historySample2 <- sample(1:limit,lambda, replace = TRUE, prob = prb)
       #historySample3 <- sample(1:limit,lambda, replace = TRUE, prob = prb)
       
-      if(iter==11){
-        historySample   <- iter - sampleGeometric(1000,limit,c1cmu) + 1
-        historySample2  <- iter - sampleGeometric(1000,limit,c1cmu) + 1
-        historySample3  <- iter - sampleGeometric(1000,limit,c1cmu) + 1
+      if(iter==histNumber+1){
+        historySample   <- iter - sampleGeometric(100000,limit,c1cmu) + 1
+        historySample2  <- iter - sampleGeometric(100000,limit,c1cmu) + 1
+        historySample3  <- iter - sampleGeometric(100000,limit,c1cmu) + 1
         
-        x1sample <- sampleFromHistory(history,historySample3,1000)
-        x2sample <- sampleFromHistory(history,historySample3,1000)
+        x1sample <- sampleFromHistory(history,historySample3,100000)
+        x2sample <- sampleFromHistory(history,historySample3,100000)
         
         alphaFactor <- 1/(1 - c1cmu^iter)
         
-        diffsBIG     <- matrix(0, N, 1000)
+        diffsBIG     <- matrix(0, N, 100000)
         
         ## Make diffs
-        for (i in 1:1000) {
+        for (i in 1:100000) {
           x1 <- history[[historySample3[i]]][,x1sample[i]]
           x2 <- history[[historySample3[i]]][,x2sample[i]]
           
-          diffsBIG[,i] <-  sqrt(cu/(2*alphaFactor*ccov))*(x1 - x2) +
+          diffsBIG[,i] <-  sqrt(cu/(alphaFactor*ccov))*(x1 - x2) +
             sqrt(cu/(alphaFactor*ccov))*rnorm(1)*dMean[,historySample[i]]  + 
             sqrt(c1/(alphaFactor*ccov))*rnorm(1)*pc[,historySample2[i]] +
             (1-ccov)^(iter/2)*rnorm(N)
@@ -375,7 +377,7 @@ DES <- function(par, first10pop, fn, ..., lower, upper, control=list()) {
         x1 <- history[[historySample3[i]]][,x1sample[i]]
         x2 <- history[[historySample3[i]]][,x2sample[i]]
 
-        diffs[,i] <-  sqrt(cu/(2*alphaFactor*ccov))*(x1 - x2) +
+        diffs[,i] <-  sqrt(cu/(alphaFactor*ccov))*(x1 - x2) +
                       sqrt(cu/(alphaFactor*ccov))*rnorm(1)*dMean[,historySample[i]]  + 
                       sqrt(c1/(alphaFactor*ccov))*rnorm(1)*pc[,historySample2[i]] +
                       (1-ccov)^(iter/2)*rnorm(N)
