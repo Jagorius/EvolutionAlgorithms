@@ -140,8 +140,8 @@ AbsSigmaPlot <- function(N,func,isYaxt="s"){
 
   functionEvalVec <- (1:nrow(resDES))*(lambda_DES)
   # Plot
-  if(any(abs(resDES)>=10^10))
-    x_limit = c(0,which(abs(resDES)>=10^10)[1]*lambda_DES)
+  if(any((resDES)<=10^-10))
+    x_limit = c(0,which((resDES)<=10^-10)[1]*lambda_DES)
   else
     x_limit = c(0,1400*N)
 

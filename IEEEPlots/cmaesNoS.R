@@ -297,10 +297,10 @@ cma_esNos <- function(par, fn, ..., lower, upper, control=list()) {
     if (log.eigen)
       eigen.log[iter,] <- rev(sort(eE$values))
 
-   # if (!all(e$values >= sqrt(.Machine$double.eps) * abs(e$values[1]))) {      
-  #    msg <- "Covariance matrix 'C' is numerically not positive definite."
-  #    break
-  #  }
+    if (!all(e$values >= sqrt(.Machine$double.eps) * abs(e$values[1]))) {      
+      msg <- "Covariance matrix 'C' is numerically not positive definite."
+      break
+    }
 
     B <- e$vectors
     D <- diag(sqrt(e$values), length(e$values))
