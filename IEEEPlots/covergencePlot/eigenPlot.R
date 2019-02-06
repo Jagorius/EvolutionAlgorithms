@@ -15,7 +15,7 @@ eigenplotDES<- function(){
       return(res)
     },
     lower=-10^100, upper=10^100,
-    control=list("budget"=6000,"diag.pop"=TRUE,"diag.eigen"=TRUE)
+    control=list("budget"=6000 ,"diag.pop"=TRUE,"diag.eigen"=TRUE)
     )
     eigenLog[[length(eigenLog)+1]] <- abs(resDES$diagnostic$eigen)
   }
@@ -72,7 +72,7 @@ eigenplotCMAES<- function(){
   # Mean of each value in vector
   eigen <- Reduce("+", eigenLog) / length(eigenLog)
 
-  # Divide each column by corresponding fitness function weight
+    # Divide each column by corresponding fitness function weight
   #for(i in 1:ncol(eigen))
   # eigen[,i] <- eigen[,i] / 10^(6*( (i-1)/(ncol(eigen)-1) ))
 
@@ -165,7 +165,7 @@ eigenplotCMADE<- function(){
       #return(Cigar(x))
     },
     lower=-10^100, upper=10^100,
-    control=list("budget"=6000,"diag.pop"=TRUE,"diag.eigen"=TRUE)
+    control=list("budget"=100000,"diag.pop"=TRUE,"diag.eigen"=TRUE)
     )
     eigenLog[[length(eigenLog)+1]] <- abs(resDES$diagnostic$eigen)
   }
@@ -183,7 +183,7 @@ eigenplotCMADE<- function(){
   
   # Plot eigen values changes for each dimmension
   options(scipen=3)
-  plot(functionEvalVec,eigen[,N],log="y",ylim=c(1e-7,1e1), xlab="function evaluations", ylab="Eigenvalues",cex=0,cex.axis=1.5,cex.lab=1.5)
+  plot(functionEvalVec,eigen[,N],log="y",ylim=c(1e-48,1e1), xlab="function evaluations", ylab="Eigenvalues",cex=0,cex.axis=1.5,cex.lab=1.5)
   
   
   lines(functionEvalVec,eigen[,N], lwd=2)

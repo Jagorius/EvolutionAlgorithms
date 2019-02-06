@@ -118,7 +118,8 @@ RosenBrock = function(x){
 
 AbsSigmaPlot <- function(N,func,isYaxt="s"){
   Iters <- 51
-
+  bud   <- 1500*N
+    
   source('C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/DESv2/DES - tol_v2/DESv2017.R')
   lambda_DES <- 4+floor(3*sqrt(N))
   #lambda_DES <- 4*N
@@ -129,7 +130,7 @@ AbsSigmaPlot <- function(N,func,isYaxt="s"){
     print(paste("DES",i,sep=" "))
     resDES <- DES(rep(0,N),fn=func,
                   lower=-10^100, upper=10^100,
-                  control=list("lambda"=lambda_DES, "budget"=1500*N,"diag.pop"=TRUE,"diag.Ft"=TRUE,diag.mean=TRUE,"diag.bestVal"=TRUE,"diag.worstVal"=TRUE)
+                  control=list("lambda"=lambda_DES, "budget"=bud,"diag.pop"=TRUE,"diag.Ft"=TRUE,diag.mean=TRUE,"diag.bestVal"=TRUE,"diag.worstVal"=TRUE)
     )
     DESLog[[length(DESLog)+1]] <- resDES$diagnostic$bestVal
   }
@@ -143,7 +144,7 @@ AbsSigmaPlot <- function(N,func,isYaxt="s"){
   if(any((resDES)<=10^-10))
     x_limit = c(0,which((resDES)<=10^-10)[1]*lambda_DES)
   else
-    x_limit = c(0,1400*N)
+    x_limit = c(0,bud-100*N)
 
   #resDES[resDES<=0] <- 10^-64
   plot(functionEvalVec,functionEvalVec, log="y",ylim=c(10^-10,10^6),xlim=x_limit,cex=0, yaxt=isYaxt,cex.axis=1.5)
@@ -160,7 +161,7 @@ AbsSigmaPlot <- function(N,func,isYaxt="s"){
     print(paste("CMADE",i,sep=" "))
     resDESCMAES <- DES(rep(0,N),fn=func,
                        lower=-10^100, upper=10^100,
-                       control=list( "lambda"=lambda_DES, "budget"=1500*N,"diag.pop"=TRUE,"diag.Ft"=TRUE,diag.mean=TRUE,"diag.bestVal"=TRUE,"diag.worstVal"=TRUE)
+                       control=list( "lambda"=lambda_DES, "budget"=bud,"diag.pop"=TRUE,"diag.Ft"=TRUE,diag.mean=TRUE,"diag.bestVal"=TRUE,"diag.worstVal"=TRUE)
     )
     DESCMAESLog[[length(DESCMAESLog)+1]] <- resDESCMAES$diagnostic$bestVal
 
@@ -181,7 +182,7 @@ AbsSigmaPlot <- function(N,func,isYaxt="s"){
     resCMAES <- cma_es(rep(0,N),
                        fn=func,
                        lower=-10^100, upper=10^100,
-                       control=list("lambda"=lambda_DES,"diag.bestVal"=TRUE,"budget"=1500*N)
+                       control=list("lambda"=lambda_DES,"diag.bestVal"=TRUE,"budget"=bud)
     )
     CMAESLog[[length(CMAESLog)+1]] <- resCMAES$diagnostic$bestVal
 
@@ -200,52 +201,56 @@ AbsSigmaPlot <- function(N,func,isYaxt="s"){
   
   
   ##### CMA-ES No Sigma
-  source('C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEPlots/cmaesNoS.R')
-  CMAESnoSLog <- list()
-  for (i in 1:Iters){
-    print(paste("CMAESNos",i,sep=" "))
-    resCMAESnoS <- cma_esNos(rep(0,N),
-                       fn=func,
-                       lower=-10^100, upper=10^100,
-                       control=list("lambda"=lambda_DES,"diag.bestVal"=TRUE,"budget"=1500*N)
-    )
-    CMAESnoSLog[[length(CMAESnoSLog)+1]] <- resCMAESnoS$diagnostic$bestVal
-    
-  }
-  min_l <- Inf
-  for(l in 1:length(CMAESnoSLog))
-    min_l = min(min_l,length(CMAESnoSLog[[l]]))
-  for(l in 1:length(CMAESnoSLog))
-    CMAESnoSLog[[l]] <- CMAESnoSLog[[l]][1:min_l]
-  resCMAESnoS <- Reduce("+", CMAESnoSLog) / length(CMAESnoSLog)
-  
-  #resCMAESnoS[resCMAESnoS<=0] <- 10^-64
-  functionEvalVec4 <- (1:length(resCMAESnoS))*(lambda_DES)
-  lines(functionEvalVec4,abs(resCMAESnoS), lwd=3, col="grey")
-
-  ##### DE/rand/1/bin
-  library(DEoptim)
-  DELog <- list()
-  for (i in 1:Iters){
-    print(paste("DE",i,sep=" "))
-    resDE <- DEoptim(    fn=func,lower=rep(-10^100,N), upper=rep(10^100,N),
-                DEoptim.control(strategy = 1, NP=lambda_DES, 
-                                itermax=ceiling(1500*N/lambda_DES), trace=FALSE,
-                                initialpop=t(replicate(lambda_DES, runif(N,0,3)))
-                                )
+  if(FALSE){
+    source('C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEPlots/cmaesNoS.R')
+    CMAESnoSLog <- list()
+    for (i in 1:Iters){
+      print(paste("CMAESNos",i,sep=" "))
+      resCMAESnoS <- cma_esNos(rep(0,N),
+                         fn=func,
+                         lower=-10^100, upper=10^100,
+                         control=list("lambda"=lambda_DES,"diag.bestVal"=TRUE,"budget"=bud)
       )
-    DELog[[length(DELog)+1]] <- resDE$member$bestvalit
+      CMAESnoSLog[[length(CMAESnoSLog)+1]] <- resCMAESnoS$diagnostic$bestVal
+      
+    }
+    min_l <- Inf
+    for(l in 1:length(CMAESnoSLog))
+      min_l = min(min_l,length(CMAESnoSLog[[l]]))
+    for(l in 1:length(CMAESnoSLog))
+      CMAESnoSLog[[l]] <- CMAESnoSLog[[l]][1:min_l]
+    resCMAESnoS <- Reduce("+", CMAESnoSLog) / length(CMAESnoSLog)
     
+    #resCMAESnoS[resCMAESnoS<=0] <- 10^-64
+    functionEvalVec4 <- (1:length(resCMAESnoS))*(lambda_DES)
+    lines(functionEvalVec4,abs(resCMAESnoS), lwd=3, col="grey")
   }
-  min_l <- Inf
-  for(l in 1:length(DELog))
-    min_l = min(min_l,length(DELog[[l]]))
-  for(l in 1:length(DELog))
-    DELog[[l]] <- DELog[[l]][1:min_l]
-  DEoptim <- Reduce("+", DELog) / length(DELog)
   
-  functionEvalVec5 <- (1:length(DEoptim))*(lambda_DES)
-  lines(functionEvalVec5,abs(DEoptim), lwd=3, col="black")
+  ##### DE/rand/1/bin
+  if(FALSE){
+    library(DEoptim)
+    DELog <- list()
+    for (i in 1:Iters){
+      print(paste("DE",i,sep=" "))
+      resDE <- DEoptim(    fn=func,lower=rep(-10^100,N), upper=rep(10^100,N),
+                  DEoptim.control(strategy = 1, NP=lambda_DES, 
+                                  itermax=ceiling(bud/lambda_DES), trace=FALSE,
+                                  initialpop=t(replicate(lambda_DES, runif(N,0,3)))
+                                  )
+        )
+      DELog[[length(DELog)+1]] <- resDE$member$bestvalit
+      
+    }
+    min_l <- Inf
+    for(l in 1:length(DELog))
+      min_l = min(min_l,length(DELog[[l]]))
+    for(l in 1:length(DELog))
+      DELog[[l]] <- DELog[[l]][1:min_l]
+    DEoptim <- Reduce("+", DELog) / length(DELog)
+    
+    functionEvalVec5 <- (1:length(DEoptim))*(lambda_DES)
+    lines(functionEvalVec5,abs(DEoptim), lwd=3, col="black")
+  }
   #dev.off()
 
 

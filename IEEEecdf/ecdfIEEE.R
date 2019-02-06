@@ -10,6 +10,7 @@ ecdfIEEE<- function(n,f_from,f_to){
   #des_path = "C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/CEC2017/CMADE-BBComp5 HistSize=3sqrt(N) init(-80,80) FINALTEST/M/"
   rb_ipop_cma_es_path = "C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Results for all papers/paper ID  E-17343/RB-IPOP-CMA-ES/"
   cmaes_pure = "C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/CEC2017/CMAES/M/"
+  cmaes_4N = "C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/CEC2017/CMAES L=4N/M/"
   des_pathv2 = "C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/DESv2/DES - tol_v2/M/"
   jsopath = "C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Results for all papers/Paper ID   17315/jSO/"
   lshadeSpacma_path = "C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEecdf/Results for all papers/Paper ID 17051/LSHADE_SPACMA/"
@@ -37,6 +38,7 @@ ecdfIEEE<- function(n,f_from,f_to){
   #resultsDES <- list()
   resultsRB_IPOP_CMA_ES <- list()
   resultsCmaes_pure <- list()
+  resultsCmaes_4n <- list()
   resultsDESv2 <- list()
   resultsjso <- list()
   resultslshadeSpacma <- list()
@@ -60,6 +62,7 @@ ecdfIEEE<- function(n,f_from,f_to){
     resultslshadeSpacma[[p]] <- read.table(file = paste(lshadeSpacma_path,"LSHADE_SPACMA_",p,"_",N,".txt",sep=""))
     #resultsCmaesNos[[p]] <- read.table(file = paste(cmaesNos_path,"CMAES_",p,"_",N,".txt",sep=""),sep = ",",header = TRUE)
     resultsEbo[[p]] <- read.table(file = paste(ebopath,"EBOwithCMAR_",p,"_",N,".dat",sep=""))
+    resultsCmaes_4n[[p]] <- read.table(file = paste(cmaes_4N,"CMAES_",p,"_",N,".txt",sep=""),sep = ",",header = TRUE)
     #resultsIDE[[p]] <- read.table(file = paste(idepath,"IDEbestNsize_",N,"_",p,".txt",sep=""))
     #resultsPPSO[[p]] <- read.table(file = paste(ppsopath,"PPSO_",p,"_",N,".txt",sep=""))
     #resultsMMOED[[p]] <- read.table(file = paste(mmoedpath,"MM_OED_",p,"_",N,".txt",sep=""))
@@ -78,7 +81,8 @@ ecdfIEEE<- function(n,f_from,f_to){
                                                         min(resultsjso[[p]][14,]),
                                                         min(resultslshadeSpacma[[p]][14,]),
                                                         #min(resultsCmaesNos[[p]][14,]),
-                                                        min(resultsEbo[[p]][14,])
+                                                        min(resultsEbo[[p]][14,]),
+                                                        min(resultsCmaes_4n[[p]][14,])
                                                         #min(resultsIDE[[p]][14,]),
                                                         #min(resultsPPSO[[p]][14,]),
                                                         #min(resultsMMOED[[p]][14,]),
@@ -95,7 +99,8 @@ ecdfIEEE<- function(n,f_from,f_to){
                                                                  max(resultsjso[[p]][1,]),
                                                                  max(resultslshadeSpacma[[p]][1,]),
                                                                  #max(resultsCmaesNos[[p]][1,]),
-                                                                 max(resultsEbo[[p]][1,])
+                                                                 max(resultsEbo[[p]][1,]),
+                                                                 max(resultsCmaes_4n[[p]][1,])
                                                                  #max(resultsIDE[[p]][1,]),
                                                                  #max(resultsPPSO[[p]][1,]),
                                                                  #max(resultsMMOED[[p]][1,]),
@@ -115,6 +120,7 @@ ecdfIEEE<- function(n,f_from,f_to){
   minCountshadeSpacma <- rep(0,length(budgetSteps))
   #minCountCmaes_nos <- rep(0,length(budgetSteps))
   minCountEbo <- rep(0,length(budgetSteps))
+  minCountCmaes_4N <- rep(0,length(budgetSteps))
   minCountIde <- rep(0,length(budgetSteps))
   minCountPpso <- rep(0,length(budgetSteps))
   minCountMmoed <- rep(0,length(budgetSteps))
@@ -136,6 +142,7 @@ ecdfIEEE<- function(n,f_from,f_to){
         minCountshadeSpacma[b] <- minCountshadeSpacma[b] + sum(resultslshadeSpacma[[p]][b,]<ecdfValues[[p]][e])
         #minCountCmaes_nos[b] <- minCountCmaes_nos[b] + sum(resultsCmaesNos[[p]][b,]<ecdfValues[[p]][e])
         minCountEbo[b] <- minCountEbo[b] + sum(resultsEbo[[p]][b,]<ecdfValues[[p]][e])
+        minCountCmaes_4N[b] <- minCountCmaes_4N[b] + sum(resultsCmaes_4n[[p]][b,]<ecdfValues[[p]][e])
         #minCountIde[b] <- minCountIde[b] + sum(resultsIDE[[p]][b,]<ecdfValues[[p]][e])
         #minCountPpso[b] <- minCountPpso[b] + sum(resultsPPSO[[p]][b,]<ecdfValues[[p]][e])
         #minCountMmoed[b] <- minCountMmoed[b] + sum(resultsMMOED[[p]][b,]<ecdfValues[[p]][e])
@@ -179,7 +186,8 @@ ecdfIEEE<- function(n,f_from,f_to){
   lines(budgetSteps,minCountRB_IPOP_CMA_ES/(ecdfMaxSucess),type="b", lwd=2,lty=linetype[3], col=colors_[3], pch=plotchar[3])
   lines(budgetSteps,minCountCmaes_pure/(ecdfMaxSucess),type="b", lwd=2,lty=linetype[2], col=colors_[2], pch=plotchar[2])
   lines(budgetSteps,minCountDESv2/(ecdfMaxSucess),type="b", lwd=2,lty=linetype[1], col=colors_[1], pch=plotchar[1])
-
+  lines(budgetSteps,minCountCmaes_4N/(ecdfMaxSucess),type="b", lwd=2,lty=linetype[7], col=colors_[7], pch=plotchar[7])
+  
   #legend(-0.08, 1.03, c('DES','CMA-ES', 'RB_IPOP_CMA_ES','jSO','LSHADE_SPACMA','EBOwithCMAR','IDEbestNsize','PPSO','MM_OED','DYYPO','TLBO-FL','MOS-CEC2012','MOS-CEC2013','MOS-SOCO2011'), text.font=2, cex=1.2, col=colors_[1:14],pch=plotchar[1:14], lty=linetype[1:14] )
 
   #dev.off()
@@ -229,7 +237,7 @@ combinedPlot <- function(){
 
 plotCECline <- function(){
 
-  colors_ <<- c(rep("black",2),rep("grey",12))
+  colors_ <<- c(rep("black",2),rep("grey",4),"blue")
   linetype <<- c(c(1:6),c(1:6),c(1:6))
   plotchar <<- c( 15,1,seq(16,15+8,1),8,13,14,13)
   setEPS()
@@ -245,12 +253,12 @@ plotCECline <- function(){
 
   par(fig = c(0, 1, 0, 1), oma = c(0, 0, 0, 0), mar = c(0, 0, 0, 0), new = TRUE)
   plot(0, 0, type = "n", bty = "n", xaxt = "n", yaxt = "n")
-  legend("bottom", c('DES','CMA-ES', 'RB_IPOP_CMA_ES','jSO','LSHADE_SPACMA','EBOwithCMAR'), text.font=2, cex=1.5, col=colors_[1:6],pch=plotchar[1:6], lty=linetype[1:6], ncol=6)
+  legend("bottom", c('DES','CMA-ES', 'RB_IPOP_CMA_ES','jSO','LSHADE_SPACMA','EBOwithCMAR','CMA-ES L=4N'), text.font=2, cex=1.5, col=colors_[1:7],pch=plotchar[1:7], lty=linetype[1:7], ncol=6)
   dev.off()
 }
 
 plotAllSingle <- function(){
-  colors_ <<- c("red","orange","blue","green","brown","pink")
+  colors_ <<- c("red","orange","blue","green","brown","pink","black")
   linetype <<- c(c(1:6),c(1:6),c(1:6))
   plotchar <<- c( 15,1,seq(16,15+8,1),8,13,14,13)
 
@@ -258,7 +266,7 @@ plotAllSingle <- function(){
     for(p in 1:30){
       pdf( paste("Problem=",p,",N=",n,".pdf",sep=''), width = 10, height = 10)
       ecdfIEEE(n,p,p)
-      legend(-0.08, 1.03, c('DES','CMA-ES', 'RB_IPOP_CMA_ES','jSO','LSHADE_SPACMA','EBOwithCMAR'), text.font=2, cex=1.5, col=colors_[1:6],pch=plotchar[1:6], lty=linetype[1:6])
+      legend(-0.08, 1.03, c('DES','CMA-ES', 'RB_IPOP_CMA_ES','jSO','LSHADE_SPACMA','EBOwithCMAR','CMA-ES L=4N'), text.font=2, cex=1.5, col=colors_[1:7],pch=plotchar[1:7], lty=linetype[1:7])
       dev.off()
 
     }
