@@ -79,6 +79,7 @@ Discus <- function(x){
   for(i in 2:length(x))
     res <- res + x[i]^2
   return(res)
+  print("Discus")
 }
 
 Ellipsoid <- function(x){
@@ -114,11 +115,12 @@ RosenBrock = function(x){
   for(i in 1:(length(x)-1))
     res <- res + 100*(x[i+1]-x[i]^2)^2 + (x[i]-1)^2
   return(res)
+  print("RosenBrock")
 }
 
 AbsSigmaPlot <- function(N,func,isYaxt="s"){
-  Iters <- 51
-  bud   <- 1500*N
+  Iters <- 50
+  bud <- 2000*N
     
   source('C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/DESv2/DES - tol_v2/DESv2017.R')
   lambda_DES <- 4+floor(3*sqrt(N))
@@ -145,6 +147,12 @@ AbsSigmaPlot <- function(N,func,isYaxt="s"){
     x_limit = c(0,which((resDES)<=10^-10)[1]*lambda_DES)
   else
     x_limit = c(0,bud-100*N)
+
+  if(N==30 && any(grepl("RosenBrock",deparse(func)))){
+    x_limit = c(0,60000) 
+  }else if(N==30 && any(grepl("Discus",deparse(func)))){
+    x_limit = c(0,40000)
+  }
 
   #resDES[resDES<=0] <- 10^-64
   plot(functionEvalVec,functionEvalVec, log="y",ylim=c(10^-10,10^6),xlim=x_limit,cex=0, yaxt=isYaxt,cex.axis=1.5)
@@ -227,7 +235,7 @@ AbsSigmaPlot <- function(N,func,isYaxt="s"){
   }
   
   ##### DE/rand/1/bin
-  if(FALSE){
+  if(TRUE){
     library(DEoptim)
     DELog <- list()
     for (i in 1:Iters){
