@@ -253,7 +253,7 @@ plotCECline <- function(){
 
   par(fig = c(0, 1, 0, 1), oma = c(0, 0, 0, 0), mar = c(0, 0, 0, 0), new = TRUE)
   plot(0, 0, type = "n", bty = "n", xaxt = "n", yaxt = "n")
-  legend("bottom", c('DES','CMA-ES', 'RB_IPOP_CMA_ES','jSO','LSHADE_SPACMA','EBOwithCMAR','CMA-ES L=4N'), text.font=2, cex=1.5, col=colors_[1:7],pch=plotchar[1:7], lty=linetype[1:7], ncol=7)
+  legend("bottom", c('DES','CMA-ES', 'RB_IPOP_CMA_ES  ','jSO','LSHADE_SPACMA ','EBOwithCMAR','CMA-ES L=4N'), text.font=2, cex=1.3, col=colors_[1:7],pch=plotchar[1:7], lty=linetype[1:7], ncol=7)
   dev.off()
 }
 
