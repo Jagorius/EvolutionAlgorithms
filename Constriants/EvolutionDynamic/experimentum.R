@@ -157,7 +157,7 @@ AbsSigmaPlot <- function(N,func,isYaxt="s"){
   #resDES[resDES<=0] <- 10^-64
   plot(functionEvalVec,functionEvalVec, log="y",ylim=c(10^-10,10^6),xlim=x_limit,cex=0, yaxt=isYaxt,cex.axis=1.5)
   # Plot f(best)
-  lines(functionEvalVec,abs(resDES), lwd=3, col="blue")
+  lines(functionEvalVec,abs(resDES), lwd=3, col="black")
   # Plot f(mean)
   #lines(functionEvalVec,resDES$diagnostic$mean, lwd=3, col="black")
 
@@ -178,7 +178,7 @@ AbsSigmaPlot <- function(N,func,isYaxt="s"){
   #resDESCMAES[resDESCMAES<=0] <- 10^-64
 
   functionEvalVec2 <- (1:nrow(resDESCMAES))*(lambda_DES)
-  lines(functionEvalVec2,abs(resDESCMAES), lwd=3, col="orange")
+  lines(functionEvalVec2,abs(resDESCMAES), lwd=3, col="grey")
 
   ##### CMA-ES
   #source('C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEPlots/cmaesNoS.R')
@@ -205,11 +205,10 @@ AbsSigmaPlot <- function(N,func,isYaxt="s"){
   #resCMAES[resCMAES<=0] <- 10^-64
 
   functionEvalVec3 <- (1:length(resCMAES))*(lambda_DES)
-  lines(functionEvalVec3,abs(resCMAES), lwd=3, col="red")
+  lines(functionEvalVec3,abs(resCMAES), lwd=3, col="black",lty=2)
   
   
   ##### CMA-ES No Sigma
-  if(FALSE){
     source('C:/Users/JS/Desktop/Doktorat/EvolutionAlgorithms/IEEEPlots/cmaesNoS.R')
     CMAESnoSLog <- list()
     for (i in 1:Iters){
@@ -231,8 +230,8 @@ AbsSigmaPlot <- function(N,func,isYaxt="s"){
     
     #resCMAESnoS[resCMAESnoS<=0] <- 10^-64
     functionEvalVec4 <- (1:length(resCMAESnoS))*(lambda_DES)
-    lines(functionEvalVec4,abs(resCMAESnoS), lwd=3, col="grey")
-  }
+    lines(functionEvalVec4,abs(resCMAESnoS), lwd=3, col="grey",lty=2)
+  
   
   ##### DE/rand/1/bin
   if(TRUE){
@@ -257,7 +256,7 @@ AbsSigmaPlot <- function(N,func,isYaxt="s"){
     DEoptim <- Reduce("+", DELog) / length(DELog)
     
     functionEvalVec5 <- (1:length(DEoptim))*(lambda_DES)
-    lines(functionEvalVec5,abs(DEoptim), lwd=3, col="black")
+    lines(functionEvalVec5,abs(DEoptim), lwd=3, col="black",lty=3)
   }
   #dev.off()
 
